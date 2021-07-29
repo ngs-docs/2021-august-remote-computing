@@ -1,2 +1,2 @@
-# 2021-july-remote-computing
-Remote computing workshops in July 2021
+# 2021-august-remote-computing
+Remote computing workshops in August 2021
