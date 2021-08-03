@@ -1,0 +1,16 @@
+overview
+introductory-skills
+intermediate-skills
+advanced-skills
+introduction-to-the-unix-command-line
+introduction-to-unix
+learning-goals
+what-is-the-shell-and-what-is-the-terminal
+navigation
+learning-goals-1
+viewing-searching
+learning-goals-2
+file-manipulation
+learning-goals-3
+renaming-a-bunch-of-files
+other-notes
