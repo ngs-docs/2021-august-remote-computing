@@ -1,0 +1,8 @@
+channels:
+    - conda-forge
+    - bioconda
+    - defaults
+dependencies:
+    - r-rmarkdown==2.6
+    - r-rmdformats==1.0.1
+    - r-bookdown==0.22
