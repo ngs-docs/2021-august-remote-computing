@@ -13,4 +13,4 @@ learning-goals-2
 file-manipulation
 learning-goals-3
 renaming-a-bunch-of-files
-other-notes
+some-final-notes

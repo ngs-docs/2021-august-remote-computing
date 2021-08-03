@@ -5,13 +5,13 @@ line, which is the main way to interact with remote computers. We will
 cover computing concepts, file systems and directory structure, and
 some of the most important commands for working with remote computers.
 
-@CTB explain binder
+Today and tomorrow we'll be using an interactive Web site running on
+a [binder](https://mybinder.org/). To start your binder, please click on
+the "launch" button below; it will take up to a minute to start.
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/latest?urlpath=rstudio)
 
-
-
-This lesson was adapted from Data Carpentry's [Introduction to the Command Line for Genomics](https://datacarpentry.org/shell-genomics/) lesson and the Lab for Data Intensive Biology's [Advanced Beginner/Intermediate Shell](https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html) workshop.
+NOTE: This lesson was adapted from Data Carpentry's [Introduction to the Command Line for Genomics](https://datacarpentry.org/shell-genomics/) lesson and the Lab for Data Intensive Biology's [Advanced Beginner/Intermediate Shell](https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html) workshop.
 
 ----
 
@@ -103,7 +103,7 @@ ls --help
 
 Here we see a long list of options. Each option will allow us to do something different.
 
-**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`. Hint: look for the word classify. @CTB man page link
+**CHALLENGE** Try to find the option that allows you to differentiate between directories and executable files when using `ls`. Hint: look for the word classify. (You can also look at the [`ls` man page if you prefer!](https://man7.org/linux/man-pages/man1/ls.1.html)
 
 
 We can also combine commands:
@@ -416,10 +416,13 @@ _Side note:_ you may see backquotes used instead of `$(...)`. It does the same t
 
 ----
 
+## Some final notes
+
+The binder and this documentation page will stay working for the foreseeable
+future, so please feel free to come back and revisit some of these commands!
+
 We will explore more UNIX commands over the next few workshops!
 
-## Other notes
-
-Google (and especially stackoverflow) is your friend.
-
-@CTB
+Google (and especially stackoverflow) is your friend! Use Internet
+search whenever you have questions about what a command does, or what
+commands to use to achieve a particular tasks.

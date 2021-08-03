@@ -100,7 +100,7 @@
 <li class="chapter" data-level="2.4.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-3"><i class="fa fa-check"></i><b>2.4.1</b> Learning Goals</a></li>
 <li class="chapter" data-level="2.4.2" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#renaming-a-bunch-of-files"><i class="fa fa-check"></i><b>2.4.2</b> Renaming a bunch of files</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#other-notes"><i class="fa fa-check"></i><b>2.5</b> Other notes</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#some-final-notes"><i class="fa fa-check"></i><b>2.5</b> Some final notes</a></li>
 </ul></li>
 </ul>
 
@@ -125,9 +125,11 @@
 line, which is the main way to interact with remote computers. We will
 cover computing concepts, file systems and directory structure, and
 some of the most important commands for working with remote computers.</p>
-<p><span class="citation">@CTB</span> explain binder</p>
+<p>Today and tomorrow we’ll be using an interactive Web site running on
+a <a href="https://mybinder.org/">binder</a>. To start your binder, please click on
+the “launch” button below; it will take up to a minute to start.</p>
 <p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/latest?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
-<p>This lesson was adapted from Data Carpentry’s <a href="https://datacarpentry.org/shell-genomics/">Introduction to the Command Line for Genomics</a> lesson and the Lab for Data Intensive Biology’s <a href="https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html">Advanced Beginner/Intermediate Shell</a> workshop.</p>
+<p>NOTE: This lesson was adapted from Data Carpentry’s <a href="https://datacarpentry.org/shell-genomics/">Introduction to the Command Line for Genomics</a> lesson and the Lab for Data Intensive Biology’s <a href="https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html">Advanced Beginner/Intermediate Shell</a> workshop.</p>
 <hr />
 <div id="introduction-to-unix" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Introduction to UNIX</h2>
@@ -184,7 +186,7 @@ README.md   gvng.jpg        nano2.png</code></pre>
 <p>Using options with our commands allows us to do a lot! But how did we know to add <code>-a</code> after ls? Most commands offer a <code>--help</code>. Let’s look at the available options that <code>ls</code> has:</p>
 <pre><code>ls --help</code></pre>
 <p>Here we see a long list of options. Each option will allow us to do something different.</p>
-<p><strong>CHALLENGE</strong> Try to find the option that allows you to differentiate between directories and executable files when using <code>ls</code>. Hint: look for the word classify. <span class="citation">@CTB</span> man page link</p>
+<p><strong>CHALLENGE</strong> Try to find the option that allows you to differentiate between directories and executable files when using <code>ls</code>. Hint: look for the word classify. (You can also look at the <a href="https://man7.org/linux/man-pages/man1/ls.1.html"><code>ls</code> man page if you prefer!</a></p>
 <p>We can also combine commands:</p>
 <pre><code>ls -aFl</code></pre>
 <p>This combination of options will <em>list</em> <em>all</em> the contents of the directory and <em>differentiate</em> between files types.</p>
@@ -377,13 +379,16 @@ done</code></pre>
 <p>and voila, we have renamed all the files!</p>
 <p><em>Side note:</em> you may see backquotes used instead of <code>$(...)</code>. It does the same thing but is trickier to get right, so we teach <code>$(...)</code> instead of <code>`</code>.</p>
 <hr />
+</div>
+</div>
+<div id="some-final-notes" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Some final notes</h2>
+<p>The binder and this documentation page will stay working for the foreseeable
+future, so please feel free to come back and revisit some of these commands!</p>
 <p>We will explore more UNIX commands over the next few workshops!</p>
-</div>
-</div>
-<div id="other-notes" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span> Other notes</h2>
-<p>Google (and especially stackoverflow) is your friend.</p>
-<p><span class="citation">@CTB</span></p>
+<p>Google (and especially stackoverflow) is your friend! Use Internet
+search whenever you have questions about what a command does, or what
+commands to use to achieve a particular tasks.</p>
 
 </div>
 </div>
