@@ -128,7 +128,7 @@ some of the most important commands for working with remote computers.</p>
 <p>Today and tomorrow we’ll be using an interactive Web site running on
 a <a href="https://mybinder.org/">binder</a>. To start your binder, please click on
 the “launch” button below; it will take up to a minute to start.</p>
-<p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/latest?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
+<p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
 <p>NOTE: This lesson was adapted from Data Carpentry’s <a href="https://datacarpentry.org/shell-genomics/">Introduction to the Command Line for Genomics</a> lesson and the Lab for Data Intensive Biology’s <a href="https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html">Advanced Beginner/Intermediate Shell</a> workshop.</p>
 <hr />
 <div id="introduction-to-unix" class="section level2" number="2.1">
@@ -189,7 +189,7 @@ README.md   gvng.jpg        nano2.png</code></pre>
 <p><strong>CHALLENGE</strong> Try to find the option that allows you to differentiate between directories and executable files when using <code>ls</code>. Hint: look for the word classify. (You can also look at the <a href="https://man7.org/linux/man-pages/man1/ls.1.html"><code>ls</code> man page if you prefer!</a></p>
 <p>We can also combine commands:</p>
 <pre><code>ls -aFl</code></pre>
-<p>This combination of options will <em>list</em> <em>all</em> the contents of the directory and <em>differentiate</em> between files types.</p>
+<p>This combination of options will <em>list</em> <em>all</em> the contents of the directory and <em>differentiate</em> between file types.</p>
 <hr />
 </div>
 </div>
@@ -255,7 +255,7 @@ ls -l</code></pre>
 <pre><code>cd ../
 mkdir tmp4
 ls -l</code></pre>
-<p>The shell is quite powerful and can create multiple directories at once. It can create multiple in the current working directory:</p>
+<p>The shell is quite powerful and can create multiple directories at once. It can create multiple directories in the current working directory:</p>
 <pre><code>mkdir tmp5 tmp6
 ls -l</code></pre>
 <p>or it can create a series of directories on top of one another:</p>
@@ -279,7 +279,7 @@ ls -l</code></pre>
 <li>commands: <code>less</code>, <code>head</code>, <code>tail</code>, <code>grep</code></li>
 </ul>
 <hr />
-<p>A big part of bioinformatics is making sure what you <em>expect</em> in a particular file is what you <em>have</em> in that file. There are a few ways to look at the contents of a file. We’ve already seen how to print the entirety of a file to the stdout of our <code>cat</code> command. We can also look at files using the <code>less</code> command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.</p>
+<p>A big part of data science is making sure what you <em>expect</em> in a particular file is what you <em>have</em> in that file. There are a few ways to look at the contents of a file. We’ve already seen how to print the entirety of a file to the stdout of our <code>cat</code> command. We can also look at files using the <code>less</code> command. Less is a safe way of looking at the contents of a file without the ability to change it. (We’ll talk more about text files and editing them in the second workshop!)</p>
 <p>Starting from the <code>data/</code> directory in our home directory</p>
 <pre><code>cd ~/data/</code></pre>
 <p>let’s look at some sequence data in a <a href="https://en.wikipedia.org/wiki/FASTQ_format">fastq file</a> format.</p>
@@ -335,15 +335,15 @@ TGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCCTATGGGTTGTAAACTTC
 <div id="learning-goals-3" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Learning Goals</h3>
 <ul>
-<li>combine commands to carry out a sequence of steps with <code>|</code></li>
-<li>redirect output of commands to files with <code>&gt;</code></li>
-<li>increase exposure to regular expressions</li>
 <li>commands <code>for</code>, <code>basename</code>, <code>echo</code></li>
 </ul>
 <hr />
 </div>
 <div id="renaming-a-bunch-of-files" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Renaming a bunch of files</h3>
+<p>Let’s make sure we’re in the right directory- the one that contains
+all of our data files.</p>
+<pre><code>cd ~/data/MiSeq</code></pre>
 <p>For our first task, let’s pretend that we want to rename all of the fastq files to be <code>.fq</code> files instead (this is a surprisingly useful specific skill, even if you can’t immediately think of why you would want to do that!). Here, we get to use two of my favorite commands - ‘for’ and ‘basename’.</p>
 <p><code>for</code> lets you do something to every file in a list. To see it in action:</p>
 <pre><code>for i in *.fastq
@@ -383,6 +383,11 @@ done</code></pre>
 </div>
 <div id="some-final-notes" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Some final notes</h2>
+<p>This lesson focused on file and directory exploration because that’s
+something everyone needs to know, and all these commands will work on
+pretty much any computer that is running a UNIX compatible shell (including
+Mac OS X and Windows Subsystem for Linux). We’ll get into a broader range
+of tasks soon, promise!</p>
 <p>The binder and this documentation page will stay working for the foreseeable
 future, so please feel free to come back and revisit some of these commands!</p>
 <p>We will explore more UNIX commands over the next few workshops!</p>

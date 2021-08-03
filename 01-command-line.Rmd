@@ -9,7 +9,7 @@ Today and tomorrow we'll be using an interactive Web site running on
 a [binder](https://mybinder.org/). To start your binder, please click on
 the "launch" button below; it will take up to a minute to start.
 
-[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/latest?urlpath=rstudio)
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio)
 
 NOTE: This lesson was adapted from Data Carpentry's [Introduction to the Command Line for Genomics](https://datacarpentry.org/shell-genomics/) lesson and the Lab for Data Intensive Biology's [Advanced Beginner/Intermediate Shell](https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html) workshop.
 
@@ -112,7 +112,7 @@ We can also combine commands:
 ls -aFl
 ```
 
-This combination of options will _list_ _all_ the contents of the directory and _differentiate_ between files types. 
+This combination of options will _list_ _all_ the contents of the directory and _differentiate_ between file types.
 
 ----
 
@@ -218,7 +218,7 @@ mkdir tmp4
 ls -l
 ```
 
-The shell is quite powerful and can create multiple directories at once. It can create multiple in the current working directory:
+The shell is quite powerful and can create multiple directories at once. It can create multiple directories in the current working directory:
 
 ```
 mkdir tmp5 tmp6
@@ -257,7 +257,7 @@ This nicely hints at the power of the shell - you can do certain things (in this
 
 ------------------------------------------
 
-A big part of bioinformatics is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. This is an important note since our raw sequence data should never be altered.
+A big part of data science is making sure what you _expect_ in a particular file is what you _have_ in that file. There are a few ways to look at the contents of a file. We've already seen how to print the entirety of a file to the stdout of our `cat` command. We can also look at files using the `less` command. Less is a safe way of looking at the contents of a file without the ability to change it. (We'll talk more about text files and editing them in the second workshop!)
 
 Starting from the `data/` directory in our home directory
 
@@ -345,14 +345,18 @@ grep CATTAG *.fastq
 ## File Manipulation
 
 ### Learning Goals
-* combine commands to carry out a sequence of steps with `|`
-* redirect output of commands to files with `>`
-* increase exposure to regular expressions
 * commands `for`, `basename`, `echo`
 
 ------------------------------------------
 
 ### Renaming a bunch of files
+
+Let's make sure we're in the right directory-  the one that contains
+all of our data files.
+
+```
+cd ~/data/MiSeq
+```
 
 For our first task, let's pretend that we want to rename all of the fastq files to be `.fq` files instead (this is a surprisingly useful specific skill, even if you can't immediately think of why you would want to do that!).  Here, we get to use two of my favorite commands - 'for' and 'basename'.
 
@@ -417,6 +421,12 @@ _Side note:_ you may see backquotes used instead of `$(...)`. It does the same t
 ----
 
 ## Some final notes
+
+This lesson focused on file and directory exploration because that's
+something everyone needs to know, and all these commands will work on
+pretty much any computer that is running a UNIX compatible shell (including
+Mac OS X and Windows Subsystem for Linux). We'll get into a broader range
+of tasks soon, promise!
 
 The binder and this documentation page will stay working for the foreseeable
 future, so please feel free to come back and revisit some of these commands!
