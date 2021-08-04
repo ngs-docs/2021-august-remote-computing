@@ -10,6 +10,8 @@ the "launch" button below; it will take up to a minute to start.
 
 [![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio)
 
+Once it's launched, go to the "Terminal" tab.
+
 ## Text files vs other files
 
 Text files are a fairly narrow but very important subset of the kinds
@@ -44,8 +46,10 @@ files are meant to be used for different kinds of data than text.
 
 As a side note, one of the most important aspects of text files is that
 there are some really powerful tools for tracking changes to them,
-and collaboratively editing them - we'll cover that in week @CTB,
+and collaboratively editing them - we'll cover that in workshop 8,
 version control!
+
+<!-- @CTB link in workshop materials here -->
 
 ### OK, OK, what does this all mean in practice?
 
@@ -64,7 +68,7 @@ by an interpreting program (see @github link), it can also just be viewed
 and read with cat.
 
 This is different from the other file in `2cities/`; take a look at
-what's there: run,
+what's there by running,
 ```
 ls 2cities/
 ```
@@ -104,9 +108,9 @@ You can uncompress a gzip file with `gunzip`; in this case,
 ```
 gunzip 2cities/book.txt.gz
 ```
-will produce `2cities/book.txt`.
+will produce `2cities/book.txt`
 
-CHALLENGE: what commands will tell you its file type and size?
+CHALLENGE: what two commands will tell you the file type and size of `2cities/book.txt`?
 
 ---
 
@@ -142,24 +146,121 @@ indicated by the extension.
 
 ### Let's edit this file!
 
-Let's start with the `pico` editor. `Pico` and its sibling `nano` are
+Let's start with the `nano` editor. `nano` and its sibling `pico` are
 simple text editors that let you get started, but are ultimately limited
 in their functionality.
 
-open file
+Note: If you've ever used the 'pine' e-mailer, you've used these
+editors!
 
-no mouse, just arrow keys and commands on bottom
+nano (and all of the editors we'll use below in the terminal) are
+"text graphics" editors that give you a visual interface that is not
+the command line (which is good, trust us) but that also exist only
+within the terminal program and **do not support mouse movements**.
+This is important - you can't use the mouse to move the cursor or make
+changes (although you can select things).
 
-ctrl-x to exit
+### Running the editor and exiting/saving
 
-if you change it, ctrl-x will ask if you want to save it. go ahead, change something in the first few lines ,and save it. does head report?
+To get started, let's open the file:
 
-Some basic navigation
-Long lines
-how to get help
+```
+nano 2cities/book.txt
+```
+
+this will put you in an editor window.
+
+First things first: you can immediately exit by typing CTRL-X (that's
+holding down the CTRL key, and then typing X, lowercase or uppercase -
+no shift key is needed. If you haven't changed anything, it will
+simply exit.
+
+Now edit the file with nano again (use the up arrow on the command line
+to find and rerun the previous command!) --
+
+```
+nano 2cities/book.txt
+```
+
+Now change something - just type. You should see the new characters added.
+
+Use CTRL-X again, and it will ask "Save modified buffer?" If you say "No",
+it will not save; if you type 'y', it will ask you for the name of the file.
+Just hit ENTER to overwrite the file you edited here.
+
+Now, you should be back at the command line. Run:
+```
+head 2cities/book.txt
+```
+and you should see your changes!
+
+Note, there's no 'undo' possible once you've saved.
+
+### Navigating in nano
+
+Let's go back into nano and learn how to move around.
+
+Run:
+```
+nano 2cities/book.txt
+```
+
+and use the arrow keys to move up and down and left and write.
+
+For big files, this can be tedious! If you look down on the bottom,
+you can see a bunch of help text telling you what control+keys to use
+- use CTRL-V to page down, and CTRL-Y to page back up.
+
+### Long lines - note!
+
+One of my least favorite features of nano is the way it handles long lines (lines that extend off the right of the screen).
+
+Try making one - go to the end of a line, and add a bunch of text.
+
+What it does is shift the whole line left while you're typing, and then when you scroll back over to the left, it puts a $ at the last column on the screen to tell you that it's a long line. Very confusing. But there you are.
+
+### Slightly more advanced features
+
+^K will delete the current line, and ^U will put the last deleted line into
+the current location. (It's a slightly janky version of cut and paste that
+many editors use in UNIX, for some reason.)
+
+### Getting help!
+
+In nano, CTRL-G will put you in "help" mode, and you can now navigate
+around (CTRL-V and CTRL-Y to read), and then CTRL-X to exit.
+
+Note again that ^ in front of a key means control, so e.g. ^K means
+"type CTRL+K" (which will delete the current line).
+
+Note also that M- means "hit Escape _and then_ the key after", so
+pressing the "escape" key, letting go of it, and then hitting "g" will
+go to a line and column number. Try it out - type Escape, then g, then
+type 500,10 and hit enter.
+
+Why do CTRL and Escape work differently? You hold down CTRL and another
+key, but you press Escape and then type something. Why!?
+
+The answer is that CTRL and ALT are "modifier keys", like SHIFT - they
+modify the character sent when you hold them down. Escape is its own
+character, however, so you're first saying "here's an escape character!"
+and then "here's another character!" (We don't make the rules, we just
+explain them - sorry!)
+
+### Challenges:
+
+Use the help screen to answer (and experiment with) the following challenges -
+remember, CTRL-G gets you into help, CTRL-V pages down, and CTRL-X exits help.
+
+**CHALLENGE:** How do you delete the character at the current cursor position?
+
+**CHALLENGE 2:** How do you move to the end of the file?
 
 You can do a lot in these but as soon as you're dealing with really large
-files, or many files, we suggest other editors.
+files, or many files, we suggest other editors. That having been said,
+we teach nano because it's a good "basic" editor that is usually available
+and can almost always be used if you don't have access to your favorite
+editor.
 
 ## Big Powerful Editors
 
@@ -192,16 +293,61 @@ how to save
 
 @CTB how to learn
 
-## Other editor choices that we can't use right now, but that come recommended
+## Remote vs local, and why editors?
 
-(point at twitter poll)
+So we've just shown you a bunch of editors that work on the command
+line/in the Terminal window, but don't support mouse and copy paste
+and multiple windows and other nice things. Why can't you just always
+use a **nice** editor that supports mouse commands etc etc??
 
-NotePad++
-VScode
-BBedit
+Well.
 
-We can't use these yet because we need to configure remote access in a
-particular way - that will come next week :).
+There are a few reasons!
+
+First is that it's always nice to have backup options. Even if you
+resolutely stick with something that runs on your laptop, every now
+and then you may find yourself in a situation where you're using someone
+else's computer to debug or demonstrate something.
+
+Second is that these are platform independent options, in some sense -
+if you are connected to a UNIX system, you can pretty much always use
+nano or vi or emacs, no matter how you are connecting or from what
+type of computer.
+
+Third, sometimes it's just faster to fix something locally in the shell.
+And it's nice to have the option.
+
+Fourth, and related, is that remote file editing from your laptop or
+desktop requires that certain things be available on the remote
+computer - ssh and authentication (see next two workshops, Workshops 3
+and 4!). Unfortunately, these *aren't* always available - for example,
+we can't actually *use* the nice editors on this binder, for technical
+reasons; we'd have to use the RStudio editor (which is also nice, but
+is also not always available).
+
+Last and probably least, if you're in the Matrix and you're Trinity and
+you're trying to hack through the machine firewall after breaking into
+a heavily guarded compound, you're unlikely to want to take the time to
+install an editor on a laptop you bring with you. Better to be able to
+use what's already on the system, eh? ([Yes, this is a Matrix reference.](https://www.reddit.com/r/todayilearned/comments/28nanl/til_that_the_scene_in_matrix_reloaded_when/))
+
+## Editors that run locally on your laptop/desktop
+
+That all having been said, there is no reason you can't use nice friendly
+editors most of the time! I asked [on twitter](https://twitter.com/ctitusbrown/status/1421102631557025796) about what editors people liked, and
+several popped up -
+
+* [Visual Studio Code](https://code.visualstudio.com/) was a hands-down winner. It works on Windows, Mac OS X, and Linux, and is free.
+* [BBEdit](https://www.barebones.com/products/bbedit/) was beloved by many. Runs on Mac OS X. Not free, but that's ok!
+* [NotePad++](https://notepad-plus-plus.org/downloads/) is a nice free Windows editor that I've used in the distant past.
+* Some people really liked [Atom](https://atom.io/) too, which is free and runs on Windows, Mac OS X, and Linux.
+
+Any or all of these will work for editing remote files, support
+a wide variety of languages nicely, and otherwise are excellent choices.
+Pick one! Thrive!
+
+(We can't use these yet because we need to configure remote access in a
+particular way - that will come next week :).)
 
 ## Thinking about editors as a means to an end
 
@@ -215,9 +361,9 @@ nicely for that), while vi is what I use for
 quick edits (because it's fast to start, and I don't need to configure it
 at all for it to be useful - so I can use it more places).
 
-Most people will probably end up using something like VScode, which got
-many rave reviews online and supports robust syntax highlighting and many
-different languages, as well as remote editing.
+Again, most people will probably end up using something like VScode,
+which got many rave reviews online and supports robust syntax
+highlighting and many different languages, as well as remote editing.
 
 But it **really doesn't matter**.  I think of an editor like a kitchen -
 you may customize your kitchen layout and tools differently from someone
@@ -228,20 +374,107 @@ And then it will be maddening and infuriating but that's ok :).
 
 ## Other ways to create, edit, filter, and modify files
 
-### Redirection and appending
+So editing is pretty cool, but if you're in a hurry, or want to do something,
+short, or need to work with some pretty big files, there are other approaches
+you can use. Read on!
 
-### The dumbest possible "editor" - cat
+### Redirection, appending, and piping.
+
+By default, many UNIX commands like `cat` send output to something called
+standard out, or "stdout". This is a catch-all phrase for "the basic
+place we send regular output." (There's also standard error, or "stderr",
+which is where errors are printed; and standard input, or "stdin", which
+is where input comes from.)
+
+Much of the power of the UNIX command line comes from working with
+stdout output, and if you work with UNIX a lot, you'll see characters
+like `>` (redirect), `>>` (append) and `|` (pipe) thrown around. These
+are redirection commands that say, respectively, "send stdout to a new
+file", "append stdout to an existing file", and "send stdout from one
+program to another program's stdin."
+
+Let's start by going to our home directory:
+```
+cd ~/
+```
+
+### The simplest possible "editor" - echo
+
+You can create a file with `echo` and redirection, like so:
+
+```
+echo this is some content > file.txt
+```
+
+which will put the words `this is some content` in the file named
+`file.txt`.
+
+CHALLENGE: how do you view the contents of `file.txt`?
+
+---
+
+If you then run
+```
+echo this is other content > file.txt
+```
+it will overwrite file.txt.
+
+(Note: if you don't like this overwriting behavior, you can run `set
+-o noclobber` so that bash will complain.)
+
+Instead of overwriting, you can  _append_ by specifying `>>`, like so --
+
+```
+echo more content >> file.txt
+```
+
+This doesn't just work with echo - you can do this with many UNIX commands,
+e.g.
+```
+cat file.txt file.txt > newfile.txt
+```
+
+will create `newfile.txt` with two copies of file.txt in it, and you can
+add a third with
+```
+cat file.txt >> newfile.txt
+```
+
+You can also e.g. search for words with grep and then save the results --
+for example, this will search for the word "worst" in the Tale of Two
+Cities, and save the results to `worst-lines.txt`.
+
+```
+grep worst 2cities/book.txt > worst-lines.txt
+```
 
 ### Piping and filtering
 
-grep
-cut
-wc -l
+What if you wanted to count the number of lines in which the word
+`worst` shows up in the Tale of Two Cities?
 
-## Working with csv files
+You _could_ use the "wc" (wordcount) program -
+
+```
+grep worst 2cities/book.txt > worst-lines.txt
+wc -l worst-lines.txt
+```
+(the answer is 18 :)
+
+but this creates an unnecessary intermediate file, `worst-lines.txt`.
+You can avoid creating this file by using **piping**:
+```
+grep worst 2cities/book.txt | wc -l
+```
+which says "send the output of grep to the input of wordcount".
+
+You'll see this a lot in UNIX, and below we'll explore this on a new
+file type - CSV files!
+
+## Working with CSV files
 
 CSV files - Comma Separated Value files - are another very common type
-of text files. Let's try working with them!
+of text files, especially in data science. Let's explore working with them!
 
 We've put a list of South Park TV show quotes under `SouthParkData/All-seasons.csv.gz`. Let's change into that directory to work with the CSV file.
 ```
@@ -258,7 +491,7 @@ and look at the first few rows of the result `All-seasons.csv` file --
 head All-seasons.csv
 ```
 
-It looks like there are four columns, and the quotes are multiline quotes.
+It looks like there are four columns, and the quotes are multi-line quotes.
 (I've never seen this before, but it seems to work!)
 
 Suppose you want to see if the word 'computer' is in there anywhere. You
@@ -267,13 +500,13 @@ can use `grep` to do that --
 ```
 grep computer All-seasons.csv
 ```
-- and you get a lot of results!
+-- and you get a lot of results!
 
 First, let's count them:
 ```
 grep computer All-seasons.csv | wc -l
 ```
-- this will count the number of _lines_ the word 'computer' shows up on.
+-- this will count the number of _lines_ the word 'computer' shows up on.
 (It's 78.)
 
 If you browse through the file, you might release that 'Computer' is a
@@ -309,6 +542,7 @@ cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c
 ```
 
 This is hard to pull apart but let's do so -
+
 * first, cut out column 3
 * then, search for Computer
 * then, sort them alphabetically
@@ -317,9 +551,11 @@ This is hard to pull apart but let's do so -
 There are lots of ways this can come in handy for digging into csv files
 and figuring out where values are wonky.
 
+### Use csvtk when working with CSV files, maybe.
+
 This section was mostly to show you other ways of interacting with generic
 text files with CSV as an example, but if you work a lot with CSV or TSV
-files, I wanted to suggest looking into [the csvtk program](https://bioinf.shenwei.me/csvtk/usage/) -- we'll show you how to install it with conda in workshop 5, but we pre-installed on this binder.
+files, I wanted to suggest looking into [the csvtk program](https://bioinf.shenwei.me/csvtk/usage/) -- we'll show you how to install it with conda in workshop 5, but we pre-installed it for you on this binder.
 
 With `csvtk`, you can run commands that make use of column headers - for
 example,
@@ -328,14 +564,100 @@ csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 ```
 gives you the same output, but it uses the header name.
 
-## Remote vs local, and why editors?
+csvtk is a really nice piece of software that I am starting to use heavily.
+Highly recommended when doing a lot of CSV/TSV work - definitely [check out the manual](https://bioinf.shenwei.me/csvtk/usage/).
 
-take step back, talk about initial remote/local dichotomy
+## A quick primer on compression.
 
-what we’ve shown you is…
+Make sure you're in the `SouthParkData` directory and have uncompressed
+`All-seasons.csv` --
 
-these skills will become second nature if you use them, bcause they are foundational to everything
+```
+cd ~/SouthParkData
+gunzip All-seasons.csv
+```
+(it's ok if you've already run these and they fail, just want to make sure!)
 
-you always want to know at least one local editor, I suggest learning vim
+Text files can be large, so often they are distributed in compressed version.
 
-what you use other than that is up to you and your prefs - pepole really like the windows/mac os x software above.
+### Gzip and `.gz` files.
+
+gzip is a common compression format that works with .gz files. It works
+with one file at a time, so `gzip` compresses that one file and makes a new
+.gz file.
+
+To compress `All-seasons.csv` with gzip, you can use:
+
+```
+gzip All-seasons.csv
+```
+
+If you try to run it again, you'll get an error message; try it!
+```
+gzip All-seasons.csv
+```
+...because the file no longer exists - it's been compressed into a new file, `All-seasons.csv.gz`!
+
+If you run `gunzip`, it will uncompress the file and delete the old
+one.  Sometimes this isn't what you want -- you can use output
+redirection to uncompress it and make a new copy:
+```
+gunzip -c All-seasons.csv.gz > All-seasons.csv
+```
+
+but, then, if you try to run `gzip All-seasons.csv` it will tell you that
+the .gz file already exists. Say 'n' or use CTRL-C to exit.
+
+### zip and compressing _multiple_ files.
+
+The big downside to `gzip` is that it works one file at a time. What if
+you wanted to bundle up multiple files AND compress them?
+
+Our recommended approach is to use `zip` to build a zip bundle or archive.
+This will both compress files, and store multiple files (even a directory
+hierarchy!)
+
+First, create the archive:
+```
+cd ~/
+zip south-park.zip SouthParkData/
+```
+
+and then make a copy in a new place (just to demonstrate that it all works :) -
+```
+mkdir new-place/
+cd new-place/
+unzip ../south-park.zip
+ls -R
+```
+
+and you will see a complete new copy under
+`~/new-place/south-park/SouthParkData`. This is handy for making quick
+backup copies of things and downloading them (see Workshop 4!) as well
+as sending people collections of files. We'll show you a different
+way, using version control, in Workshop 8.
+
+Note, you can use `unzip -v` to see what's _in_ a zip archive, and selectively unzip specific files by specifying them on the command line like so:
+```
+unzip ../south-park.zip SouthParkData/README.md
+```
+
+## Concluding thoughts
+
+What we've shown you is a whole plethora of hopefully
+not-too-confusing options for editing and working with text files.
+
+In terms of editing, the only thing you really need to do is (1)
+bookmark this page when you need to figure out how to exit vi, and (2)
+remember to use nano!
+
+The redirection and compression stuff is really useful, but again,
+you just need to know it exists and that there's this tutorial on it.
+
+Taking a step back, these first two workshops have been about
+introductory skills that you will use every day when you use a UNIX
+computer.
+
+These skills may seem confusing, but they will become second nature if
+you use them regularly. And we'll be doing that through the next 9
+workshops!
