@@ -23,15 +23,15 @@ output:
       edit: https://github.com/ngs-docs/2021-august-remote-computing/edit/main/%s
 ---
 
-# Overview
+# Overview {-}
 
-## Introductory skills
+## Introductory skills {-}
 
 Workshop 1: [Introduction to the UNIX Command Line](introduction-to-the-unix-command-line.html) - Tues Aug 3
 
 Workshop 2: [Creating and modifying text files on remote computers](creating-and-modifying-text-files-on-remote-computers.html) - Wed Aug 4
 
-## Intermediate skills
+## Intermediate skills {-}
 
 Workshop 3: Connecting to remote computers with ssh - Tues Aug 10
 
@@ -45,7 +45,7 @@ Workshop 7: Automating your analyses and executing long-running analyses on remo
 
 Workshop 8: Keeping track of your files with version control - Tues Aug 24
 
-## Advanced skills
+## Advanced skills {-}
 
 Workshop 9: Automating your analyses with the snakemake workflow system - Wed Aug 25
 
