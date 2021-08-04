@@ -117,14 +117,15 @@
 <li class="chapter" data-level="3.2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-2-emacs"><i class="fa fa-check"></i><b>3.2.2</b> Big Powerful Editor 2: emacs</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#other-editor-choices-that-we-cant-use-right-now-but-that-come-recommended"><i class="fa fa-check"></i><b>3.3</b> Other editor choices that we can’t use right now, but that come recommended</a></li>
-<li class="chapter" data-level="3.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#other-ways-to-create-edit-filter-and-modify-files"><i class="fa fa-check"></i><b>3.4</b> Other ways to create, edit, filter, and modify files</a>
+<li class="chapter" data-level="3.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#thinking-about-editors-as-a-means-to-an-end"><i class="fa fa-check"></i><b>3.4</b> Thinking about editors as a means to an end</a></li>
+<li class="chapter" data-level="3.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#other-ways-to-create-edit-filter-and-modify-files"><i class="fa fa-check"></i><b>3.5</b> Other ways to create, edit, filter, and modify files</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#redirection-and-appending"><i class="fa fa-check"></i><b>3.4.1</b> Redirection and appending</a></li>
-<li class="chapter" data-level="3.4.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#the-dumbest-possible-editor---cat"><i class="fa fa-check"></i><b>3.4.2</b> The dumbest possible “editor” - cat</a></li>
-<li class="chapter" data-level="3.4.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering"><i class="fa fa-check"></i><b>3.4.3</b> Piping and filtering</a></li>
+<li class="chapter" data-level="3.5.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#redirection-and-appending"><i class="fa fa-check"></i><b>3.5.1</b> Redirection and appending</a></li>
+<li class="chapter" data-level="3.5.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#the-dumbest-possible-editor---cat"><i class="fa fa-check"></i><b>3.5.2</b> The dumbest possible “editor” - cat</a></li>
+<li class="chapter" data-level="3.5.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering"><i class="fa fa-check"></i><b>3.5.3</b> Piping and filtering</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files"><i class="fa fa-check"></i><b>3.5</b> Working with csv files</a></li>
-<li class="chapter" data-level="3.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#remote-vs-local-and-why-editors"><i class="fa fa-check"></i><b>3.6</b> Remote vs local, and why editors?</a></li>
+<li class="chapter" data-level="3.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files"><i class="fa fa-check"></i><b>3.6</b> Working with csv files</a></li>
+<li class="chapter" data-level="3.7" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#remote-vs-local-and-why-editors"><i class="fa fa-check"></i><b>3.7</b> Remote vs local, and why editors?</a></li>
 </ul></li>
 </ul>
 
@@ -298,30 +299,52 @@ how to save</p>
 <p>NotePad++
 VScode
 BBedit</p>
+<p>We can’t use these yet because we need to configure remote access in a
+particular way - that will come next week :).</p>
 </div>
-<div id="other-ways-to-create-edit-filter-and-modify-files" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Other ways to create, edit, filter, and modify files</h2>
-<div id="redirection-and-appending" class="section level3" number="3.4.1">
-<h3><span class="header-section-number">3.4.1</span> Redirection and appending</h3>
+<div id="thinking-about-editors-as-a-means-to-an-end" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Thinking about editors as a means to an end</h2>
+<p>At the end of the day, whatever editor you choose needs to be one that
+lets you achieve your end goal - which is to quickly and reliably edit
+text files.</p>
+<p>I personally switch between vi and emacs on a regular basis. Emacs is
+where I do long-form writing and editing (because I’ve got mine configured
+nicely for that), while vi is what I use for
+quick edits (because it’s fast to start, and I don’t need to configure it
+at all for it to be useful - so I can use it more places).</p>
+<p>Most people will probably end up using something like VScode, which got
+many rave reviews online and supports robust syntax highlighting and many
+different languages, as well as remote editing.</p>
+<p>But it <strong>really doesn’t matter</strong>. I think of an editor like a kitchen -
+you may customize your kitchen layout and tools differently from someone
+else, but at the end of the day, your goal is to cook something, and
+you (in this analogy) only really need to worry about another editor if you’re
+using an unfamiliar system, just like if you’re cooking in a strange kitchen.
+And then it will be maddening and infuriating but that’s ok :).</p>
 </div>
-<div id="the-dumbest-possible-editor---cat" class="section level3" number="3.4.2">
-<h3><span class="header-section-number">3.4.2</span> The dumbest possible “editor” - cat</h3>
+<div id="other-ways-to-create-edit-filter-and-modify-files" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Other ways to create, edit, filter, and modify files</h2>
+<div id="redirection-and-appending" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Redirection and appending</h3>
 </div>
-<div id="piping-and-filtering" class="section level3" number="3.4.3">
-<h3><span class="header-section-number">3.4.3</span> Piping and filtering</h3>
+<div id="the-dumbest-possible-editor---cat" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> The dumbest possible “editor” - cat</h3>
+</div>
+<div id="piping-and-filtering" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Piping and filtering</h3>
 <p>grep
 cut
 wc -l</p>
 </div>
 </div>
-<div id="working-with-csv-files" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Working with csv files</h2>
+<div id="working-with-csv-files" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Working with csv files</h2>
 <p>grep
 cut
 csvtk</p>
 </div>
-<div id="remote-vs-local-and-why-editors" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Remote vs local, and why editors?</h2>
+<div id="remote-vs-local-and-why-editors" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Remote vs local, and why editors?</h2>
 <p>take step back, talk about initial remote/local dichotomy</p>
 <p>what we’ve shown you is…</p>
 <p>these skills will become second nature if you use them, bcause they are foundational to everything</p>

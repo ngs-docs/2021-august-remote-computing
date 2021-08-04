@@ -24,6 +24,7 @@ big-powerful-editors
 big-powerful-editor-1-vi
 big-powerful-editor-2-emacs
 other-editor-choices-that-we-cant-use-right-now-but-that-come-recommended
+thinking-about-editors-as-a-means-to-an-end
 other-ways-to-create-edit-filter-and-modify-files
 redirection-and-appending
 the-dumbest-possible-editor---cat
