@@ -200,6 +200,32 @@ NotePad++
 VScode
 BBedit
 
+We can't use these yet because we need to configure remote access in a
+particular way - that will come next week :).
+
+## Thinking about editors as a means to an end
+
+At the end of the day, whatever editor you choose needs to be one that
+lets you achieve your end goal - which is to quickly and reliably edit
+text files.
+
+I personally switch between vi and emacs on a regular basis. Emacs is
+where I do long-form writing and editing (because I've got mine configured
+nicely for that), while vi is what I use for
+quick edits (because it's fast to start, and I don't need to configure it
+at all for it to be useful - so I can use it more places).
+
+Most people will probably end up using something like VScode, which got
+many rave reviews online and supports robust syntax highlighting and many
+different languages, as well as remote editing.
+
+But it **really doesn't matter**.  I think of an editor like a kitchen -
+you may customize your kitchen layout and tools differently from someone
+else, but at the end of the day, your goal is to cook something, and
+you (in this analogy) only really need to worry about another editor if you're
+using an unfamiliar system, just like if you're cooking in a strange kitchen.
+And then it will be maddening and infuriating but that's ok :).
+
 ## Other ways to create, edit, filter, and modify files
 
 ### Redirection and appending
