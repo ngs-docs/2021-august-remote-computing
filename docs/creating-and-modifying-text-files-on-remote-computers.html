@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction to Remote Computing</title>
-  <meta name="description" content="Introduction to Remote Computing" />
+  <title>3 Creating and modifying text files on remote computers | Introduction to Remote Computing</title>
+  <meta name="description" content="3 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction to Remote Computing" />
+  <meta property="og:title" content="3 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ngs-docs.github.io/2021-august-remote-computing/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ngs-docs/2021-august-remote-computing/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction to Remote Computing" />
+  <meta name="twitter:title" content="3 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="introduction-to-the-unix-command-line.html"/>
 
-<link rel="next" href="introduction-to-the-unix-command-line.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -143,32 +143,190 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Introduction to Remote Computing</h1>
-<p class="author"><em>C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-08-03</em></p>
+<div id="creating-and-modifying-text-files-on-remote-computers" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Creating and modifying text files on remote computers</h1>
+<p><span class="citation">@CTB</span> Add BlurB Hre</p>
+<p>As with
+<a href="introduction-to-the-unix-command-line.html">the first workshop introducing the UNIX command line</a>,
+we’ll be using an interactive Web site running on a
+<a href="https://mybinder.org/">binder</a>. To start your binder, please click on
+the “launch” button below; it will take up to a minute to start.</p>
+<p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
+<div id="text-files-vs-other-files" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Text files vs other files</h2>
+<p>Text files are a fairly narrow but very important subset of the kinds
+of files that we will work with in data science. Text files are,
+loosely defined, files that are human-readable without any special
+machine interpretation needed - such as text-only e-mails, CSV files,
+configuration files, and Python and R scripts.</p>
+<p>The list above is interesting, because it makes the point that just
+because a human can “read” the files doesn’t mean that they are
+<em>intended</em> for humans, necessarily. For example, CSV files can be more
+or less strictly defined in terms of formatting, and Python and R
+scripts still need to be valid Python or R code. DNA sequence data
+files like we saw yesterday are another case in point - it’s pretty
+rare (and a bad idea) to edit them manually, but you <em>could</em> if you
+really wanted to.</p>
+<p>The operational distinction really comes down to this: text files can
+be created, edited, changed, and otherwise manipulated with
+text-format based tools, like text editors, grep (which we saw
+yesterday), and other programs. Text files are a common and standard
+format that <em>many</em> tools can interact with.</p>
+<p>In comparison, binary files are files that need special programs to
+interact with them. Some of them are more standard than others - for
+example, Word files can be read or written by many programs. Images
+(JPG and PNG and…) can be manipulated by many programs as well. Zip
+files are another semi-standard format that can be manipulated by several
+different programs. The main thing is that you can’t just look at them
+with standard text-focused tools - and typically this is because binary
+files are meant to be used for different kinds of data than text.</p>
+<p>As a side note, one of the most important aspects of text files is that
+there are some really powerful tools for tracking changes to them,
+and collaboratively editing them - we’ll cover that in week <span class="citation">@CTB</span>,
+version control!</p>
+<div id="ok-ok-what-does-this-all-mean-in-practice" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> OK, OK, what does this all mean in practice?</h3>
+<p>Let’s look at a simple text file - <code>2cities/README.md</code>:</p>
+<pre><code>cat 2cities/README.md</code></pre>
+<p>As you may remember, ‘cat’ (short for ‘catenate’) displays the content
+of the file.</p>
+<p>This is a file in a format called Markdown, that is a lightly decorated
+text file with a title and so on. While it can be nicely formatted
+by an interpreting program (see <span class="citation">@github</span> link), it can also just be viewed
+and read with cat.</p>
+<p>This is different from the other file in <code>2cities/</code>; take a look at
+what’s there: run,</p>
+<pre><code>ls 2cities/</code></pre>
+<p>and you should see</p>
+<blockquote>
+<blockquote>
+<pre><code>README.md       book.txt.gz</code></pre>
+</blockquote>
+</blockquote>
+<p>In this directory, there is one text file and one binary file.</p>
+<p>If you want to see if it’s a file type that UNIX recognizes you can run
+the <code>file</code> command, e.g.</p>
+<pre><code>file 2cities/README.md</code></pre>
+<p>will report that it’s ASCII text, while</p>
+<pre><code>file 2cities/book.txt.gz</code></pre>
+<p>will report that it’s “gzip compressed data”, which is a compressed data
+type. What do we do with that?</p>
 </div>
-<div id="overview" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Overview</h1>
-<div id="introductory-skills" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introductory skills</h2>
-<p>Workshop 1: <a href="introduction-to-the-unix-command-line.html">Introduction to the UNIX Command Line</a> - Tues Aug 3</p>
-<p>Workshop 2: <a href="creating-and-modifying-text-files-on-remote-computers.html">Creating and modifying text files on remote computers</a> - Wed Aug 4</p>
+<div id="working-with-gzipped-files" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Working with gzipped files</h3>
+<p>gzip is a common type of file, and all that it means is that it’s been
+compressed (made smaller) with the <code>gzip</code> program.</p>
+<p>Look at it’s file size first –</p>
+<pre><code>ls -lh 2cities/book.txt.gz</code></pre>
+<p>and you’ll see that it’s about 300k.</p>
+<p>You can uncompress a gzip file with <code>gunzip</code>; in this case,</p>
+<pre><code>gunzip 2cities/book.txt.gz</code></pre>
+<p>will produce <code>2cities/book.txt</code>.</p>
+<p>CHALLENGE: what commands will tell you its file type and size?</p>
+<hr />
+<p>Yep, it’s almost 3 times bigger when it’s uncompressed!</p>
+<p>And it’s file type is “UTF-8 Unicode (with BOM) text, with CRLF line
+terminators” which is a fancy way of saying “text, supporting extended
+characters (unicode), and with both a carriage return (CR) and a line
+feed (LF) at the end of each line.” The important thing is that pretty
+much any text editor should be able to edit this kind of file.</p>
+<p>Let’s take a quick look at the beginning of the file with <code>head</code>:</p>
+<pre><code>head 2cities/book.txt</code></pre>
+<p>yep, looks like text!</p>
 </div>
-<div id="intermediate-skills" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Intermediate skills</h2>
-<p>Workshop 3: Connecting to remote computers with ssh - Tues Aug 10</p>
-<p>Workshop 4: Running programs on remote computers and retrieving the results - Th Aug 12</p>
-<p>Workshop 5: Installing software on remote computers with conda - Fri Aug 13</p>
-<p>Workshop 6: Structuring your projects for current and future you - Tues Aug 17</p>
-<p>Workshop 7: Automating your analyses and executing long-running analyses on remote computers - Th Aug 19</p>
-<p>Workshop 8: Keeping track of your files with version control - Tues Aug 24</p>
+<div id="digression-file-extensions-are-often-meaningful-but-dont-have-to-be" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Digression: file extensions are often meaningful (but don’t have to be)</h3>
+<p>Couldn’t we have guessed at what these files were based on their
+names? Yes, the .md extension usually means it’s a text file with
+Markdown formatting, and the .gz extension typically means it’s a
+compressed file, and the .txt extension typically means it’s a text
+file. So you can read <code>book.txt.gz</code> to mean that it’s a text file that’s
+been compressed.</p>
+<p>But this isn’t guaranteed - it’s a convention, rather than a requirement.
+Many programs will actively “sniff” the file type by looking at the content
+(which is what <code>file</code> does), and you should never blindly trust the file type
+indicated by the extension.</p>
 </div>
-<div id="advanced-skills" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Advanced skills</h2>
-<p>Workshop 9: Automating your analyses with the snakemake workflow system - Wed Aug 25</p>
-<p>Workshop 10: Executing large analyses on HPC clusters with slurm - Th Aug 26</p>
-<p>Workshop 11: Making use of on-demand “cloud” computers from Amazon Web Services - Tues Aug 31</p>
+<div id="lets-edit-this-file" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Let’s edit this file!</h3>
+<p>Let’s start with the <code>pico</code> editor. <code>Pico</code> and its sibling <code>nano</code> are
+simple text editors that let you get started, but are ultimately limited
+in their functionality.</p>
+<p>open file</p>
+<p>no mouse, just arrow keys and commands on bottom</p>
+<p>ctrl-x to exit</p>
+<p>if you change it, ctrl-x will ask if you want to save it. go ahead, change something in the first few lines ,and save it. does head report?</p>
+<p>Some basic navigation
+Long lines
+how to get help</p>
+<p>You can do a lot in these but as soon as you’re dealing with really large
+files, or many files, we suggest other editors.</p>
+</div>
+</div>
+<div id="big-powerful-editors" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Big Powerful Editors</h2>
+<p>There are two fairly dominant editors that work at the command line.
+They’ve been around for decades, and they have many advocates who
+care for them with a near-religious fervor. We will demo them for you,
+and point you at learning resources for them, and then leave it up to
+you to pick one. (We’ll probably use nano for most of the work we do in these
+workshops.)</p>
+<div id="big-powerful-editor-1-vi" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Big Powerful Editor 1: vi</h3>
+<p>how to run
+how to navigate
+how to go to a specific line
+how to edit
+how to quit
+how to save</p>
+<p><span class="citation">@CTB</span> how to learn</p>
+</div>
+<div id="big-powerful-editor-2-emacs" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Big Powerful Editor 2: emacs</h3>
+<p>how to run
+how to navigate
+how to go to a specific line
+how to edit
+how to quit
+how to save</p>
+<p><span class="citation">@CTB</span> how to learn</p>
+</div>
+</div>
+<div id="other-editor-choices-that-we-cant-use-right-now-but-that-come-recommended" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Other editor choices that we can’t use right now, but that come recommended</h2>
+<p>(point at twitter poll)</p>
+<p>NotePad++
+VScode
+BBedit</p>
+</div>
+<div id="other-ways-to-create-edit-filter-and-modify-files" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Other ways to create, edit, filter, and modify files</h2>
+<div id="redirection-and-appending" class="section level3" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Redirection and appending</h3>
+</div>
+<div id="the-dumbest-possible-editor---cat" class="section level3" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> The dumbest possible “editor” - cat</h3>
+</div>
+<div id="piping-and-filtering" class="section level3" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Piping and filtering</h3>
+<p>grep
+cut
+wc -l</p>
+</div>
+</div>
+<div id="working-with-csv-files" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Working with csv files</h2>
+<p>grep
+cut
+csvtk</p>
+</div>
+<div id="remote-vs-local-and-why-editors" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Remote vs local, and why editors?</h2>
+<p>take step back, talk about initial remote/local dichotomy</p>
+<p>what we’ve shown you is…</p>
+<p>these skills will become second nature if you use them, bcause they are foundational to everything</p>
+<p>you always want to know at least one local editor, I suggest learning vim</p>
+<p>what you use other than that is up to you and your prefs - pepole really like the windows/mac os x software above.</p>
 
 </div>
 </div>
@@ -177,8 +335,8 @@
           </div>
         </div>
       </div>
+<a href="introduction-to-the-unix-command-line.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="introduction-to-the-unix-command-line.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -200,7 +358,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/index.Rmd",
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/02-text-files.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -208,7 +366,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/index.Rmd",
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/02-text-files.Rmd",
 "text": null
 },
 "download": null,

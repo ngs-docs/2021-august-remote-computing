@@ -29,7 +29,7 @@ output:
 
 Workshop 1: [Introduction to the UNIX Command Line](introduction-to-the-unix-command-line.html) - Tues Aug 3
 
-Workshop 2: Creating and modifying text files on remote computers - Wed Aug 4
+Workshop 2: [Creating and modifying text files on remote computers](creating-and-modifying-text-files-on-remote-computers.html) - Wed Aug 4
 
 ## Intermediate skills
 

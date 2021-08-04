@@ -1,0 +1,231 @@
+# Creating and modifying text files on remote computers
+
+@CTB Add BlurB Hre
+
+As with
+[the first workshop introducing the UNIX command line](introduction-to-the-unix-command-line.html),
+we'll be using an interactive Web site running on a
+[binder](https://mybinder.org/). To start your binder, please click on
+the "launch" button below; it will take up to a minute to start.
+
+[![Binder](https://binder.pangeo.io/badge_logo.svg)](https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio)
+
+## Text files vs other files
+
+Text files are a fairly narrow but very important subset of the kinds
+of files that we will work with in data science. Text files are,
+loosely defined, files that are human-readable without any special
+machine interpretation needed - such as text-only e-mails, CSV files,
+configuration files, and Python and R scripts.
+
+The list above is interesting, because it makes the point that just
+because a human can "read" the files doesn't mean that they are
+_intended_ for humans, necessarily. For example, CSV files can be more
+or less strictly defined in terms of formatting, and Python and R
+scripts still need to be valid Python or R code. DNA sequence data
+files like we saw yesterday are another case in point - it's pretty
+rare (and a bad idea) to edit them manually, but you _could_ if you
+really wanted to.
+
+The operational distinction really comes down to this: text files can
+be created, edited, changed, and otherwise manipulated with
+text-format based tools, like text editors, grep (which we saw
+yesterday), and other programs.  Text files are a common and standard
+format that _many_ tools can interact with.
+
+In comparison, binary files are files that need special programs to
+interact with them. Some of them are more standard than others - for
+example, Word files can be read or written by many programs. Images
+(JPG and PNG and...) can be manipulated by many programs as well. Zip
+files are another semi-standard format that can be manipulated by several
+different programs. The main thing is that you can't just look at them
+with standard text-focused tools - and typically this is because binary
+files are meant to be used for different kinds of data than text.
+
+As a side note, one of the most important aspects of text files is that
+there are some really powerful tools for tracking changes to them,
+and collaboratively editing them - we'll cover that in week @CTB,
+version control!
+
+### OK, OK, what does this all mean in practice?
+
+Let's look at a simple text file - `2cities/README.md`:
+
+```
+cat 2cities/README.md
+```
+
+As you may remember, 'cat' (short for 'catenate') displays the content
+of the file.
+
+This is a file in a format called Markdown, that is a lightly decorated
+text file with a title and so on. While it can be nicely formatted
+by an interpreting program (see @github link), it can also just be viewed
+and read with cat.
+
+This is different from the other file in `2cities/`; take a look at
+what's there: run,
+```
+ls 2cities/
+```
+and you should see
+
+> > ~~~
+> > README.md       book.txt.gz
+> > ~~~
+
+In this directory, there is one text file and one binary file.
+
+If you want to see if it's a file type that UNIX recognizes you can run
+the `file` command, e.g.
+```
+file 2cities/README.md
+```
+will report that it's ASCII text, while
+```
+file 2cities/book.txt.gz
+```
+will report that it's "gzip compressed data", which is a compressed data
+type. What do we do with that?
+
+### Working with gzipped files
+
+gzip is a common type of file, and all that it means is that it's been
+compressed (made smaller) with the `gzip` program.
+
+Look at it's file size first --
+
+```
+ls -lh 2cities/book.txt.gz
+```
+and you'll see that it's about 300k.
+
+You can uncompress a gzip file with `gunzip`; in this case,
+```
+gunzip 2cities/book.txt.gz
+```
+will produce `2cities/book.txt`.
+
+CHALLENGE: what commands will tell you its file type and size?
+
+---
+
+Yep, it's almost 3 times bigger when it's uncompressed!
+
+And it's file type is "UTF-8 Unicode (with BOM) text, with CRLF line
+terminators" which is a fancy way of saying "text, supporting extended
+characters (unicode), and with both a carriage return (CR) and a line
+feed (LF) at the end of each line." The important thing is that pretty
+much any text editor should be able to edit this kind of file.
+
+Let's take a quick look at the beginning of the file with `head`:
+
+```
+head 2cities/book.txt
+```
+
+yep, looks like text!
+
+### Digression: file extensions are often meaningful (but don't have to be)
+
+Couldn't we have guessed at what these files were based on their
+names? Yes, the .md extension usually means it's a text file with
+Markdown formatting, and the .gz extension typically means it's a
+compressed file, and the .txt extension typically means it's a text
+file. So you can read `book.txt.gz` to mean that it's a text file that's
+been compressed.
+
+But this isn't guaranteed - it's a convention, rather than a requirement.
+Many programs will actively "sniff" the file type by looking at the content
+(which is what `file` does), and you should never blindly trust the file type
+indicated by the extension.
+
+### Let's edit this file!
+
+Let's start with the `pico` editor. `Pico` and its sibling `nano` are
+simple text editors that let you get started, but are ultimately limited
+in their functionality.
+
+open file
+
+no mouse, just arrow keys and commands on bottom
+
+ctrl-x to exit
+
+if you change it, ctrl-x will ask if you want to save it. go ahead, change something in the first few lines ,and save it. does head report?
+
+Some basic navigation
+Long lines
+how to get help
+
+You can do a lot in these but as soon as you're dealing with really large
+files, or many files, we suggest other editors.
+
+## Big Powerful Editors
+
+There are two fairly dominant editors that work at the command line.
+They've been around for decades, and they have many advocates who
+care for them with a near-religious fervor.  We will demo them for you,
+and point you at learning resources for them, and then leave it up to
+you to pick one. (We'll probably use nano for most of the work we do in these
+workshops.)
+
+### Big Powerful Editor 1: vi
+
+how to run
+how to navigate
+how to go to a specific line
+how to edit
+how to quit
+how to save
+
+@CTB how to learn
+
+### Big Powerful Editor 2: emacs
+
+how to run
+how to navigate
+how to go to a specific line
+how to edit
+how to quit
+how to save
+
+@CTB how to learn
+
+## Other editor choices that we can't use right now, but that come recommended
+
+(point at twitter poll)
+
+NotePad++
+VScode
+BBedit
+
+## Other ways to create, edit, filter, and modify files
+
+### Redirection and appending
+
+### The dumbest possible "editor" - cat
+
+### Piping and filtering
+
+grep
+cut
+wc -l
+
+## Working with csv files
+
+grep
+cut
+csvtk
+
+## Remote vs local, and why editors?
+
+take step back, talk about initial remote/local dichotomy
+
+what we’ve shown you is…
+
+these skills will become second nature if you use them, bcause they are foundational to everything
+
+you always want to know at least one local editor, I suggest learning vim
+
+what you use other than that is up to you and your prefs - pepole really like the windows/mac os x software above.
