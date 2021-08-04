@@ -1,6 +1,6 @@
 # Creating and modifying text files on remote computers
 
-@CTB Add BlurB Hre
+This two hour workshop will introduce attendees to the concepts and skills needed to create, modify, and search text files on remote computers. We will discuss files and content types, and cover the most common ways to work with remote text files.
 
 As with
 [the first workshop introducing the UNIX command line](introduction-to-the-unix-command-line.html),
@@ -240,9 +240,93 @@ wc -l
 
 ## Working with csv files
 
-grep
-cut
-csvtk
+CSV files - Comma Separated Value files - are another very common type
+of text files. Let's try working with them!
+
+We've put a list of South Park TV show quotes under `SouthParkData/All-seasons.csv.gz`. Let's change into that directory to work with the CSV file.
+```
+cd ~/SouthParkData
+```
+
+Let's now uncompress the file -- remember, you can use Tab completion here by
+typing `gunzip A<TAB>` -- 
+```
+gunzip All-seasons.csv.gz
+```
+and look at the first few rows of the result `All-seasons.csv` file --
+```
+head All-seasons.csv
+```
+
+It looks like there are four columns, and the quotes are multiline quotes.
+(I've never seen this before, but it seems to work!)
+
+Suppose you want to see if the word 'computer' is in there anywhere. You
+can use `grep` to do that --
+
+```
+grep computer All-seasons.csv
+```
+- and you get a lot of results!
+
+First, let's count them:
+```
+grep computer All-seasons.csv | wc -l
+```
+- this will count the number of _lines_ the word 'computer' shows up on.
+(It's 78.)
+
+If you browse through the file, you might release that 'Computer' is a
+character on the show, but it turns out that grep is really literal
+and doesn't match 'Computer' when you search for 'computer' - you need
+to provide 'grep' with '-i' to do case-insensitive search! Let's
+try that --
+
+```
+grep -i computer All-seasons.csv | wc -l
+```
+-- and now it's 101.
+
+How would we get at *just* the lines spoken by the computer? Well, if you look
+at the header of the file,
+```
+head All-seasons.csv
+```
+you'll see that the third column is the one with the character in it. You
+can use the `cut` command to pick out just the third column by specifying
+comma as a separator with `-d` and `-f3` as the field number --
+```
+cut -d, -f3 All-seasons.csv | grep Computer
+```
+which will give you a manageable number of results - about 16.
+
+You might note that there is an inconsistency in the way the character
+is named - Computer vs Computer Voice (maybe these are different characters?
+I don't watch enough South Park to know...) Let's do some counting --
+
+```
+cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c
+```
+
+This is hard to pull apart but let's do so -
+* first, cut out column 3
+* then, search for Computer
+* then, sort them alphabetically
+* then, count the number of times each character shows up
+
+There are lots of ways this can come in handy for digging into csv files
+and figuring out where values are wonky.
+
+This section was mostly to show you other ways of interacting with generic
+text files with CSV as an example, but if you work a lot with CSV or TSV
+files, I wanted to suggest looking into [the csvtk program](https://bioinf.shenwei.me/csvtk/usage/) -- we'll show you how to install it with conda in workshop 5, but we pre-installed on this binder.
+
+With `csvtk`, you can run commands that make use of column headers - for
+example,
+```
+csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
+```
+gives you the same output, but it uses the header name.
 
 ## Remote vs local, and why editors?
 
