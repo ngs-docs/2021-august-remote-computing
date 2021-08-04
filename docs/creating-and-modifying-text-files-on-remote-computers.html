@@ -121,6 +121,7 @@
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-1-vi"><i class="fa fa-check"></i><b>2.2.1</b> Big Powerful Editor 1: vi</a></li>
 <li class="chapter" data-level="2.2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-2-emacs"><i class="fa fa-check"></i><b>2.2.2</b> Big Powerful Editor 2: emacs</a></li>
+<li class="chapter" data-level="2.2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#an-opinion"><i class="fa fa-check"></i><b>2.2.3</b> An opinion</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#remote-vs-local-and-why-editors"><i class="fa fa-check"></i><b>2.3</b> Remote vs local, and why editors?</a></li>
 <li class="chapter" data-level="2.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#editors-that-run-locally-on-your-laptopdesktop"><i class="fa fa-check"></i><b>2.4</b> Editors that run locally on your laptop/desktop</a></li>
@@ -208,10 +209,11 @@ version control!</p>
 <pre><code>cat 2cities/README.md</code></pre>
 <p>As you may remember, ‘cat’ (short for ‘catenate’) displays the content
 of the file.</p>
-<p>This is a file in a format called Markdown, that is a lightly decorated
-text file with a title and so on. While it can be nicely formatted
-by an interpreting program (see <span class="citation">@github</span> link), it can also just be viewed
-and read with cat.</p>
+<p>This is a file in a format called Markdown, that is a lightly
+decorated text file with a title and so on. While it can be nicely
+formatted by an interpreting program (see <a href="https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/SouthParkData/README.md">the way github renders this
+file!</a>,
+it can also just be viewed and read with cat.</p>
 <p>This is different from the other file in <code>2cities/</code>; take a look at
 what’s there by running,</p>
 <pre><code>ls 2cities/</code></pre>
@@ -363,23 +365,68 @@ you to pick one. (We’ll probably use nano for most of the work we do in these
 workshops.)</p>
 <div id="big-powerful-editor-1-vi" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Big Powerful Editor 1: vi</h3>
-<p>how to run
-how to navigate
-how to go to a specific line
-how to edit
-how to quit
-how to save</p>
-<p><span class="citation">@CTB</span> how to learn</p>
+<p>‘vi’ stands for “visual editor” and it’s available on most systems.
+It’s incredibly powerful, and incredibly robust, and is correspondingly
+cryptic and hard to use. It involves a lot of remembering specific character
+commands, in particular.</p>
+<p>(We’re actually using ‘vim’, but never mind that - it’s compatible with vi.
+<a href="https://www.shell-tips.com/linux/vi-vs-vim/">Read more here</a>.)</p>
+<p>To run vi, type:</p>
+<pre><code>vim 2cities/book.txt</code></pre>
+<p>You should see all your changes from before, right?</p>
+<p>To exit, type:</p>
+<pre><code>:q</code></pre>
+<p>and if there are no changes, it will simply exit.</p>
+<p>Run vi again, and let’s edit –</p>
+<pre><code>vim 2cities/book.txt</code></pre>
+<p>and then type ‘i’ to go to “insert” mode, and type something.</p>
+<p>Then hit the escape key to go back to “view” mode.</p>
+<p>Now try to exit with <code>:q</code>. It won’t work! You have to either save, or quit.</p>
+<p>To force-quit without saving, run <code>:q!</code>.</p>
+<p>Now let’s learn to save! Go back and edit (<code>i</code>, then type something,
+then escape).</p>
+<p>To save, type <code>:wq</code>. (You can also (mystifyingly) type <code>ZZ</code> to do the same
+thing. shrug.)</p>
+<p>The main thing that vi does is give you a “view” mode (where you can navigate
+around - use CTRL-F and CTRL-V to page down and up, for example) and an
+edit mode (use ‘i’ for insert or ‘a’ for append) where what you type goes
+directly into the file. You use Escape to get out of edit mode.</p>
+<p>In view mode, ‘x’ will delete the character you’re on, and ‘dd’ will delete
+the line you’re on (and put it in the cut buffer), and <code>P</code> will pull the
+line out of the cut buffer into the file at the current location.</p>
+<p>And that’s what you really need to know :).</p>
+<p>A few tips for view mode -
+* to get help, type <code>:help</code>
+* to go to a specific line, type the line number followed by G. <code>500G</code></p>
+<p>As a side note, we’ve just taught you the single most asked question on the
+Internet about UNIX: <a href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">how to exit vi</a>!!</p>
 </div>
 <div id="big-powerful-editor-2-emacs" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Big Powerful Editor 2: emacs</h3>
-<p>how to run
-how to navigate
-how to go to a specific line
-how to edit
-how to quit
-how to save</p>
-<p><span class="citation">@CTB</span> how to learn</p>
+<p>The <em>other</em> editor to know about is emacs. (This is what Titus uses the
+most.)</p>
+<p>To run emacs,</p>
+<pre><code>emacs 2cities/book.txt</code></pre>
+<p>This is automatically in edit mode (there’s no view mode) so it behaves
+kind of like nano.</p>
+<p>To exit emacs, type CTRL-X and then CTRL-C.</p>
+<p>If you’ve modified things (by typing something), it will ask you if you
+want to save.</p>
+<p>To page down, type CTRL-V.</p>
+<p>To page up, type Escape V.</p>
+<p>To go to the beginning of a line, type CTRL-A. End of line, CTRL-E.</p>
+<p>(I’m telling you these specific keys because they <em>also</em> work at the
+command line.)</p>
+<p>There’s a pretty nice interactive tutorial for via that you can access
+with CTRL-H CTRL-H.</p>
+<p>Emacs shines when editing <em>multiple</em> files, but it can do a lot more, too.
+Some people spend their entire computing lives in emacs… see, for example,
+<a href="https://orgmode.org/">org-mode</a>.</p>
+</div>
+<div id="an-opinion" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> An opinion</h3>
+<p>You only need to learn nano, and be basically familiar with vi and emacs.
+Read on for why!</p>
 </div>
 </div>
 <div id="remote-vs-local-and-why-editors" class="section level2" number="2.3">

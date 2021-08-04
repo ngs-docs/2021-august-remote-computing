@@ -62,10 +62,11 @@ cat 2cities/README.md
 As you may remember, 'cat' (short for 'catenate') displays the content
 of the file.
 
-This is a file in a format called Markdown, that is a lightly decorated
-text file with a title and so on. While it can be nicely formatted
-by an interpreting program (see @github link), it can also just be viewed
-and read with cat.
+This is a file in a format called Markdown, that is a lightly
+decorated text file with a title and so on. While it can be nicely
+formatted by an interpreting program (see [the way github renders this
+file!](https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/SouthParkData/README.md),
+it can also just be viewed and read with cat.
 
 This is different from the other file in `2cities/`; take a look at
 what's there by running,
@@ -273,25 +274,100 @@ workshops.)
 
 ### Big Powerful Editor 1: vi
 
-how to run
-how to navigate
-how to go to a specific line
-how to edit
-how to quit
-how to save
+'vi' stands for "visual editor" and it's available on most systems.
+It's incredibly powerful, and incredibly robust, and is correspondingly
+cryptic and hard to use. It involves a lot of remembering specific character
+commands, in particular.
 
-@CTB how to learn
+(We're actually using 'vim', but never mind that - it's compatible with vi.
+[Read more here](https://www.shell-tips.com/linux/vi-vs-vim/).)
+
+To run vi, type:
+```
+vim 2cities/book.txt
+```
+You should see all your changes from before, right?
+
+To exit, type:
+```
+:q
+```
+and if there are no changes, it will simply exit.
+
+Run vi again, and let's edit --
+```
+vim 2cities/book.txt
+```
+and then type 'i' to go to "insert" mode, and type something.
+
+Then hit the escape key to go back to "view" mode.
+
+Now try to exit with `:q`. It won't work! You have to either save, or quit.
+
+To force-quit without saving, run `:q!`.
+
+Now let's learn to save! Go back and edit (`i`, then type something,
+then escape).
+
+To save, type `:wq`. (You can also (mystifyingly) type `ZZ` to do the same
+thing. shrug.)
+
+The main thing that vi does is give you a "view" mode (where you can navigate
+around - use CTRL-F and CTRL-V to page down and up, for example) and an
+edit mode (use 'i' for insert or 'a' for append) where what you type goes
+directly into the file. You use Escape to get out of edit mode.
+
+In view mode, 'x' will delete the character you're on, and 'dd' will delete
+the line you're on (and put it in the cut buffer), and `P` will pull the
+line out of the cut buffer into the file at the current location.
+
+And that's what you really need to know :).
+
+A few tips for view mode -
+* to get help, type `:help`
+* to go to a specific line, type the line number followed by G. `500G`
+
+As a side note, we've just taught you the single most asked question on the
+Internet about UNIX: [how to exit vi](https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/)!!
 
 ### Big Powerful Editor 2: emacs
 
-how to run
-how to navigate
-how to go to a specific line
-how to edit
-how to quit
-how to save
+The _other_ editor to know about is emacs. (This is what Titus uses the
+most.)
 
-@CTB how to learn
+To run emacs,
+```
+emacs 2cities/book.txt
+```
+
+This is automatically in edit mode (there's no view mode) so it behaves
+kind of like nano.
+
+To exit emacs, type CTRL-X and then CTRL-C.
+
+If you've modified things (by typing something), it will ask you if you
+want to save.
+
+To page down, type CTRL-V.
+
+To page up, type Escape V.
+
+To go to the beginning of a line, type CTRL-A. End of line, CTRL-E.
+
+(I'm telling you these specific keys because they _also_ work at the
+command line.)
+
+There's a pretty nice interactive tutorial for via that you can access
+with CTRL-H CTRL-H.
+
+Emacs shines when editing _multiple_ files, but it can do a lot more, too.
+Some people spend their entire computing lives in emacs... see, for example,
+[org-mode](https://orgmode.org/).
+
+### An opinion
+
+You only need to learn nano, and be basically familiar with vi and emacs.
+Read on for why!
 
 ## Remote vs local, and why editors?
 

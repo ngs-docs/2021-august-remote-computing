@@ -25,6 +25,7 @@ challenges
 big-powerful-editors
 big-powerful-editor-1-vi
 big-powerful-editor-2-emacs
+an-opinion
 remote-vs-local-and-why-editors
 editors-that-run-locally-on-your-laptopdesktop
 thinking-about-editors-as-a-means-to-an-end
