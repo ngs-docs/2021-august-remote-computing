@@ -1,0 +1,232 @@
+# Automating your analyses and executing long-running analyses on remote computers
+
+This two hour workshop will show attendees how to automate their analyses using shell scripts, as well as run and manage software that takes minutes, hours, or days to execute. We’ll also show you how to disconnect from and resume running processes using the ‘screen’ and 'tmux' commands.
+
+
+## Getting started
+
+- log in to Farm account
+
+
+
+## Terminal vs. scripts
+
+- intro to what a "script" is, why we want to use scripts vs. typing commands directly at the terminal
+- learning objectives
+
+
+
+
+
+
+
+## Automating commands by putting them in a text file
+
+- can demo same set of commands run in terminal vs. putting into a text file
+  - mention how to look up terminal history (`history`)
+- review content from workshop 2 on creating & modifying text files
+- examples process: make file, edit, save, test run, edit, save, re-run...
+- note that shell runs commands in the order that they appear in the script
+
+
+### Running scripts with `bash`
+
+- running it with 'bash' explicitly
+  - i.e., `./myscript.sh` vs. `bash myscript.sh`
+- run sets of commands in a script but not in loops yet - do that in section below
+
+
+### Bash script headers and permissions
+
+- putting a header in and changing permissions; executing via shell prompt
+  - read access to run it, execute access to run it with the shebang, write access to see it in the dir?
+  - `#!/bin/bash` header
+
+
+## Troubleshooting scripts
+
+- what happens on failure; `set -e` and `set -x`
+  - interpreting error messages
+  - as another example of `set` options, could mention adding `set -o noclobber` to prevent overwriting in bash script too (was mentioned in workshop 2 as a way to prevent overwriting `echo this is a file > file.txt` and `echo this is more text > file.txt`)
+
+### Practicing `set -e` in bash scripts
+
+> 1. download some small fastq files - currently using example MiSeq files from binder
+> 2. install some software (i.e., FastQC with `conda` or `mamba` --> these are covered in Workshop 5; remember to config channels!)
+> 3. loop through samples and run fastqc with bash script
+
+```
+# create output report directory
+mkdir ./data/fastqc_reports
+
+# create bash script using nano text editor
+# save and exit with ctrl-o, enter, ctrl-x on keyboard
+nano set_e.sh
+
+# run bash script
+bash set_e.sh
+```
+
+
+Create a bash script with the following commands, this version includes `set -e`:
+
+```
+#!/bin/bash
+
+set -e
+
+OUTDIR='fastqc_reports'
+
+for i in ./data/MiSeq/*.fastq
+do
+   echo $i
+   fastqc $i -o $OUTDIR
+done
+```
+
+
+
+
+Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
+
+```
+for i in ./data/MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
+```
+
+
+
+*Exercises*
+1. What happens when you run the bash script above **with** and **without** the `set -e` option?
+2. There is an error in the bash script. How can you fix the script? (Bonus: try adding `set -x` to your bash script)
+
+
+
+
+
+
+
+## Loops and conditions
+
+- an intro to scripts with conditions or for loops in them
+  - conditional operators in Unix (not all the same as other programming languages)
+  - if/then/else/elif statements > i.e., if file exists, do this. if file doesn't, do that.
+  - see for loop notes from https://ngs-docs.github.io/2021-august-remote-computing/introduction-to-the-unix-command-line.html#renaming-a-bunch-of-files --> intro to for loops in the terminal might be added to previous workshops; will focus on loops in the bash script here
+- using `echo`: to print statements, to check what command is being run before actually running it
+- discuss what the `$` syntax means, i.e., `$i`, `${i}`, and `$(...)`
+
+
+### Practicing for loops and conditions
+
+- for loops and echo statements
+- if statements
+
+
+Create a bash script called `ifs.sh` that uses if statements to compare 2 numbers:
+
+```
+#!/bin/bash
+
+a=40
+b=20
+
+if [ $a != $b ]
+then
+  echo 'a is not equal to b!'
+else
+  echo 'a is equal to b!'
+fi
+```
+
+*Exercises*
+1. Try replacing the `!=` operator with [other conditional operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm) (i.e., `==`). Be sure to edit the echo statements!
+2.
+
+
+
+
+
+
+
+### Running scripts in a loop
+
+- run a script in a for loop
+- discuss using arguments for scripts
+   - i.e., for the `ifs.sh` script, would change to:
+
+```
+#!/bin/bash
+
+a=$1
+b=$2
+
+if [ $a != $b ]
+then
+  echo 'a is not equal to b!'
+else
+  echo 'a is equal to b!'
+fi
+```
+
+and run it like this:
+```
+bash ifs.sh 40 20
+```
+
+
+
+
+
+
+## Multiple screens
+- say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?
+- introducing `screen` and/or `tmux` --> demo utility (i.e., here are these cool tools and when you might want to use them!)
+
+
+
+
+
+## Ideas for demos or exercises
+
+- run a loop in a script
+- run a script in a loop
+
+
+
+## Exercise answers
+
+*Answers for `set -e` exercises*
+1. Fails on 1st iteration with `set -e`, fails each iteration of the loop without `set -e`
+
+Output with `set -e`:
+
+```
+(base) ~$ bash set_e.sh
+./data/MiSeq/F3D0_S188_L001_R1_001.fastq
+Specified output directory 'fastqc_reports' does not exist
+```
+
+Output without `set -e`:
+
+```
+(base) ~$ bash set_e.sh
+./data/MiSeq/F3D0_S188_L001_R1_001.fastq
+Specified output directory 'fastqc_reports' does not exist
+./data/MiSeq/F3D0_S188_L001_R2_001.fastq
+Specified output directory 'fastqc_reports' does not exist
+./data/MiSeq/F3D141_S207_L001_R1_001.fastq
+Specified output directory 'fastqc_reports' does not exist
+./data/MiSeq/F3D141_S207_L001_R2_001.fastq
+Specified output directory 'fastqc_reports' does not exist
+...
+```
+
+
+2. Add `set -x` option to print out the commands computer is running. There's an error in the path to save FastQC output reports.
+
+```
+# wrong path
+OUTDIR='fastqc_reports'
+
+# correct path
+OUTDIR='./data/fastqc_reports'
+```
