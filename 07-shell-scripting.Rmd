@@ -30,7 +30,7 @@ This two hour workshop will show attendees how to automate their analyses using 
   - review content from workshop 2 on creating & modifying text files
   - in practice, the process is: make file, edit, save, test run, edit, save, re-run, ...
 - note that commands are executed in the order that they appear in the script
-
+- something about file extensions (`.sh`, ...)
 
 ### Running scripts with `bash`
 
