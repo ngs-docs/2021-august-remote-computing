@@ -9,12 +9,15 @@ This two hour workshop will show attendees how to automate their analyses using 
 
 
 
-## Terminal vs. scripts
+## What is a script?
 
-- intro to what a "script" is, why we want to use scripts vs. typing commands directly at the terminal
-- learning objectives
-
-
+- intro to what a "shell script" is
+   - we're teaching how to make shell scripts today, but scripts can be in any programming language (R, python, etc.)
+- why/when we want to use scripts vs. typing commands directly at the terminal
+   - automate: don't have to remember all the commands and type then one at a time
+   - scale up: can use same script for multiple samples, multiple processes
+   - reproduce/share: easier to reproduce or share analyses because it's all written down
+   - ...
 
 
 
@@ -24,9 +27,9 @@ This two hour workshop will show attendees how to automate their analyses using 
 
 - can demo same set of commands run in terminal vs. putting into a text file
   - mention how to look up terminal history (`history`)
-- review content from workshop 2 on creating & modifying text files
-- examples process: make file, edit, save, test run, edit, save, re-run...
-- note that shell runs commands in the order that they appear in the script
+  - review content from workshop 2 on creating & modifying text files
+  - in practice, the process is: make file, edit, save, test run, edit, save, re-run, ...
+- note that commands are executed in the order that they appear in the script
 
 
 ### Running scripts with `bash`
@@ -62,11 +65,7 @@ mkdir ./data/fastqc_reports
 # create bash script using nano text editor
 # save and exit with ctrl-o, enter, ctrl-x on keyboard
 nano set_e.sh
-
-# run bash script
-bash set_e.sh
 ```
-
 
 Create a bash script with the following commands, this version includes `set -e`:
 
@@ -84,18 +83,20 @@ do
 done
 ```
 
-
-
-
 Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
 
 ```
 for i in ./data/MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
 ```
 
+This command runs the script:
 
+```
+bash set_e.sh
+```
 
-*Exercises*
+**CHALLENGE**
+
 1. What happens when you run the bash script above **with** and **without** the `set -e` option?
 2. There is an error in the bash script. How can you fix the script? (Bonus: try adding `set -x` to your bash script)
 
@@ -105,21 +106,17 @@ for i in ./data/MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
 
 
 
-## Loops and conditions
+## Conditions and loops
 
-- an intro to scripts with conditions or for loops in them
+### Conditions and If statements
+
+- an intro to scripts with conditions
   - conditional operators in Unix (not all the same as other programming languages)
   - if/then/else/elif statements > i.e., if file exists, do this. if file doesn't, do that.
-  - see for loop notes from https://ngs-docs.github.io/2021-august-remote-computing/introduction-to-the-unix-command-line.html#renaming-a-bunch-of-files --> intro to for loops in the terminal might be added to previous workshops; will focus on loops in the bash script here
-- using `echo`: to print statements, to check what command is being run before actually running it
-- discuss what the `$` syntax means, i.e., `$i`, `${i}`, and `$(...)`
+  - discuss indentation, or use `;`
+  - conditional statement structure ends with `fi`
 
-
-### Practicing for loops and conditions
-
-- for loops and echo statements
-- if statements
-
+> (add demo here)
 
 Create a bash script called `ifs.sh` that uses if statements to compare 2 numbers:
 
@@ -137,20 +134,91 @@ else
 fi
 ```
 
-*Exercises*
-1. Try replacing the `!=` operator with [other conditional operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm) (i.e., `==`). Be sure to edit the echo statements!
-2.
+Try replacing the `!=` operator with [other conditional operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm) (i.e., `==`). Be sure to edit the echo statements!
+
+
+**CHALLENGE**
+
+> (add exercise here)
+
+
+### `for` Loops
+
+- intro to `for` loops in scripts
+   - discuss indentation in loop structure, or use `;`
+   - using `echo`: to print statements, to check what command is being run before actually running it
+   - discuss what the `$` syntax means, i.e., `$i`, `${i}`, and `$(...)`
+   - for loop structure ends with `done`
+- material below from workshop 1 notes - review (if taught in previous workshop) and show how to put it into a shell script file:
+
+```
+for i in *.fastq
+do
+   echo $i
+done
+```
+
+This is running the command `echo` for every value of the variable 'i', which is set (one by one) to all the values in the expression `*.fastq`.
+
+If we want to get rid of the extension '.fastq', we can use the `basename` command:
+
+```
+for i in *.fastq
+do
+   basename $i .fastq
+done
+```
+
+Now, this doesn't actually rename the files - it just prints out the name, with the suffix '.fastq' removed.  To rename the files, we need to capture the new name in a variable:
+
+```
+for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   echo $newname
+done
+```
+
+What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
+
+Now we have the old name (`$i`) and the new name (`$newname`) and we're ready to write the rename command --
+
+```
+for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   echo mv $i $newname
+done
+```
+
+***Question:*** why did we put `echo` here?
+
+Now that we're pretty sure it all looks good, let's run it for realz:
+
+```
+for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   mv $i $newname
+done
+```
+
+
+> (add demo/exercise here) --> maybe the examples from workshop 1 notes, but in a script this time
 
 
 
 
+#### Running scripts in a loop
+
+- we can run loops in scripts AND scripts in loops!
 
 
+> (add demo/exercise here)
 
-### Running scripts in a loop
 
-- run a script in a for loop
 - discuss using arguments for scripts
+   - `$` and the number assigns the argument a position in the line of code.
    - i.e., for the `ifs.sh` script, would change to:
 
 ```
@@ -167,7 +235,8 @@ else
 fi
 ```
 
-and run it like this:
+After the `bash <script name>`, the syntax now assigns the 1st element (`$1`) to `40` and the 2nd element (`$2`) to `20`. This means you can enter different numbers when executing the script, without needing to edit the script file at all!
+
 ```
 bash ifs.sh 40 20
 ```
@@ -179,20 +248,33 @@ bash ifs.sh 40 20
 
 ## Multiple screens
 - say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?
-- introducing `screen` and/or `tmux` --> demo utility (i.e., here are these cool tools and when you might want to use them!)
+- introducing `screen` and `tmux`  --> demo utility (i.e., here are these cool tools and when you might want to use them!)
+   - when do you use screen vs. tmux? is it like choosing a text editor?
+
+Basic commands for `screen` and `tmux` below. They both have keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
+
+Description | screen | tmux
+--- | --- | ---
+start a screen session | `screen -S <session name>` | `tmux new -s <session name>`
+close a session | `screen -d <session name>` | `tmux detach`
+go to existing session | `screen -r <session name>` | `tmux attach -t <session name>`
+list existing sessions | `screen ls`  | `tmux ls`
+end session | `exit`  | `tmux kill-session -t <session name>`
+
+
+
+
+## Concluding thoughts
+
+(reference how today's material will lead into upcoming workshops) - we'll return to the concept of using scripts to execute/document analysis workflows in workshops 9 (Snakemake) and 10 (Using SLURM on HPC)
 
 
 
 
 
-## Ideas for demos or exercises
-
-- run a loop in a script
-- run a script in a loop
 
 
-
-## Exercise answers
+## Appendix: exercise answers
 
 *Answers for `set -e` exercises*
 1. Fails on 1st iteration with `set -e`, fails each iteration of the loop without `set -e`
