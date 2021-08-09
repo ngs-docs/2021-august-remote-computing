@@ -1,0 +1,201 @@
+# Connecting to remote computers with ssh
+
+IDEAS FOR CHALLENGES:
+* copy a file from place a to place b, but differeent from day 1
+* edit a file and add some specific text, using an editor; point to incstructions from day 2
+
+## You're logged on to a remote computer. Now what?
+
+The magic of UNIX and the command line is that once you're logged onto a
+remote computer, ...everything works the same.
+
+Yes, you will have access to different files, and maybe different software,
+and different compute resources (more disk space, maybe more CPUs or more
+memory) but the command line basically works the same whether you're logged
+in to your laptop, a workstation next door, or an HPC across the world.
+
+Let's start by reprising some of the basics from @@days 1 and 2.
+
+### Loading some files into your account
+
+But first! we need some files!
+
+You'll note that if you do an `ls`, there's nothing in your home directory.
+That's because most UNIX accounts start out empty. (Sometimes there will be
+generic files like "Desktop" and so on in there - it depends on the
+system.)
+
+Well, actually, it's not *quite* empty. Try:
+```
+ls -la
+```
+and you'll see a few configuration files and directories.
+
+But, basically, empty.
+
+So let's get some files!
+
+There are acually many ways to download files, and we'll show you a few
+today and over the next few weeks. One way that mimics the setup of the
+binders on days 1 and 2 is to copy a bunch of files from GitHub into your account.
+
+The following command will take the set of files [here](https://github.com/ngs-docs/2021-remote-computing-binder/) and make them appear in your account:
+```
+git clone https://github.com/ngs-docs/2021-remote-computing-binder/
+```
+-- note that git and GitHub is something we'll cover more thoroughly
+in week 8. For now, just accept it as one way to go out and get files :).
+
+Now if you do
+```
+ls
+```
+you'll see a directory 2021-remote-computing-binder/. Let's cd into it -
+```
+cd 2021-re<TAB>
+```
+if you hit the TAB key where it says <TAB>, you'll get command-line completion to work.
+
+If you type
+```
+ls -F
+```
+you should see some familiar sights (at least if you attend workshops 1 and 2) -
+
+> > ~~~
+> > 2cities/  binder/  data/  README.md  SouthParkData/
+> > ~~~
+
+-- yep, these are the files we worked with on those two days!
+
+### Revisiting file and path manipulation
+
+If you
+```
+cd data/
+```
+and do
+```
+ls
+```
+you'll see the following files:
+
+> > ~~~
+> > MiSeq		Slide1.jpg	hello.sh	nano1.png
+> > README.md	gvng.jpg		nano2.png
+> > ~~~
+
+and with
+```
+ls -a
+```
+we will see the following:
+
+> > ~~~
+> > .		MiSeq		Slide1.jpg	hello.sh	nano1.png
+> > ..		README.md	gvng.jpg	.hidden		nano2.png
+> > ~~~
+
+Now, if you navigate into the `tmp1` directory located in the
+`.hidden` directory,
+
+``` cd .hidden/tmp1 ``` you will be in a different _absolute_
+directory than you were on in the binder - now it'll be something like
+`/home/ctbrown/2021-remote-computing-binder/data/.hidden/tmp1`, rather
+than `/home/jovyan/data/.hidden/tmp1`. That's because we're on a
+different system, with a different user account, and (unlike with the
+binder) we are going to be doing more things than just exploring the
+contents of the binder, so we've put things in the folder _underneath_
+2021-remote-computing/ to contain data for today and Thursday.
+
+This is an example of home directory organization and project management,
+which we'll be talking about in workshop 7 - how to organize your account
+so that you can figure out what the files in it probably mean.
+
+At this point, you could do the rest of workshop 1's lesson@@, but rather
+than do that, let's just note that all of the _relative_ path navigation
+you did will continue to work, even though you're on a _different_ computer
+in a _different_ account tha you were on week 1.
+
+For example, you can copy files between directories using the same
+relative path as before,
+```
+cp thisinnotit.txt ../tmp2
+```
+and we navigate to the tmp2 directory and list the files that are in it we will see the `thisinnotit.txt` file has been copied to the tmp2 directory.
+
+```
+cd ../tmp2
+ls -l
+```
+-- but the difference is that this directory is now under
+`/home/ctbrown/2021-remote-computing-binder/data/` rather than
+`/home/jovyan/data/`.
+
+### Revisiting file editing
+
+Now go back to the 2021-remote-computing binder directory --
+```
+cd ~/2021-re<TAB>
+```
+Here, the `~/` refers to the _absolute_ path to your home directory,
+whatever your username is - it's different for everyone in the class! -
+and then the `2021-remote-computing-binder/` is a directory underneath it.
+
+We can use the `file` command as in workshop 2 to look at the file type of
+`2cities/book.txt.gz` --
+```
+file 2cities/book.txt.gz
+```
+-- and then uncompress it,
+```
+gunzip 2cities/book.txt.gz
+```
+which will produce the uncompressed file `2cities/book.txt` from the compressed file `2cities/book.txt.gz`. If we run `head` on the .txt file, we'll see the
+first 10 lines of the file:
+```
+head 2cities/book.txt
+```
+
+Conveniently, all three editors that we showed you in lesson 2@@ are
+available here - let's use nano (or an editor of your choice) to edit
+the book.txt file.  If you're using nano, run
+```
+nano 2cities/book.txt
+```
+and use the arrow key to go down 9 lines to a blank line, and type
+`kilroy was here!` or something else silly and identifiable.
+
+Now save, using CTRL-X, then 'y', then ENTER.
+
+Now, if you run
+```
+head 2cities/book.txt
+```
+you should see that your edits are there.
+
+A difference over what we did in lessons 1 and 2 is that these changes
+are now _persistent_. Unlike binder, the files on farm don't go away
+when you log out!
+
+### Some commands are available! Others are not.
+
+You may remember looking at the South Park CSV data set in lesson 2 -
+```
+cd ~/2021-remote-computing-binder/SouthParkData/
+gunzip All-seasons.csv.gz
+head All-seasons.csv
+```
+and those commands are all standard UNIX commands. You can also use cut, grep,
+sort, and uniq just fine - for example, let's calculate how many
+times a character in South Park (in column 3) has "computer" in its name --
+```
+cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c
+```
+
+So those commands all work. But `csvtk` doesn't -- this command fails,
+```
+csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
+```
+because csvtk isn't installed. And that's what we'll be showing you how to
+do this Friday - install software like csvtk using conda.

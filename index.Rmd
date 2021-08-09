@@ -33,7 +33,7 @@ Workshop 2: [Creating and modifying text files on remote computers](creating-and
 
 ## Intermediate skills {-}
 
-Workshop 3: Connecting to remote computers with ssh - Tues Aug 10
+Workshop 3: [Connecting to remote computers with ssh](connecting-to-remote-computers-with-ssh) - Tues Aug 10
 
 Workshop 4: Running programs on remote computers and retrieving the results - Th Aug 12
 
