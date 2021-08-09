@@ -1,15 +1,17 @@
-# Appendix
+# Appendix { - }
 
 
-## Workshop Protocol
+## Workshop Protocol { - }
 
 **Before workshop**
+
 - Instructor(s) create workshop notes on GitHub as an R markdown file
 - Instructor(s) create/test computing environment (i.e., binder, Farm HPC) for workshop material
 - Training coordinator creates pre- and post-workshop assessment surveys, with input from instructor(s)
 - Training coordinator emails notes, pre-workshop survey, and Zoom link to participants the day before the workshop
 
 **During workshop**
+
 - Moderator begins by asking everyone to fill out the pre-workshop survey if they haven't
 already, and to put up a raised hand Zoom reaction when they've completed the survey.
 Then, describe ways to ask for help during the workshop: 1) type in Zoom chat to everyone or as a direct message to moderator/helpers (introduce helpers), 2) unmute and ask; say that we prefer participants don't use the raised hand reaction to ask a question, since that's used for checking in.
@@ -20,5 +22,6 @@ At this point, there should be a majority of raised hands up for the survey ques
 
 
 **After workshop**
+
 - Training team updates workshop notes as needed
 - Training coordinator emails notes, workshop recording, and post-workshop survey link to participants some time after the workshop
