@@ -65,7 +65,7 @@ of the file.
 This is a file in a format called Markdown, that is a lightly
 decorated text file with a title and so on. While it can be nicely
 formatted by an interpreting program (see [the way github renders this
-file!](https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/SouthParkData/README.md),
+file!](https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md),
 it can also just be viewed and read with cat.
 
 This is different from the other file in `2cities/`; take a look at
@@ -206,7 +206,7 @@ Run:
 nano 2cities/book.txt
 ```
 
-and use the arrow keys to move up and down and left and write.
+and use the arrow keys to move up and down and left and right.
 
 For big files, this can be tedious! If you look down on the bottom,
 you can see a bunch of help text telling you what control+keys to use
@@ -284,11 +284,15 @@ commands, in particular.
 
 To run vi, type:
 ```
-vim 2cities/book.txt
+vi 2cities/book.txt
 ```
-You should see all your changes from before, right?
+(You should see all your changes from before, right?)
 
-To exit, type:
+vi starts in "normal mode", which allows you to navigate around the file.
+In normal mode, what you type does not change the file - instead, it lets
+you issue commands to vi.
+
+The first and most important (?) command - to exit, type:
 ```
 :q
 ```
@@ -296,11 +300,11 @@ and if there are no changes, it will simply exit.
 
 Run vi again, and let's edit --
 ```
-vim 2cities/book.txt
+vi 2cities/book.txt
 ```
 and then type 'i' to go to "insert" mode, and type something.
 
-Then hit the escape key to go back to "view" mode.
+Then hit the escape key to go back to "normal" mode.
 
 Now try to exit with `:q`. It won't work! You have to either save, or quit.
 
@@ -312,18 +316,19 @@ then escape).
 To save, type `:wq`. (You can also (mystifyingly) type `ZZ` to do the same
 thing. shrug.)
 
-The main thing that vi does is give you a "view" mode (where you can navigate
+The main thing that vi does is give you a "normal" mode (where you can navigate
 around - use CTRL-F and CTRL-V to page down and up, for example) and an
 edit mode (use 'i' for insert or 'a' for append) where what you type goes
 directly into the file. You use Escape to get out of edit mode.
 
-In view mode, 'x' will delete the character you're on, and 'dd' will delete
+In normal mode, 'x' will delete the character you're on, and 'dd' will delete
 the line you're on (and put it in the cut buffer), and `P` will pull the
 line out of the cut buffer into the file at the current location.
 
 And that's what you really need to know :).
 
-A few tips for view mode -
+A few tips for normal mode -
+
 * to get help, type `:help`
 * to go to a specific line, type the line number followed by G. `500G`
 
@@ -340,7 +345,7 @@ To run emacs,
 emacs 2cities/book.txt
 ```
 
-This is automatically in edit mode (there's no view mode) so it behaves
+This is automatically in edit mode (there's no normal mode) so it behaves
 kind of like nano.
 
 To exit emacs, type CTRL-X and then CTRL-C.
@@ -358,7 +363,7 @@ To go to the beginning of a line, type CTRL-A. End of line, CTRL-E.
 command line.)
 
 There's a pretty nice interactive tutorial for via that you can access
-with CTRL-H CTRL-H.
+with CTRL-H t (CTRL-H, followed by a 't').
 
 Emacs shines when editing _multiple_ files, but it can do a lot more, too.
 Some people spend their entire computing lives in emacs... see, for example,
@@ -414,7 +419,7 @@ editors most of the time! I asked [on twitter](https://twitter.com/ctitusbrown/s
 several popped up -
 
 * [Visual Studio Code](https://code.visualstudio.com/) was a hands-down winner. It works on Windows, Mac OS X, and Linux, and is free.
-* [BBEdit](https://www.barebones.com/products/bbedit/) was beloved by many. Runs on Mac OS X. Not free, but that's ok!
+* [BBEdit](https://www.barebones.com/products/bbedit/) was beloved by many. Runs on Mac OS X. Free, with pay option.
 * [NotePad++](https://notepad-plus-plus.org/downloads/) is a nice free Windows editor that I've used in the distant past.
 * Some people really liked [Atom](https://atom.io/) too, which is free and runs on Windows, Mac OS X, and Linux.
 
@@ -450,9 +455,9 @@ And then it will be maddening and infuriating but that's ok :).
 
 ## Other ways to create, edit, filter, and modify files
 
-So editing is pretty cool, but if you're in a hurry, or want to do something,
-short, or need to work with some pretty big files, there are other approaches
-you can use. Read on!
+So editing is pretty cool, but if you're in a hurry, or want to make a
+small change without switching windows, or need to work with some
+pretty big files, there are other approaches you can use. Read on!
 
 ### Redirection, appending, and piping.
 
@@ -693,13 +698,14 @@ Our recommended approach is to use `zip` to build a zip bundle or archive.
 This will both compress files, and store multiple files (even a directory
 hierarchy!)
 
-First, create the archive:
+First, create the archive -
 ```
 cd ~/
-zip south-park.zip SouthParkData/
+zip -r south-park.zip SouthParkData/
 ```
+(the `-r` is needed on some versions of zip to package up directories.)
 
-and then make a copy in a new place (just to demonstrate that it all works :) -
+Then make a copy in a new place (just to demonstrate that it all works :) -
 ```
 mkdir new-place/
 cd new-place/
@@ -713,7 +719,11 @@ backup copies of things and downloading them (see Workshop 4!) as well
 as sending people collections of files. We'll show you a different
 way, using version control, in Workshop 8.
 
-Note, you can use `unzip -v` to see what's _in_ a zip archive, and selectively unzip specific files by specifying them on the command line like so:
+Note, you can use `unzip -v` to see what's _in_ a zip archive,
+```
+unzip -v ../south-park.zip
+```
+and selectively unzip specific files by specifying them on the command line like so:
 ```
 unzip ../south-park.zip SouthParkData/README.md
 ```
