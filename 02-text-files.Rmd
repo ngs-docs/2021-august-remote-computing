@@ -316,18 +316,18 @@ then escape).
 To save, type `:wq`. (You can also (mystifyingly) type `ZZ` to do the same
 thing. shrug.)
 
-The main thing that vi does is give you a "view" mode (where you can navigate
+The main thing that vi does is give you a "normal" mode (where you can navigate
 around - use CTRL-F and CTRL-V to page down and up, for example) and an
 edit mode (use 'i' for insert or 'a' for append) where what you type goes
 directly into the file. You use Escape to get out of edit mode.
 
-In view mode, 'x' will delete the character you're on, and 'dd' will delete
+In normal mode, 'x' will delete the character you're on, and 'dd' will delete
 the line you're on (and put it in the cut buffer), and `P` will pull the
 line out of the cut buffer into the file at the current location.
 
 And that's what you really need to know :).
 
-A few tips for view mode -
+A few tips for normal mode -
 
 * to get help, type `:help`
 * to go to a specific line, type the line number followed by G. `500G`
@@ -345,7 +345,7 @@ To run emacs,
 emacs 2cities/book.txt
 ```
 
-This is automatically in edit mode (there's no view mode) so it behaves
+This is automatically in edit mode (there's no normal mode) so it behaves
 kind of like nano.
 
 To exit emacs, type CTRL-X and then CTRL-C.
