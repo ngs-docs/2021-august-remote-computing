@@ -20,7 +20,7 @@ See rendered site at:
    ```
 - Commit changes
   ```
-  git add .
+  git add docs
   git commit -am 'message about changes'
   git push origin <branch name>
   ```
