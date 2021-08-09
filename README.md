@@ -11,7 +11,7 @@ See rendered site at:
 
 - Clone this repo
 - Create a branch and add changes
-- Enter the following commands to re-build the bookdown (`make`) and view the website (`open`):
+- Enter the following commands to re-build the bookdown (`make`) and view the website (`open`). You only have to create the `bookdown` environment once!:
    ```
    mamba env create -f environment.yml -n bookdown
    conda activate bookdown
