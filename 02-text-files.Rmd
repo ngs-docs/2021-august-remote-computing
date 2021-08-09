@@ -290,7 +290,7 @@ vi 2cities/book.txt
 
 vi starts in "normal mode", which allows you to navigate around the file.
 In normal mode, what you type does not change the file - instead, it lets
-you issue commands to vim.
+you issue commands to vi.
 
 The first and most important (?) command - to exit, type:
 ```
