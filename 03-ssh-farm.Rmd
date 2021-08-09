@@ -43,7 +43,7 @@ The following command will take the set of files [here](https://github.com/ngs-d
 ```
 git clone https://github.com/ngs-docs/2021-remote-computing-binder/
 ```
--- note that git and GitHub is something we'll cover more thoroughly
+-- note that git and GitHub are something we'll cover more thoroughly
 in week 8. For now, just accept it as one way to go out and get files :).
 
 Now if you do
@@ -60,7 +60,7 @@ If you type
 ```
 ls -F
 ```
-you should see some familiar sights (at least if you attend workshops 1 and 2) -
+you should see some familiar sights (at least if you attended workshops 1 and 2) -
 
 > > ~~~
 > > 2cities/  binder/  data/  README.md  SouthParkData/

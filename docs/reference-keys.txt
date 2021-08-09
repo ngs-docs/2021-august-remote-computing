@@ -39,3 +39,9 @@ a-quick-primer-on-compression.
 gzip-and-.gz-files.
 zip-and-compressing-multiple-files.
 concluding-thoughts
+connecting-to-remote-computers-with-ssh
+youre-logged-on-to-a-remote-computer.-now-what
+loading-some-files-into-your-account
+revisiting-file-and-path-manipulation
+revisiting-file-editing
+some-commands-are-available-others-are-not.
