@@ -145,13 +145,16 @@
 </ul></li>
 <li class="chapter" data-level="3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html"><i class="fa fa-check"></i><b>3</b> Connecting to remote computers with ssh</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-connecting-to-remote-computers-with-mobaxterm"><i class="fa fa-check"></i><b>3.1</b> Windows: Connecting to remote computers with MobaXterm</a></li>
-<li class="chapter" data-level="3.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#youre-logged-on-to-a-remote-computer.-now-what"><i class="fa fa-check"></i><b>3.2</b> You’re logged on to a remote computer. Now what?</a>
+<li class="chapter" data-level="3.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#ssh-and-clients"><i class="fa fa-check"></i><b>3.1</b> SSH and Clients</a></li>
+<li class="chapter" data-level="3.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-using-the-terminal-program"><i class="fa fa-check"></i><b>3.2</b> Mac OS X: Using the Terminal program</a></li>
+<li class="chapter" data-level="3.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-connecting-to-remote-computers-with-mobaxterm"><i class="fa fa-check"></i><b>3.3</b> Windows: Connecting to remote computers with MobaXterm</a></li>
+<li class="chapter" data-level="3.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#logging-out-and-logging-back-in."><i class="fa fa-check"></i><b>3.4</b> Logging out and logging back in.</a></li>
+<li class="chapter" data-level="3.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#youre-logged-on-to-a-remote-computer.-now-what"><i class="fa fa-check"></i><b>3.5</b> You’re logged on to a remote computer. Now what?</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account"><i class="fa fa-check"></i><b>3.2.1</b> Loading some files into your account</a></li>
-<li class="chapter" data-level="3.2.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-and-path-manipulation"><i class="fa fa-check"></i><b>3.2.2</b> Revisiting file and path manipulation</a></li>
-<li class="chapter" data-level="3.2.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-editing"><i class="fa fa-check"></i><b>3.2.3</b> Revisiting file editing</a></li>
-<li class="chapter" data-level="3.2.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.2.4</b> Some commands are available! Others are not.</a></li>
+<li class="chapter" data-level="3.5.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account"><i class="fa fa-check"></i><b>3.5.1</b> Loading some files into your account</a></li>
+<li class="chapter" data-level="3.5.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-and-path-manipulation"><i class="fa fa-check"></i><b>3.5.2</b> Revisiting file and path manipulation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-editing"><i class="fa fa-check"></i><b>3.5.3</b> Revisiting file editing</a></li>
+<li class="chapter" data-level="3.5.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.5.4</b> Some commands are available! Others are not.</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html"><i class="fa fa-check"></i><b>4</b> Running programs on remote computers and retrieving the results</a></li>
@@ -190,12 +193,57 @@ computers using ssh software, which is the most common way to do
 so. We will discuss usernames and passwords, introduce ssh software
 clients, and work through the most common challenges attendees will
 face in connecting to remote computers.</p>
-<p><span class="citation">@CTB</span> talk about alternatives</p>
-<ul>
-<li><a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10" class="uri">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></li>
-</ul>
-<div id="windows-connecting-to-remote-computers-with-mobaxterm" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Windows: Connecting to remote computers with MobaXterm</h2>
+<p>@<span class="citation">@IDEAS</span> FOR CHALLENGES:
+* copy a file from place a to place b, but different from day 1
+* edit a file and add some specific text, using an editor; point to incstructions from day 2</p>
+<div id="ssh-and-clients" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> SSH and Clients</h2>
+<p>We’re going to be using <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH, the Secure Shell
+protocol</a>, to connect to a
+remote computer - in this case, the ‘farm’ computer at UC Davis. We’ll use it for the next 7 workshops, and then in <a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html">workshop 11</a>, we’ll use ssh to connect to a computer that we rent from Amazon instead.</p>
+<p>ssh is the standard way to connect to remote computers, both to run
+commands and to retrieve files. It uses an encrypted connection so
+nothing you type can be seen by anyone else, which protects your
+passwords and any other data you send.</p>
+<p>ssh operates as a network “protocol”, which means that the sender
+(your local computer, in this case) and the receiver (the farm computer)
+can be running any software that “speaks” ssh, and they can communicate
+just fine.</p>
+<p>We’re going to use two specific ssh clients, one for Mac OS X that’s just
+called “ssh”, and one for Windows that’s called MobaXterm. Unfortunately
+they’re (mostly) quite different in appearance, so we’re going to run through
+them separately the first time through.</p>
+<p>There are <em>many</em> alternatives - for example, for Mac OS X there are
+almost <a href="https://www.geckoandfly.com/31890/putty-ssh-alternatives/">10 different free SSH
+clients</a>,
+and here is <a href="https://www.smarthomebeginner.com/best-ssh-clients-windows-putty-alternatives/">a list of 10 ssh clients for
+Windows</a>. They
+will all look and feel quite different, but they will all get you the
+same place.</p>
+</div>
+<div id="mac-os-x-using-the-terminal-program" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Mac OS X: Using the Terminal program</h2>
+<p>Find and open the Terminal program using Spotlight - it’s under
+Applications. It will look and feel a lot like the things you saw in
+Workshops 1 and 2 :).</p>
+<p>(Congratulations! You have unlocked a secret of Mac OS X - it’s got a
+command line underneath!)</p>
+<p>Now type</p>
+<pre><code>ssh farm.cse.ucdavis.edu -l datalab-XX</code></pre>
+<p>where you replace XX with your user number (between 10 and 60). (You
+received in the e-mail from “Titus Brown” with the subject “Farm
+account name (remote computing 2021 workshop series)”. Ask a TA for
+help if you can’t find this e-mail.)</p>
+<p>You will be confronted with a “password:” prompt. Copy and paste in the
+password from your farm account e-mail. Ask a TA for help if you need it!</p>
+<p>And voila, you are now logged into farm! You should be at a prompt
+that looks like this:</p>
+<blockquote>
+<pre><code>datalab-09@farm:~$ </code></pre>
+</blockquote>
+</div>
+<div id="windows-connecting-to-remote-computers-with-mobaxterm" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Windows: Connecting to remote computers with MobaXterm</h2>
 <p>Steps:</p>
 <ol style="list-style-type: decimal">
 <li><p>Go to the <a href="https://mobaxterm.mobatek.net/download.html">MobaXterm download page</a>.</p></li>
@@ -204,8 +252,8 @@ face in connecting to remote computers.</p>
 <li><p>Find the downloaded Zip file in your Downloads folder (should be named “MobaXter_Personal_21.2), and double click on it.</p></li>
 <li><p>In the <code>MobaXterm_Personal_21.2</code> folder, run the MobaXterm 21.2 Application.</p></li>
 </ol>
-<p>(screenshot)</p>
-<p>You may need to allow access on all networks.</p>
+<p><img src="moba-opening.png" /></p>
+<p>Note: You may need to allow access on all networks for this application.</p>
 <ol start="6" style="list-style-type: decimal">
 <li><p>Click on Session… (upper left)</p></li>
 <li><p>Click on SSH (upper left)</p></li>
@@ -223,22 +271,22 @@ face in connecting to remote computers.</p>
 <li><p>It will now open up a terminal-looking window that will ask for your password. Select your password from your e-mail and copy it (ask a TA for help if you can’t find your password). Then use right-click to paste it. (It may open a pop-up window asking what you want right-click to do. Select the default.)</p></li>
 <li><p>Hit enter, and it should log you in!</p></li>
 </ol>
-<p>(screenshot)</p>
-<p>IDEAS FOR CHALLENGES:
-* copy a file from place a to place b, but differeent from day 1
-* edit a file and add some specific text, using an editor; point to incstructions from day 2</p>
+<p><img src="moba-farm.png" /></p>
 </div>
-<div id="youre-logged-on-to-a-remote-computer.-now-what" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> You’re logged on to a remote computer. Now what?</h2>
+<div id="logging-out-and-logging-back-in." class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Logging out and logging back in.</h2>
+</div>
+<div id="youre-logged-on-to-a-remote-computer.-now-what" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> You’re logged on to a remote computer. Now what?</h2>
 <p>The magic of UNIX and the command line is that once you’re logged onto a
 remote computer, …everything works the same.</p>
 <p>Yes, you will have access to different files, and maybe different software,
 and different compute resources (more disk space, maybe more CPUs or more
 memory) but the command line basically works the same whether you’re logged
 in to your laptop, a workstation next door, or an HPC across the world.</p>
-<p>Let’s start by reprising some of the basics from @<span class="citation">@days</span> 1 and 2.</p>
-<div id="loading-some-files-into-your-account" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Loading some files into your account</h3>
+<p>Let’s start by reprising some of the basics from <a href="introduction-to-the-unix-command-line.html">workshop 1</a> and <a href="creating-and-modifying-text-files-on-remote-computers.html">workshop 2</a>.</p>
+<div id="loading-some-files-into-your-account" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Loading some files into your account</h3>
 <p>But first! we need some files!</p>
 <p>You’ll note that if you do an <code>ls</code>, there’s nothing in your home directory.
 That’s because most UNIX accounts start out empty. (Sometimes there will be
@@ -271,8 +319,8 @@ in week 8. For now, just accept it as one way to go out and get files :).</p>
 </blockquote>
 <p>– yep, these are the files we worked with on those two days!</p>
 </div>
-<div id="revisiting-file-and-path-manipulation" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Revisiting file and path manipulation</h3>
+<div id="revisiting-file-and-path-manipulation" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Revisiting file and path manipulation</h3>
 <p>If you</p>
 <pre><code>cd data/</code></pre>
 <p>and do</p>
@@ -302,14 +350,15 @@ than <code>/home/jovyan/data/.hidden/tmp1</code>. That’s because we’re on a
 different system, with a different user account, and (unlike with the
 binder) we are going to be doing more things than just exploring the
 contents of the binder, so we’ve put things in the folder <em>underneath</em>
-2021-remote-computing/ to contain data for today and Thursday.</p>
+<code>2021-remote-computing/</code> to contain data for today and Thursday.</p>
 <p>This is an example of home directory organization and project management,
-which we’ll be talking about in workshop 7 - how to organize your account
+which we’ll be talking about in <a href="structuring-your-projects-for-current-and-future-you.html">workshop 6</a> - how to organize your account
 so that you can figure out what the files in it probably mean.</p>
-<p>At this point, you could do the rest of workshop 1’s lesson@@, but rather
-than do that, let’s just note that all of the <em>relative</em> path navigation
-you did will continue to work, even though you’re on a <em>different</em> computer
-in a <em>different</em> account tha you were on week 1.</p>
+<p>At this point, you could do the rest of <a href="introduction-to-the-unix-command-line.html">workshop 1’s
+lesson</a>, but rather than
+do that, let’s just note that all of the <em>relative</em> path navigation
+you did will continue to work, even though you’re on a <em>different</em>
+computer in a <em>different</em> account tha you were on week 1.</p>
 <p>For example, you can copy files between directories using the same
 relative path as before,</p>
 <pre><code>cp thisinnotit.txt ../tmp2</code></pre>
@@ -320,14 +369,14 @@ ls -l</code></pre>
 <code>/home/ctbrown/2021-remote-computing-binder/data/</code> rather than
 <code>/home/jovyan/data/</code>.</p>
 </div>
-<div id="revisiting-file-editing" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Revisiting file editing</h3>
+<div id="revisiting-file-editing" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Revisiting file editing</h3>
 <p>Now go back to the 2021-remote-computing binder directory –</p>
 <pre><code>cd ~/2021-re&lt;TAB&gt;</code></pre>
 <p>Here, the <code>~/</code> refers to the <em>absolute</em> path to your home directory,
 whatever your username is - it’s different for everyone in the class! -
 and then the <code>2021-remote-computing-binder/</code> is a directory underneath it.</p>
-<p>We can use the <code>file</code> command as in workshop 2 to look at the file type of
+<p>We can use the <code>file</code> command as in <a href="creating-and-modifying-text-files-on-remote-computers.html#ok-ok-what-does-this-all-mean-in-practice">workshop 2</a> to look at the file type of
 <code>2cities/book.txt.gz</code> –</p>
 <pre><code>file 2cities/book.txt.gz</code></pre>
 <p>– and then uncompress it,</p>
@@ -335,7 +384,7 @@ and then the <code>2021-remote-computing-binder/</code> is a directory underneat
 <p>which will produce the uncompressed file <code>2cities/book.txt</code> from the compressed file <code>2cities/book.txt.gz</code>. If we run <code>head</code> on the .txt file, we’ll see the
 first 10 lines of the file:</p>
 <pre><code>head 2cities/book.txt</code></pre>
-<p>Conveniently, all three editors that we showed you in lesson 2@@ are
+<p>Conveniently, all three editors that we showed you in <a href="creating-and-modifying-text-files-on-remote-computers.html#lets-edit-this-file">workshop 2</a> are
 available here - let’s use nano (or an editor of your choice) to edit
 the book.txt file. If you’re using nano, run</p>
 <pre><code>nano 2cities/book.txt</code></pre>
@@ -345,13 +394,13 @@ the book.txt file. If you’re using nano, run</p>
 <p>Now, if you run</p>
 <pre><code>head 2cities/book.txt</code></pre>
 <p>you should see that your edits are there.</p>
-<p>A difference over what we did in lessons 1 and 2 is that these changes
+<p>A difference over what we did in workshops 1 and 2 is that these changes
 are now <em>persistent</em>. Unlike binder, the files on farm don’t go away
 when you log out!</p>
 </div>
-<div id="some-commands-are-available-others-are-not." class="section level3" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Some commands are available! Others are not.</h3>
-<p>You may remember looking at the South Park CSV data set in lesson 2 -</p>
+<div id="some-commands-are-available-others-are-not." class="section level3" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Some commands are available! Others are not.</h3>
+<p>You may remember looking at the South Park CSV data set in <a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files">lesson 2</a> -</p>
 <pre><code>cd ~/2021-remote-computing-binder/SouthParkData/
 gunzip All-seasons.csv.gz
 head All-seasons.csv</code></pre>
@@ -362,7 +411,7 @@ times a character in South Park (in column 3) has “computer” in its name –
 <p>So those commands all work. But <code>csvtk</code> doesn’t – this command fails,</p>
 <pre><code>csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
 <p>because csvtk isn’t installed. And that’s what we’ll be showing you how to
-do this Friday - install software like csvtk using conda.</p>
+do in workshop 5 - <a href="installing-software-on-remote-computers-with-conda.html">install software like csvtk using conda</a>.</p>
 
 </div>
 </div>

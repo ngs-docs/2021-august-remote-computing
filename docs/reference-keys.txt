@@ -40,7 +40,10 @@ gzip-and-.gz-files.
 zip-and-compressing-multiple-files.
 concluding-thoughts
 connecting-to-remote-computers-with-ssh
+ssh-and-clients
+mac-os-x-using-the-terminal-program
 windows-connecting-to-remote-computers-with-mobaxterm
+logging-out-and-logging-back-in.
 youre-logged-on-to-a-remote-computer.-now-what
 loading-some-files-into-your-account
 revisiting-file-and-path-manipulation

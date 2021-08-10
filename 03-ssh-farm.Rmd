@@ -6,9 +6,68 @@ so. We will discuss usernames and passwords, introduce ssh software
 clients, and work through the most common challenges attendees will
 face in connecting to remote computers.
 
-@CTB talk about alternatives
+@@IDEAS FOR CHALLENGES:
 
-- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+* copy a file from place a to place b, but different from day 1
+* edit a file and add some specific text, using an editor; point to instructions from day 2
+
+## SSH and Clients
+
+We're going to be using [SSH, the Secure Shell
+protocol](https://en.wikipedia.org/wiki/Secure_Shell), to connect to a
+remote computer - in this case, the 'farm' computer at UC Davis.  We'll use it for the next 7 workshops, and then in [workshop 11](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html), we'll use ssh to connect to a computer that we rent from Amazon instead.
+
+ssh is the standard way to connect to remote computers, both to run
+commands and to retrieve files. It uses an encrypted connection so
+nothing you type can be seen by anyone else, which protects your
+passwords and any other data you send.
+
+ssh operates as a network "protocol", which means that the sender
+(your local computer, in this case) and the receiver (the farm computer)
+can be running any software that "speaks" ssh, and they can communicate
+just fine.
+
+We're going to use two specific ssh clients, one for Mac OS X that's just
+called "ssh", and one for Windows that's called MobaXterm.  Unfortunately
+they're (mostly) quite different in appearance, so we're going to run through
+them separately the first time through.
+
+There are _many_ alternatives - for example, for Mac OS X there are
+almost [10 different free SSH
+clients](https://www.geckoandfly.com/31890/putty-ssh-alternatives/),
+and here is [a list of 10 ssh clients for
+Windows](https://www.smarthomebeginner.com/best-ssh-clients-windows-putty-alternatives/). They
+will all look and feel quite different, but they will all get you the
+same place.
+
+## Mac OS X: Using the Terminal program
+
+Find and open the Terminal program using Spotlight - it's under
+Applications. It will look and feel a lot like the things you saw in
+Workshops 1 and 2 :).
+
+(Congratulations! You have unlocked a secret of Mac OS X - it's got a
+command line underneath!)
+
+Now type
+
+```
+ssh farm.cse.ucdavis.edu -l datalab-XX
+```
+where you replace XX with your user number (between 10 and 60). (You
+received in the e-mail from "Titus Brown" with the subject "Farm
+account name (remote computing 2021 workshop series)". Ask a TA for
+help if you can't find this e-mail.)
+
+You will be confronted with a "password:" prompt. Copy and paste in the
+password from your farm account e-mail. Ask a TA for help if you need it!
+
+And voila, you are now logged into farm! You should be at a prompt
+that looks like this:
+
+> ~~~
+> datalab-09@farm:~$ 
+> ~~~
 
 ## Windows: Connecting to remote computers with MobaXterm
 
@@ -24,9 +83,9 @@ Steps:
 
 5. In the `MobaXterm_Personal_21.2` folder, run the MobaXterm 21.2 Application.
 
-(screenshot)
+![](moba-opening.png)
 
-You may need to allow access on all networks.
+Note: You may need to allow access on all networks for this application.
 
 6. Click on Session... (upper left)
 
@@ -46,13 +105,19 @@ This is the computer name you are connecting to.
 
 11. Hit enter, and it should log you in!
 
-(screenshot)
+![](moba-farm.png)
 
+## Logging out and logging back in.
 
+OK. Now that you're in, ...log out and log back in!
 
-IDEAS FOR CHALLENGES:
-* copy a file from place a to place b, but differeent from day 1
-* edit a file and add some specific text, using an editor; point to incstructions from day 2
+To log out, type 'logout'.
+
+Then go back through the above to make sure you've got it all right.
+
+A few notes -
+* for Mac OS X, you can use the up arrow to go to the previous command and run it. You'll need to type your password in again, though.
+* for MobaXterm, you'll be able to do @@@ and you won't need to type your password in again.
 
 ## You're logged on to a remote computer. Now what?
 
@@ -64,7 +129,7 @@ and different compute resources (more disk space, maybe more CPUs or more
 memory) but the command line basically works the same whether you're logged
 in to your laptop, a workstation next door, or an HPC across the world.
 
-Let's start by reprising some of the basics from @@days 1 and 2.
+Let's start by reprising some of the basics from [workshop 1 (the command line)](introduction-to-the-unix-command-line.html) and [workshop 2 (editing text files)](creating-and-modifying-text-files-on-remote-computers.html).
 
 ### Loading some files into your account
 
@@ -85,7 +150,7 @@ But, basically, empty.
 
 So let's get some files!
 
-There are acually many ways to download files, and we'll show you a few
+There are actually many ways to download files, and we'll show you a few
 today and over the next few weeks. One way that mimics the setup of the
 binders on days 1 and 2 is to copy a bunch of files from GitHub into your account.
 
@@ -156,16 +221,17 @@ than `/home/jovyan/data/.hidden/tmp1`. That's because we're on a
 different system, with a different user account, and (unlike with the
 binder) we are going to be doing more things than just exploring the
 contents of the binder, so we've put things in the folder _underneath_
-2021-remote-computing/ to contain data for today and Thursday.
+`2021-remote-computing/` to contain data for today and Thursday.
 
 This is an example of home directory organization and project management,
-which we'll be talking about in workshop 7 - how to organize your account
+which we'll be talking about in [workshop 6 (project organization)](structuring-your-projects-for-current-and-future-you.html) - how to organize your account
 so that you can figure out what the files in it probably mean.
 
-At this point, you could do the rest of workshop 1's lesson@@, but rather
-than do that, let's just note that all of the _relative_ path navigation
-you did will continue to work, even though you're on a _different_ computer
-in a _different_ account tha you were on week 1.
+At this point, you could do the rest of [workshop 1's
+lesson](introduction-to-the-unix-command-line.html), but rather than
+do that, let's just note that all of the _relative_ path navigation
+you did will continue to work, even though you're on a _different_
+computer in a _different_ account than you were using for workshops 1 and 2.
 
 For example, you can copy files between directories using the same
 relative path as before,
@@ -192,7 +258,7 @@ Here, the `~/` refers to the _absolute_ path to your home directory,
 whatever your username is - it's different for everyone in the class! -
 and then the `2021-remote-computing-binder/` is a directory underneath it.
 
-We can use the `file` command as in workshop 2 to look at the file type of
+We can use the `file` command as in [workshop 2](creating-and-modifying-text-files-on-remote-computers.html#ok-ok-what-does-this-all-mean-in-practice) to look at the file type of
 `2cities/book.txt.gz` --
 ```
 file 2cities/book.txt.gz
@@ -207,7 +273,7 @@ first 10 lines of the file:
 head 2cities/book.txt
 ```
 
-Conveniently, all three editors that we showed you in lesson 2@@ are
+Conveniently, all three editors that we showed you in [workshop 2](creating-and-modifying-text-files-on-remote-computers.html#lets-edit-this-file) are
 available here - let's use nano (or an editor of your choice) to edit
 the book.txt file.  If you're using nano, run
 ```
@@ -224,13 +290,13 @@ head 2cities/book.txt
 ```
 you should see that your edits are there.
 
-A difference over what we did in lessons 1 and 2 is that these changes
+A difference over what we did in workshops 1 and 2 is that these changes
 are now _persistent_. Unlike binder, the files on farm don't go away
 when you log out!
 
 ### Some commands are available! Others are not.
 
-You may remember looking at the South Park CSV data set in lesson 2 -
+You may remember looking at the South Park CSV data set in [lesson 2](creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files) -
 ```
 cd ~/2021-remote-computing-binder/SouthParkData/
 gunzip All-seasons.csv.gz
@@ -248,4 +314,5 @@ So those commands all work. But `csvtk` doesn't -- this command fails,
 csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 ```
 because csvtk isn't installed. And that's what we'll be showing you how to
-do this Friday - install software like csvtk using conda.
+do in workshop 5 - [install software like csvtk using conda](installing-software-on-remote-computers-with-conda.html).
+
