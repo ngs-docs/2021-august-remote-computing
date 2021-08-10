@@ -376,7 +376,7 @@ and now you will be still in the Terminal program, but your shell
 prompt will be running on your local computer instead of farm.
 
 **Note: it's important that you're no longer at the farm prompt! You should
-_not_ see 'farm' in the command-line prompt!
+_not_ see 'farm' in the command-line prompt!**
 
 Now run the following command, replacing '-XX' with your datalab
 account number:
