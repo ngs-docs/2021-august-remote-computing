@@ -1,5 +1,45 @@
 # Connecting to remote computers with ssh
 
+## Connecting to remote computers with MobaXterm
+
+Steps:
+
+1. Go to the [MobaXterm download page](https://mobaxterm.mobatek.net/download.html).
+
+2. Select "Home Edition".
+
+3. Select "Portable edition". It's 25 MB and will take about a minute to download.
+
+4. Find the downloaded Zip file in your Downloads folder (should be named "MobaXter_Personal_21.2), and double click on it.
+
+5. In the `MobaXterm_Personal_21.2` folder, run the MobaXterm 21.2 Application.
+
+(screenshot)
+
+You may need to allow access on all networks.
+
+6. Click on Session... (upper left)
+
+7. Click on SSH (upper left)
+
+(screenshot)
+
+8. Under "Basic SSH settings", set "Remote host" to "farm.cse.ucdavis.edu".
+
+This is the computer name you are connecting to.
+
+9. Click on "specify username", and enter the username you received in the e-mail from "Titus Brown" with the subject "Farm account name (remote computing 2021 workshop series)". (Ask a TA for help if you can't find this e-mail.)
+
+(screenshot)
+
+10. It will now open up a terminal-looking window that will ask for your password. Select your password from your e-mail and copy it (ask a TA for help if you can't find your password). Then use right-click to paste it. (It may open a pop-up window asking what you want right-click to do. Select the default.)
+
+11. Hit enter, and it should log you in!
+
+(screenshot)
+
+
+
 IDEAS FOR CHALLENGES:
 * copy a file from place a to place b, but differeent from day 1
 * edit a file and add some specific text, using an editor; point to incstructions from day 2
