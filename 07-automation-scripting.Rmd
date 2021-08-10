@@ -251,6 +251,7 @@ bash ifs.sh 40 20
 
 
 ## Multiple screens
+
 - say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?
 - introducing `screen` and `tmux`  --> demo utility (i.e., here are these cool tools and when you might want to use them!)
    - when do you use screen vs. tmux? is it like choosing a text editor?
@@ -281,6 +282,7 @@ end session | `exit`  | `tmux kill-session -t <session name>`
 ## Appendix: exercise answers
 
 *Answers for `set -e` exercises*
+
 1. Fails on 1st iteration with `set -e`, fails each iteration of the loop without `set -e`
 
 Output with `set -e`:
