@@ -1,6 +1,10 @@
 # Connecting to remote computers with ssh
 
-## Connecting to remote computers with MobaXterm
+@CTB talk about alternatives
+
+- https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+## Windows: Connecting to remote computers with MobaXterm
 
 Steps:
 
