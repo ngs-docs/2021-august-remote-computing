@@ -155,8 +155,17 @@
 <li class="chapter" data-level="3.5.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account"><i class="fa fa-check"></i><b>3.5.2</b> Loading some files into your account</a></li>
 <li class="chapter" data-level="3.5.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-and-path-manipulation"><i class="fa fa-check"></i><b>3.5.3</b> Revisiting file and path manipulation</a></li>
 <li class="chapter" data-level="3.5.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-editing"><i class="fa fa-check"></i><b>3.5.4</b> Revisiting file editing</a></li>
-<li class="chapter" data-level="3.5.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.5.5</b> Some commands are available! Others are not.</a></li>
 </ul></li>
+<li class="chapter" data-level="3.6" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copying-files-to-and-from-your-local-computer."><i class="fa fa-check"></i><b>3.6</b> Copying files to and from your local computer.</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-copying-files-using-ssh."><i class="fa fa-check"></i><b>3.6.1</b> Mac OS X: Copying files using ssh.</a></li>
+<li class="chapter" data-level="3.6.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-copying-files-using-mobaxterm."><i class="fa fa-check"></i><b>3.6.2</b> Windows: Copying files using MobaXterm.</a></li>
+<li class="chapter" data-level="3.6.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#view-and-change-the-file-you-just-downloaded"><i class="fa fa-check"></i><b>3.6.3</b> View and change the file you just downloaded</a></li>
+<li class="chapter" data-level="3.6.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copy-the-file-back-to-farm."><i class="fa fa-check"></i><b>3.6.4</b> Copy the file back to farm.</a></li>
+<li class="chapter" data-level="3.6.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x"><i class="fa fa-check"></i><b>3.6.5</b> Digression: why do you need to log into/log out of farm on Mac OS X?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.7</b> Some commands are available! Others are not.</a></li>
+<li class="chapter" data-level="3.8" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#summing-it-all-up---a-challenge"><i class="fa fa-check"></i><b>3.8</b> Summing it all up - a challenge!</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html"><i class="fa fa-check"></i><b>4</b> Running programs on remote computers and retrieving the results</a></li>
 <li class="chapter" data-level="5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html"><i class="fa fa-check"></i><b>5</b> Installing software on remote computers with conda</a></li>
@@ -194,11 +203,6 @@ computers using ssh software, which is the most common way to do
 so. We will discuss usernames and passwords, introduce ssh software
 clients, and work through the most common challenges attendees will
 face in connecting to remote computers.</p>
-<p>@<span class="citation">@IDEAS</span> FOR CHALLENGES:</p>
-<ul>
-<li>copy a file from place a to place b, but different from day 1</li>
-<li>edit a file and add some specific text, using an editor; point to instructions from day 2</li>
-</ul>
 <div id="ssh-and-clients" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> SSH and Clients</h2>
 <p>We’re going to be using <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH, the Secure Shell
@@ -241,7 +245,7 @@ Workshops 1 and 2 :).</p>
 <p>(Congratulations! You have unlocked a secret of Mac OS X - it’s got a
 command line underneath, because it’s actually a UNIX operating system!)</p>
 <p>Now type</p>
-<pre><code>ssh farm.cse.ucdavis.edu -l datalab-XX</code></pre>
+<pre><code>ssh datalab-XX@farm.cse.ucdavis.edu</code></pre>
 <p>where you replace XX with your user number (between 10 and 60). (You
 should received an e-mail from “Titus Brown” with the subject “Farm
 account name (remote computing 2021 workshop series)”. Ask a TA for
@@ -446,8 +450,78 @@ the book.txt file. If you’re using nano, run</p>
 are now <em>persistent</em>. Unlike binder, the files on farm don’t go away
 when you log out!</p>
 </div>
-<div id="some-commands-are-available-others-are-not." class="section level3" number="3.5.5">
-<h3><span class="header-section-number">3.5.5</span> Some commands are available! Others are not.</h3>
+</div>
+<div id="copying-files-to-and-from-your-local-computer." class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> Copying files to and from your local computer.</h2>
+<p>So, we’ve just edited files on the ‘farm’ computer, which is a remote
+computer system (located on the UC Davis campus). Suppose that we want
+to get a copy of that file locally. How do we do that?</p>
+<p>The method varies depending on which ssh client you’re using.</p>
+<div id="mac-os-x-copying-files-using-ssh." class="section level3" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Mac OS X: Copying files using ssh.</h3>
+<p>If you’re on Mac OS X, log out of farm by typing</p>
+<pre><code>logout</code></pre>
+<p>and now you will be still in the Terminal program, but your shell
+prompt will be running on your local computer instead of farm.</p>
+<p>**Note: it’s important that you’re no longer at the farm prompt! You should
+<em>not</em> see ‘farm’ in the command-line prompt!</p>
+<p>Now run the following command, replacing ‘-XX’ with your datalab
+account number:</p>
+<pre><code>scp datalab-XX@farm.cse.ucdavis.edu:2021-remote-computing-binder/2cities/book.txt /tmp</code></pre>
+<p>and you should see output that looks something like this:</p>
+<blockquote>
+<pre><code>book.txt                                      100%  788KB   2.6MB/s   00:00</code></pre>
+</blockquote>
+<p>The <code>scp</code> command stands for “secure copy” and it mimics the syntax of the
+<code>cp</code> command: <code>scp &lt;from&gt; &lt;to&gt;</code>, where either <code>&lt;from&gt;</code> or <code>&lt;to&gt;</code> can be a remote location of the form <code>login@computer:path/to/location</code>.</p>
+<p>Now open your <code>/tmp</code> folder - you can do that with <code>open /tmp</code> - and you should
+see ‘book.txt’ there!</p>
+</div>
+<div id="windows-copying-files-using-mobaxterm." class="section level3" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Windows: Copying files using MobaXterm.</h3>
+<p>This is actually pretty easy :). Go to the file pane in your MobaXterm
+window, and select 2021-remote-computing-binder. Then select the 2cities
+folder. Then select ‘book.txt’, and click the ‘download’ button. (See
+screenshot below.)</p>
+<p><img src="moba-download.png" /></p>
+<p>It will ask you where to put it; just put it somewhere you can find it,
+like your Desktop.</p>
+</div>
+<div id="view-and-change-the-file-you-just-downloaded" class="section level3" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> View and change the file you just downloaded</h3>
+<p>Go ahead and open the file you just downloaded on your local
+system. You should see the changes you made with the <code>nano</code> editor on
+the remote system. Congratulations!!</p>
+<p>Now, edit it using whatever editor you like and change something recognizable.</p>
+<p>Be sure to save it!</p>
+</div>
+<div id="copy-the-file-back-to-farm." class="section level3" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> Copy the file back to farm.</h3>
+<p>On Windows with MobaXterm, you can use the “upload” button (next to the
+download button :) to upload <code>book.txt</code> from your Desktop back to farm.</p>
+<p>On Mac OS X, you need to run the command:</p>
+<pre><code>scp /tmp/book.txt datalab-XX@farm.cse.ucdavis.edu:2021-remote-computing-binder/2cities/</code></pre>
+<p>CHALLENGE: Now verify that your <code>book.txt</code> file on farm contains the
+changes you made on your local computer, by:</p>
+<ul>
+<li>if you’re on Mac OS X, logging into farm</li>
+<li>changing to the <code>2021-remote-computing-binder/2cities/</code> directory</li>
+<li>using <code>head</code>, <code>less</code>, or an editor to look at the <code>book.txt</code> file.</li>
+</ul>
+</div>
+<div id="digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x" class="section level3" number="3.6.5">
+<h3><span class="header-section-number">3.6.5</span> Digression: why do you need to log into/log out of farm on Mac OS X?</h3>
+<p>You may have noticed that, on Mac OS X, we’re logging out of farm to
+run commands on the local machine. That’s because <code>scp</code> is a shell command
+that’s running on your local computer.</p>
+<p>That brings up two questions. First, why aren’t we running it on farm?
+And second, is there any way that we can avoid logging out, the way the
+Windows folk can avoid logging out?</p>
+<p>The answer to the first question is that</p>
+</div>
+</div>
+<div id="some-commands-are-available-others-are-not." class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span> Some commands are available! Others are not.</h2>
 <p>You may remember looking at the South Park CSV data set in <a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files">lesson 2</a> -</p>
 <pre><code>cd ~/2021-remote-computing-binder/SouthParkData/
 gunzip All-seasons.csv.gz
@@ -460,8 +534,18 @@ times a character in South Park (in column 3) has “computer” in its name –
 <pre><code>csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
 <p>because csvtk isn’t installed. And that’s what we’ll be showing you how to
 do in workshop 5 - <a href="installing-software-on-remote-computers-with-conda.html">install software like csvtk using conda</a>.</p>
-
 </div>
+<div id="summing-it-all-up---a-challenge" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span> Summing it all up - a challenge!</h2>
+<p>Let’s all do the following:</p>
+<ul>
+<li>Download the file <code>All-seasons.csv</code> from the directory <code>2021-remote-computing-binder/SouthParkData/</code> on farm to your local computer.</li>
+<li>Open it in a spreadsheet program and edit the first line.</li>
+<li>Export it to a CSV file with the name <code>All-seasons-changed.csv</code></li>
+<li>Upload the file back to farm, to the directory <code>2021-remote-computing-binder/SouthParkData/</code></li>
+<li>Log into farm and confirm it’s there and that the changes are present, using <code>head All-seasons-changed.csv</code>.</li>
+</ul>
+
 </div>
 </div>
             </section>

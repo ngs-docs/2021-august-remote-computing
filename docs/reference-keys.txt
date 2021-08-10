@@ -49,7 +49,14 @@ welcome-to-your-account
 loading-some-files-into-your-account
 revisiting-file-and-path-manipulation
 revisiting-file-editing
+copying-files-to-and-from-your-local-computer.
+mac-os-x-copying-files-using-ssh.
+windows-copying-files-using-mobaxterm.
+view-and-change-the-file-you-just-downloaded
+copy-the-file-back-to-farm.
+digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x
 some-commands-are-available-others-are-not.
+summing-it-all-up---a-challenge
 running-programs-on-remote-computers-and-retrieving-the-results
 installing-software-on-remote-computers-with-conda
 structuring-your-projects-for-current-and-future-you

@@ -6,11 +6,6 @@ so. We will discuss usernames and passwords, introduce ssh software
 clients, and work through the most common challenges attendees will
 face in connecting to remote computers.
 
-@@IDEAS FOR CHALLENGES:
-
-* copy a file from place a to place b, but different from day 1
-* edit a file and add some specific text, using an editor; point to instructions from day 2
-
 ## SSH and Clients
 
 We're going to be using [SSH, the Secure Shell
@@ -61,7 +56,7 @@ command line underneath, because it's actually a UNIX operating system!)
 
 Now type
 ```
-ssh farm.cse.ucdavis.edu -l datalab-XX
+ssh datalab-XX@farm.cse.ucdavis.edu
 ```
 where you replace XX with your user number (between 10 and 60). (You
 should received an e-mail from "Titus Brown" with the subject "Farm
@@ -344,7 +339,96 @@ A difference from what we did in workshops 1 and 2 is that these changes
 are now _persistent_. Unlike binder, the files on farm don't go away
 when you log out!
 
-### Some commands are available! Others are not.
+## Copying files to and from your local computer.
+
+So, we've just edited files on the 'farm' computer, which is a remote
+computer system (located on the UC Davis campus). Suppose that we want
+to get a copy of that file locally. How do we do that?
+
+The method varies depending on which ssh client you're using.
+
+### Mac OS X: Copying files using ssh.
+
+If you're on Mac OS X, log out of farm by typing
+```
+logout
+```
+and now you will be still in the Terminal program, but your shell
+prompt will be running on your local computer instead of farm.
+
+**Note: it's important that you're no longer at the farm prompt! You should
+_not_ see 'farm' in the command-line prompt!
+
+Now run the following command, replacing '-XX' with your datalab
+account number:
+```
+scp datalab-XX@farm.cse.ucdavis.edu:2021-remote-computing-binder/2cities/book.txt /tmp
+```
+and you should see output that looks something like this:
+
+> ~~~
+> book.txt                                      100%  788KB   2.6MB/s   00:00
+> ~~~
+
+The `scp` command stands for "secure copy" and it mimics the syntax of the
+`cp` command: `scp <from> <to>`, where either `<from>` or `<to>` can be a remote location of the form `login@computer:path/to/location`.
+
+Now open your `/tmp` folder - you can do that with `open /tmp` - and you should
+see 'book.txt' there!
+
+### Windows: Copying files using MobaXterm.
+
+This is actually pretty easy :). Go to the file pane in your MobaXterm
+window, and select 2021-remote-computing-binder. Then select the 2cities
+folder. Then select 'book.txt', and click the 'download' button. (See
+screenshot below.)
+
+![](moba-download.png)
+
+It will ask you where to put it; just put it somewhere you can find it,
+like your Desktop.
+
+### View and change the file you just downloaded
+
+Go ahead and open the file you just downloaded on your local
+system. You should see the changes you made with the `nano` editor on
+the remote system. Congratulations!!
+
+Now, edit it using whatever editor you like and change something recognizable.
+
+Be sure to save it!
+
+### Copy the file back to farm.
+
+On Windows with MobaXterm, you can use the "upload" button (next to the
+download button :) to upload `book.txt` from your Desktop back to farm.
+
+On Mac OS X, you need to run the command:
+
+```
+scp /tmp/book.txt datalab-XX@farm.cse.ucdavis.edu:2021-remote-computing-binder/2cities/
+```
+
+CHALLENGE: Now verify that your `book.txt` file on farm contains the
+changes you made on your local computer, by:
+
+* if you're on Mac OS X, logging into farm
+* changing to the `2021-remote-computing-binder/2cities/` directory
+* using `head`, `less`, or an editor to look at the `book.txt` file.
+
+### Digression: why do you need to log into/log out of farm on Mac OS X?
+
+You may have noticed that, on Mac OS X, we're logging out of farm to
+run commands on the local machine. That's because `scp` is a shell command
+that's running on your local computer.
+
+That brings up two questions. First, why aren't we running it on farm?
+And second, is there any way that we can avoid logging out, the way the
+Windows folk can avoid logging out?
+
+The answer to the first question is that 
+
+## Some commands are available! Others are not.
 
 You may remember looking at the South Park CSV data set in [lesson 2](creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files) -
 ```
@@ -366,3 +450,12 @@ csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 because csvtk isn't installed. And that's what we'll be showing you how to
 do in workshop 5 - [install software like csvtk using conda](installing-software-on-remote-computers-with-conda.html).
 
+## Summing it all up - a challenge!
+
+Let's all do the following:
+
+* Download the file `All-seasons.csv` from the directory `2021-remote-computing-binder/SouthParkData/` on farm to your local computer.
+* Open it in a spreadsheet program and edit the first line.
+* Export it to a CSV file with the name `All-seasons-changed.csv`
+* Upload the file back to farm, to the directory `2021-remote-computing-binder/SouthParkData/`
+* Log into farm and confirm it's there and that the changes are present, using `head All-seasons-changed.csv`.
