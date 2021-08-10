@@ -193,9 +193,11 @@ computers using ssh software, which is the most common way to do
 so. We will discuss usernames and passwords, introduce ssh software
 clients, and work through the most common challenges attendees will
 face in connecting to remote computers.</p>
-<p>@<span class="citation">@IDEAS</span> FOR CHALLENGES:
-* copy a file from place a to place b, but different from day 1
-* edit a file and add some specific text, using an editor; point to incstructions from day 2</p>
+<p>@<span class="citation">@IDEAS</span> FOR CHALLENGES:</p>
+<ul>
+<li>copy a file from place a to place b, but different from day 1</li>
+<li>edit a file and add some specific text, using an editor; point to instructions from day 2</li>
+</ul>
 <div id="ssh-and-clients" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> SSH and Clients</h2>
 <p>We’re going to be using <a href="https://en.wikipedia.org/wiki/Secure_Shell">SSH, the Secure Shell
@@ -258,7 +260,7 @@ that looks like this:</p>
 <li><p>Click on Session… (upper left)</p></li>
 <li><p>Click on SSH (upper left)</p></li>
 </ol>
-<p>(screenshot)</p>
+<p><img src="farm-ssh-basic-empty.png" /></p>
 <ol start="8" style="list-style-type: decimal">
 <li>Under “Basic SSH settings”, set “Remote host” to “farm.cse.ucdavis.edu”.</li>
 </ol>
@@ -266,15 +268,31 @@ that looks like this:</p>
 <ol start="9" style="list-style-type: decimal">
 <li>Click on “specify username”, and enter the username you received in the e-mail from “Titus Brown” with the subject “Farm account name (remote computing 2021 workshop series)”. (Ask a TA for help if you can’t find this e-mail.)</li>
 </ol>
-<p>(screenshot)</p>
+<p><img src="farm-ssh-basic-full.png" /></p>
 <ol start="10" style="list-style-type: decimal">
 <li><p>It will now open up a terminal-looking window that will ask for your password. Select your password from your e-mail and copy it (ask a TA for help if you can’t find your password). Then use right-click to paste it. (It may open a pop-up window asking what you want right-click to do. Select the default.)</p></li>
 <li><p>Hit enter, and it should log you in!</p></li>
 </ol>
 <p><img src="moba-farm.png" /></p>
+<p>Congratulations!</p>
+<p>It will probably ask you if you want to store the password in your
+password store, and then ask you for a master password. You can then
+use this master password to “unlock” <em>all</em> your ssh passwords for
+MobaXterm to use. You can pick something short and simple to remember
+since (at least for now) you’ll only be using it to log into the
+temporary account at farm, but if you end up using MobaXterm a lot you
+may want to change it.</p>
+<p><img src="moba-master.png" /></p>
 </div>
 <div id="logging-out-and-logging-back-in." class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Logging out and logging back in.</h2>
+<p>OK. Now that you’re in, …log out and log back in!</p>
+<p>To log out, type ‘logout’.</p>
+<p>Then go back through the above to make sure you’ve got it all right.</p>
+<p>A few notes -
+* for Mac OS X, you can use the up arrow to go to the previous command and run it. You’ll need to type your password in again, though.
+* for MobaXterm, you’ll be able to do use the saved password so you won’t need to type your password in again.</p>
+<p><img src="farm-ssh-relogin-moba.png" /></p>
 </div>
 <div id="youre-logged-on-to-a-remote-computer.-now-what" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> You’re logged on to a remote computer. Now what?</h2>
@@ -284,7 +302,7 @@ remote computer, …everything works the same.</p>
 and different compute resources (more disk space, maybe more CPUs or more
 memory) but the command line basically works the same whether you’re logged
 in to your laptop, a workstation next door, or an HPC across the world.</p>
-<p>Let’s start by reprising some of the basics from <a href="introduction-to-the-unix-command-line.html">workshop 1</a> and <a href="creating-and-modifying-text-files-on-remote-computers.html">workshop 2</a>.</p>
+<p>Let’s start by reprising some of the basics from <a href="introduction-to-the-unix-command-line.html">workshop 1 (the command line)</a> and <a href="creating-and-modifying-text-files-on-remote-computers.html">workshop 2 (editing text files)</a>.</p>
 <div id="loading-some-files-into-your-account" class="section level3" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Loading some files into your account</h3>
 <p>But first! we need some files!</p>
@@ -297,7 +315,7 @@ system.)</p>
 <p>and you’ll see a few configuration files and directories.</p>
 <p>But, basically, empty.</p>
 <p>So let’s get some files!</p>
-<p>There are acually many ways to download files, and we’ll show you a few
+<p>There are actually many ways to download files, and we’ll show you a few
 today and over the next few weeks. One way that mimics the setup of the
 binders on days 1 and 2 is to copy a bunch of files from GitHub into your account.</p>
 <p>The following command will take the set of files <a href="https://github.com/ngs-docs/2021-remote-computing-binder/">here</a> and make them appear in your account:</p>
@@ -352,13 +370,13 @@ binder) we are going to be doing more things than just exploring the
 contents of the binder, so we’ve put things in the folder <em>underneath</em>
 <code>2021-remote-computing/</code> to contain data for today and Thursday.</p>
 <p>This is an example of home directory organization and project management,
-which we’ll be talking about in <a href="structuring-your-projects-for-current-and-future-you.html">workshop 6</a> - how to organize your account
+which we’ll be talking about in <a href="structuring-your-projects-for-current-and-future-you.html">workshop 6 (project organization)</a> - how to organize your account
 so that you can figure out what the files in it probably mean.</p>
 <p>At this point, you could do the rest of <a href="introduction-to-the-unix-command-line.html">workshop 1’s
 lesson</a>, but rather than
 do that, let’s just note that all of the <em>relative</em> path navigation
 you did will continue to work, even though you’re on a <em>different</em>
-computer in a <em>different</em> account tha you were on week 1.</p>
+computer in a <em>different</em> account than you were using for workshops 1 and 2.</p>
 <p>For example, you can copy files between directories using the same
 relative path as before,</p>
 <pre><code>cp thisinnotit.txt ../tmp2</code></pre>

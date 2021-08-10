@@ -91,7 +91,7 @@ Note: You may need to allow access on all networks for this application.
 
 7. Click on SSH (upper left)
 
-(screenshot)
+![](farm-ssh-basic-empty.png)
 
 8. Under "Basic SSH settings", set "Remote host" to "farm.cse.ucdavis.edu".
 
@@ -99,13 +99,25 @@ This is the computer name you are connecting to.
 
 9. Click on "specify username", and enter the username you received in the e-mail from "Titus Brown" with the subject "Farm account name (remote computing 2021 workshop series)". (Ask a TA for help if you can't find this e-mail.)
 
-(screenshot)
+![](farm-ssh-basic-full.png)
 
 10. It will now open up a terminal-looking window that will ask for your password. Select your password from your e-mail and copy it (ask a TA for help if you can't find your password). Then use right-click to paste it. (It may open a pop-up window asking what you want right-click to do. Select the default.)
 
 11. Hit enter, and it should log you in!
 
 ![](moba-farm.png)
+
+Congratulations!
+
+It will probably ask you if you want to store the password in your
+password store, and then ask you for a master password. You can then
+use this master password to "unlock" _all_ your ssh passwords for
+MobaXterm to use. You can pick something short and simple to remember
+since (at least for now) you'll only be using it to log into the
+temporary account at farm, but if you end up using MobaXterm a lot you
+may want to change it.
+
+![](moba-master.png)
 
 ## Logging out and logging back in.
 
@@ -117,7 +129,9 @@ Then go back through the above to make sure you've got it all right.
 
 A few notes -
 * for Mac OS X, you can use the up arrow to go to the previous command and run it. You'll need to type your password in again, though.
-* for MobaXterm, you'll be able to do @@@ and you won't need to type your password in again.
+* for MobaXterm, you'll be able to do use the saved password so you won't need to type your password in again.
+
+![](farm-ssh-relogin-moba.png)
 
 ## You're logged on to a remote computer. Now what?
 
