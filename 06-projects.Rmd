@@ -1,0 +1,6 @@
+# Structuring your projects for current and future you
+
+In this two hour workshop, we will discuss folder structures for
+organizing your projects so that you can track inputs, outputs, and
+processing scripts over time, and keep yourself organized as your
+projects evolve.
