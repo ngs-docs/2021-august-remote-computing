@@ -1,0 +1,6 @@
+# Installing software on remote computers with conda
+
+This two hour workshop will show attendees how to install and manage
+software using the conda installation system. We will give examples of
+installing Python and R software, and managing conda environments on
+remote systems.

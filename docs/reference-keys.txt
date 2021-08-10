@@ -40,8 +40,17 @@ gzip-and-.gz-files.
 zip-and-compressing-multiple-files.
 concluding-thoughts
 connecting-to-remote-computers-with-ssh
+windows-connecting-to-remote-computers-with-mobaxterm
 youre-logged-on-to-a-remote-computer.-now-what
 loading-some-files-into-your-account
 revisiting-file-and-path-manipulation
 revisiting-file-editing
 some-commands-are-available-others-are-not.
+running-programs-on-remote-computers-and-retrieving-the-results
+installing-software-on-remote-computers-with-conda
+structuring-your-projects-for-current-and-future-you
+automating-your-analyses-and-executing-long-running-analyses-on-remote-computers
+keeping-track-of-your-files-with-version-control
+automating-your-analyses-with-the-snakemake-workflow-system
+executing-large-analyses-on-hpc-clusters-with-slurm
+making-use-of-on-demand-cloud-computers-from-amazon-web-services

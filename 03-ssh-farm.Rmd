@@ -1,5 +1,11 @@
 # Connecting to remote computers with ssh
 
+This two hour workshop will show attendees how to connect to remote
+computers using ssh software, which is the most common way to do
+so. We will discuss usernames and passwords, introduce ssh software
+clients, and work through the most common challenges attendees will
+face in connecting to remote computers.
+
 @CTB talk about alternatives
 
 - https://docs.microsoft.com/en-us/windows/wsl/install-win10
