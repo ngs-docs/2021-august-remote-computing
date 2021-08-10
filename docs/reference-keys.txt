@@ -45,6 +45,7 @@ mac-os-x-using-the-terminal-program
 windows-connecting-to-remote-computers-with-mobaxterm
 logging-out-and-logging-back-in.
 youre-logged-on-to-a-remote-computer.-now-what
+welcome-to-your-account
 loading-some-files-into-your-account
 revisiting-file-and-path-manipulation
 revisiting-file-editing
