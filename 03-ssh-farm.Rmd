@@ -17,6 +17,25 @@ commands and to retrieve files. It uses an encrypted connection so
 nothing you type can be seen by anyone else, which protects your
 passwords as well as any other data you send.
 
+### Some security thoughts
+
+A few points on the security front -
+
+* you still need to use a secure authentication method (password, or
+  private key - we'll show you that in workshop 4!)
+* people can still look over your shoulder, and if they have access to your
+  computer they can do things like install keyloggers.
+* ssh doesn't hide the fact that you're communicating with a
+  particular remote computer, which is sometimes what snoopers care
+  about (e.g. nation-states)
+
+But, by and large, security for researchers is _not_ about stealing your
+data, it's about breaking into the remote computers for other reasons.
+
+ssh is a pretty good protection against network eavesdroppers and so on.
+
+### ssh as a protocol - many clients!
+
 ssh operates as a network "protocol", which means that the sender
 (your local computer, in this case) and the receiver (the farm computer)
 can be running any software that "speaks" ssh, and they can communicate
@@ -357,7 +376,7 @@ and now you will be still in the Terminal program, but your shell
 prompt will be running on your local computer instead of farm.
 
 **Note: it's important that you're no longer at the farm prompt! You should
-_not_ see 'farm' in the command-line prompt!
+_not_ see 'farm' in the command-line prompt!**
 
 Now run the following command, replacing '-XX' with your datalab
 account number:
@@ -450,7 +469,7 @@ csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 because csvtk isn't installed. And that's what we'll be showing you how to
 do in workshop 5 - [install software like csvtk using conda](installing-software-on-remote-computers-with-conda.html).
 
-## Summing it all up - a challenge!
+## Summing up file transfer - a challenge!
 
 Let's all do the following:
 
@@ -459,3 +478,107 @@ Let's all do the following:
 * Export it to a CSV file with the name `All-seasons-changed.csv`
 * Upload the file back to farm, to the directory `2021-remote-computing-binder/SouthParkData/`
 * Log into farm and confirm it's there and that the changes are present, using `head All-seasons-changed.csv`.
+
+## Working on shared systems
+
+Let's all log back into farm.
+
+### Shared disk space
+
+Wait one minute...
+
+...and now do:
+```
+ls ~datalab-09/
+```
+what do you see?
+
+That's right, that's _my_ account, and _my_ files.
+
+By default, home directories on many systems are readable by everyone.
+However, they're never _writeable_ unless you enable that intentionally
+for a directory.
+
+We'll show you how to control permissions a bit in Workshop 4.
+
+### Configuring your account on login
+
+Edit the file `~/.bashrc` with nano:
+```
+nano ~/.bashrc
+```
+and type `echo Hello and welcome to farm` at the top of the file.
+Save with `CTRL-X`, "yes", enter.
+
+Now log out and log back in.
+
+You should see 'Hello and welcome to farm' everytime you log in!
+
+You can add commands like
+```
+alias lf=ls -FC
+```
+in your .bashrc if you want to configure your account that way; we'll
+cover more configuration commands in [workshop
+6](structuring-your-projects-for-current-and-future-you.html) and
+beyond.
+
+To see the changes without having to log out and log back in, run
+```
+source ~/.bashrc
+```
+
+### Using multiple terminals
+
+On Mac OS X, you can use Command-N to open a new Terminal window, and then
+ssh into farm from that window too.
+
+On Windows, you can open a new connection from MobaXterm.
+
+These are different command-line prompts on the same system.
+
+They share:
+
+* directory and file access (filesystem)
+
+They do not have the same:
+
+* current working directory (`pwd`)
+* running programs, and stdin and stdout (e.g. `ls` in one will not go to the other)
+
+These are essentially different _sessions_ on the same computer, much like
+you might have multiple folders or applications open on your Mac or Windows
+machine.
+
+You can log out of one independently of the other.
+
+We'll cover more of this in workshops 7 and later.
+
+### Looking at what's running
+
+You can use the `ps` command to see what your account, and other accounts,
+are running:
+```
+ps -u datalab-09
+```
+the key column here is the last one, which tells you what program they're
+running.
+
+You can also get a sort of "leaderboard" for what's going on on the shared
+computer by running
+```
+top
+```
+(use 'q' to exit).
+
+### Summing things up
+
+Today, you learned how to log into remote systems, execute commands, and
+transfer files to and from your local computer.
+
+We also talked a bit about network security, shared disk space, and
+shared process space.
+
+In workshop 4, we will do more with running remote commands, getting
+files onto your remote system, file permissions, and actually working
+effectively on remote systems.

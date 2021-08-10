@@ -41,6 +41,8 @@ zip-and-compressing-multiple-files.
 concluding-thoughts
 connecting-to-remote-computers-with-ssh
 ssh-and-clients
+some-security-thoughts
+ssh-as-a-protocol---many-clients
 mac-os-x-using-the-terminal-program
 windows-connecting-to-remote-computers-with-mobaxterm
 logging-out-and-logging-back-in.
@@ -56,7 +58,13 @@ view-and-change-the-file-you-just-downloaded
 copy-the-file-back-to-farm.
 digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x
 some-commands-are-available-others-are-not.
-summing-it-all-up---a-challenge
+summing-up-file-transfer---a-challenge
+working-on-shared-systems
+shared-disk-space
+configuring-your-account-on-login
+using-multiple-terminals
+looking-at-whats-running
+summing-things-up
 running-programs-on-remote-computers-and-retrieving-the-results
 installing-software-on-remote-computers-with-conda
 structuring-your-projects-for-current-and-future-you
