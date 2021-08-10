@@ -1,0 +1,8 @@
+# Running programs on remote computers and retrieving the results
+
+This two hour workshop will show attendees how to use remote computers
+to run their analyses, work with the output files, and copy the
+results back to their laptop and desktop computers. We will discuss
+input and output formats, where files are usually read from and
+written to, and how to use the ssh software to copy files to and from
+remote computers.

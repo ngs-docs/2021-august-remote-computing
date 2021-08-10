@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction to the UNIX Command Line | Introduction to Remote Computing</title>
-  <meta name="description" content="1 Introduction to the UNIX Command Line | Introduction to Remote Computing" />
+  <title>9 Automating your analyses with the snakemake workflow system | Introduction to Remote Computing</title>
+  <meta name="description" content="9 Automating your analyses with the snakemake workflow system | Introduction to Remote Computing" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction to the UNIX Command Line | Introduction to Remote Computing" />
+  <meta property="og:title" content="9 Automating your analyses with the snakemake workflow system | Introduction to Remote Computing" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://ngs-docs.github.io/2021-august-remote-computing/" />
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="ngs-docs/2021-august-remote-computing/" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction to the UNIX Command Line | Introduction to Remote Computing" />
+  <meta name="twitter:title" content="9 Automating your analyses with the snakemake workflow system | Introduction to Remote Computing" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="creating-and-modifying-text-files-on-remote-computers.html"/>
+<link rel="prev" href="keeping-track-of-your-files-with-version-control.html"/>
+<link rel="next" href="executing-large-analyses-on-hpc-clusters-with-slurm.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -208,291 +208,19 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction-to-the-unix-command-line" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Introduction to the UNIX Command Line</h1>
-<p>This two hour workshop will introduce attendees to the UNIX command
-line, which is the main way to interact with remote computers. We will
-cover computing concepts, file systems and directory structure, and
-some of the most important commands for working with remote computers.</p>
-<p>Today and tomorrow we’ll be using an interactive Web site running on
-a <a href="https://mybinder.org/">binder</a>. To start your binder, please click on
-the “launch” button below; it will take up to a minute to start.</p>
-<p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
-<p>NOTE: This lesson was adapted from Data Carpentry’s <a href="https://datacarpentry.org/shell-genomics/">Introduction to the Command Line for Genomics</a> lesson and the Lab for Data Intensive Biology’s <a href="https://dib-training.readthedocs.io/en/pub/2016-01-13-adv-beg-shell.html">Advanced Beginner/Intermediate Shell</a> workshop.</p>
-<hr />
-<div id="introduction-to-unix" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Introduction to UNIX</h2>
-<div id="learning-goals" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Learning Goals</h3>
-<ul>
-<li>visualize file/directory structures</li>
-<li>understand basic shell vocabulary</li>
-<li>gain exposure to the syntax of shell &amp; shell scripting</li>
-<li>look at the contents of a directory</li>
-<li>find features of commands with <code>man</code></li>
-<li>commands: <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>man</code></li>
-</ul>
-<hr />
-<div id="what-is-the-shell-and-what-is-the-terminal" class="section level4" number="1.1.1.1">
-<h4><span class="header-section-number">1.1.1.1</span> What is the shell and what is the terminal?</h4>
-<p>The <strong>shell</strong> is a computer program that uses a command line interface (CLI) to give commands made by your keyboard to your operating system. Most people are used to interacting with a graphic user interface (GUI), where you can use a combination of your mouse and keyboard to carry out commands on your computer. We can use the shell through a <strong>terminal</strong> program.</p>
-<p>Everything we can do using our computer GUI, we can do in the shell. We can open programs, run analyses, create documents, delete files and create folders. We should note that <em>folders</em> are called <strong>directories</strong> at the command line. For all intents and purposes they can be used interchangeably but if you’d like more information please see “The folder metaphor” section of <a href="https://en.wikipedia.org/wiki/Directory_%28computing%29#Folder_metaphor">Wikipedia</a>.</p>
-<p>The ease of getting things done via the shell will increase with your exposure to the program.</p>
-<p><strong>Go ahead and open a new terminal window in binder by clicking on “Terminal”.</strong></p>
-<p>When we open up terminal in binder we will see a a line of text. This is a <strong>prompt statement</strong>. It can tell us useful things such as the name of the directory we are currently in, our username, or what computer we are currently running terminal on.</p>
-<p>Let’s take a look around. First, we can use the <strong>print working directory</strong> command see what directory we are currently located in.</p>
-<pre><code>pwd</code></pre>
-<p>This gives us the <strong>absolute path</strong> to the directory where we are located. An absolute path shows the complete series of directories you need to locate either a directory or a file starting from the root directory of your computer.</p>
-<p>What is the root?
-A useful way to start thinking about directories and files is through levels. At the highest level of your computer, you have the <strong>root directory</strong>. Everything that is contained in your computer is located in directories below your root directory.
-<img src="CLIvsGUI.png" alt="CLIvsGUI" /></p>
-<p>We can also look at the contents of the directory by using the <code>ls</code>
-(“list”) command:</p>
-<pre><code>ls</code></pre>
-<p>This command prints out a list of files and directories that are located in our current working directory. We’ve preloaded <a href="https://s3-us-west-1.amazonaws.com/dib-training.ucdavis.edu/shell-data.zip">some data</a> into the binder, so we have a subdirectory <code>data/</code> that we can look at.</p>
-<p>To change the working directory, we need to use the <code>cd</code> (“change
-directory”) command. Let’s move into the data directory.</p>
-<pre><code>cd data</code></pre>
-<p>Let’s have a look around.</p>
-<pre><code>ls</code></pre>
-<p>We can see the following files:</p>
-<blockquote>
-<blockquote>
-<pre><code>MiSeq       Slide1.jpg  hello.sh    nano1.png
-README.md   gvng.jpg        nano2.png</code></pre>
-</blockquote>
-</blockquote>
-<p>However, this directory contains more than the eye can see! To show hidden files we can use the <code>-a</code> option.</p>
-<pre><code>ls -a</code></pre>
-<p>We will see the following:</p>
-<blockquote>
-<blockquote>
-<pre><code>.       MiSeq       Slide1.jpg  hello.sh    nano1.png
-..      README.md   gvng.jpg    .hidden     nano2.png</code></pre>
-</blockquote>
-</blockquote>
-<p>Three new items pop up <code>.</code>, <code>..</code> and <code>.hidden</code>.</p>
-<p>Using options with our commands allows us to do a lot! But how did we know to add <code>-a</code> after ls? Most commands offer a <code>--help</code>. Let’s look at the available options that <code>ls</code> has:</p>
-<pre><code>ls --help</code></pre>
-<p>Here we see a long list of options. Each option will allow us to do something different.</p>
-<p><strong>CHALLENGE</strong> Try to find the option that allows you to differentiate between directories and executable files when using <code>ls</code>. Hint: look for the word classify. (You can also look at the <a href="https://man7.org/linux/man-pages/man1/ls.1.html"><code>ls</code> man page if you prefer!</a></p>
-<p>We can also combine commands:</p>
-<pre><code>ls -aFl</code></pre>
-<p>This combination of options will <em>list</em> <em>all</em> the contents of the directory and <em>differentiate</em> between file types.</p>
-<hr />
-</div>
-</div>
-</div>
-<div id="navigation" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Navigation</h2>
-<div id="learning-goals-1" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Learning Goals</h3>
-<ul>
-<li>paths</li>
-<li>look at the contents of files</li>
-<li>perform functions outside of the directory you are in</li>
-<li>intro to the wildcard expression: <code>*</code></li>
-<li>copy, move and remove files</li>
-<li>create and remove directories</li>
-<li>understand the structure of commands</li>
-<li>commands: <code>cat</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, <code>mkdir</code></li>
-</ul>
-<hr />
-<p>Now we have seen how to navigate around our computers and seeing what is located in the directory we are. But some of the beauty of the shell is that we can execute activities in locations that we are not currently in. To do this we can either use an absolute path or a relative path. A <strong>relative path</strong> is the path to another directory from the the one you are currently in.</p>
-<p>Navigate into the <code>tmp1</code> directory located in the <code>.hidden</code> directory.</p>
-<pre><code>cd .hidden/tmp1</code></pre>
-<p>Here we see two files <code>notit.txt</code> and <code>thisinnotit.txt</code>. We can see what is in the directories using the <code>cat</code> command which concatenates and prints the content of the file we list.</p>
-<pre><code>cat thisinnotit.txt</code></pre>
-<blockquote>
-<blockquote>
-<pre><code>This is not the text file you&#39;re looking for</code></pre>
-</blockquote>
-</blockquote>
-<p>NOTE - you can use TAB to do filename completion, so if you type <code>cat this</code> and then press your Tab key once, it will autocomplete if there is a unique match. If there is more than one match, the first Tab will do nothing, and the second will show all the possible matches.</p>
-<p>Let’s see what else is in the other tmp directories:</p>
-<pre><code>ls ../tmp2</code></pre>
-<p>and we can see the contents of tmp3</p>
-<pre><code>ls ../tmp3</code></pre>
-<p>So, even though we are in the <code>tmp1/</code> directory, we can see what is in other directories by using the relative path to the directory of interest. Note we can also use absolute paths too. You may have noticed the <code>../</code> this is how to get to the directory above the one you are currently located in.</p>
-<p>Note: in this case, we have access to the RStudio file browser, too, which is really nice. But in the future we won’t. So we can use the file browser today, but on Farm we’ll have to get by with just the command line interface and no other interface!</p>
-<p><strong>CHALLENGE:</strong> Use the absolute path to list the files in the tmp2 directory.</p>
-<p>Wouldn’t it be nice to see the contents of all the tmp directories at once? We can use a regular expression to capture a sequence of characters (like the numbers 1, 2 and 3 at the end of the tmp directories). We can use the wild card character <code>*</code>, which expands to match any amount of characters.</p>
-<pre><code>ls ../tmp*</code></pre>
-<blockquote>
-<blockquote>
-<pre><code>../tmp1:
-notit.txt   thisinnotit.txt
+<div id="automating-your-analyses-with-the-snakemake-workflow-system" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Automating your analyses with the snakemake workflow system</h1>
+<p>This two hour workshop will introduce attendees to the snakemake
+workflow system, for executing large-scale automated analyses.</p>
 
-../tmp2:
-anotherfile.txt
-
-../tmp3:
-closebutnotit.txt   youfoundit.txt</code></pre>
-</blockquote>
-</blockquote>
-<p>So, even though we are in the <code>tmp1</code> directory we can use a relative path.</p>
-<p>We are quite used to moving, copying and deleting files using a GUI. All of these functions can be carried out at the command line with the following commands:</p>
-<p>Copy files with the <code>cp</code> command by specifying a file to copy and the location of the copied file. Here we will copy the <code>thisinnotit.txt</code> into the file <code>thisisacopy.txt</code>.</p>
-<pre><code>cp thisinnotit.txt thisisacopy.txt</code></pre>
-<p>The syntax for the copy command is <code>cp &lt;source_file&gt; &lt;destination_file&gt;</code>. Using this syntax we can copy files to other directories as well:</p>
-<pre><code>cp thisinnotit.txt ../tmp2</code></pre>
-<p>If we navigate to the tmp2 directory and list the files that are in it we will see the <code>thisinnotit.txt</code> file has been copied to the tmp2 directory.</p>
-<pre><code>cd ../tmp2
-ls -l</code></pre>
-<p><strong>CHALLENGE:</strong> Use the <code>mv</code> command to move the <code>thisinnotit.txt</code> file from tmp2 to tmp3.</p>
-<p>Once we know how to copy and move files, we can also copy and move directories. We can create new directories with the command <code>mkdir</code>. Let’s make a new directory called <code>tmp4</code></p>
-<pre><code>cd ../
-mkdir tmp4
-ls -l</code></pre>
-<p>The shell is quite powerful and can create multiple directories at once. It can create multiple directories in the current working directory:</p>
-<pre><code>mkdir tmp5 tmp6
-ls -l</code></pre>
-<p>or it can create a series of directories on top of one another:</p>
-<pre><code>mkdir -p how/deep/does/the/rabbit/hole/go</code></pre>
-<p>We can use tab complete to get to the <code>go</code> directory. Type <code>cd h</code> then hit <kbd>tab</kbd>. If you hit tab enough times your command will eventually read:</p>
-<pre><code>cd how/deep/does/the/rabbit/hole/go/</code></pre>
-<p>You can see that we’ve created a bit of a monster directory structure…</p>
-<p><strong>CHALLENGE:</strong> Navigate to the data directory and use the <code>rm</code> command to remove the <code>how</code> directory and all its contents.</p>
-<hr />
-<p>This nicely hints at the power of the shell - you can do certain things (in this case, create a nested hierarchy of directories) much more easily in the shell. But that power cuts both ways - you can also mess things up more easily in the shell!</p>
-<hr />
-</div>
-</div>
-<div id="viewing-searching" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Viewing &amp; Searching</h2>
-<div id="learning-goals-2" class="section level3" number="1.3.1">
-<h3><span class="header-section-number">1.3.1</span> Learning Goals</h3>
-<ul>
-<li>looking inside files</li>
-<li>search for keywords within files</li>
-<li>commands: <code>less</code>, <code>head</code>, <code>tail</code>, <code>grep</code></li>
-</ul>
-<hr />
-<p>A big part of data science is making sure what you <em>expect</em> in a particular file is what you <em>have</em> in that file. There are a few ways to look at the contents of a file. We’ve already seen how to print the entirety of a file to the stdout of our <code>cat</code> command. We can also look at files using the <code>less</code> command. Less is a safe way of looking at the contents of a file without the ability to change it. (We’ll talk more about text files and editing them in the second workshop!)</p>
-<p>Starting from the <code>data/</code> directory in our home directory</p>
-<pre><code>cd ~/data/</code></pre>
-<p>let’s look at some sequence data in a <a href="https://en.wikipedia.org/wiki/FASTQ_format">fastq file</a> format.</p>
-<pre><code>cd MiSeq
-less F3D0_S188_L001_R1_001.fastq</code></pre>
-<p>We can see a bunch of sequence data! Use the up, down, left and right arrows to look through the folder a bit. Then press <code>q</code> to quit less.</p>
-<p>A lot of the time we want to know if a file contains what we expect. Many of the sequence files in this directory have the file ending <code>.fastq</code>. We expect these files to contain information in a particular format throughout the file with four lines of information for each sequence string. Looking through a million line file using less will take a long time. Rather than manually looking through the file we can print only a portion of the files contents to the terminal:</p>
-<pre><code>head F3D0_S188_L001_R1_001.fastq</code></pre>
-<blockquote>
-<blockquote>
-<pre><code>@M00967:43:000000000-A3JHG:1:1101:18327:1699 1:N:0:188
-NACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGCCTGCCAAGTCAGCGGTAAAATTGCGGGGCTCAACCCCGTACAGCCGTTGAAACTGCCGGGCTCGAGTGGGCGAGAAGTATGCGGAATGCGTGGTGTAGCGGTGAAATGCATAGATATCACGCAGAACCCCGATTGCGAAGGCAGCATACCGGCGCCCTACTGACGCTGAGGCACGAAAGTGCGGGGATCAAACAG
-+
-#&gt;&gt;AABABBFFFGGGGGGGGGGGGGGGGHHHHHHHGGGHHHHHGHGGGGGGGHGGGGGGHHHHHHHHHHGGGGGHHHHGHGGGGGGHHBGHGDGGGGGHHHGGGGHHHHHHHHGGGGGHG@DHHGHEGGGGGGBFGGEGGGGGGGG.DFEFFFFFFFDCFFFFFFFFFFFFFFFFFFFFFFFFFFDFDFFFEFFCFF?FDFFFFFFFFAFFFFFFFFFFFBDDFFFFFEFADFFFFFBAFFFA?EFFFBFF
-@M00967:43:000000000-A3JHG:1:1101:14069:1827 1:N:0:188
-TACGGAGGATGCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGTGCGTAGGCGGCCTGCCAAGTCAGCGGTAAAATTGCGGGGCTCAACCCCGTACAGCCGTTGAAACTGCCGGGCTCGAGTGGGCGAGAAGTATGCGGAATGCGTGGTGTAGCGGTGAAATGCATAGATATCACGCAGAACCCCGATTGCGAAGGCAGCATACCGGCGCCCTACTGACGCTGAGGCACGAAAGTGCGGGGATCAAACAG
-+
-3AA?ABBDBFFBEGGEGGGGAFFGGGGGHHHCGGGGGGHFGHGGCFDEFGGGHGGGEGF1GGFGHHHHHGGEGGHHHHHFGGGGGGHHHHHGGGGCDDGHHGGGFHHHHHHHHCD@CCHGGGGHEHGGG@GFGGGGGGG@BGGGEGCEBFFFBFFB;9@EFFFEFFFFFFFFFFFFAFBBBFFFFFBBBFFFFBBBFFFFFFFFFFFBBBBBBBFFFFFFFFFDDFAFFFFF.AF9/FBBBBB.EAFFE?F
-@M00967:43:000000000-A3JHG:1:1101:18044:1900 1:N:0:188
-TACGGAGGATGCGAGCGTTGTCCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGTTTAATAAGTCAGTGGTGAAAACTGAGGGCTCAACCCTCAGCCTGCCACTGATACTGTTAGACTTGAGTATGGAAGAGGAGAATGGAATTCCTAGTGTAGCGGTGAAATGCGTAGATATTAGGAGGAACACCAGTGGCGAAGGCGATTCTCTGGGCCAAGACTGACGCTGAGGCGCGAAAGCGTGGGGAGCAAACA</code></pre>
-</blockquote>
-</blockquote>
-<p><code>head</code> prints the first ten lines of a file out onto your screen.</p>
-<p>We can look at the last ten lines of a file using the <code>tail</code> command:</p>
-<pre><code>tail F3D0_S188_L001_R1_001.fastq</code></pre>
-<p>We can see that our <strong>fastq</strong> files look a lot different than the <strong>fasta</strong> files:</p>
-<pre><code>head HMP_MOCK.v35.fasta</code></pre>
-<blockquote>
-<blockquote>
-<pre><code>&gt;A.baumannii.1
-TGGGGAATATTGGACAATGGGGGGAACCCTGATCCAGCCATGCCGCGTGTGTGAAGAAGGCCTTATGGTTGTAAAGCACTTTAAGCGAGGAGGAGGCTACTTTAGTTAATACCTAGAGATAGTGGACGTTACTCGCAGAATAAGCACCGGCTAACTCTGTGCCAGCAGCCGCGGTAATACAGAGGGTGCGAGCGTTAATCGGATTTACTGGGCGTAAAGCGTGCGTAGGCGGCTTATTAAGTCGGATGTGAAATCCCCGAGCTTAACTTGGGAATTGCATTCGATACTGGTGAGCTAGAGTATGGGAGAGGATGGTAGAATTCCAGGTGTAGCGGTGAAATGCGTAGAGATCTGGAGGAATACCGATGGCGAAGGCAGCCATCTGGCCTAATACTGACGCTGAGGTACGAAAGCATGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCATGCCGTAAACGATGTCTACTAGCCGTTGGGGCCTTTGAGGCTTTAGTGGCGCAGCTAACGCGATAAGTAGACCGCCTGGGGAGTACGGTC
-&gt;A.odontolyticus.1
-TGGGGAATATTGCACAATGGGCGAAAGCCTGATGCAGCGACGCCGCGTGAGGGATGGAGGCCTTCGGGTTGTAAACCTCTTTCGCTCATGGTCAAGCCGCAACTCAAGGTTGTGGTGAGGGTAGTGGGTAAAGAAGCGCCGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGGCGCGAGCGTTGTCCGGAATTATTGGGCGTAAAGGGCTTGTAGGCGGTTGGTCGCGTCTGCCGTGAAATCCTCTGGCTTAACTGGGGGCGTGCGGTGGGTACGGGCTGACTTGAGTGCGGTAGGGGAGACTGGAACTCCTGGTGTAGCGGTGGAATGCGCAGATATCAGGAAGAACACCGGTGGCGAAGGCGGGTCTCTGGGCCGTTACTGACGCTGAGGAGCGAAAGCGTGGGGAGCGAACAGGATTAGATACCCTGGTAGTCCACGCTGTAAACGTTGGGCACTAGGTGTGGGGGCCACCCGTGGTTTCTGCGCCGTAGCTAACGCTTTAAGTGCCCCGCCTGGGGAGTACGGCC
-&gt;B.cereus.1
-TAGGGAATCTTCCGCAATGGACGAAAGTCTGACGGAGCAACGCCGCGTGAGTGATGAAGGCTTTCGGGTCGTAAAACTCTGTTGTTAGGGAAGAACAAGTGCTAGTTGAATAAGCTGGCACCTTGACGGTACCTAACCAGAAAGCCACGGCTAACTACGTGCCAGCAGCCGCGGTAATACGTAGGTGGCAAGCGTTATCCGGAATTATTGGGCGTAAAGCGCGCGCAGGTGGTTTCTTAAGTCTGATGTGAAAGCCCACGGCTCAACCGTGGAGGGTCATTGGAAACTGGGAGACTTGAGTGCAGAAGAGGAAAGTGGAATTCCATGTGTAGCGGTGAAATGCGTAGAGATATGGAGGAACACCAGTGGCGAAGGCGACTTTCTGGTCTGTAACTGACACTGAGGCGCGAAAGCGTGGGGAGCAAACAGGATTAGATACCCTGGTAGTCCACGCCGTAAACGATGAGTGCTAAGTGTTAGAGGGTTTCCGCCCTTTAGTGCTGAAGTTAACGCATTAAGCACTCCGCCTGGGGAGTACGGCC
-&gt;B.vulgatus.1
-TGAGGAATATTGGTCAATGGGCGCAGGCCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCCTATGGGTTGTAAACTTCTTTTATAAAGGAATAAAGTCGGGTATGGATACCCGTTTGCATGTACTTTATGAATAAGGATCGGCTAACTCCGTGCCAGCAGCCGCGGTAATACGGAGGATCCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGAGCGTAGATGGATGTTTAAGTCAGTTGTGAAAGTTTGCGGCTCAACCGTAAAATTGCAGTTGATACTGGATATCTTGAGTGCAGTTGAGGCAGGCGGAATTCGTGGTGTAGCGGTGAAATGCTTAGATATCACGAAGAACTCCGATTGCGAAGGCAGCCTGCTAAGCTGCAACTGACATTGAGGCTCGAAAGTGTGGGTATCAAACAGGATTAGATACCCTGGTAGTCCACACGGTAAACGATGAATACTCGCTGTTTGCGATATACGGCAAGCGGCCAAGCGAAAGCGTTAAGTATTCCACCTGGGGAGTACGCCG
-&gt;B.vulgatus.2
-TGAGGAATATTGGTCAATGGGCGAGAGCCTGAACCAGCCAAGTAGCGTGAAGGATGACTGCCCTATGGGTTGTAAACTTCTTTTATAAAGGAATAAAGTCGGGTATGGATACCCGTTTGCATGTACTTTATGAATAAGGATCGGCTAACTCCGTGCCAGCAGCCGCGGTAATACGGAGGATCCGAGCGTTATCCGGATTTATTGGGTTTAAAGGGAGCGTAGATGGATGTTTAAGTCAGTTGTGAAAGTTTGCGGCTCAACCGTAAAATTGCAGTTGATACTGGATATCTTGAGTGCAGTTGAGGCAGGCGGAATTCGTGGTGTAGCGGTGAAATGCTTAGATATCACGAAGAACTCCGATTGCGAAGGCAGCCTGCTAAGCTGCAACTGACATTGAGGCTCGAAAGTGTGGGTATCAAACAGGATTAGATACCCTGGTAGTCCACACGGTAAACGATGAATACTCGCTGTTTGCGATATACGGCAAGCGGCCAAGCGAAAGCGTTAAGTATTCCACCTGGGGAGTACGCCG</code></pre>
-</blockquote>
-</blockquote>
-<p>Each sequence entry for a <a href="https://en.wikipedia.org/wiki/FASTA_format">fasta</a> formatted file contains only two lines of information for each sequence string.</p>
-<p>Another useful thing to do is to be able to <strong>search the contents of files</strong> for a particular string of characters you would like to find. Let’s say you’d like to find the sequence <code>CATTAG</code> in your files. We can use the file pattern searcher <code>grep</code> to look for our favorite sequence:</p>
-<pre><code>grep CATTAG F3D0_S188_L001_R2_001.fastq</code></pre>
-<p>We can also use the <strong>wildcard</strong> regular expression to search <code>CATTAG</code> in all of the fastq files located in our current working directory:</p>
-<pre><code>grep CATTAG *.fastq</code></pre>
-<p><strong>CHALLENGE:</strong> What line does <code>CATTAG</code> occur on in <code>F3D141_S207_L001_R1_001.fastq</code>? (HINT: Use <code>grep --help</code> to search for <code>grep</code> options related to line number)</p>
-<hr />
-</div>
-</div>
-<div id="file-manipulation" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> File Manipulation</h2>
-<div id="learning-goals-3" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Learning Goals</h3>
-<ul>
-<li>commands <code>for</code>, <code>basename</code>, <code>echo</code></li>
-</ul>
-<hr />
-</div>
-<div id="renaming-a-bunch-of-files" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Renaming a bunch of files</h3>
-<p>Let’s make sure we’re in the right directory- the one that contains
-all of our data files.</p>
-<pre><code>cd ~/data/MiSeq</code></pre>
-<p>For our first task, let’s pretend that we want to rename all of the fastq files to be <code>.fq</code> files instead (this is a surprisingly useful specific skill, even if you can’t immediately think of why you would want to do that!). Here, we get to use two of my favorite commands - ‘for’ and ‘basename’.</p>
-<p><code>for</code> lets you do something to every file in a list. To see it in action:</p>
-<pre><code>for i in *.fastq
-do
-   echo $i
-done</code></pre>
-<p>This is running the command <code>echo</code> for every value of the variable ‘i’, which is set (one by one) to all the values in the expression <code>*.fastq</code>.</p>
-<p>If we want to get rid of the extension ‘.fastq’, we can use the <code>basename</code> command:</p>
-<pre><code>for i in *.fastq
-do
-   basename $i .fastq
-done</code></pre>
-<p>Now, this doesn’t actually rename the files - it just prints out the name, with the suffix ‘.fastq’ removed. To rename the files, we need to capture the new name in a variable:</p>
-<pre><code>for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo $newname
-done</code></pre>
-<p>What <code>$( ... )</code> does is run the command in the middle, and then replace the <code>$( )</code> with the output of running the command.</p>
-<p>Now we have the old name (<code>$i</code>) and the new name (<code>$newname</code>) and we’re ready to write the rename command –</p>
-<pre><code>for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   echo mv $i $newname
-done</code></pre>
-<p><strong><em>Question:</em></strong> why did I put <code>echo</code> here?</p>
-<p>Now that we’re pretty sure it all looks good, let’s run it for realz:</p>
-<pre><code>for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   mv $i $newname
-done</code></pre>
-<p>and voila, we have renamed all the files!</p>
-<p><em>Side note:</em> you may see backquotes used instead of <code>$(...)</code>. It does the same thing but is trickier to get right, so we teach <code>$(...)</code> instead of <code>`</code>.</p>
-<hr />
-</div>
-</div>
-<div id="some-final-notes" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Some final notes</h2>
-<p>This lesson focused on file and directory exploration because that’s
-something everyone needs to know, and all these commands will work on
-pretty much any computer that is running a UNIX compatible shell (including
-Mac OS X and Windows Subsystem for Linux). We’ll get into a broader range
-of tasks soon, promise!</p>
-<p>The binder and this documentation page will stay working for the foreseeable
-future, so please feel free to come back and revisit some of these commands!</p>
-<p>We will explore more UNIX commands over the next few workshops!</p>
-<p>Google (and especially stackoverflow) is your friend! Use Internet
-search whenever you have questions about what a command does, or what
-commands to use to achieve a particular tasks.</p>
-
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="creating-and-modifying-text-files-on-remote-computers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="keeping-track-of-your-files-with-version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="executing-large-analyses-on-hpc-clusters-with-slurm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -514,7 +242,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/01-command-line.Rmd",
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/09-automation-snakemake.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -522,7 +250,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/01-command-line.Rmd",
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/09-automation-snakemake.Rmd",
 "text": null
 },
 "download": null,
