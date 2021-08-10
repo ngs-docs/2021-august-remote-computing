@@ -469,7 +469,7 @@ csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 because csvtk isn't installed. And that's what we'll be showing you how to
 do in workshop 5 - [install software like csvtk using conda](installing-software-on-remote-computers-with-conda.html).
 
-## Summing it all up - a challenge!
+## Summing up file transfer - a challenge!
 
 Let's all do the following:
 
