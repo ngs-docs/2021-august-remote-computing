@@ -16,6 +16,9 @@ output:
           <li><a href="https://datalab.ucdavis.edu/">
             <img src="https://datalab.ucdavis.edu/wp-content/uploads/2019/07/datalab-logo-full-color-rgb-1.png" style="height: 100%; width: 100%; object-fit: contain" />
           </a></li>
+          <li><a href="https://www.nih-cfde.org/">
+            <img src="cfde-logo.png" style="height: 60%; width: 60%; object-fit: contain" />
+          </a></li>
           <li><a href="./" style="font-size: 18px">Introduction to Remote Computing (Pilot)</a></li>
         collapse: section
       sharing: no
