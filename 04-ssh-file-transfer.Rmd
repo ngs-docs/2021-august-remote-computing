@@ -163,8 +163,8 @@ You don't have to be logged in just once.
 On Mac OS X, you can use Command-N to open a new Terminal window, and then
 ssh into farm from that window too.
 
-On Windows, you can open a new connection from MobaXterm simply by clicking.
-@CTB
+On Windows, you can open a new connection from MobaXterm simply by double
+clicking your current session under "User sessions."
 
 What you'll end up with are different command-line prompts on the same
 underlying system.
@@ -517,25 +517,80 @@ information, and why words like "HIPAA compliant" become important -
 it ensures that certain security and access policies are in place to
 protect sensitive data.
 
-## Working with remote files
+## Retrieving remote files from Web sites
 
-@CTB
-getting URLs
-https://www.gutenberg.org/ebooks/98
-https://github.com/ngs-docs/2021-remote-computing-binder/
-ncbi files
-tricky things with URLs; signed URLS etc. etc.
+Often you want to grab files from Web sites - CSV data sets, text files,
+or what have you.
 
-wget/curl, -o/output options. do similar things.
+This involves finding the URL, and then using a program like `wget` or
+`curl` to get them. We're going to use `curl` today, but `wget` does pretty
+much the same thing.
 
-vs git, and receiving files via e-mail (?)
+Let's find a URL for the Tale of Two Cities book that we've been using,
+over on Project Gutenberg.
 
-challenge:
-- pick a book from https://www.gutenberg.org/
-- find the URL for the plain text
-- copy it
-- download it to farm
-- look at it with head
+Go to this Web site in a browser: https://www.gutenberg.org/ebooks/98
+
+and find the link that says "Plain text". Right click on it, and "copy
+link".
+
+Now go back to your terminal window where you're logged into farm, and
+run
+```
+cd ~/
+curl -L -O https://www.gutenberg.org/files/98/98-0.txt
+```
+and this will create a file `98-0.txt` in your current directory.
+
+You can run `head` on this file:
+```
+head 98-0.txt
+```
+and see that it contains the right text.
+
+The trick is often to find the right URL to get the raw text link.
+For example, if you go to a GitHub link, like
+https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md
+if you run curl on this you will get the formatted Web file, which isn't
+really what you want.
+What you want for GitHub files is the 'Raw' link - try clicking on that.
+This is now the text file, and you can use curl on it --
+```
+curl -L -O https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md
+```
+
+Note here that the `-L` tells curl to follow Web redirects, which can be important; and `-O` says save the file under the name at the end of the URL. You can omit `-O` and it will send the file to stdout:
+```
+curl -L https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md > new-file.txt
+cat new-file.txt
+```
+
+The really nice thing about this is that for _big_ files, the file will
+transfer directly between the hosting site and the remote computer.
+This is really handy for large sequencing data files that are located at
+sequencing facility Web sites - you don't have to download 100 GB files
+to your laptop and then transfer them from there to farm, or into the
+cloud, for example! (This is a big reason why cloud computing is really
+interesting for the NIH.)
+
+Other than finding and copying the right URL, the other tricky thing
+that doesn't generalize is permission-restricted files. Briefly, since
+you're copying the URL from your browser (where you may be logged in)
+over to farm (where you may not be logged in), farm may not have access
+to download it. There is no one-size-fits-all solution to this,
+unfortunately.
+
+And, again, we'll be covering retrieving files from github in other
+ways during [workshop
+8](https://ngs-docs.github.io/2021-august-remote-computing/keeping-track-of-your-files-with-version-control.html).
+
+**CHALLENGE:**
+
+- Pick any book from https://www.gutenberg.org/
+- Find the URL for the plain text
+- Copy the URL
+- Use `wget` to download it to farm
+- Look at it with `head`
 
 ## Transferring files around efficiently
 
@@ -673,6 +728,20 @@ a directory for yourself and store things. We'll talk more about that
 in [workshop
 10](executing-large-analyses-on-hpc-clusters-with-slurm.html).
 
+Finally, the command
+```
+free
+```
+will show you how much system memory is available and being used.
+
+This command:
+```
+cat /proc/cpuinfo
+```
+will give you far too much information about what processors are available.
+
+Again, we'll talk more about this in workshop 10 :).
+
 ## Dealing with files: some recommendations
 
 Some short-hand rules I recommend for working with files on remote systems.
@@ -684,7 +753,16 @@ Some short-hand rules I recommend for working with files on remote systems.
 
 ## Farm vs cloud, binder, etc.
 
-@CTB
+One of the main differences that you'll see over time is that there
+are "remote, shared" systems like farm, and "remove, private" systems
+like binder and Amazon/Google cloud computers. The cloud computers
+often _guarantee_ you resources and some level of privacy along with
+superuser privileges, but also charge you for it (and it's often
+inefficient use of compute!) By contrast, "remote, shared" systems
+like HPCs and shared workstations can provide larger resources at the
+cost of sometimes having to worry about what other users are doing.
+
+The "ride share" vs "personal car" analogy is fairly apt here, actually :).
 
 ## Summing things up
 

@@ -78,7 +78,7 @@ files-have-the-same-permission-options
 how-do-groups-work
 how-can-you-use-this
 things-that-regular-users-cannot-do
-working-with-remote-files
+retrieving-remote-files-from-web-sites
 transferring-files-around-efficiently
 recursive-scp-with--r
 sftp

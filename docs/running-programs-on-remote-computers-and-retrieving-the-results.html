@@ -200,7 +200,7 @@
 <li class="chapter" data-level="4.7.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#how-can-you-use-this"><i class="fa fa-check"></i><b>4.7.5</b> How can you use this?</a></li>
 <li class="chapter" data-level="4.7.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#things-that-regular-users-cannot-do"><i class="fa fa-check"></i><b>4.7.6</b> Things that regular users cannot do</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#working-with-remote-files"><i class="fa fa-check"></i><b>4.8</b> Working with remote files</a></li>
+<li class="chapter" data-level="4.8" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#retrieving-remote-files-from-web-sites"><i class="fa fa-check"></i><b>4.8</b> Retrieving remote files from Web sites</a></li>
 <li class="chapter" data-level="4.9" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#transferring-files-around-efficiently"><i class="fa fa-check"></i><b>4.9</b> Transferring files around efficiently</a>
 <ul>
 <li class="chapter" data-level="4.9.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#recursive-scp-with--r"><i class="fa fa-check"></i><b>4.9.1</b> recursive <code>scp</code> with <code>-r</code></a></li>
@@ -364,8 +364,8 @@ when deleting files:</p>
 <p>You don’t have to be logged in just once.</p>
 <p>On Mac OS X, you can use Command-N to open a new Terminal window, and then
 ssh into farm from that window too.</p>
-<p>On Windows, you can open a new connection from MobaXterm simply by clicking.
-<span class="citation">@CTB</span></p>
+<p>On Windows, you can open a new connection from MobaXterm simply by double
+clicking your current session under “User sessions.”</p>
 <p>What you’ll end up with are different command-line prompts on the same
 underlying system.</p>
 <p>They share:</p>
@@ -633,22 +633,61 @@ it ensures that certain security and access policies are in place to
 protect sensitive data.</p>
 </div>
 </div>
-<div id="working-with-remote-files" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Working with remote files</h2>
-<p><span class="citation">@CTB</span>
-getting URLs
-<a href="https://www.gutenberg.org/ebooks/98" class="uri">https://www.gutenberg.org/ebooks/98</a>
-<a href="https://github.com/ngs-docs/2021-remote-computing-binder/" class="uri">https://github.com/ngs-docs/2021-remote-computing-binder/</a>
-ncbi files
-tricky things with URLs; signed URLS etc. etc.</p>
-<p>wget/curl, -o/output options. do similar things.</p>
-<p>vs git, and receiving files via e-mail (?)</p>
-<p>challenge:
-- pick a book from <a href="https://www.gutenberg.org/" class="uri">https://www.gutenberg.org/</a>
-- find the URL for the plain text
-- copy it
-- download it to farm
-- look at it with head</p>
+<div id="retrieving-remote-files-from-web-sites" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Retrieving remote files from Web sites</h2>
+<p>Often you want to grab files from Web sites - CSV data sets, text files,
+or what have you.</p>
+<p>This involves finding the URL, and then using a program like <code>wget</code> or
+<code>curl</code> to get them. We’re going to use <code>curl</code> today, but <code>wget</code> does pretty
+much the same thing.</p>
+<p>Let’s find a URL for the Tale of Two Cities book that we’ve been using,
+over on Project Gutenberg.</p>
+<p>Go to this Web site in a browser: <a href="https://www.gutenberg.org/ebooks/98" class="uri">https://www.gutenberg.org/ebooks/98</a></p>
+<p>and find the link that says “Plain text”. Right click on it, and “copy
+link”.</p>
+<p>Now go back to your terminal window where you’re logged into farm, and
+run</p>
+<pre><code>cd ~/
+curl -L -O https://www.gutenberg.org/files/98/98-0.txt</code></pre>
+<p>and this will create a file <code>98-0.txt</code> in your current directory.</p>
+<p>You can run <code>head</code> on this file:</p>
+<pre><code>head 98-0.txt</code></pre>
+<p>and see that it contains the right text.</p>
+<p>The trick is often to find the right URL to get the raw text link.
+For example, if you go to a GitHub link, like
+<a href="https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md" class="uri">https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md</a>
+if you run curl on this you will get the formatted Web file, which isn’t
+really what you want.
+What you want for GitHub files is the ‘Raw’ link - try clicking on that.
+This is now the text file, and you can use curl on it –</p>
+<pre><code>curl -L -O https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md</code></pre>
+<p>Note here that the <code>-L</code> tells curl to follow Web redirects, which can be important; and <code>-O</code> says save the file under the name at the end of the URL. You can omit <code>-O</code> and it will send the file to stdout:</p>
+<pre><code>curl -L https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md &gt; new-file.txt
+cat new-file.txt</code></pre>
+<p>The really nice thing about this is that for <em>big</em> files, the file will
+transfer directly between the hosting site and the remote computer.
+This is really handy for large sequencing data files that are located at
+sequencing facility Web sites - you don’t have to download 100 GB files
+to your laptop and then transfer them from there to farm, or into the
+cloud, for example! (This is a big reason why cloud computing is really
+interesting for the NIH.)</p>
+<p>Other than finding and copying the right URL, the other tricky thing
+that doesn’t generalize is permission-restricted files. Briefly, since
+you’re copying the URL from your browser (where you may be logged in)
+over to farm (where you may not be logged in), farm may not have access
+to download it. There is no one-size-fits-all solution to this,
+unfortunately.</p>
+<p>And, again, we’ll be covering retrieving files from github in other
+ways during <a href="https://ngs-docs.github.io/2021-august-remote-computing/keeping-track-of-your-files-with-version-control.html">workshop
+8</a>.</p>
+<p><strong>CHALLENGE:</strong></p>
+<ul>
+<li>Pick any book from <a href="https://www.gutenberg.org/" class="uri">https://www.gutenberg.org/</a></li>
+<li>Find the URL for the plain text</li>
+<li>Copy the URL</li>
+<li>Use <code>wget</code> to download it to farm</li>
+<li>Look at it with <code>head</code></li>
+</ul>
 </div>
 <div id="transferring-files-around-efficiently" class="section level2" number="4.9">
 <h2><span class="header-section-number">4.9</span> Transferring files around efficiently</h2>
@@ -743,6 +782,13 @@ system, there is often a location called <code>/scratch</code> where you can mak
 a directory for yourself and store things. We’ll talk more about that
 in <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html">workshop
 10</a>.</p>
+<p>Finally, the command</p>
+<pre><code>free</code></pre>
+<p>will show you how much system memory is available and being used.</p>
+<p>This command:</p>
+<pre><code>cat /proc/cpuinfo</code></pre>
+<p>will give you far too much information about what processors are available.</p>
+<p>Again, we’ll talk more about this in workshop 10 :).</p>
 </div>
 <div id="dealing-with-files-some-recommendations" class="section level2" number="4.11">
 <h2><span class="header-section-number">4.11</span> Dealing with files: some recommendations</h2>
@@ -756,7 +802,15 @@ in <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html">workshop
 </div>
 <div id="farm-vs-cloud-binder-etc." class="section level2" number="4.12">
 <h2><span class="header-section-number">4.12</span> Farm vs cloud, binder, etc.</h2>
-<p><span class="citation">@CTB</span></p>
+<p>One of the main differences that you’ll see over time is that there
+are “remote, shared” systems like farm, and “remove, private” systems
+like binder and Amazon/Google cloud computers. The cloud computers
+often <em>guarantee</em> you resources and some level of privacy along with
+superuser privileges, but also charge you for it (and it’s often
+inefficient use of compute!) By contrast, “remote, shared” systems
+like HPCs and shared workstations can provide larger resources at the
+cost of sometimes having to worry about what other users are doing.</p>
+<p>The “ride share” vs “personal car” analogy is fairly apt here, actually :).</p>
 </div>
 <div id="summing-things-up-1" class="section level2" number="4.13">
 <h2><span class="header-section-number">4.13</span> Summing things up</h2>
