@@ -107,6 +107,16 @@ different things!
 
 Let's start by logging back into farm. (You got this!)
 
+### First, download some files:
+
+Let's make sure you have the right set of files from the last workshop --
+this will take the set of files [here](https://github.com/ngs-docs/2021-remote-computing-binder/) and make them appear in your farm account:
+```
+cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-binder/
+```
+(If you've already done this, you can run this again and it will just fail, and that's fine.)
+
 ### Configuring your account on login
 
 One thing you can do is configure your account on login the way you want.
