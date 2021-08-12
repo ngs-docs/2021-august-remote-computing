@@ -600,9 +600,11 @@ included) find 'scp' kind of annoying because you have to already know
 the path to the filename, and it's kind of inconvenient for transferring
 multiple files around.
 
-@@mobaxterm terminal
+For this, we're going to make the MobaXterm folk use a shell window:
 
-What options are there?
+![](moba-shell.png)
+
+OK, so what options are there when using 'scp'?
 
 ### recursive `scp` with `-r`
 
