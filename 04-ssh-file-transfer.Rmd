@@ -512,7 +512,7 @@ with restrictive permissions, etc.
 
 One situation where this can be important is when someone leaves a
 research group and you need access to their files but they no longer
-have a access to the system themselves because their account is disabled.
+have access to the system themselves because their account is disabled.
 
 In this case, you might have to have a supervisor or the researcher
 themselves e-mail the farm systems administrators to fix the access
@@ -578,7 +578,7 @@ cat new-file.txt
 The really nice thing about this is that for _big_ files, the file will
 transfer directly between the hosting site and the remote computer.
 This is really handy for large sequencing data files that are located at
-sequencing facility Web sites - you don't have to download 100 GB files
+sequencing facility Websites - you don't have to download 100 GB files
 to your laptop and then transfer them from there to farm, or into the
 cloud, for example! (This is a big reason why cloud computing is really
 interesting for the NIH.)
@@ -761,7 +761,7 @@ Some short-hand rules I recommend for working with files on remote systems.
 - download big files directly to remote computer system if possible, so that they don't go via your home/work Internet connection or laptop (which is often more limited than the remote computer's connection!);
 - get used to transferring files to/from your laptop (see below); consider using a `transfer/` directory for simplicity;
 - for managing small files that you create on a remote system, use version control ([workshop 8](keeping-track-of-your-files-with-version-control.html))
-- you can also configure Dropbox on Linux systems, but it burdens the system and it's also not a great idea to copy files that are probably private over to a shared system. I've also had some bad experiences with deleting my entire Dropbox by mistake... UNIX makes it a little to easy to operate on lots of files!
+- you can also configure Dropbox on Linux systems, but it burdens the system and it's also not a great idea to copy files that are probably private over to a shared system. I've also had some bad experiences with deleting my entire Dropbox by mistake... UNIX makes it a little too easy to operate on lots of files!
 
 ## Farm vs cloud, binder, etc.
 
