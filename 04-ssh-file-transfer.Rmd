@@ -6,3 +6,136 @@ results back to their laptop and desktop computers. We will discuss
 input and output formats, where files are usually read from and
 written to, and how to use the ssh software to copy files to and from
 remote computers.
+
+In workshop 4, we will do more with running remote commands, getting
+files onto your remote system, file permissions, and actually working
+effectively on remote systems.
+
+@ctb
+We also talked a bit about network security, shared disk space, and
+shared process space.
+
+## Using SSH private/public key pairs
+
+Why use keypairs?
+- harder to break than passwords
+- enable programs to do things without interactive typing
+- public part of pair can be transmitted publicly in ways that passwords can't
+keep private parts of keys private and never share
+
+Because of this some systems demand that you use them. Farm is (usually)
+one of them.
+
+## Mac OS X and Linux: Using ssh private keys to log in
+
+copying file
+logging in using it
+victory
+how to generate your own public/private key pair
+
+## Windows/MobaXterm: Using ssh private keys to log in
+
+copying file
+creating a new session that uses it
+logging in
+victory
+how to generate your own public/private key pair
+
+
+
+## Working on shared systems
+
+Let's all log back into farm.
+
+### Shared disk space
+
+Wait one minute...
+
+...and now do:
+```
+ls ~datalab-09/
+```
+what do you see?
+
+That's right, that's _my_ account, and _my_ files.
+
+By default, home directories on many systems are readable by everyone.
+However, they're never _writeable_ unless you enable that intentionally
+for a directory.
+
+We'll show you how to control permissions a bit in Workshop 4.
+
+### Configuring your account on login
+
+Edit the file `~/.bashrc` with nano:
+```
+nano ~/.bashrc
+```
+and type `echo Hello and welcome to farm` at the top of the file.
+Save with `CTRL-X`, "yes", enter.
+
+Now log out and log back in.
+
+You should see 'Hello and welcome to farm' everytime you log in!
+
+You can add commands like
+```
+alias lf=ls -FC
+```
+in your .bashrc if you want to configure your account that way; we'll
+cover more configuration commands in [workshop
+6](structuring-your-projects-for-current-and-future-you.html) and
+beyond.
+
+To see the changes without having to log out and log back in, run
+```
+source ~/.bashrc
+```
+
+### Using multiple terminals
+
+On Mac OS X, you can use Command-N to open a new Terminal window, and then
+ssh into farm from that window too.
+
+On Windows, you can open a new connection from MobaXterm.
+
+These are different command-line prompts on the same system.
+
+They share:
+
+* directory and file access (filesystem)
+
+They do not have the same:
+
+* current working directory (`pwd`)
+* running programs, and stdin and stdout (e.g. `ls` in one will not go to the other)
+
+These are essentially different _sessions_ on the same computer, much like
+you might have multiple folders or applications open on your Mac or Windows
+machine.
+
+You can log out of one independently of the other.
+
+We'll cover more of this in workshops 7 and later.
+
+### Looking at what's running
+
+You can use the `ps` command to see what your account, and other accounts,
+are running:
+```
+ps -u datalab-09
+```
+the key column here is the last one, which tells you what program they're
+running.
+
+You can also get a sort of "leaderboard" for what's going on on the shared
+computer by running
+```
+top
+```
+(use 'q' to exit).
+
+## Summing things up
+
+We also talked a bit about network security, shared disk space, and
+shared process space.
