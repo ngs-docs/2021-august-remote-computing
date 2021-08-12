@@ -183,7 +183,8 @@
 <li class="chapter" data-level="4.4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#some-tips-on-your-private-key"><i class="fa fa-check"></i><b>4.4</b> Some tips on your private key</a></li>
 <li class="chapter" data-level="4.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#working-on-farm"><i class="fa fa-check"></i><b>4.5</b> Working on farm</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#configuring-your-account-on-login"><i class="fa fa-check"></i><b>4.5.1</b> Configuring your account on login</a></li>
+<li class="chapter" data-level="4.5.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#first-download-some-files"><i class="fa fa-check"></i><b>4.5.1</b> First, download some files:</a></li>
+<li class="chapter" data-level="4.5.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#configuring-your-account-on-login"><i class="fa fa-check"></i><b>4.5.2</b> Configuring your account on login</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-multiple-terminals"><i class="fa fa-check"></i><b>4.6</b> Using multiple terminals</a>
 <ul>
@@ -325,8 +326,16 @@ you are using, and only share the public key from that computer.</p>
 of a remote workstation or campus compute cluster (HPC). This means a few
 different things!</p>
 <p>Let’s start by logging back into farm. (You got this!)</p>
-<div id="configuring-your-account-on-login" class="section level3" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Configuring your account on login</h3>
+<div id="first-download-some-files" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> First, download some files:</h3>
+<p>Let’s make sure you have the right set of files from the last workshop –
+this will take the set of files <a href="https://github.com/ngs-docs/2021-remote-computing-binder/">here</a> and make them appear in your farm account:</p>
+<pre><code>cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-binder/</code></pre>
+<p>(If you’ve already done this, you can run this again and it will just fail, and that’s fine.)</p>
+</div>
+<div id="configuring-your-account-on-login" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Configuring your account on login</h3>
 <p>One thing you can do is configure your account on login the way you want.
 This typically involves configuring your login shell.</p>
 <p>Edit the file <code>~/.bashrc</code>, e.g. with nano:</p>

@@ -66,6 +66,7 @@ mac-os-x-and-linux-using-ssh-private-keys-to-log-in
 windowsmobaxterm-using-ssh-private-keys-to-log-in
 some-tips-on-your-private-key
 working-on-farm
+first-download-some-files
 configuring-your-account-on-login
 using-multiple-terminals
 who-am-i-and-where-am-i-running
