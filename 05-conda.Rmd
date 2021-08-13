@@ -207,6 +207,16 @@ conda activate csv
 csvtk
 ```
 
+### Where is the software coming from!?
+
+When we run `conda create` to install csvtk, where is conda looking for
+and finding the software?
+
+The short answer is "the Internet", and more specifically,
+pre-prepared conda software repositories, or "channels". Bioconda is
+one such channel, as is conda-forge. We'll talk more about channels
+below.
+
 ### Digression: there are many ways to install software!
 
 If you're at all familiar with UNIX, you might be saying "wait! but I already
@@ -436,6 +446,15 @@ this sets up your .condarc file -- take a look,
 cat ~/.condarc
 ```
 This will automatically make conda install search for packages in bioconda.
+
+Note: if you get the error
+
+>~~~
+>PackagesNotFoundError: The following packages are not available from current channels:
+>~~~
+
+but you're pretty sure the package exists, you probably need to configure
+your channels properly :)
 
 ### Mac OS X and Linux, but not Windows
 
