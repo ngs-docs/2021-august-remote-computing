@@ -85,8 +85,9 @@ When you log in, your prompt should look like this:
 
 If it doesn't, please alert a TA and we will help you out!
 
-The 'base' is new and it indicates that conda has been activated in your
-account and that you are in the base environment. Read on!
+The 'base' part of the prompt is new and it indicates that conda has
+been activated in your account and that you are in the base
+environment. Read on!
 
 ### Creating your first environment & installing csvtk!
 
@@ -213,7 +214,7 @@ use homebrew! or apt! or yum! or containers! or ...!"
 Or you may point your sysadmins at this tutorial and they'll say "well
 you should just use the modules system on your HPC."
 
-And yes, there are many ways to install and use software!
+Yes, there are many ways to install and use software! Why conda?
 
 We like conda, because it's straightforward, flexible, cross-platform,
 supports version pinning, and does not require systems administrator
@@ -229,11 +230,12 @@ Once you're in an environment, you can install new software with `conda install 
 ```
 conda install -y fastqc
 ```
-and that should work too!
+and that should work too! You'll be able to run the `fastqc` command now.
 
 Here, FastQC is a completely separate application that we use in
-bioinformatics for looking at FASTQ files. The main point is that
-it's just some more "non-standard" software that you can install!
+bioinformatics for looking at FASTQ files. We talk about that more in
+some other workshops we run, but: the main point is that it's just
+some more "non-standard" software that you can install!
 
 Generally you want to avoid installing too many packages in one
 environment, as it starts to get slow to figure out whether or not
@@ -248,6 +250,10 @@ which is less useful than you might think, given how many packages
 we've installed... in the future you will be able to list only the
 user-requested packages and *not* the dependencies needed for them,
 but for now, there's no good way to do that.
+
+(Why are there so many? Because most software is built on top of
+_lots_ of other software... and so you need to install all of that other
+software, too!)
 
 ### Finding and specifying versions
 
@@ -350,13 +356,14 @@ It will list all of the available environments as well as denote the environment
 
 Switch environments with `conda activate <environment_name>`, and remove environments with `conda env remove -n <environment_name>`.
 
-Note that switching environments *doesn't switch your directory*, it just switches *the software you're running.*. Whoa.
+Note that switching environments *doesn't switch your directory*, it just switches *the software you're running.*. Whoa...
 
 ### Tech interlude: what is conda doing?
 
-What conda does when it switches environments is change the PATH (and
-other environment variables) so that the software packages are
-searched for in different places.
+What conda does when it switches environments is change the location
+where it searches for software -- the PATH (and other environment
+variables) -- so that the software packages are searched for in
+different places.
 
 Try changing environments and each time doing `echo $PATH`. You should
 see that the first element in the PATH changes each time you switch
@@ -587,7 +594,7 @@ See [the conda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/t
 + Conda [Documentation](https://conda.io/en/latest/)
 + Drawing credit: Gergely Szerovay. Read original article [here](https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/)
 
-## Suggested lesson improvements and discussion items:
+## Discussion items:
 
 * What happens if something isn't conda installable?
   * You can install it as normal, and it will be usable as normal.

@@ -256,7 +256,7 @@
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#reference-list-of-conda-commands"><i class="fa fa-check"></i><b>5.7</b> Reference list of Conda Commands</a></li>
 <li class="chapter" data-level="5.8" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#more-reading-on-conda"><i class="fa fa-check"></i><b>5.8</b> More Reading on Conda</a></li>
-<li class="chapter" data-level="5.9" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#suggested-lesson-improvements-and-discussion-items"><i class="fa fa-check"></i><b>5.9</b> Suggested lesson improvements and discussion items:</a></li>
+<li class="chapter" data-level="5.9" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#discussion-items"><i class="fa fa-check"></i><b>5.9</b> Discussion items:</a></li>
 <li class="chapter" data-level="5.10" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#in-summary"><i class="fa fa-check"></i><b>5.10</b> In summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html"><i class="fa fa-check"></i><b>6</b> Structuring your projects for current and future you</a></li>
@@ -362,8 +362,9 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 <pre><code>(base) datalab-09@farm:~$</code></pre>
 </blockquote>
 <p>If it doesn’t, please alert a TA and we will help you out!</p>
-<p>The ‘base’ is new and it indicates that conda has been activated in your
-account and that you are in the base environment. Read on!</p>
+<p>The ‘base’ part of the prompt is new and it indicates that conda has
+been activated in your account and that you are in the base
+environment. Read on!</p>
 </div>
 <div id="creating-your-first-environment-installing-csvtk" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Creating your first environment &amp; installing csvtk!</h3>
@@ -450,7 +451,7 @@ csvtk</code></pre>
 use homebrew! or apt! or yum! or containers! or …!”</p>
 <p>Or you may point your sysadmins at this tutorial and they’ll say “well
 you should just use the modules system on your HPC.”</p>
-<p>And yes, there are many ways to install and use software!</p>
+<p>Yes, there are many ways to install and use software! Why conda?</p>
 <p>We like conda, because it’s straightforward, flexible, cross-platform,
 supports version pinning, and does not require systems administrator
 access. In the past 12 years of teaching bioinformatics and data
@@ -463,10 +464,11 @@ everyone, on every platform. As they say, “your mileage may vary”
 <h2><span class="header-section-number">5.3</span> Installing more software in your current environment</h2>
 <p>Once you’re in an environment, you can install new software with <code>conda install -y &lt;software_name&gt;</code> like so:</p>
 <pre><code>conda install -y fastqc</code></pre>
-<p>and that should work too!</p>
+<p>and that should work too! You’ll be able to run the <code>fastqc</code> command now.</p>
 <p>Here, FastQC is a completely separate application that we use in
-bioinformatics for looking at FASTQ files. The main point is that
-it’s just some more “non-standard” software that you can install!</p>
+bioinformatics for looking at FASTQ files. We talk about that more in
+some other workshops we run, but: the main point is that it’s just
+some more “non-standard” software that you can install!</p>
 <p>Generally you want to avoid installing too many packages in one
 environment, as it starts to get slow to figure out whether or not
 something can be installed. We’ll talk more about this below.</p>
@@ -476,6 +478,9 @@ something can be installed. We’ll talk more about this below.</p>
 we’ve installed… in the future you will be able to list only the
 user-requested packages and <em>not</em> the dependencies needed for them,
 but for now, there’s no good way to do that.</p>
+<p>(Why are there so many? Because most software is built on top of
+<em>lots</em> of other software… and so you need to install all of that other
+software, too!)</p>
 <div id="finding-and-specifying-versions" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Finding and specifying versions</h3>
 <p>To see what version of a particular piece of software you have installed, run:</p>
@@ -544,13 +549,14 @@ you’ll need to install each package in every environment that needs it.</p>
 <pre><code>conda env list</code></pre>
 <p>It will list all of the available environments as well as denote the environment you are currently in with an *.</p>
 <p>Switch environments with <code>conda activate &lt;environment_name&gt;</code>, and remove environments with <code>conda env remove -n &lt;environment_name&gt;</code>.</p>
-<p>Note that switching environments <em>doesn’t switch your directory</em>, it just switches <em>the software you’re running.</em>. Whoa.</p>
+<p>Note that switching environments <em>doesn’t switch your directory</em>, it just switches <em>the software you’re running.</em>. Whoa…</p>
 </div>
 <div id="tech-interlude-what-is-conda-doing" class="section level3" number="5.3.5">
 <h3><span class="header-section-number">5.3.5</span> Tech interlude: what is conda doing?</h3>
-<p>What conda does when it switches environments is change the PATH (and
-other environment variables) so that the software packages are
-searched for in different places.</p>
+<p>What conda does when it switches environments is change the location
+where it searches for software – the PATH (and other environment
+variables) – so that the software packages are searched for in
+different places.</p>
 <p>Try changing environments and each time doing <code>echo $PATH</code>. You should
 see that the first element in the PATH changes each time you switch
 environments!</p>
@@ -788,8 +794,8 @@ conda install --name myenv --file spec-file.txt</code></pre>
 <li>Drawing credit: Gergely Szerovay. Read original article <a href="https://www.freecodecamp.org/news/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c/">here</a></li>
 </ul>
 </div>
-<div id="suggested-lesson-improvements-and-discussion-items" class="section level2" number="5.9">
-<h2><span class="header-section-number">5.9</span> Suggested lesson improvements and discussion items:</h2>
+<div id="discussion-items" class="section level2" number="5.9">
+<h2><span class="header-section-number">5.9</span> Discussion items:</h2>
 <ul>
 <li>What happens if something isn’t conda installable?
 <ul>

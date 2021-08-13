@@ -121,7 +121,7 @@ it-can-take-a-long-time-to-install-lots-of-software
 explicit-package-listing
 reference-list-of-conda-commands
 more-reading-on-conda
-suggested-lesson-improvements-and-discussion-items
+discussion-items
 in-summary
 structuring-your-projects-for-current-and-future-you
 automating-your-analyses-and-executing-long-running-analyses-on-remote-computers
