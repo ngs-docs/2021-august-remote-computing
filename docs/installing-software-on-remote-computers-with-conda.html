@@ -421,12 +421,14 @@ a bunch of really nice functionality together into one tool.</p>
 <p>and I can then cut out one particular column and summarize things – e.g.</p>
 <pre><code>csvtk cut -f Character All-seasons.csv | sort | uniq -c | sort -n | tail</code></pre>
 <p>(which tells me that Cartman is by far the most quoted character in this file).</p>
-<p>What I’m doing here is using <a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering">piping and filtering (from workshop 2)</a> to:
-* take the contents of the Character column, produced by csvtk
-* sorting the contents (<code>sort</code>)
-* counting the number of distinct elements (<code>uniq -c</code>)
-* sorting the counts from least to most by number (<code>sort -n</code>)
-* and then showing only the last 10 (<code>tail</code>)</p>
+<p>What I’m doing here is using <a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering">piping and filtering (from workshop 2)</a> to:</p>
+<ul>
+<li>take the contents of the Character column, produced by csvtk</li>
+<li>sorting the contents (<code>sort</code>)</li>
+<li>counting the number of distinct elements (<code>uniq -c</code>)</li>
+<li>sorting the counts from least to most by number (<code>sort -n</code>)</li>
+<li>and then showing only the last 10 (<code>tail</code>)</li>
+</ul>
 <p>(It looks complicated, but as you start using these commands more and more,
 it will become second nature!)</p>
 <p><strong>CHALLENGE:</strong> How would I find the <em>least</em> quoted characters in this file?</p>
