@@ -171,6 +171,7 @@ csvtk cut -f Character All-seasons.csv | sort | uniq -c | sort -n | tail
 (which tells me that Cartman is by far the most quoted character in this file).
 
 What I'm doing here is using [piping and filtering (from workshop 2)](creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering) to:
+
 * take the contents of the Character column, produced by csvtk
 * sorting the contents (`sort`)
 * counting the number of distinct elements (`uniq -c`)
