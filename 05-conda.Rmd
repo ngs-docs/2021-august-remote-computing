@@ -5,13 +5,14 @@ software using the conda installation system. We will give examples of
 installing Python and R software, and managing conda environments on
 remote systems.
 
-This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week3-conda_for_software_installation) co-authored by Shannon Joslin for GGG 298 at UC Davis.
+This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week3-conda_for_software_installation) co-authored by Shannon Joslin for GGG 298 at UC Davis. There is also a really nice binder-based tutorial [on the NIH CFDE training Web site](https://training.nih-cfde.org/en/latest/General-Tools/Introduction-to-Conda/)!
 
 Learning objectives:
 
 * learn the basics of software installation, software dependencies, and isolation environments
 * learn about conda and how to use it
-* learn about bioconda and how to use it
+* learn about conda-forge and bioconda and how to install software from them
+* learn to use conda to manage R and Python installations
 
 Other references:
 
@@ -184,7 +185,7 @@ it will become second nature!)
 
 The key thing about csvtk for _this_ lesson is that it's new software, and
 it's mostly useful for data scientists, so it's not "built into" UNIX
-operating systems yet (and may neve be).
+operating systems yet (and may never be).
 
 So when you try running it in the _base_ environment,
 ```
@@ -258,7 +259,7 @@ and look at the second column. (Note that `conda list` doesn't need an exact mat
 
 As of Aug 2021, conda installs csvtk version 0.23.0. You can force conda to install _exactly_ this version in the future like so,
 ```
-conda install csvtk=0.23.0
+conda install csvtk==0.23.0
 ```
 
 Unfortunately there's no good way to know if a new version of a
@@ -287,7 +288,9 @@ conda activate csv
 
 ### Making and using environment files
 
-What if you want to specify collections of software?
+What if you want to specify collections of software that you use together?
+And/or send collaborators or colleagues the set of software they need,
+all in one nice file?
 
 conda has a nice human-readable format for that, called an
 **'environment file'**. These are supposed to be reasonably portable
@@ -324,7 +327,8 @@ This would create a new environment called `csv2` that has all the same things i
 You can update software with `conda update`, and remove software with
 `conda remove`. Generally there's not too much need for these commands
 tho, as we recommend just creating new environments with a pinned
-version, OR the latest version.
+version, OR the latest version. Then, when you want to update your software,
+you create a new, clean environment.
 
 ### Creating multiple environments
 
@@ -332,9 +336,9 @@ As you can probably infer from the above, you can have multiple
 environments with different (potentially incompatible) things
 installed in each one.
 
-The default is `base` and anything installed in it is available in all
-environments. Additional environments will have the packages in `base` plus
-their own commands!
+The default is `base`. Other environments will have their own set of
+packages. Environments do not include packages from other environments;
+you'll need to install each package in every environment that needs it.
 
 You can list environments with `conda env list`:
 
@@ -446,36 +450,96 @@ Some tips and tricks for using conda-forge and bioconda:
 * Help advocate for your favorite software to be added, and/or do it yourself! (e.g. [gtdbtk](https://github.com/Ecogenomics/GTDBTk/issues/30#issuecomment-431707687)) - we can help!
 * File bug reports, but be respectful and helpful. See [a sterling example :)](https://github.com/GATB/bcalm/issues/44).
 
-### Exercise: install and run salmon!
+## Conda and data science: R and Python
 
-@CTB
+Conda emerged from the Python community initially, but it now has some pretty
+good support for R as well, through the conda-forge channel.
 
-Our goal is to find and install salmon, and then run [the quantification step from week 1](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week1-intro#run-salmon-individually-on-each-of-the-samples).
+Why use Conda for R and Python? What does it give you? A few things -
 
-The commands we want to run are:
+* with conda, you can manage multiple R and Python installations, each containing different (and incompatible!) versions of packages.
+* where libraries are available via conda, you can install them without compiling them. This can be (much) faster than using the standard `install.packages` or `pip install` supported by R and Python.
+* where libraries are _not_ available via conda, you can still install them, and you don't need to do anything special or tricky - just run the standard installation commands.
+
+### Conda and R
+
+conda-forge now has some pretty good support for R - see [this
+environment
+file](https://github.com/ngs-docs/2020-ggg-201b-rnaseq/blob/latest/binder/environment.yml)
+for RNAseq, for example. It installs both tidyverse packages and
+bioconductor packages!
+
+Let's install R with RMarkdown support.
+
+First, let's figure out what the right package name is. We _could_ go to
+[the conda-forge page](https://conda-forge.org/feedstock-outputs/) and search
+for rmarkdown, but it turns out that google is often your best bet :).
+
+Google 'install rmarkdown with conda' and you'll see that the first hit is
+`r-rmarkdown`. Let's try it!
+
+Side note: we're going to switch to using the mamba command, because
+it's faster. More on that below.
+```
+mamba create -n rmd -y r-rmarkdown
+```
+
+This will go ahead and install R itself, as well as all of the packages needed
+to compile RMarkdown documents (like this Web site, in fact).
+
+Activate the environment:
+```
+conda activate rmd
+```
+
+Now, try `type R` to see where R is installed - under your own account. Yay!
+If you want, you can run `R` and then `library(rmarkdown)` to verify that
+it's installed.
+
+I've found that the majority of R packages I use in bioinformatics are readily
+available via conda-forge, which is nice. Again, your mileage may vary...
+
+**CHALLENGE:** What would be the command to install the dplyr library for
+R in either the existing rmd environment, or in a new environment? (You can run it if you like, but it might take a few minutes.)
+
+### Conda and Python
+
+Python is heavily used in data science as well, and it is also well supported
+by conda. Conveniently, you can install different versions quite easily:
 
 ```
-cd ~/298class3
-
-# download reference transcriptome
-curl -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
-
-# index reference transcriptome for salmon
-salmon index --index yeast_orfs --transcripts orf_coding.fasta.gz
-
-# quantify with salmon
-salmon quant -i yeast_orfs --libType U -r  ERR458493.fastq.gz -o  ERR458493.fastq.gz.quant --seqBias --gcBias
+mamba create -n py39 -y python==3.9
 ```
+will install Python v3.9.
 
-Please do the following:
-(1) figure out what software to install
-(2) create a new environment named 'slm' that has that software installed
-(3) activate that environment and run the above commands
-(4) verify that they create a results directory named 'ERR458493.fastq.gz.quant/'
+Then
+```
+conda activate py39
+type python
+python -V
+```
+will show you that Python is v3.9 in this environment.
 
-Extra credit: What version of salmon did you install?
+Conveniently, as with R, you have full installation privileges - so you could
+run the python package installer, pip, to install stuff. For example, run:
+```
+pip install screed
+```
+to install the screed library in your very own Python environment.
+(screed is another library my lab built for reading sequence data files;
+here we're just using it as an example of something that you can install
+with conda :).
 
-## Tricky things to think about
+### Supporting interactive packages (RStudio and JupyterLab)
+
+Many (most?) people now use R and Python packages via RStudio and
+JupyterLab, and it's totally possible to use conda installs with that.
+
+Unfortunately, showing you how to run RStudio Server and JupyterLab on
+farm is a bit out of scope for this workshop series, but please drop
+us a note at datalab-training@ucdavis.edu if you're interested.
+
+## Tricky things to think about with conda
 
 ### It can take a long time to install lots of software
 
@@ -483,9 +547,10 @@ This is because conda needs to make sure to resolve version incompatibilities be
 
 Solution: use isolated environments to install single packages, instead.
 
-### Conda and R
-
-conda-forge now has some pretty good support for R - see [this environment file](https://github.com/ngs-docs/2020-ggg-201b-rnaseq/blob/latest/binder/environment.yml) for RNAseq, for example. It installs both tidyverse packages and bioconductor packages!
+Another solution: use the mamba command, a drop-in replacement for
+conda. All of the commands above will work with `mamba` instead of
+`conda`, except only `conda activate` which _must_ be done using
+`conda`.
 
 ### Explicit package listing
 
@@ -529,3 +594,17 @@ See [the conda docs](https://docs.conda.io/projects/conda/en/latest/user-guide/t
   * However, it won't be "managed" via conda (or snakemake)
 * Disk, vs environment, vs login shell
   * especially note that multiple terminals all look at the same disk
+
+## In summary
+
+Conda is one way you can install software on computers, including most
+especially HPC and cloud computers.
+
+Conda lets you create separate "environments" containing collections of
+software that are isolated from other collections.
+
+Conda supports a pretty normal data science set of tools, and also
+provides tools to support computational reproducibility via environment
+files and version pinning.
+
+Go conda!!
