@@ -171,6 +171,7 @@ csvtk cut -f Character All-seasons.csv | sort | uniq -c | sort -n | tail
 (which tells me that Cartman is by far the most quoted character in this file).
 
 What I'm doing here is using [piping and filtering (from workshop 2)](creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering) to:
+
 * take the contents of the Character column, produced by csvtk
 * sorting the contents (`sort`)
 * counting the number of distinct elements (`uniq -c`)
@@ -205,6 +206,16 @@ again:
 conda activate csv
 csvtk
 ```
+
+### Where is the software coming from!?
+
+When we run `conda create` to install csvtk, where is conda looking for
+and finding the software?
+
+The short answer is "the Internet", and more specifically,
+pre-prepared conda software repositories, or "channels". Bioconda is
+one such channel, as is conda-forge. We'll talk more about channels
+below.
 
 ### Digression: there are many ways to install software!
 
@@ -396,7 +407,7 @@ non-standard software (stuff I use infrequently or for specific tasks)
 I create software-specific environments to work in.
 
 snakemake (which we'll be talking about [in workshop
-9](automating-your-analyses-with-the-snakemake-workflow-system.html)
+9](automating-your-analyses-with-the-snakemake-workflow-system.html))
 helps with this by letting you use analysis-specific environments.
 
 ### Finding packages within conda
@@ -436,13 +447,22 @@ cat ~/.condarc
 ```
 This will automatically make conda install search for packages in bioconda.
 
+Note: if you get the error
+
+>~~~
+>PackagesNotFoundError: The following packages are not available from current channels:
+>~~~
+
+but you're pretty sure the package exists, you probably need to configure
+your channels properly :)
+
 ### Mac OS X and Linux, but not Windows
 
 Note conda itself works on Windows, OS X and Linux!
 
-But unfortunately many conda-forge bioconda packages are only
+But unfortunately many conda-forge and bioconda packages are only
 available for OS X and Linux, and not Windows :(. This is because
-they are built for Linux.
+they are built for Linux or a UNIX-like OS.
 
 ### How to engage with conda-forge and bioconda
 

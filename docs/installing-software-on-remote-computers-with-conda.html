@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-13" />
+<meta name="date" content="2021-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -225,7 +225,8 @@
 <li class="chapter" data-level="5.2.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#creating-your-first-environment-installing-csvtk"><i class="fa fa-check"></i><b>5.2.3</b> Creating your first environment &amp; installing csvtk!</a></li>
 <li class="chapter" data-level="5.2.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installation"><i class="fa fa-check"></i><b>5.2.4</b> Installation!</a></li>
 <li class="chapter" data-level="5.2.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#csvtk-in-a-bit-more-detail"><i class="fa fa-check"></i><b>5.2.5</b> csvtk in a bit more detail</a></li>
-<li class="chapter" data-level="5.2.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#digression-there-are-many-ways-to-install-software"><i class="fa fa-check"></i><b>5.2.6</b> Digression: there are many ways to install software!</a></li>
+<li class="chapter" data-level="5.2.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#where-is-the-software-coming-from"><i class="fa fa-check"></i><b>5.2.6</b> Where is the software coming from!?</a></li>
+<li class="chapter" data-level="5.2.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#digression-there-are-many-ways-to-install-software"><i class="fa fa-check"></i><b>5.2.7</b> Digression: there are many ways to install software!</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installing-more-software-in-your-current-environment"><i class="fa fa-check"></i><b>5.3</b> Installing more software in your current environment</a>
 <ul>
@@ -421,12 +422,14 @@ a bunch of really nice functionality together into one tool.</p>
 <p>and I can then cut out one particular column and summarize things – e.g.</p>
 <pre><code>csvtk cut -f Character All-seasons.csv | sort | uniq -c | sort -n | tail</code></pre>
 <p>(which tells me that Cartman is by far the most quoted character in this file).</p>
-<p>What I’m doing here is using <a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering">piping and filtering (from workshop 2)</a> to:
-* take the contents of the Character column, produced by csvtk
-* sorting the contents (<code>sort</code>)
-* counting the number of distinct elements (<code>uniq -c</code>)
-* sorting the counts from least to most by number (<code>sort -n</code>)
-* and then showing only the last 10 (<code>tail</code>)</p>
+<p>What I’m doing here is using <a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering">piping and filtering (from workshop 2)</a> to:</p>
+<ul>
+<li>take the contents of the Character column, produced by csvtk</li>
+<li>sorting the contents (<code>sort</code>)</li>
+<li>counting the number of distinct elements (<code>uniq -c</code>)</li>
+<li>sorting the counts from least to most by number (<code>sort -n</code>)</li>
+<li>and then showing only the last 10 (<code>tail</code>)</li>
+</ul>
 <p>(It looks complicated, but as you start using these commands more and more,
 it will become second nature!)</p>
 <p><strong>CHALLENGE:</strong> How would I find the <em>least</em> quoted characters in this file?</p>
@@ -445,8 +448,17 @@ again:</p>
 <pre><code>conda activate csv
 csvtk</code></pre>
 </div>
-<div id="digression-there-are-many-ways-to-install-software" class="section level3" number="5.2.6">
-<h3><span class="header-section-number">5.2.6</span> Digression: there are many ways to install software!</h3>
+<div id="where-is-the-software-coming-from" class="section level3" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Where is the software coming from!?</h3>
+<p>When we run <code>conda create</code> to install csvtk, where is conda looking for
+and finding the software?</p>
+<p>The short answer is “the Internet”, and more specifically,
+pre-prepared conda software repositories, or “channels”. Bioconda is
+one such channel, as is conda-forge. We’ll talk more about channels
+below.</p>
+</div>
+<div id="digression-there-are-many-ways-to-install-software" class="section level3" number="5.2.7">
+<h3><span class="header-section-number">5.2.7</span> Digression: there are many ways to install software!</h3>
 <p>If you’re at all familiar with UNIX, you might be saying “wait! but I already
 use homebrew! or apt! or yum! or containers! or …!”</p>
 <p>Or you may point your sysadmins at this tutorial and they’ll say “well
@@ -585,7 +597,7 @@ things or switch environments.</p>
 non-standard software (stuff I use infrequently or for specific tasks)
 I create software-specific environments to work in.</p>
 <p>snakemake (which we’ll be talking about <a href="automating-your-analyses-with-the-snakemake-workflow-system.html">in workshop
-9</a>
+9</a>)
 helps with this by letting you use analysis-specific environments.</p>
 </div>
 <div id="finding-packages-within-conda" class="section level3" number="5.3.8">
@@ -614,12 +626,18 @@ conda config --add channels conda-forge</code></pre>
 <p>this sets up your .condarc file – take a look,</p>
 <pre><code>cat ~/.condarc</code></pre>
 <p>This will automatically make conda install search for packages in bioconda.</p>
+<p>Note: if you get the error</p>
+<blockquote>
+<pre><code>PackagesNotFoundError: The following packages are not available from current channels:</code></pre>
+</blockquote>
+<p>but you’re pretty sure the package exists, you probably need to configure
+your channels properly :)</p>
 <div id="mac-os-x-and-linux-but-not-windows" class="section level3" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Mac OS X and Linux, but not Windows</h3>
 <p>Note conda itself works on Windows, OS X and Linux!</p>
-<p>But unfortunately many conda-forge bioconda packages are only
+<p>But unfortunately many conda-forge and bioconda packages are only
 available for OS X and Linux, and not Windows :(. This is because
-they are built for Linux.</p>
+they are built for Linux or a UNIX-like OS.</p>
 </div>
 <div id="how-to-engage-with-conda-forge-and-bioconda" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> How to engage with conda-forge and bioconda</h3>
