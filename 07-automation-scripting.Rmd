@@ -7,9 +7,32 @@ disconnect from and resume running processes using the ‘screen’ and 'tmux'
 commands.
 
 
+This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week8-project_organization_and_UNIX_shell#file-manipulation) co-authored by Shannon Joslin for GGG 298 at UC Davis.
+
+Learning objectives:
+
+- how to write and execute shell scripts
+- commands `if`, `for`, `basename`, `echo`
+- learning how to use multiple screens
+
+
+
+
 ## Getting started
 
-- log in to Farm account
+As per the instructions in [workshop
+3](connecting-to-remote-computers-with-ssh.html) and [workshop
+4](running-programs-on-remote-computers-and-retrieving-the-results.html),
+log into farm.cse.ucdavis.edu using your datalab-XX account.
+
+When you log in, your prompt should look like this:
+
+> ~~~
+> (base) datalab-09@farm:~$
+> ~~~
+
+If it doesn't, please alert a TA and we will help you out!
+
 
 
 
@@ -42,6 +65,7 @@ commands.
   - i.e., `./myscript.sh` vs. `bash myscript.sh`
 - run sets of commands in a script but not in loops yet - do that in section below
 
+> example with echo statement in a script?
 
 ### Bash script headers and permissions
 
@@ -50,103 +74,12 @@ commands.
   - `#!/bin/bash` header
 
 
-## Troubleshooting scripts
-
-- what happens on failure; `set -e` and `set -x`
-  - interpreting error messages
-  - as another example of `set` options, could mention adding `set -o noclobber` to prevent overwriting in bash script too (was mentioned in workshop 2 as a way to prevent overwriting `echo this is a file > file.txt` and `echo this is more text > file.txt`)
-
-### Practicing `set -e` in bash scripts
-
-> 1. download some small fastq files - currently using example MiSeq files from binder
-> 2. install some software (i.e., FastQC with `conda` or `mamba` --> these are covered in Workshop 5; remember to config channels!)
-> 3. loop through samples and run fastqc with bash script
-
-```
-# create output report directory
-mkdir ./data/fastqc_reports
-
-# create bash script using nano text editor
-# save and exit with ctrl-o, enter, ctrl-x on keyboard
-nano set_e.sh
-```
-
-Create a bash script with the following commands, this version includes `set -e`:
-
-```
-#!/bin/bash
-
-set -e
-
-OUTDIR='fastqc_reports'
-
-for i in ./data/MiSeq/*.fastq
-do
-   echo $i
-   fastqc $i -o $OUTDIR
-done
-```
-
-Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
-
-```
-for i in ./data/MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
-```
-
-This command runs the script:
-
-```
-bash set_e.sh
-```
-
-**CHALLENGE**
-
-1. What happens when you run the bash script above **with** and **without** the `set -e` option?
-2. There is an error in the bash script. How can you fix the script? (Bonus: try adding `set -x` to your bash script)
 
 
+> somewhere here - mini-section on variables
 
 
-
-
-
-## Conditions and loops
-
-### Conditions and If statements
-
-- an intro to scripts with conditions
-  - conditional operators in Unix (not all the same as other programming languages)
-  - if/then/else/elif statements > i.e., if file exists, do this. if file doesn't, do that.
-  - discuss indentation, or use `;`
-  - conditional statement structure ends with `fi`
-
-> (add demo here)
-
-Create a bash script called `ifs.sh` that uses if statements to compare 2 numbers:
-
-```
-#!/bin/bash
-
-a=40
-b=20
-
-if [ $a != $b ]
-then
-  echo 'a is not equal to b!'
-else
-  echo 'a is equal to b!'
-fi
-```
-
-Try replacing the `!=` operator with [other conditional operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm) (i.e., `==`). Be sure to edit the echo statements!
-
-
-**CHALLENGE**
-
-> (add exercise here)
-
-
-### `for` Loops
+## `for` Loops
 
 - intro to `for` loops in scripts
    - discuss indentation in loop structure, or use `;`
@@ -207,19 +140,151 @@ do
 done
 ```
 
+**Challenge**
 
-> (add demo/exercise here) --> maybe the examples from workshop 1 notes, but in a script this time
+> - run the same loop in a shell script ...?
+
+
+
+## Troubleshooting scripts
+
+- what happens on failure; `set -e` and `set -x`
+  - interpreting error messages
+  - as another example of `set` options, could mention adding `set -o noclobber` to prevent overwriting in bash script too (was mentioned in workshop 2 as a way to prevent overwriting `echo this is a file > file.txt` and `echo this is more text > file.txt`)
+
+
+### Practicing `set -e` in bash scripts
+
+> 1. download some small fastq files - currently using example MiSeq files from binder
+> 2. install some software (i.e., FastQC with `conda` or `mamba` --> these are covered in Workshop 5; remember to config channels!)
+> 3. loop through samples and run fastqc with bash script
+
+```
+# create output report directory
+mkdir ./data/fastqc_reports
+
+# create bash script using nano text editor
+# save and exit with ctrl-o, enter, ctrl-x on keyboard
+nano set_e.sh
+```
+
+Create a bash script with the following commands, this version includes `set -e`:
+
+```
+#!/bin/bash
+
+set -e
+
+OUTDIR='fastqc_reports'
+
+for i in ./data/MiSeq/*.fastq
+do
+   echo $i
+   fastqc $i -o $OUTDIR
+done
+```
+
+Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
+
+```
+for i in ./data/MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
+```
+
+This command runs the script:
+
+```
+bash set_e.sh
+```
+
+**CHALLENGE**
+
+1. What happens when you run the bash script above **with** and **without** the `set -e` option?
+2. There is an error in the bash script. How can you fix the script? (Bonus: try adding `set -x` to your bash script)
 
 
 
 
-#### Running scripts in a loop
+
+## If statements
+
+- an intro to scripts with conditions
+  - conditional operators in Unix (not all the same as other programming languages)
+  - if/then/else/elif statements > i.e., if file exists, do this. if file doesn't, do that.
+  - discuss indentation, or use `;`
+  - conditional statement structure ends with `fi`
+
+```
+for i in *
+do
+   if [ -f $i ]; then
+      echo $i is a file
+   elif [ -d $i ]; then
+      echo $i is a directory
+   fi
+done
+```
+
+but what the heck is this `[ ]` notation? That's actually running the 'test' command; try `help test | less` to see the docs. This is a weird syntax that lets you do all sorts of useful things with files -- I usually use it to get rid of empty files.
+
+```
+touch emptyfile.txt
+```
+
+to create an empty file, and then::
+
+```
+for i in *
+do
+   if [ \! -s $i ]; then
+      echo rm $i
+   fi
+done
+```
+
+...and as you can see here, I'm using '!' to say 'not'. (Why do I need to put a backslash in front of it, though??)
+
+
+
+
+
+
+
+Create a bash script called `ifs.sh` that uses if statements to compare 2 numbers:
+
+```
+#!/bin/bash
+
+a=40
+b=20
+
+if [ $a != $b ]
+then
+  echo 'a is not equal to b!'
+else
+  echo 'a is equal to b!'
+fi
+```
+
+**Question**
+
+Try replacing the `!=` operator with [other conditional operators](https://www.tutorialspoint.com/unix/unix-basic-operators.htm) (i.e., `==`). Be sure to edit the echo statements!
+
+
+
+
+
+
+
+### Running scripts in a loop
 
 - we can run loops in scripts AND scripts in loops!
 
 
-> (add demo/exercise here)
+> (add demo/exercise here for running script in loop)
 
+
+
+> below stuff is out of place, move somewhere
 
 - discuss using arguments for scripts
    - `$` and the number assigns the argument a position in the line of code.

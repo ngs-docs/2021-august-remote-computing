@@ -130,11 +130,10 @@ what-is-a-script
 automating-commands-by-putting-them-in-a-text-file
 running-scripts-with-bash
 bash-script-headers-and-permissions
+for-loops
 troubleshooting-scripts
 practicing-set--e-in-bash-scripts
-conditions-and-loops
-conditions-and-if-statements
-for-loops
+if-statements
 running-scripts-in-a-loop
 multiple-screens
 concluding-thoughts-1
