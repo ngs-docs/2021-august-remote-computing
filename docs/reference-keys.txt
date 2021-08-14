@@ -99,6 +99,7 @@ creating-your-first-environment-installing-csvtk
 what-is-a-conda-environment
 installation
 csvtk-in-a-bit-more-detail
+where-is-the-software-coming-from
 digression-there-are-many-ways-to-install-software
 installing-more-software-in-your-current-environment
 finding-and-specifying-versions
