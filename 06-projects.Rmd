@@ -5,6 +5,8 @@ organizing your projects so that you can track inputs, outputs, and
 processing scripts over time, and keep yourself organized as your
 projects evolve.
 
+This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/blob/latest/Week8-project_organization_and_UNIX_shell/README.md) co-authored by Shannon Joslin for GGG 298 at UC Davis.
+
 ## Learning Objectives
 
 By the end of this lesson, students will:
@@ -165,9 +167,10 @@ and see that it contains the right text.
 
 The trick is often to find the right URL to get the raw text link.
 For example, if you go to a GitHub link, like
-https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md
-if you run curl on this you will get the formatted Web file, which isn't
-really what you want.
+>https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md
+and you run curl on this you will get the formatted Web file, which isn't
+generally what you want.
+
 What you want for GitHub files is the 'Raw' link - try clicking on that.
 This is now the text file, and you can use curl on it --
 ```
@@ -231,12 +234,22 @@ The "ride share" vs "personal car" analogy is fairly apt here, actually :).
 
 ## Thinking about data science projects!
 
+The next sections all talk about configuring your data and directories
+so that you can track your work.
+
+This is because, fundamentally, we use computers to first _explore_ data
+sets, before refining and producing.
+
 ![Figure 1 from Stoudt et al., 2021](proj-journal.pcbi.1008770.g001.PNG)
 
-For further discussion and details, I highly recommend
+So we need to organize our projects for iteration and tracking results
+over time - potentially months, or years. And that's what the next few
+sections will be about.
+
+For more discussion and details, I highly recommend
 [Principles for data analysis workflows, Stoudt et al., 2021](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008770), which is the best exploration of real data science practice I've yet seen. (Conflict alert: I was a reviewer :)
 
-## a rough bioinformatics workflow
+## Example: a rough bioinformatics workflow
 
 
 ![a bioinformatics workflow](proj-workflow.png)
@@ -250,15 +263,14 @@ When they've sequenced your samples they will hold your sequencing data on eithe
 
 
 ### Downloading data
-To download your data from slims **onto a cluster** (by using slurm) follow [these directions](https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md).
 
-Luckily for this class we don't have data to download from the farm, so we'll be grabbing some from [OSF](https://osf.io/), an open science framework that can host small amounts of data (5Gb limit).
+We'll be grabbing some from [OSF](https://osf.io/), an open science framework that can host small amounts of data (5Gb limit).
 
 Let's setup a directory to work from and download some data:
 
 ```
-mkdir -p ~/298class8
-cd ~/298class8
+mkdir -p ~/seqdata
+cd ~/seqdata
 curl -L https://osf.io/srdhb/download -o mini_Alca-torda.tar.gz
 tar -xvf mini_Alca-torda.tar.gz
 cd mini_A-torda
@@ -294,7 +306,7 @@ less \@mini_A-torda.md5
 
 (press <kbd>Q</kbd> to exit)
 
-We can _check_ a list of md5sum's conatined in a file with the `-c` flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.
+We can _check_ a list of md5sums contained in a file with the `-c` flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.
 
 ```
 md5sum -c \@mini_A-torda.md5
@@ -302,11 +314,11 @@ md5sum -c \@mini_A-torda.md5
 
 But if we navigate into the `data/` directory we can see there is a `mini-chr1.fna.gz` file there too. Are they the same?
 
-**CHALLENGE:** Determine if the two `mini-chr1.fna.gz` scripts are the same.
+**CHALLENGE:** Determine if the two `mini-chr1.fna.gz` files are the same.
 
-Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sum's with your data. If they do not, email to request them!)
+Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)
 
-We can also make a list of md5sum's for a group of files:
+We can also make a list of md5sums for a group of files:
 
 ```
 cd ~/298class8/mini_A-torda

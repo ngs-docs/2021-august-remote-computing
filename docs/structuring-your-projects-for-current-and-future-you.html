@@ -264,7 +264,7 @@
 <li class="chapter" data-level="6.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#dealing-with-files-some-recommendations"><i class="fa fa-check"></i><b>6.4</b> Dealing with files: some recommendations</a></li>
 <li class="chapter" data-level="6.5" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#farm-vs-cloud-binder-etc."><i class="fa fa-check"></i><b>6.5</b> Farm vs cloud, binder, etc.</a></li>
 <li class="chapter" data-level="6.6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#thinking-about-data-science-projects"><i class="fa fa-check"></i><b>6.6</b> Thinking about data science projects!</a></li>
-<li class="chapter" data-level="6.7" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#a-rough-bioinformatics-workflow"><i class="fa fa-check"></i><b>6.7</b> a rough bioinformatics workflow</a></li>
+<li class="chapter" data-level="6.7" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#example-a-rough-bioinformatics-workflow"><i class="fa fa-check"></i><b>6.7</b> Example: a rough bioinformatics workflow</a></li>
 <li class="chapter" data-level="6.8" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#sending-and-receiving-data"><i class="fa fa-check"></i><b>6.8</b> Sending and Receiving Data</a>
 <ul>
 <li class="chapter" data-level="6.8.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#downloading-data"><i class="fa fa-check"></i><b>6.8.1</b> Downloading data</a></li>
@@ -325,6 +325,7 @@
 organizing your projects so that you can track inputs, outputs, and
 processing scripts over time, and keep yourself organized as your
 projects evolve.</p>
+<p>This lesson was adopted from <a href="https://github.com/ngs-docs/2021-GGG298/blob/latest/Week8-project_organization_and_UNIX_shell/README.md">a lesson</a> co-authored by Shannon Joslin for GGG 298 at UC Davis.</p>
 <div id="learning-objectives" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Learning Objectives</h2>
 <p>By the end of this lesson, students will:</p>
@@ -439,10 +440,10 @@ curl -L -O https://www.gutenberg.org/files/98/98-0.txt</code></pre>
 <p>and see that it contains the right text.</p>
 <p>The trick is often to find the right URL to get the raw text link.
 For example, if you go to a GitHub link, like
-<a href="https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md" class="uri">https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md</a>
-if you run curl on this you will get the formatted Web file, which isn’t
-really what you want.
-What you want for GitHub files is the ‘Raw’ link - try clicking on that.
+&gt;<a href="https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md" class="uri">https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md</a>
+and you run curl on this you will get the formatted Web file, which isn’t
+generally what you want.</p>
+<p>What you want for GitHub files is the ‘Raw’ link - try clicking on that.
 This is now the text file, and you can use curl on it –</p>
 <pre><code>curl -L -O https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md</code></pre>
 <p>Note here that the <code>-L</code> tells curl to follow Web redirects, which can be important; and <code>-O</code> says save the file under the name at the end of the URL. You can omit <code>-O</code> and it will send the file to stdout:</p>
@@ -497,15 +498,22 @@ cost of sometimes having to worry about what other users are doing.</p>
 </div>
 <div id="thinking-about-data-science-projects" class="section level2" number="6.6">
 <h2><span class="header-section-number">6.6</span> Thinking about data science projects!</h2>
+<p>The next sections all talk about configuring your data and directories
+so that you can track your work.</p>
+<p>This is because, fundamentally, we use computers to first <em>explore</em> data
+sets, before refining and producing.</p>
 <div class="figure">
 <img src="proj-journal.pcbi.1008770.g001.PNG" alt="" />
 <p class="caption">Figure 1 from Stoudt et al., 2021</p>
 </div>
-<p>For further discussion and details, I highly recommend
+<p>So we need to organize our projects for iteration and tracking results
+over time - potentially months, or years. And that’s what the next few
+sections will be about.</p>
+<p>For more discussion and details, I highly recommend
 <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008770">Principles for data analysis workflows, Stoudt et al., 2021</a>, which is the best exploration of real data science practice I’ve yet seen. (Conflict alert: I was a reviewer :)</p>
 </div>
-<div id="a-rough-bioinformatics-workflow" class="section level2" number="6.7">
-<h2><span class="header-section-number">6.7</span> a rough bioinformatics workflow</h2>
+<div id="example-a-rough-bioinformatics-workflow" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> Example: a rough bioinformatics workflow</h2>
 <div class="figure">
 <img src="proj-workflow.png" alt="" />
 <p class="caption">a bioinformatics workflow</p>
@@ -517,11 +525,10 @@ cost of sometimes having to worry about what other users are doing.</p>
 <p>When they’ve sequenced your samples they will hold your sequencing data on either <a href="https://slims.bioinformatics.ucdavis.edu/">SLIMS lab information management system</a> for three months after the sequencing run finishes or <a href="https://bioshare.bioinformatics.ucdavis.edu/">bioshare</a> for an undetermined amount of time. Do yourself a favor and download &amp; back your new sequencing data up to a hard disk IMMEDIATELY.</p>
 <div id="downloading-data" class="section level3" number="6.8.1">
 <h3><span class="header-section-number">6.8.1</span> Downloading data</h3>
-<p>To download your data from slims <strong>onto a cluster</strong> (by using slurm) follow <a href="https://github.com/shannonekj/cluster_computing/blob/master/How2s/How_To-download_data.md">these directions</a>.</p>
-<p>Luckily for this class we don’t have data to download from the farm, so we’ll be grabbing some from <a href="https://osf.io/">OSF</a>, an open science framework that can host small amounts of data (5Gb limit).</p>
+<p>We’ll be grabbing some from <a href="https://osf.io/">OSF</a>, an open science framework that can host small amounts of data (5Gb limit).</p>
 <p>Let’s setup a directory to work from and download some data:</p>
-<pre><code>mkdir -p ~/298class8
-cd ~/298class8
+<pre><code>mkdir -p ~/seqdata
+cd ~/seqdata
 curl -L https://osf.io/srdhb/download -o mini_Alca-torda.tar.gz
 tar -xvf mini_Alca-torda.tar.gz
 cd mini_A-torda

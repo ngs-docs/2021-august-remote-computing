@@ -127,7 +127,7 @@ retrieving-remote-files-from-web-sites
 dealing-with-files-some-recommendations
 farm-vs-cloud-binder-etc.
 thinking-about-data-science-projects
-a-rough-bioinformatics-workflow
+example-a-rough-bioinformatics-workflow
 sending-and-receiving-data
 downloading-data
 storing-data
