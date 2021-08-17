@@ -16,16 +16,21 @@ Learning objectives:
 - learning how to use multiple screens
 
 
+> to add:
+> - subsets and renaming file names; data forensics - check subsets of your data for potential formatting issues
+> - brief mention of wildcards...
+> - does "how to conduct long-running analyses" refer to screen/tmux?
+
 
 ## What is a script?
 
-- intro to what a "shell script" is
+- it's like writing down a recipe of commands for the computer to execute
    - we're teaching how to make shell scripts today, but scripts can be in any programming language (R, python, etc.)
 - why/when we want to use scripts vs. typing commands directly at the terminal
    - automate: don't have to remember all the commands and type then one at a time
    - scale up: can use same script for multiple samples, multiple processes
-   - reproduce/share: easier to reproduce or share analyses because it's all written down
-   - ...
+   - reproduce & share: easier to reproduce or share analyses because it's all written down
+
 
 
 ## Getting started

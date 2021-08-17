@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-16" />
+<meta name="date" content="2021-08-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -324,10 +324,16 @@ commands.</p>
 <li>commands <code>if</code>, <code>for</code>, <code>basename</code>, <code>echo</code></li>
 <li>learning how to use multiple screens</li>
 </ul>
+<blockquote>
+<p>to add:
+- subsets and renaming file names; data forensics - check subsets of your data for potential formatting issues
+- brief mention of wildcards…
+- does “how to conduct long-running analyses” refer to screen/tmux?</p>
+</blockquote>
 <div id="what-is-a-script" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> What is a script?</h2>
 <ul>
-<li>intro to what a “shell script” is
+<li>it’s like writing down a recipe of commands for the computer to execute
 <ul>
 <li>we’re teaching how to make shell scripts today, but scripts can be in any programming language (R, python, etc.)</li>
 </ul></li>
@@ -335,8 +341,7 @@ commands.</p>
 <ul>
 <li>automate: don’t have to remember all the commands and type then one at a time</li>
 <li>scale up: can use same script for multiple samples, multiple processes</li>
-<li>reproduce/share: easier to reproduce or share analyses because it’s all written down</li>
-<li>…</li>
+<li>reproduce &amp; share: easier to reproduce or share analyses because it’s all written down</li>
 </ul></li>
 </ul>
 </div>
@@ -398,6 +403,12 @@ bash first_script.sh</code></pre>
 </div>
 <div id="for-loops" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> <code>for</code> Loops</h2>
+<p>a loop to create list of md5sum fingerprints for the mini-A-torda .fna.gz files:</p>
+<pre><code>(base) datalab-02@farm:~/seqdata/mini_A-torda$ for i in *.fna.gz; do echo md5sum $i; done
+
+# now, let&#39;s append those md5sum numbers to a text file
+(base) datalab-02@farm:~/seqdata/mini_A-torda$ for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt;done
+(base) datalab-02@farm:~/seqdata/mini_A-torda$ less my_md5sum_list.txt</code></pre>
 <ul>
 <li>intro to <code>for</code> loops in scripts
 <ul>
