@@ -3418,11 +3418,13 @@ UC Davis has a number of clusters available to students, depending on your depar
 These are cloud computing services provided by Amazon (what don't they provide!?) We'll be showing you how to use Amazon for [workshop 11](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html).
 
 **Pros:**
+
 - Only pay for what you use
 - Can have temporary access to supercomputers which _could_ end up costing less than consistent access on a cluster
 - great for short-term massive compute needs, if you have the $$
 
 **Cons:**
+
 - no long term storage...unless you want to pay for that too
 - must build everything yourself
 - no help desk
