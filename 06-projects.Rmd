@@ -68,6 +68,8 @@ get README.md
 -- I use this quite a bit when I want to be able to use 'cd' and 'ls'
 to find the right file to download.
 
+Use `quit` to exit out of SFTP.
+
 ### `zip -r` to create collections of files
 
 Zip files work on pretty much all systems, and are handy ways to transport
@@ -91,7 +93,7 @@ unzip -v 2cities.zip
 and to unpack it:
 ```
 cd ~/
-unzip 2cities.zip
+unzip 2021-remote-computing-binder/2cities.zip
 ```
 which will create a new directory `~/2cities/`.
 
@@ -218,7 +220,7 @@ ways during [workshop
 - Pick any book from https://www.gutenberg.org/
 - Find the URL for the plain text
 - Copy the URL
-- Use `wget` to download it to farm
+- Use `curl` to download it to farm
 - Look at it with `head`
 
 ## Dealing with files: some recommendations
