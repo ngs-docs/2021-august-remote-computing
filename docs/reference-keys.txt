@@ -125,12 +125,13 @@ discussion-items
 in-summary
 structuring-your-projects-for-current-and-future-you
 automating-your-analyses-and-executing-long-running-analyses-on-remote-computers
-getting-started
 what-is-a-script
+getting-started
 automating-commands-by-putting-them-in-a-text-file
 running-scripts-with-bash
 bash-script-headers-and-permissions
 for-loops
+variables
 troubleshooting-scripts
 practicing-set--e-in-bash-scripts
 if-statements

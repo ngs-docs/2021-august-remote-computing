@@ -17,6 +17,16 @@ Learning objectives:
 
 
 
+## What is a script?
+
+- intro to what a "shell script" is
+   - we're teaching how to make shell scripts today, but scripts can be in any programming language (R, python, etc.)
+- why/when we want to use scripts vs. typing commands directly at the terminal
+   - automate: don't have to remember all the commands and type then one at a time
+   - scale up: can use same script for multiple samples, multiple processes
+   - reproduce/share: easier to reproduce or share analyses because it's all written down
+   - ...
+
 
 ## Getting started
 
@@ -33,26 +43,9 @@ When you log in, your prompt should look like this:
 
 If it doesn't, please alert a TA and we will help you out!
 
-
-
-
-## What is a script?
-
-- intro to what a "shell script" is
-   - we're teaching how to make shell scripts today, but scripts can be in any programming language (R, python, etc.)
-- why/when we want to use scripts vs. typing commands directly at the terminal
-   - automate: don't have to remember all the commands and type then one at a time
-   - scale up: can use same script for multiple samples, multiple processes
-   - reproduce/share: easier to reproduce or share analyses because it's all written down
-   - ...
-
-
-
-
-
 ## Automating commands by putting them in a text file
 
-- can demo same set of commands run in terminal vs. putting into a text file
+- demo same set of commands run in terminal vs. putting into a text file
   - mention how to look up terminal history (`history`)
   - review content from workshop 2 on creating & modifying text files
   - in practice, the process is: make file, edit, save, test run, edit, save, re-run, ...
@@ -65,7 +58,26 @@ If it doesn't, please alert a TA and we will help you out!
   - i.e., `./myscript.sh` vs. `bash myscript.sh`
 - run sets of commands in a script but not in loops yet - do that in section below
 
-> example with echo statement in a script?
+
+
+At the terminal, we can type:
+```
+echo Hello, this is the terminal!
+```
+
+In a script, we can do the same thing:
+```
+# create a script file with nano
+nano first_script.sh
+
+# add this to the script
+echo Hello this is a script!
+
+# execute the script
+bash first_script.sh
+```
+
+
 
 ### Bash script headers and permissions
 
@@ -74,9 +86,6 @@ If it doesn't, please alert a TA and we will help you out!
   - `#!/bin/bash` header
 
 
-
-
-> somewhere here - mini-section on variables
 
 
 ## `for` Loops
@@ -118,6 +127,8 @@ done
 
 What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command.
 
+_Side note:_ you may see backquotes used instead of `$(...)`. It does the same thing but is trickier to get right, so we teach `$(...)` instead of `` `...` ``.
+
 Now we have the old name (`$i`) and the new name (`$newname`) and we're ready to write the rename command --
 
 ```
@@ -128,21 +139,51 @@ do
 done
 ```
 
-***Question:*** why did we put `echo` here?
+**Question:** why did we put `echo` here?
 
-Now that we're pretty sure it all looks good, let's run it for realz:
 
-```
-for i in *.fastq
-do
-   newname=$(basename $i .fastq).fq
-   mv $i $newname
-done
-```
+**not sure want to run this - because then it's harder to go back to original file name...**
+
+>Now that we're pretty sure it all looks good, let's run it for realz:
+
+>```
+>for i in *.fastq
+>do
+>   newname=$(basename $i .fastq).fq
+>   mv $i $newname
+>done
+>```
 
 **Challenge**
 
-> - run the same loop in a shell script ...?
+Run the same loop in a shell script called `rename_file.sh`.
+
+### Variables:
+
+You can use either $varname or ${varname}.  The latter is useful when you want to construct a new filename, e.g.
+
+```
+MY${varname}SUBSET
+```
+
+would expand ${varname} and then put MY .. SUBSET on either end, while
+
+```
+MY$varnameSUBSET
+```
+
+would try to put MY in front of $varnameSUBSET which won't work.
+
+(Unknown/uncreated variables are empty.)
+
+NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both _replace_ but they do different things. Think of `$` here as meaning, "replace me with something".
+
+
+
+**Question:** We used "\$varname" above - what happens if we use single quotes - e.g. '$varname'?
+
+(Variables are interpreted inside of "", and not inside of ''.)
+
 
 
 
@@ -213,6 +254,13 @@ bash set_e.sh
   - discuss indentation, or use `;`
   - conditional statement structure ends with `fi`
 
+
+Let’s go back to the ‘data’ directory and play around with loops some more.
+
+
+
+- here, we're wrapping if statements in a for loop  
+
 ```
 for i in *
 do
@@ -230,7 +278,7 @@ but what the heck is this `[ ]` notation? That's actually running the 'test' com
 touch emptyfile.txt
 ```
 
-to create an empty file, and then::
+to create an empty file, and then:
 
 ```
 for i in *
@@ -277,18 +325,12 @@ Try replacing the `!=` operator with [other conditional operators](https://www.t
 
 ### Running scripts in a loop
 
-- we can run loops in scripts AND scripts in loops!
+We can run loops in scripts AND scripts in loops!
 
+Let's edit the ifs.sh script and give it arguments. Instead of editing the values for "a" and "b" in the script, we'll create "a" and "b" arguments so we can change them when executing the script.
 
-> (add demo/exercise here for running script in loop)
+Here's how we change the script - `$` and the number assigns the argument a position in the line of code.
 
-
-
-> below stuff is out of place, move somewhere
-
-- discuss using arguments for scripts
-   - `$` and the number assigns the argument a position in the line of code.
-   - i.e., for the `ifs.sh` script, would change to:
 
 ```
 #!/bin/bash
@@ -310,15 +352,16 @@ After the `bash <script name>`, the syntax now assigns the 1st element (`$1`) to
 bash ifs.sh 40 20
 ```
 
-
+**Challenge:** How might you put this script in a `for` loop?
 
 
 
 
 ## Multiple screens
 
-- say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?
-- introducing `screen` and `tmux`  --> demo utility (i.e., here are these cool tools and when you might want to use them!)
+Say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?
+
+- introducing `screen` and `tmux`  --> demo utility
    - when do you use screen vs. tmux? is it like choosing a text editor?
 
 Basic commands for `screen` and `tmux` below. They both have keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
@@ -338,6 +381,12 @@ end session | `exit`  | `tmux kill-session -t <session name>`
 
 (reference how today's material will lead into upcoming workshops) - we'll return to the concept of using scripts to execute/document analysis workflows in workshops 9 (Snakemake) and 10 (Using SLURM on HPC)
 
+* break the task down into multiple commands
+* put commands things in shell scripts, run in serial
+* use intermediate i/o files to figure out what's going on!
+* use echo to debug!
+
+(But we'll also teach you another way to do automation with snakemake.)
 
 
 
@@ -382,4 +431,22 @@ OUTDIR='fastqc_reports'
 
 # correct path
 OUTDIR='./data/fastqc_reports'
+```
+
+*Answer for ifs.sh in a loop question*
+
+This is one approach:
+```
+for i in {18..21}
+do
+   bash ifs.sh $i 20
+done
+```
+
+The output will look like this:
+```
+a is not equal to b!
+a is not equal to b!
+a is equal to b!
+a is not equal to b!
 ```

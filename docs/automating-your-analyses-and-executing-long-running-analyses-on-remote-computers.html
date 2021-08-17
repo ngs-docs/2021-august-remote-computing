@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-13" />
+<meta name="date" content="2021-08-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -262,14 +262,17 @@
 <li class="chapter" data-level="6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html"><i class="fa fa-check"></i><b>6</b> Structuring your projects for current and future you</a></li>
 <li class="chapter" data-level="7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><i class="fa fa-check"></i><b>7</b> Automating your analyses and executing long-running analyses on remote computers</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#getting-started"><i class="fa fa-check"></i><b>7.1</b> Getting started</a></li>
-<li class="chapter" data-level="7.2" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#what-is-a-script"><i class="fa fa-check"></i><b>7.2</b> What is a script?</a></li>
+<li class="chapter" data-level="7.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#what-is-a-script"><i class="fa fa-check"></i><b>7.1</b> What is a script?</a></li>
+<li class="chapter" data-level="7.2" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#getting-started"><i class="fa fa-check"></i><b>7.2</b> Getting started</a></li>
 <li class="chapter" data-level="7.3" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#automating-commands-by-putting-them-in-a-text-file"><i class="fa fa-check"></i><b>7.3</b> Automating commands by putting them in a text file</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-with-bash"><i class="fa fa-check"></i><b>7.3.1</b> Running scripts with <code>bash</code></a></li>
 <li class="chapter" data-level="7.3.2" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#bash-script-headers-and-permissions"><i class="fa fa-check"></i><b>7.3.2</b> Bash script headers and permissions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#for-loops"><i class="fa fa-check"></i><b>7.4</b> <code>for</code> Loops</a></li>
+<li class="chapter" data-level="7.4" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#for-loops"><i class="fa fa-check"></i><b>7.4</b> <code>for</code> Loops</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#variables"><i class="fa fa-check"></i><b>7.4.1</b> Variables:</a></li>
+</ul></li>
 <li class="chapter" data-level="7.5" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#troubleshooting-scripts"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting scripts</a>
 <ul>
 <li class="chapter" data-level="7.5.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#practicing-set--e-in-bash-scripts"><i class="fa fa-check"></i><b>7.5.1</b> Practicing <code>set -e</code> in bash scripts</a></li>
@@ -321,20 +324,8 @@ commands.</p>
 <li>commands <code>if</code>, <code>for</code>, <code>basename</code>, <code>echo</code></li>
 <li>learning how to use multiple screens</li>
 </ul>
-<div id="getting-started" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Getting started</h2>
-<p>As per the instructions in <a href="connecting-to-remote-computers-with-ssh.html">workshop
-3</a> and <a href="running-programs-on-remote-computers-and-retrieving-the-results.html">workshop
-4</a>,
-log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
-<p>When you log in, your prompt should look like this:</p>
-<blockquote>
-<pre><code>(base) datalab-09@farm:~$</code></pre>
-</blockquote>
-<p>If it doesn’t, please alert a TA and we will help you out!</p>
-</div>
-<div id="what-is-a-script" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> What is a script?</h2>
+<div id="what-is-a-script" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> What is a script?</h2>
 <ul>
 <li>intro to what a “shell script” is
 <ul>
@@ -349,10 +340,22 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 </ul></li>
 </ul>
 </div>
+<div id="getting-started" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Getting started</h2>
+<p>As per the instructions in <a href="connecting-to-remote-computers-with-ssh.html">workshop
+3</a> and <a href="running-programs-on-remote-computers-and-retrieving-the-results.html">workshop
+4</a>,
+log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
+<p>When you log in, your prompt should look like this:</p>
+<blockquote>
+<pre><code>(base) datalab-09@farm:~$</code></pre>
+</blockquote>
+<p>If it doesn’t, please alert a TA and we will help you out!</p>
+</div>
 <div id="automating-commands-by-putting-them-in-a-text-file" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Automating commands by putting them in a text file</h2>
 <ul>
-<li>can demo same set of commands run in terminal vs. putting into a text file
+<li>demo same set of commands run in terminal vs. putting into a text file
 <ul>
 <li>mention how to look up terminal history (<code>history</code>)</li>
 <li>review content from workshop 2 on creating &amp; modifying text files</li>
@@ -370,9 +373,17 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 </ul></li>
 <li>run sets of commands in a script but not in loops yet - do that in section below</li>
 </ul>
-<blockquote>
-<p>example with echo statement in a script?</p>
-</blockquote>
+<p>At the terminal, we can type:</p>
+<pre><code>echo Hello, this is the terminal!</code></pre>
+<p>In a script, we can do the same thing:</p>
+<pre><code># create a script file with nano
+nano first_script.sh
+
+# add this to the script
+echo Hello this is a script!
+
+# execute the script
+bash first_script.sh</code></pre>
 </div>
 <div id="bash-script-headers-and-permissions" class="section level3" number="7.3.2">
 <h3><span class="header-section-number">7.3.2</span> Bash script headers and permissions</h3>
@@ -383,9 +394,6 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 <li><code>#!/bin/bash</code> header</li>
 </ul></li>
 </ul>
-<blockquote>
-<p>somewhere here - mini-section on variables</p>
-</blockquote>
 </div>
 </div>
 <div id="for-loops" class="section level2" number="7.4">
@@ -417,25 +425,39 @@ do
    echo $newname
 done</code></pre>
 <p>What <code>$( ... )</code> does is run the command in the middle, and then replace the <code>$( )</code> with the output of running the command.</p>
+<p><em>Side note:</em> you may see backquotes used instead of <code>$(...)</code>. It does the same thing but is trickier to get right, so we teach <code>$(...)</code> instead of <code>`...`</code>.</p>
 <p>Now we have the old name (<code>$i</code>) and the new name (<code>$newname</code>) and we’re ready to write the rename command –</p>
 <pre><code>for i in *.fastq
 do
    newname=$(basename $i .fastq).fq
    echo mv $i $newname
 done</code></pre>
-<p><strong><em>Question:</em></strong> why did we put <code>echo</code> here?</p>
+<p><strong>Question:</strong> why did we put <code>echo</code> here?</p>
+<p><strong>not sure want to run this - because then it’s harder to go back to original file name…</strong></p>
+<blockquote>
 <p>Now that we’re pretty sure it all looks good, let’s run it for realz:</p>
+</blockquote>
+<blockquote>
 <pre><code>for i in *.fastq
 do
-   newname=$(basename $i .fastq).fq
-   mv $i $newname
+  newname=$(basename $i .fastq).fq
+  mv $i $newname
 done</code></pre>
-<p><strong>Challenge</strong></p>
-<blockquote>
-<ul>
-<li>run the same loop in a shell script …?</li>
-</ul>
 </blockquote>
+<p><strong>Challenge</strong></p>
+<p>Run the same loop in a shell script called <code>rename_file.sh</code>.</p>
+<div id="variables" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Variables:</h3>
+<p>You can use either $varname or ${varname}. The latter is useful when you want to construct a new filename, e.g.</p>
+<pre><code>MY${varname}SUBSET</code></pre>
+<p>would expand ${varname} and then put MY .. SUBSET on either end, while</p>
+<pre><code>MY$varnameSUBSET</code></pre>
+<p>would try to put MY in front of $varnameSUBSET which won’t work.</p>
+<p>(Unknown/uncreated variables are empty.)</p>
+<p>NOTE: <code>${varname}</code> is quite different from <code>$(expression)</code>! The former is replaced by the value assigned to <code>varname</code>; the latter is replaced by the result of running <code>expression</code>. So, both <em>replace</em> but they do different things. Think of <code>$</code> here as meaning, “replace me with something”.</p>
+<p><strong>Question:</strong> We used “$varname” above - what happens if we use single quotes - e.g. ‘$varname’?</p>
+<p>(Variables are interpreted inside of ““, and not inside of ’’.)</p>
+</div>
 </div>
 <div id="troubleshooting-scripts" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Troubleshooting scripts</h2>
@@ -495,6 +517,10 @@ done</code></pre>
 <li>conditional statement structure ends with <code>fi</code></li>
 </ul></li>
 </ul>
+<p>Let’s go back to the ‘data’ directory and play around with loops some more.</p>
+<ul>
+<li>here, we’re wrapping if statements in a for loop</li>
+</ul>
 <pre><code>for i in *
 do
    if [ -f $i ]; then
@@ -505,7 +531,7 @@ do
 done</code></pre>
 <p>but what the heck is this <code>[ ]</code> notation? That’s actually running the ‘test’ command; try <code>help test | less</code> to see the docs. This is a weird syntax that lets you do all sorts of useful things with files – I usually use it to get rid of empty files.</p>
 <pre><code>touch emptyfile.txt</code></pre>
-<p>to create an empty file, and then::</p>
+<p>to create an empty file, and then:</p>
 <pre><code>for i in *
 do
    if [ \! -s $i ]; then
@@ -529,22 +555,9 @@ fi</code></pre>
 <p>Try replacing the <code>!=</code> operator with <a href="https://www.tutorialspoint.com/unix/unix-basic-operators.htm">other conditional operators</a> (i.e., <code>==</code>). Be sure to edit the echo statements!</p>
 <div id="running-scripts-in-a-loop" class="section level3" number="7.6.1">
 <h3><span class="header-section-number">7.6.1</span> Running scripts in a loop</h3>
-<ul>
-<li>we can run loops in scripts AND scripts in loops!</li>
-</ul>
-<blockquote>
-<p>(add demo/exercise here for running script in loop)</p>
-</blockquote>
-<blockquote>
-<p>below stuff is out of place, move somewhere</p>
-</blockquote>
-<ul>
-<li>discuss using arguments for scripts
-<ul>
-<li><code>$</code> and the number assigns the argument a position in the line of code.</li>
-<li>i.e., for the <code>ifs.sh</code> script, would change to:</li>
-</ul></li>
-</ul>
+<p>We can run loops in scripts AND scripts in loops!</p>
+<p>Let’s edit the ifs.sh script and give it arguments. Instead of editing the values for “a” and “b” in the script, we’ll create “a” and “b” arguments so we can change them when executing the script.</p>
+<p>Here’s how we change the script - <code>$</code> and the number assigns the argument a position in the line of code.</p>
 <pre><code>#!/bin/bash
 
 a=$1
@@ -558,13 +571,14 @@ else
 fi</code></pre>
 <p>After the <code>bash &lt;script name&gt;</code>, the syntax now assigns the 1st element (<code>$1</code>) to <code>40</code> and the 2nd element (<code>$2</code>) to <code>20</code>. This means you can enter different numbers when executing the script, without needing to edit the script file at all!</p>
 <pre><code>bash ifs.sh 40 20</code></pre>
+<p><strong>Challenge:</strong> How might you put this script in a <code>for</code> loop?</p>
 </div>
 </div>
 <div id="multiple-screens" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Multiple screens</h2>
+<p>Say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?</p>
 <ul>
-<li>say you want to run multiple scripts at once, or you want to put your computer to sleep and check back later, what can you do?</li>
-<li>introducing <code>screen</code> and <code>tmux</code> –&gt; demo utility (i.e., here are these cool tools and when you might want to use them!)
+<li>introducing <code>screen</code> and <code>tmux</code> –&gt; demo utility
 <ul>
 <li>when do you use screen vs. tmux? is it like choosing a text editor?</li>
 </ul></li>
@@ -615,6 +629,13 @@ fi</code></pre>
 <div id="concluding-thoughts-1" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> Concluding thoughts</h2>
 <p>(reference how today’s material will lead into upcoming workshops) - we’ll return to the concept of using scripts to execute/document analysis workflows in workshops 9 (Snakemake) and 10 (Using SLURM on HPC)</p>
+<ul>
+<li>break the task down into multiple commands</li>
+<li>put commands things in shell scripts, run in serial</li>
+<li>use intermediate i/o files to figure out what’s going on!</li>
+<li>use echo to debug!</li>
+</ul>
+<p>(But we’ll also teach you another way to do automation with snakemake.)</p>
 </div>
 <div id="appendix-exercise-answers" class="section level2" number="7.9">
 <h2><span class="header-section-number">7.9</span> Appendix: exercise answers</h2>
@@ -645,6 +666,17 @@ OUTDIR=&#39;fastqc_reports&#39;
 
 # correct path
 OUTDIR=&#39;./data/fastqc_reports&#39;</code></pre>
+<p><em>Answer for ifs.sh in a loop question</em></p>
+<p>This is one approach:</p>
+<pre><code>for i in {18..21}
+do
+   bash ifs.sh $i 20
+done</code></pre>
+<p>The output will look like this:</p>
+<pre><code>a is not equal to b!
+a is not equal to b!
+a is equal to b!
+a is not equal to b!</code></pre>
 
 </div>
 </div>
