@@ -117,6 +117,7 @@ discussion-items
 in-summary
 structuring-your-projects-for-current-and-future-you
 learning-objectives
+lesson-requirements
 transferring-files-around-efficiently
 recursive-scp-with--r
 sftp
@@ -125,11 +126,11 @@ working-with-.tar.gz-files
 probably-the-most-useful-advice-use-a-transfer-directory
 retrieving-remote-files-from-web-sites
 dealing-with-files-some-recommendations
-farm-vs-cloud-binder-etc.
+farm-vs-cloud
 thinking-about-data-science-projects
-example-a-rough-bioinformatics-workflow
+one-example-a-rough-bioinformatics-workflow
 sending-and-receiving-data
-downloading-data
+downloading-data---is-it-correct
 storing-data
 bioinformatics-what-do-i-back-up
 bioinformatics-how-big-should-i-expect-the-files-to-be
@@ -143,7 +144,7 @@ things-to-think-about
 naming-files
 prefixes
 file-endings
-looking-forward-to-the-next-few-workshops-working-with-data
+looking-forward-to-the-next-few-workshops-techniques-for-doing-data-science-on-remote-computers.
 additional-resources
 automating-your-analyses-and-executing-long-running-analyses-on-remote-computers
 keeping-track-of-your-files-with-version-control

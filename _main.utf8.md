@@ -2976,7 +2976,16 @@ By the end of this lesson, students will:
 * understand how to set up a data-driven project for tracking and proper iteration
 * know how to store and work with mass quantities of data
 * understand _why_ to setup projects in a specific manner
-* gain an ability to work with subsets of data to test run workflows
+* begin to plan file and directory names for their own workflows
+
+### Lesson requirements
+
+This lesson builds on [workshop 3](connecting-to-remote-computers-with-ssh.html) and [workshop 4](running-programs-on-remote-computers-and-retrieving-the-results.html).
+
+Before continuing, please:
+
+* be sure that you can log into farm.cse.ucdavis.edu with your datalab-XX account
+* do [pre-load some files into your account](connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account)
 
 ## Transferring files around efficiently
 
@@ -3128,7 +3137,9 @@ and see that it contains the right text.
 
 The trick is often to find the right URL to get the raw text link.
 For example, if you go to a GitHub link, like
+
 >https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md
+
 and you run curl on this you will get the formatted Web file, which isn't
 generally what you want.
 
@@ -3144,13 +3155,13 @@ curl -L https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2ci
 cat new-file.txt
 ```
 
-The really nice thing about this is that for _big_ files, the file will
-transfer directly between the hosting site and the remote computer.
-This is really handy for large sequencing data files that are located at
+**The really nice thing about this is that for _big_ files, the file will
+transfer directly between the hosting site and the remote computer.**
+This is really handy for e.g. large sequencing data files that are located at
 sequencing facility Websites - you don't have to download 100 GB files
 to your laptop and then transfer them from there to farm, or into the
 cloud, for example! (This is a big reason why cloud computing is really
-interesting for the NIH.)
+interesting for the NIH - less data transfer between distant computers for really big data sets!)
 
 Other than finding and copying the right URL, the other tricky thing
 that doesn't generalize is permission-restricted files. Briefly, since
@@ -3180,7 +3191,7 @@ Some short-hand rules I recommend for working with files on remote systems.
 - for managing small files that you create on a remote system, use version control ([workshop 8](keeping-track-of-your-files-with-version-control.html))
 - you can also configure Dropbox on Linux systems, but it burdens the system and it's also not a great idea to copy files that are probably private over to a shared system. I've also had some bad experiences with deleting my entire Dropbox by mistake... UNIX makes it a little too easy to operate on lots of files!
 
-## Farm vs cloud, binder, etc.
+## Farm vs cloud
 
 One of the main differences that you'll see over time is that there
 are "remote, shared" systems like farm, and "remove, private" systems
@@ -3191,7 +3202,17 @@ inefficient use of compute!) By contrast, "remote, shared" systems
 like HPCs and shared workstations can provide larger resources at the
 cost of sometimes having to worry about what other users are doing.
 
-The "ride share" vs "personal car" analogy is fairly apt here, actually :).
+The "ride share" vs "personal car" analogy is fairly apt here,
+actually :).  In shared cars, you have to worry about where other
+people want to go and accomodate them at least sometimes, but you can
+share purchase and maintenance costs. With personal cars, you bear
+the entire cost burden, but you don't have to coordinate with other
+people much.
+
+There are no simple answers as to what system to use, but I feel
+confident in asserting that if you have access to a shared compute
+cluster, you should start there and only consider expanding into the
+cloud once you know your needs.
 
 ## Thinking about data science projects!
 
@@ -3203,14 +3224,14 @@ sets, before refining and producing.
 
 ![Figure 1 from Stoudt et al., 2021](proj-journal.pcbi.1008770.g001.PNG)
 
-So we need to organize our projects for iteration and tracking results
-over time - potentially months, or years. And that's what the next few
-sections will be about.
+So we need to organize our projects for iteration, dead-ends, and
+tracking processes over time - potentially months, or years. And that's
+what the next few sections will be about.
 
 For more discussion and details, I highly recommend
 [Principles for data analysis workflows, Stoudt et al., 2021](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008770), which is the best exploration of real data science practice I've yet seen. (Conflict alert: I was a reviewer :)
 
-## Example: a rough bioinformatics workflow
+## One example: a rough bioinformatics workflow
 
 
 ![a bioinformatics workflow](proj-workflow.png)
@@ -3223,7 +3244,7 @@ Here at UC Davis most researchers sequence at the UC Davis [DNA Technologies Cor
 When they've sequenced your samples they will hold your sequencing data on either [SLIMS lab information management system](https://slims.bioinformatics.ucdavis.edu/) for three months after the sequencing run finishes or [bioshare](https://bioshare.bioinformatics.ucdavis.edu/) for an undetermined amount of time. Do yourself a favor and download & back your new sequencing data up to a hard disk IMMEDIATELY.
 
 
-### Downloading data
+### Downloading data - is it correct?
 
 We'll be grabbing some from [OSF](https://osf.io/), an open science framework that can host small amounts of data (5Gb limit).
 
@@ -3242,7 +3263,7 @@ And we should see a list of _Alca torda_ chromosomes.
 
 We got some data! However, the data could have been changed or corrupted in the process of downloading it from the Internet. (This CAN happen, and WILL happen if you do this for long enough!)
 
-We can address this problem by using the `md5sum` command. [md5sum](https://en.wikipedia.org/wiki/Md5sum), in short, is a command that spits out a string of characters to represent a file's fingerprint. If a file with the same name has characters that are different the md5sum will show the difference, so we don't have to find the difference. This is exceptionally valuable when we have files that contain billions of characters.
+We can address this problem by using the `md5sum` command. [md5sum](https://en.wikipedia.org/wiki/Md5sum), in short, is a command that spits out a string of characters to represent a file's fingerprint. If a file with the same name has characters that are different the md5sum will show the difference, so we don't have to find the difference. This is exceptionally valuable when we have files that contain gigabytes of data.
 
 Let's see what an md5sum looks like:
 ```
@@ -3264,7 +3285,6 @@ First, take a look at the file:
 ```
 less \@mini_A-torda.md5
 ```
-
 (press <kbd>Q</kbd> to exit)
 
 We can _check_ a list of md5sums contained in a file with the `-c` flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.
@@ -3277,12 +3297,28 @@ But if we navigate into the `data/` directory we can see there is a `mini-chr1.f
 
 **CHALLENGE:** Determine if the two `mini-chr1.fna.gz` files are the same.
 
-Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transferring data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)
+---
+
+Anytime you download large data files you should check to make sure it
+has downloaded successfully. In bioinformatics, this includes raw
+sequence data from a sequencing center, data from collaborators host
+on a shared space, sequence files from NCBI, transferring data between
+devices, downloading data from clusters and so on and so forth. (Most
+sequencing centers will automatically provide md5sums with your
+data. If they do not, email to request them!)
+
+This holds true for other files as well - always be alert to the
+possibility of data corruption! Sometimes this can be as innocuous as
+"all the line endings in my CSV file are changed because someone
+opened and saved it in a different text editor"; sometimes it can be
+much worse, as when [Excel started automagically changing gene names
+like "Oct-8" into
+dates](https://www.theverge.com/2020/8/6/21355674/human-genes-rename-microsoft-excel-misreading-dates)...
 
 We can also make a list of md5sums for a group of files:
 
 ```
-cd ~/298class8/mini_A-torda
+cd ~/seqdata/mini_A-torda
 md5sum mini-chr[1-9]*.fna.gz  >> autosomes.md5
 ```
 
@@ -3303,6 +3339,10 @@ suggest the following:
 * **results files** -- YES -- they are so useful
 * **intermediate files** -- maybe -- they can be used in many different ways
 
+That having been said, a lot of what we'll show you over the next few
+workshops is how to regenerate your intermediate files when you need
+them, and/or keep them up to date.
+
 ### Bioinformatics: How big should I expect the files to be?
 
 * **Raw data** will probably be the biggest
@@ -3314,7 +3354,7 @@ Always, always back up **raw data**. Once the sequencing center deletes the data
 
 As such, make sure you've have your data backed up. As soon as you download onto the cluster back it up to another device (or two!).
 
-After you've finished your project you'll probably have some pretty valuable **results files**. Back these up! It is likely that these files won't be nearly as large as our original files and they can often be put on osf.io.
+After you've finished your project you'll probably have some pretty valuable **results files**. Back these up! It is likely that these files won't be nearly as large as our original files and they can often be put on osf.io or downloaded to a laptop.
 
 Examples:
 
@@ -3363,11 +3403,12 @@ UC Davis has a number of clusters available to students, depending on your depar
 * barbera
 
 **Pros:**
+
 - maintained on campus
 - help desk for troubleshooting
 
 **Cons:**
-- maintained on campus
+
 - requires an initial buy in to get a significant amount of space & compute
 
 ### Amazon Web Service
@@ -3389,7 +3430,11 @@ All platforms have pluses and minuses. The one that will work best for you depen
 
 ## Setting up your project
 
-**QUESTION** Imagine you are at the end of a bioinformatics project, about to write up the manuscript. Looking back over carrying out your experiment(s), what were the top 3-5 most useful things to getting to the point of writing up?
+**QUESTION** Imagine you are at the end of a project, about to write
+up the manuscript. Looking back over carrying out your
+experiment(s), what were the top 3-5 most useful things to getting
+to the point of writing up? And how can you communicate those to future
+you (and others)?
 
 ### Things to think about
 
@@ -3418,6 +3463,7 @@ Having files with consistent names allows us to do things to them en masse and c
 #### Prefixes
 
 Use the beginning of your file to your advantage. If you've sequenced individuals yourself, you can name these files according any or all of the following:
+
 * which **individual** they are from
 * what **well** in the plate they came from
 * the **barcode/tag/library** they have/were a part of
@@ -3425,7 +3471,8 @@ Use the beginning of your file to your advantage. If you've sequenced individual
 * which **cohort** they are a member of
 
 An example of this might be something like `Ht_1997_A08_21_ACTGTT.fastq`
-Where: 
+where:
+
 * Ht = species ID (Hypomesus transpacificus)
 * 1997 = birth year
 * A08 = well number
@@ -3434,21 +3481,25 @@ Where:
 
 Having some metadata in the file name can allow for efficient groupings when running quality controls (such as testing for batch effects).
 
-If we keep our names consistent between plates/runs could run an analysis on all individuals that were from any of these variables.
+If we keep our names consistent between plates/runs could run an
+analysis on all individuals that were from any of these variables.
+
+And, as a reminder, with tab completion, long and ugly file names are
+not really a problem to type!
 
 #### File endings
 
 The ends of files can be immensely helpful as well. Remember, at the
-command line, a file's ending ".whatever" exists to inform a human
-what kind of file/format to expect.  You'll see some examples of this
-in [workshop
+command line, a file's ending (e.g. `.txt` or `.csv`) exists to inform
+a human what kind of file/format to expect.  You'll see some examples
+of using this in automated scripts in [workshop
 7](automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html)
 and [workshop
 9](automating-your-analyses-with-the-snakemake-workflow-system.html).
 
 -------------------------------
 
-## Looking forward to the next few workshops: working with data
+## Looking forward to the next few workshops: techniques for doing data science on remote computers.
 
 The discussion below motivates the next few workshops :).
 
