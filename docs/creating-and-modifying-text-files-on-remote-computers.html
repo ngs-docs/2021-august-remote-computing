@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 Creating and modifying text files on remote computers | Introduction to Remote Computing</title>
+  <meta name="description" content="2 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://ngs-docs.github.io/2021-august-remote-computing/" />
+  
+  
+  <meta name="github-repo" content="ngs-docs/2021-august-remote-computing/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 Creating and modifying text files on remote computers | Introduction to Remote Computing" />
+  
+  
+  
+
+<meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
+
+
+<meta name="date" content="2021-08-17" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-the-unix-command-line.html"/>
+<link rel="next" href="connecting-to-remote-computers-with-ssh.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://datalab.ucdavis.edu/">
+  <img src="https://datalab.ucdavis.edu/wp-content/uploads/2019/07/datalab-logo-full-color-rgb-1.png" style="height: 100%; width: 100%; object-fit: contain" />
+</a></li>
+<li><a href="https://www.nih-cfde.org/">
+  <img src="cfde-logo.png" style="height: 60%; width: 60%; object-fit: contain" />
+</a></li>
+<li><a href="./" style="font-size: 18px">Introduction to Remote Computing (Pilot)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introductory-skills"><i class="fa fa-check"></i>Introductory skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intermediate-skills"><i class="fa fa-check"></i>Intermediate skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#advanced-skills"><i class="fa fa-check"></i>Advanced skills</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html"><i class="fa fa-check"></i><b>1</b> Introduction to the UNIX Command Line</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#introduction-to-unix"><i class="fa fa-check"></i><b>1.1</b> Introduction to UNIX</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals"><i class="fa fa-check"></i><b>1.1.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#navigation"><i class="fa fa-check"></i><b>1.2</b> Navigation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-1"><i class="fa fa-check"></i><b>1.2.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#viewing-searching"><i class="fa fa-check"></i><b>1.3</b> Viewing &amp; Searching</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-2"><i class="fa fa-check"></i><b>1.3.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#file-manipulation"><i class="fa fa-check"></i><b>1.4</b> File Manipulation</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-3"><i class="fa fa-check"></i><b>1.4.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#renaming-a-bunch-of-files"><i class="fa fa-check"></i><b>1.4.2</b> Renaming a bunch of files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#some-final-notes"><i class="fa fa-check"></i><b>1.5</b> Some final notes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html"><i class="fa fa-check"></i><b>2</b> Creating and modifying text files on remote computers</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#text-files-vs-other-files"><i class="fa fa-check"></i><b>2.1</b> Text files vs other files</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#ok-ok-what-does-this-all-mean-in-practice"><i class="fa fa-check"></i><b>2.1.1</b> OK, OK, what does this all mean in practice?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-gzipped-files"><i class="fa fa-check"></i><b>2.1.2</b> Working with gzipped files</a></li>
+<li class="chapter" data-level="2.1.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#digression-file-extensions-are-often-meaningful-but-dont-have-to-be"><i class="fa fa-check"></i><b>2.1.3</b> Digression: file extensions are often meaningful (but don’t have to be)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#lets-edit-this-file"><i class="fa fa-check"></i><b>2.1.4</b> Let’s edit this file!</a></li>
+<li class="chapter" data-level="2.1.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#running-the-editor-and-exitingsaving"><i class="fa fa-check"></i><b>2.1.5</b> Running the editor and exiting/saving</a></li>
+<li class="chapter" data-level="2.1.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#navigating-in-nano"><i class="fa fa-check"></i><b>2.1.6</b> Navigating in nano</a></li>
+<li class="chapter" data-level="2.1.7" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#long-lines---note"><i class="fa fa-check"></i><b>2.1.7</b> Long lines - note!</a></li>
+<li class="chapter" data-level="2.1.8" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#slightly-more-advanced-features"><i class="fa fa-check"></i><b>2.1.8</b> Slightly more advanced features</a></li>
+<li class="chapter" data-level="2.1.9" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#getting-help"><i class="fa fa-check"></i><b>2.1.9</b> Getting help!</a></li>
+<li class="chapter" data-level="2.1.10" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#challenges"><i class="fa fa-check"></i><b>2.1.10</b> Challenges:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editors"><i class="fa fa-check"></i><b>2.2</b> Big Powerful Editors</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-1-vi"><i class="fa fa-check"></i><b>2.2.1</b> Big Powerful Editor 1: vi</a></li>
+<li class="chapter" data-level="2.2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-2-emacs"><i class="fa fa-check"></i><b>2.2.2</b> Big Powerful Editor 2: emacs</a></li>
+<li class="chapter" data-level="2.2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#an-opinion"><i class="fa fa-check"></i><b>2.2.3</b> An opinion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#remote-vs-local-and-why-editors"><i class="fa fa-check"></i><b>2.3</b> Remote vs local, and why editors?</a></li>
+<li class="chapter" data-level="2.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#editors-that-run-locally-on-your-laptopdesktop"><i class="fa fa-check"></i><b>2.4</b> Editors that run locally on your laptop/desktop</a></li>
+<li class="chapter" data-level="2.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#thinking-about-editors-as-a-means-to-an-end"><i class="fa fa-check"></i><b>2.5</b> Thinking about editors as a means to an end</a></li>
+<li class="chapter" data-level="2.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#other-ways-to-create-edit-filter-and-modify-files"><i class="fa fa-check"></i><b>2.6</b> Other ways to create, edit, filter, and modify files</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#redirection-appending-and-piping."><i class="fa fa-check"></i><b>2.6.1</b> Redirection, appending, and piping.</a></li>
+<li class="chapter" data-level="2.6.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#the-simplest-possible-editor---echo"><i class="fa fa-check"></i><b>2.6.2</b> The simplest possible “editor” - echo</a></li>
+<li class="chapter" data-level="2.6.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering"><i class="fa fa-check"></i><b>2.6.3</b> Piping and filtering</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files"><i class="fa fa-check"></i><b>2.7</b> Working with CSV files</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#use-csvtk-when-working-with-csv-files-maybe."><i class="fa fa-check"></i><b>2.7.1</b> Use csvtk when working with CSV files, maybe.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#a-quick-primer-on-compression."><i class="fa fa-check"></i><b>2.8</b> A quick primer on compression.</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#gzip-and-.gz-files."><i class="fa fa-check"></i><b>2.8.1</b> Gzip and <code>.gz</code> files.</a></li>
+<li class="chapter" data-level="2.8.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#zip-and-compressing-multiple-files."><i class="fa fa-check"></i><b>2.8.2</b> zip and compressing <em>multiple</em> files.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#concluding-thoughts"><i class="fa fa-check"></i><b>2.9</b> Concluding thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html"><i class="fa fa-check"></i><b>3</b> Connecting to remote computers with ssh</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#ssh-and-clients"><i class="fa fa-check"></i><b>3.1</b> SSH and Clients</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-security-thoughts"><i class="fa fa-check"></i><b>3.1.1</b> Some security thoughts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#ssh-as-a-protocol---many-clients"><i class="fa fa-check"></i><b>3.1.2</b> ssh as a protocol - many clients!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-using-the-terminal-program"><i class="fa fa-check"></i><b>3.2</b> Mac OS X: Using the Terminal program</a></li>
+<li class="chapter" data-level="3.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-connecting-to-remote-computers-with-mobaxterm"><i class="fa fa-check"></i><b>3.3</b> Windows: Connecting to remote computers with MobaXterm</a></li>
+<li class="chapter" data-level="3.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#logging-out-and-logging-back-in."><i class="fa fa-check"></i><b>3.4</b> Logging out and logging back in.</a></li>
+<li class="chapter" data-level="3.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#youre-logged-on-to-a-remote-computer.-now-what"><i class="fa fa-check"></i><b>3.5</b> You’re logged on to a remote computer. Now what?</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#welcome-to-your-account"><i class="fa fa-check"></i><b>3.5.1</b> Welcome to your account!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account"><i class="fa fa-check"></i><b>3.5.2</b> Loading some files into your account</a></li>
+<li class="chapter" data-level="3.5.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-and-path-manipulation"><i class="fa fa-check"></i><b>3.5.3</b> Revisiting file and path manipulation</a></li>
+<li class="chapter" data-level="3.5.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-editing"><i class="fa fa-check"></i><b>3.5.4</b> Revisiting file editing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copying-files-to-and-from-your-local-computer."><i class="fa fa-check"></i><b>3.6</b> Copying files to and from your local computer.</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-copying-files-using-ssh."><i class="fa fa-check"></i><b>3.6.1</b> Mac OS X: Copying files using ssh.</a></li>
+<li class="chapter" data-level="3.6.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-copying-files-using-mobaxterm."><i class="fa fa-check"></i><b>3.6.2</b> Windows: Copying files using MobaXterm.</a></li>
+<li class="chapter" data-level="3.6.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#view-and-change-the-file-you-just-downloaded"><i class="fa fa-check"></i><b>3.6.3</b> View and change the file you just downloaded</a></li>
+<li class="chapter" data-level="3.6.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copy-the-file-back-to-farm."><i class="fa fa-check"></i><b>3.6.4</b> Copy the file back to farm.</a></li>
+<li class="chapter" data-level="3.6.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x"><i class="fa fa-check"></i><b>3.6.5</b> Digression: why do you need to log into/log out of farm on Mac OS X?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.7</b> Some commands are available! Others are not.</a></li>
+<li class="chapter" data-level="3.8" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#summing-up-file-transfer---a-challenge"><i class="fa fa-check"></i><b>3.8</b> Summing up file transfer - a challenge!</a></li>
+<li class="chapter" data-level="3.9" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#summing-things-up"><i class="fa fa-check"></i><b>3.9</b> Summing things up</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html"><i class="fa fa-check"></i><b>4</b> Running programs on remote computers and retrieving the results</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-ssh-privatepublic-key-pairs"><i class="fa fa-check"></i><b>4.1</b> Using SSH private/public key pairs</a></li>
+<li class="chapter" data-level="4.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#mac-os-x-and-linux-using-ssh-private-keys-to-log-in"><i class="fa fa-check"></i><b>4.2</b> Mac OS X and Linux: Using ssh private keys to log in</a></li>
+<li class="chapter" data-level="4.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#windowsmobaxterm-using-ssh-private-keys-to-log-in"><i class="fa fa-check"></i><b>4.3</b> Windows/MobaXterm: Using ssh private keys to log in</a></li>
+<li class="chapter" data-level="4.4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#some-tips-on-your-private-key"><i class="fa fa-check"></i><b>4.4</b> Some tips on your private key</a></li>
+<li class="chapter" data-level="4.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#working-on-farm"><i class="fa fa-check"></i><b>4.5</b> Working on farm</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#first-download-some-files"><i class="fa fa-check"></i><b>4.5.1</b> First, download some files:</a></li>
+<li class="chapter" data-level="4.5.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#configuring-your-account-on-login"><i class="fa fa-check"></i><b>4.5.2</b> Configuring your account on login</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-multiple-terminals"><i class="fa fa-check"></i><b>4.6</b> Using multiple terminals</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#who-am-i-and-where-am-i-running"><i class="fa fa-check"></i><b>4.6.1</b> Who am I and where am I running!?</a></li>
+<li class="chapter" data-level="4.6.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#looking-at-whats-running"><i class="fa fa-check"></i><b>4.6.2</b> Looking at what’s running</a></li>
+<li class="chapter" data-level="4.6.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#e-mailing-the-systems-administrators"><i class="fa fa-check"></i><b>4.6.3</b> E-mailing the systems administrators</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#file-systems-directories-and-shared-systems"><i class="fa fa-check"></i><b>4.7</b> File systems, directories, and shared systems</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#read-and-write-permissions-into-other-directories"><i class="fa fa-check"></i><b>4.7.1</b> Read and write permissions into other directories</a></li>
+<li class="chapter" data-level="4.7.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#listing-directory-and-file-permissions"><i class="fa fa-check"></i><b>4.7.2</b> Listing directory and file permissions</a></li>
+<li class="chapter" data-level="4.7.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#files-have-the-same-permission-options"><i class="fa fa-check"></i><b>4.7.3</b> Files have the same permission options</a></li>
+<li class="chapter" data-level="4.7.4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#how-do-groups-work"><i class="fa fa-check"></i><b>4.7.4</b> How do groups work?</a></li>
+<li class="chapter" data-level="4.7.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#how-can-you-use-this"><i class="fa fa-check"></i><b>4.7.5</b> How can you use this?</a></li>
+<li class="chapter" data-level="4.7.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#things-that-regular-users-cannot-do"><i class="fa fa-check"></i><b>4.7.6</b> Things that regular users cannot do</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#disk-space-file-size-and-temporary-files"><i class="fa fa-check"></i><b>4.8</b> Disk space, file size, and temporary files</a></li>
+<li class="chapter" data-level="4.9" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#summing-things-up-1"><i class="fa fa-check"></i><b>4.9</b> Summing things up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html"><i class="fa fa-check"></i><b>5</b> Installing software on remote computers with conda</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#why-is-software-installation-hard"><i class="fa fa-check"></i><b>5.1</b> Why is software installation hard?</a></li>
+<li class="chapter" data-level="5.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#getting-started-with-conda"><i class="fa fa-check"></i><b>5.2</b> Getting started with conda</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installing-conda"><i class="fa fa-check"></i><b>5.2.1</b> Installing conda</a></li>
+<li class="chapter" data-level="5.2.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#log-into-farm"><i class="fa fa-check"></i><b>5.2.2</b> Log into farm</a></li>
+<li class="chapter" data-level="5.2.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#creating-your-first-environment-installing-csvtk"><i class="fa fa-check"></i><b>5.2.3</b> Creating your first environment &amp; installing csvtk!</a></li>
+<li class="chapter" data-level="5.2.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installation"><i class="fa fa-check"></i><b>5.2.4</b> Installation!</a></li>
+<li class="chapter" data-level="5.2.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#csvtk-in-a-bit-more-detail"><i class="fa fa-check"></i><b>5.2.5</b> csvtk in a bit more detail</a></li>
+<li class="chapter" data-level="5.2.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#where-is-the-software-coming-from"><i class="fa fa-check"></i><b>5.2.6</b> Where is the software coming from!?</a></li>
+<li class="chapter" data-level="5.2.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#digression-there-are-many-ways-to-install-software"><i class="fa fa-check"></i><b>5.2.7</b> Digression: there are many ways to install software!</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installing-more-software-in-your-current-environment"><i class="fa fa-check"></i><b>5.3</b> Installing more software in your current environment</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#finding-and-specifying-versions"><i class="fa fa-check"></i><b>5.3.1</b> Finding and specifying versions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#making-and-using-environment-files"><i class="fa fa-check"></i><b>5.3.2</b> Making and using environment files</a></li>
+<li class="chapter" data-level="5.3.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#updating-removing-etc-software"><i class="fa fa-check"></i><b>5.3.3</b> Updating, removing, etc software</a></li>
+<li class="chapter" data-level="5.3.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#creating-multiple-environments"><i class="fa fa-check"></i><b>5.3.4</b> Creating multiple environments</a></li>
+<li class="chapter" data-level="5.3.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#tech-interlude-what-is-conda-doing"><i class="fa fa-check"></i><b>5.3.5</b> Tech interlude: what is conda doing?</a></li>
+<li class="chapter" data-level="5.3.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#challenges-with-using-one-big-environment"><i class="fa fa-check"></i><b>5.3.6</b> Challenges with using one big environment</a></li>
+<li class="chapter" data-level="5.3.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#how-titus-uses-conda"><i class="fa fa-check"></i><b>5.3.7</b> How Titus uses conda</a></li>
+<li class="chapter" data-level="5.3.8" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#finding-packages-within-conda"><i class="fa fa-check"></i><b>5.3.8</b> Finding packages within conda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#using-the-bioconda-and-conda-forge-channels"><i class="fa fa-check"></i><b>5.4</b> Using the ‘bioconda’ and ‘conda-forge’ channels</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#mac-os-x-and-linux-but-not-windows"><i class="fa fa-check"></i><b>5.4.1</b> Mac OS X and Linux, but not Windows</a></li>
+<li class="chapter" data-level="5.4.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#how-to-engage-with-conda-forge-and-bioconda"><i class="fa fa-check"></i><b>5.4.2</b> How to engage with conda-forge and bioconda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-data-science-r-and-python"><i class="fa fa-check"></i><b>5.5</b> Conda and data science: R and Python</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-r"><i class="fa fa-check"></i><b>5.5.1</b> Conda and R</a></li>
+<li class="chapter" data-level="5.5.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-python"><i class="fa fa-check"></i><b>5.5.2</b> Conda and Python</a></li>
+<li class="chapter" data-level="5.5.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#supporting-interactive-packages-rstudio-and-jupyterlab"><i class="fa fa-check"></i><b>5.5.3</b> Supporting interactive packages (RStudio and JupyterLab)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#tricky-things-to-think-about-with-conda"><i class="fa fa-check"></i><b>5.6</b> Tricky things to think about with conda</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#it-can-take-a-long-time-to-install-lots-of-software"><i class="fa fa-check"></i><b>5.6.1</b> It can take a long time to install lots of software</a></li>
+<li class="chapter" data-level="5.6.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#explicit-package-listing"><i class="fa fa-check"></i><b>5.6.2</b> Explicit package listing</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#reference-list-of-conda-commands"><i class="fa fa-check"></i><b>5.7</b> Reference list of Conda Commands</a></li>
+<li class="chapter" data-level="5.8" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#more-reading-on-conda"><i class="fa fa-check"></i><b>5.8</b> More Reading on Conda</a></li>
+<li class="chapter" data-level="5.9" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#discussion-items"><i class="fa fa-check"></i><b>5.9</b> Discussion items:</a></li>
+<li class="chapter" data-level="5.10" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#in-summary"><i class="fa fa-check"></i><b>5.10</b> In summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html"><i class="fa fa-check"></i><b>6</b> Structuring your projects for current and future you</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="6.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#transferring-files-around-efficiently"><i class="fa fa-check"></i><b>6.2</b> Transferring files around efficiently</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#recursive-scp-with--r"><i class="fa fa-check"></i><b>6.2.1</b> recursive <code>scp</code> with <code>-r</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#sftp"><i class="fa fa-check"></i><b>6.2.2</b> <code>sftp</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#zip--r-to-create-collections-of-files"><i class="fa fa-check"></i><b>6.2.3</b> <code>zip -r</code> to create collections of files</a></li>
+<li class="chapter" data-level="6.2.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#working-with-.tar.gz-files"><i class="fa fa-check"></i><b>6.2.4</b> Working with <code>.tar.gz</code> files</a></li>
+<li class="chapter" data-level="6.2.5" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#probably-the-most-useful-advice-use-a-transfer-directory"><i class="fa fa-check"></i><b>6.2.5</b> Probably the most useful advice: use a transfer directory</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#retrieving-remote-files-from-web-sites"><i class="fa fa-check"></i><b>6.3</b> Retrieving remote files from Web sites</a></li>
+<li class="chapter" data-level="6.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#dealing-with-files-some-recommendations"><i class="fa fa-check"></i><b>6.4</b> Dealing with files: some recommendations</a></li>
+<li class="chapter" data-level="6.5" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#farm-vs-cloud-binder-etc."><i class="fa fa-check"></i><b>6.5</b> Farm vs cloud, binder, etc.</a></li>
+<li class="chapter" data-level="6.6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#thinking-about-data-science-projects"><i class="fa fa-check"></i><b>6.6</b> Thinking about data science projects!</a></li>
+<li class="chapter" data-level="6.7" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#a-rough-bioinformatics-workflow"><i class="fa fa-check"></i><b>6.7</b> a rough bioinformatics workflow</a></li>
+<li class="chapter" data-level="6.8" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#sending-and-receiving-data"><i class="fa fa-check"></i><b>6.8</b> Sending and Receiving Data</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#downloading-data"><i class="fa fa-check"></i><b>6.8.1</b> Downloading data</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#storing-data"><i class="fa fa-check"></i><b>6.9</b> Storing data</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#what-do-i-back-up"><i class="fa fa-check"></i><b>6.9.1</b> What do I back up?</a></li>
+<li class="chapter" data-level="6.9.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#how-big-should-i-expect-the-files-to-be"><i class="fa fa-check"></i><b>6.9.2</b> How big should I expect the files to be?</a></li>
+<li class="chapter" data-level="6.9.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#how-often-should-i-backup-my-data"><i class="fa fa-check"></i><b>6.9.3</b> How often should I backup my data?</a></li>
+<li class="chapter" data-level="6.9.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#where-do-i-back-up-my-data"><i class="fa fa-check"></i><b>6.9.4</b> Where do I back up my data?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#where-do-i-work-with-large-amounts-of-data"><i class="fa fa-check"></i><b>6.10</b> Where do I work with large amounts of data?</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#high-performance-computing-clusters"><i class="fa fa-check"></i><b>6.10.1</b> High Performance Computing Clusters</a></li>
+<li class="chapter" data-level="6.10.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#amazon-web-service"><i class="fa fa-check"></i><b>6.10.2</b> Amazon Web Service</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#setting-up-your-project"><i class="fa fa-check"></i><b>6.11</b> Setting up your project</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#things-to-think-about"><i class="fa fa-check"></i><b>6.11.1</b> Things to think about</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#working-with-data"><i class="fa fa-check"></i><b>6.12</b> Working with data</a>
+<ul>
+<li class="chapter" data-level="6.12.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#learning-objectives-1"><i class="fa fa-check"></i><b>6.12.1</b> Learning objectives</a></li>
+<li class="chapter" data-level="6.12.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#testing-code"><i class="fa fa-check"></i><b>6.12.2</b> Testing code</a></li>
+<li class="chapter" data-level="6.12.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#naming-files"><i class="fa fa-check"></i><b>6.12.3</b> Naming files</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#additional-resources"><i class="fa fa-check"></i><b>6.13</b> Additional resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><i class="fa fa-check"></i><b>7</b> Automating your analyses and executing long-running analyses on remote computers</a></li>
+<li class="chapter" data-level="8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html"><i class="fa fa-check"></i><b>8</b> Keeping track of your files with version control</a></li>
+<li class="chapter" data-level="9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html"><i class="fa fa-check"></i><b>9</b> Automating your analyses with the snakemake workflow system</a></li>
+<li class="chapter" data-level="10" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html"><i class="fa fa-check"></i><b>10</b> Executing large analyses on HPC clusters with slurm</a></li>
+<li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html#workshop-protocol"><i class="fa fa-check"></i>Workshop Protocol</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Remote Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="creating-and-modifying-text-files-on-remote-computers" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Creating and modifying text files on remote computers</h1>
+<p>This two hour workshop will introduce attendees to the concepts and skills needed to create, modify, and search text files on remote computers. We will discuss files and content types, and cover the most common ways to work with remote text files.</p>
+<p>As with
+<a href="introduction-to-the-unix-command-line.html">the first workshop introducing the UNIX command line</a>,
+we’ll be using an interactive Web site running on a
+<a href="https://mybinder.org/">binder</a>. To start your binder, please click on
+the “launch” button below; it will take up to a minute to start.</p>
+<p><a href="https://binder.pangeo.io/v2/gh/ngs-docs/2021-remote-computing-binder/stable?urlpath=rstudio"><img src="https://binder.pangeo.io/badge_logo.svg" alt="Binder" /></a></p>
+<p>Once it’s launched, go to the “Terminal” tab.</p>
+<div id="text-files-vs-other-files" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Text files vs other files</h2>
+<p>Text files are a fairly narrow but very important subset of the kinds
+of files that we will work with in data science. Text files are,
+loosely defined, files that are human-readable without any special
+machine interpretation needed - such as text-only e-mails, CSV files,
+configuration files, and Python and R scripts.</p>
+<p>The list above is interesting, because it makes the point that just
+because a human can “read” the files doesn’t mean that they are
+<em>intended</em> for humans, necessarily. For example, CSV files can be more
+or less strictly defined in terms of formatting, and Python and R
+scripts still need to be valid Python or R code. DNA sequence data
+files like we saw yesterday are another case in point - it’s pretty
+rare (and a bad idea) to edit them manually, but you <em>could</em> if you
+really wanted to.</p>
+<p>The operational distinction really comes down to this: text files can
+be created, edited, changed, and otherwise manipulated with
+text-format based tools, like text editors, grep (which we saw
+yesterday), and other programs. Text files are a common and standard
+format that <em>many</em> tools can interact with.</p>
+<p>In comparison, binary files are files that need special programs to
+interact with them. Some of them are more standard than others - for
+example, Word files can be read or written by many programs. Images
+(JPG and PNG and…) can be manipulated by many programs as well. Zip
+files are another semi-standard format that can be manipulated by several
+different programs. The main thing is that you can’t just look at them
+with standard text-focused tools - and typically this is because binary
+files are meant to be used for different kinds of data than text.</p>
+<p>As a side note, one of the most important aspects of text files is that
+there are some really powerful tools for tracking changes to them,
+and collaboratively editing them - we’ll cover that in workshop 8,
+version control!</p>
+<!-- @CTB link in workshop materials here -->
+<div id="ok-ok-what-does-this-all-mean-in-practice" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> OK, OK, what does this all mean in practice?</h3>
+<p>Let’s look at a simple text file - <code>2cities/README.md</code>:</p>
+<pre><code>cat 2cities/README.md</code></pre>
+<p>As you may remember, ‘cat’ (short for ‘catenate’) displays the content
+of the file.</p>
+<p>This is a file in a format called Markdown, that is a lightly
+decorated text file with a title and so on. While it can be nicely
+formatted by an interpreting program (see <a href="https://github.com/ngs-docs/2021-remote-computing-binder/blob/latest/2cities/README.md">the way github renders this
+file!</a>,
+it can also just be viewed and read with cat.</p>
+<p>This is different from the other file in <code>2cities/</code>; take a look at
+what’s there by running,</p>
+<pre><code>ls 2cities/</code></pre>
+<p>and you should see</p>
+<blockquote>
+<blockquote>
+<pre><code>README.md       book.txt.gz</code></pre>
+</blockquote>
+</blockquote>
+<p>In this directory, there is one text file and one binary file.</p>
+<p>If you want to see if it’s a file type that UNIX recognizes you can run
+the <code>file</code> command, e.g.</p>
+<pre><code>file 2cities/README.md</code></pre>
+<p>will report that it’s ASCII text, while</p>
+<pre><code>file 2cities/book.txt.gz</code></pre>
+<p>will report that it’s “gzip compressed data”, which is a compressed data
+type. What do we do with that?</p>
+</div>
+<div id="working-with-gzipped-files" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Working with gzipped files</h3>
+<p>gzip is a common type of file, and all that it means is that it’s been
+compressed (made smaller) with the <code>gzip</code> program.</p>
+<p>Look at it’s file size first –</p>
+<pre><code>ls -lh 2cities/book.txt.gz</code></pre>
+<p>and you’ll see that it’s about 300k.</p>
+<p>You can uncompress a gzip file with <code>gunzip</code>; in this case,</p>
+<pre><code>gunzip 2cities/book.txt.gz</code></pre>
+<p>will produce <code>2cities/book.txt</code></p>
+<p>CHALLENGE: what two commands will tell you the file type and size of <code>2cities/book.txt</code>?</p>
+<hr />
+<p>Yep, it’s almost 3 times bigger when it’s uncompressed!</p>
+<p>And it’s file type is “UTF-8 Unicode (with BOM) text, with CRLF line
+terminators” which is a fancy way of saying “text, supporting extended
+characters (unicode), and with both a carriage return (CR) and a line
+feed (LF) at the end of each line.” The important thing is that pretty
+much any text editor should be able to edit this kind of file.</p>
+<p>Let’s take a quick look at the beginning of the file with <code>head</code>:</p>
+<pre><code>head 2cities/book.txt</code></pre>
+<p>yep, looks like text!</p>
+</div>
+<div id="digression-file-extensions-are-often-meaningful-but-dont-have-to-be" class="section level3" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Digression: file extensions are often meaningful (but don’t have to be)</h3>
+<p>Couldn’t we have guessed at what these files were based on their
+names? Yes, the .md extension usually means it’s a text file with
+Markdown formatting, and the .gz extension typically means it’s a
+compressed file, and the .txt extension typically means it’s a text
+file. So you can read <code>book.txt.gz</code> to mean that it’s a text file that’s
+been compressed.</p>
+<p>But this isn’t guaranteed - it’s a convention, rather than a requirement.
+Many programs will actively “sniff” the file type by looking at the content
+(which is what <code>file</code> does), and you should never blindly trust the file type
+indicated by the extension.</p>
+</div>
+<div id="lets-edit-this-file" class="section level3" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Let’s edit this file!</h3>
+<p>Let’s start with the <code>nano</code> editor. <code>nano</code> and its sibling <code>pico</code> are
+simple text editors that let you get started, but are ultimately limited
+in their functionality.</p>
+<p>Note: If you’ve ever used the ‘pine’ e-mailer, you’ve used these
+editors!</p>
+<p>nano (and all of the editors we’ll use below in the terminal) are
+“text graphics” editors that give you a visual interface that is not
+the command line (which is good, trust us) but that also exist only
+within the terminal program and <strong>do not support mouse movements</strong>.
+This is important - you can’t use the mouse to move the cursor or make
+changes (although you can select things).</p>
+</div>
+<div id="running-the-editor-and-exitingsaving" class="section level3" number="2.1.5">
+<h3><span class="header-section-number">2.1.5</span> Running the editor and exiting/saving</h3>
+<p>To get started, let’s open the file:</p>
+<pre><code>nano 2cities/book.txt</code></pre>
+<p>this will put you in an editor window.</p>
+<p>First things first: you can immediately exit by typing CTRL-X (that’s
+holding down the CTRL key, and then typing X, lowercase or uppercase -
+no shift key is needed. If you haven’t changed anything, it will
+simply exit.</p>
+<p>Now edit the file with nano again (use the up arrow on the command line
+to find and rerun the previous command!) –</p>
+<pre><code>nano 2cities/book.txt</code></pre>
+<p>Now change something - just type. You should see the new characters added.</p>
+<p>Use CTRL-X again, and it will ask “Save modified buffer?” If you say “No”,
+it will not save; if you type ‘y’, it will ask you for the name of the file.
+Just hit ENTER to overwrite the file you edited here.</p>
+<p>Now, you should be back at the command line. Run:</p>
+<pre><code>head 2cities/book.txt</code></pre>
+<p>and you should see your changes!</p>
+<p>Note, there’s no ‘undo’ possible once you’ve saved.</p>
+</div>
+<div id="navigating-in-nano" class="section level3" number="2.1.6">
+<h3><span class="header-section-number">2.1.6</span> Navigating in nano</h3>
+<p>Let’s go back into nano and learn how to move around.</p>
+<p>Run:</p>
+<pre><code>nano 2cities/book.txt</code></pre>
+<p>and use the arrow keys to move up and down and left and right.</p>
+<p>For big files, this can be tedious! If you look down on the bottom,
+you can see a bunch of help text telling you what control+keys to use
+- use CTRL-V to page down, and CTRL-Y to page back up.</p>
+</div>
+<div id="long-lines---note" class="section level3" number="2.1.7">
+<h3><span class="header-section-number">2.1.7</span> Long lines - note!</h3>
+<p>One of my least favorite features of nano is the way it handles long lines (lines that extend off the right of the screen).</p>
+<p>Try making one - go to the end of a line, and add a bunch of text.</p>
+<p>What it does is shift the whole line left while you’re typing, and then when you scroll back over to the left, it puts a $ at the last column on the screen to tell you that it’s a long line. Very confusing. But there you are.</p>
+</div>
+<div id="slightly-more-advanced-features" class="section level3" number="2.1.8">
+<h3><span class="header-section-number">2.1.8</span> Slightly more advanced features</h3>
+<p>^K will delete the current line, and ^U will put the last deleted line into
+the current location. (It’s a slightly janky version of cut and paste that
+many editors use in UNIX, for some reason.)</p>
+</div>
+<div id="getting-help" class="section level3" number="2.1.9">
+<h3><span class="header-section-number">2.1.9</span> Getting help!</h3>
+<p>In nano, CTRL-G will put you in “help” mode, and you can now navigate
+around (CTRL-V and CTRL-Y to read), and then CTRL-X to exit.</p>
+<p>Note again that ^ in front of a key means control, so e.g. ^K means
+“type CTRL+K” (which will delete the current line).</p>
+<p>Note also that M- means “hit Escape <em>and then</em> the key after”, so
+pressing the “escape” key, letting go of it, and then hitting “g” will
+go to a line and column number. Try it out - type Escape, then g, then
+type 500,10 and hit enter.</p>
+<p>Why do CTRL and Escape work differently? You hold down CTRL and another
+key, but you press Escape and then type something. Why!?</p>
+<p>The answer is that CTRL and ALT are “modifier keys”, like SHIFT - they
+modify the character sent when you hold them down. Escape is its own
+character, however, so you’re first saying “here’s an escape character!”
+and then “here’s another character!” (We don’t make the rules, we just
+explain them - sorry!)</p>
+</div>
+<div id="challenges" class="section level3" number="2.1.10">
+<h3><span class="header-section-number">2.1.10</span> Challenges:</h3>
+<p>Use the help screen to answer (and experiment with) the following challenges -
+remember, CTRL-G gets you into help, CTRL-V pages down, and CTRL-X exits help.</p>
+<p><strong>CHALLENGE:</strong> How do you delete the character at the current cursor position?</p>
+<p><strong>CHALLENGE 2:</strong> How do you move to the end of the file?</p>
+<p>You can do a lot in these but as soon as you’re dealing with really large
+files, or many files, we suggest other editors. That having been said,
+we teach nano because it’s a good “basic” editor that is usually available
+and can almost always be used if you don’t have access to your favorite
+editor.</p>
+</div>
+</div>
+<div id="big-powerful-editors" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Big Powerful Editors</h2>
+<p>There are two fairly dominant editors that work at the command line.
+They’ve been around for decades, and they have many advocates who
+care for them with a near-religious fervor. We will demo them for you,
+and point you at learning resources for them, and then leave it up to
+you to pick one. (We’ll probably use nano for most of the work we do in these
+workshops.)</p>
+<div id="big-powerful-editor-1-vi" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Big Powerful Editor 1: vi</h3>
+<p>‘vi’ stands for “visual editor” and it’s available on most systems.
+It’s incredibly powerful, and incredibly robust, and is correspondingly
+cryptic and hard to use. It involves a lot of remembering specific character
+commands, in particular.</p>
+<p>(We’re actually using ‘vim’, but never mind that - it’s compatible with vi.
+<a href="https://www.shell-tips.com/linux/vi-vs-vim/">Read more here</a>.)</p>
+<p>To run vi, type:</p>
+<pre><code>vi 2cities/book.txt</code></pre>
+<p>(You should see all your changes from before, right?)</p>
+<p>vi starts in “normal mode”, which allows you to navigate around the file.
+In normal mode, what you type does not change the file - instead, it lets
+you issue commands to vi.</p>
+<p>The first and most important (?) command - to exit, type:</p>
+<pre><code>:q</code></pre>
+<p>and if there are no changes, it will simply exit.</p>
+<p>Run vi again, and let’s edit –</p>
+<pre><code>vi 2cities/book.txt</code></pre>
+<p>and then type ‘i’ to go to “insert” mode, and type something.</p>
+<p>Then hit the escape key to go back to “normal” mode.</p>
+<p>Now try to exit with <code>:q</code>. It won’t work! You have to either save, or quit.</p>
+<p>To force-quit without saving, run <code>:q!</code>.</p>
+<p>Now let’s learn to save! Go back and edit (<code>i</code>, then type something,
+then escape).</p>
+<p>To save, type <code>:wq</code>. (You can also (mystifyingly) type <code>ZZ</code> to do the same
+thing. shrug.)</p>
+<p>The main thing that vi does is give you a “normal” mode (where you can navigate
+around - use CTRL-F and CTRL-V to page down and up, for example) and an
+edit mode (use ‘i’ for insert or ‘a’ for append) where what you type goes
+directly into the file. You use Escape to get out of edit mode.</p>
+<p>In normal mode, ‘x’ will delete the character you’re on, and ‘dd’ will delete
+the line you’re on (and put it in the cut buffer), and <code>P</code> will pull the
+line out of the cut buffer into the file at the current location.</p>
+<p>And that’s what you really need to know :).</p>
+<p>A few tips for normal mode -</p>
+<ul>
+<li>to get help, type <code>:help</code></li>
+<li>to go to a specific line, type the line number followed by G. <code>500G</code></li>
+</ul>
+<p>As a side note, we’ve just taught you the single most asked question on the
+Internet about UNIX: <a href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">how to exit vi</a>!!</p>
+</div>
+<div id="big-powerful-editor-2-emacs" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Big Powerful Editor 2: emacs</h3>
+<p>The <em>other</em> editor to know about is emacs. (This is what Titus uses the
+most.)</p>
+<p>To run emacs,</p>
+<pre><code>emacs 2cities/book.txt</code></pre>
+<p>This is automatically in edit mode (there’s no normal mode) so it behaves
+kind of like nano.</p>
+<p>To exit emacs, type CTRL-X and then CTRL-C.</p>
+<p>If you’ve modified things (by typing something), it will ask you if you
+want to save.</p>
+<p>To page down, type CTRL-V.</p>
+<p>To page up, type Escape V.</p>
+<p>To go to the beginning of a line, type CTRL-A. End of line, CTRL-E.</p>
+<p>(I’m telling you these specific keys because they <em>also</em> work at the
+command line.)</p>
+<p>There’s a pretty nice interactive tutorial for via that you can access
+with CTRL-H t (CTRL-H, followed by a ‘t’).</p>
+<p>Emacs shines when editing <em>multiple</em> files, but it can do a lot more, too.
+Some people spend their entire computing lives in emacs… see, for example,
+<a href="https://orgmode.org/">org-mode</a>.</p>
+</div>
+<div id="an-opinion" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> An opinion</h3>
+<p>You only need to learn nano, and be basically familiar with vi and emacs.
+Read on for why!</p>
+</div>
+</div>
+<div id="remote-vs-local-and-why-editors" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Remote vs local, and why editors?</h2>
+<p>So we’ve just shown you a bunch of editors that work on the command
+line/in the Terminal window, but don’t support mouse and copy paste
+and multiple windows and other nice things. Why can’t you just always
+use a <strong>nice</strong> editor that supports mouse commands etc etc??</p>
+<p>Well.</p>
+<p>There are a few reasons!</p>
+<p>First is that it’s always nice to have backup options. Even if you
+resolutely stick with something that runs on your laptop, every now
+and then you may find yourself in a situation where you’re using someone
+else’s computer to debug or demonstrate something.</p>
+<p>Second is that these are platform independent options, in some sense -
+if you are connected to a UNIX system, you can pretty much always use
+nano or vi or emacs, no matter how you are connecting or from what
+type of computer.</p>
+<p>Third, sometimes it’s just faster to fix something locally in the shell.
+And it’s nice to have the option.</p>
+<p>Fourth, and related, is that remote file editing from your laptop or
+desktop requires that certain things be available on the remote
+computer - ssh and authentication (see next two workshops, Workshops 3
+and 4!). Unfortunately, these <em>aren’t</em> always available - for example,
+we can’t actually <em>use</em> the nice editors on this binder, for technical
+reasons; we’d have to use the RStudio editor (which is also nice, but
+is also not always available).</p>
+<p>Last and probably least, if you’re in the Matrix and you’re Trinity and
+you’re trying to hack through the machine firewall after breaking into
+a heavily guarded compound, you’re unlikely to want to take the time to
+install an editor on a laptop you bring with you. Better to be able to
+use what’s already on the system, eh? (<a href="https://www.reddit.com/r/todayilearned/comments/28nanl/til_that_the_scene_in_matrix_reloaded_when/">Yes, this is a Matrix reference.</a>)</p>
+</div>
+<div id="editors-that-run-locally-on-your-laptopdesktop" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Editors that run locally on your laptop/desktop</h2>
+<p>That all having been said, there is no reason you can’t use nice friendly
+editors most of the time! I asked <a href="https://twitter.com/ctitusbrown/status/1421102631557025796">on twitter</a> about what editors people liked, and
+several popped up -</p>
+<ul>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a> was a hands-down winner. It works on Windows, Mac OS X, and Linux, and is free.</li>
+<li><a href="https://www.barebones.com/products/bbedit/">BBEdit</a> was beloved by many. Runs on Mac OS X. Free, with pay option.</li>
+<li><a href="https://notepad-plus-plus.org/downloads/">NotePad++</a> is a nice free Windows editor that I’ve used in the distant past.</li>
+<li>Some people really liked <a href="https://atom.io/">Atom</a> too, which is free and runs on Windows, Mac OS X, and Linux.</li>
+</ul>
+<p>Any or all of these will work for editing remote files, support
+a wide variety of languages nicely, and otherwise are excellent choices.
+Pick one! Thrive!</p>
+<p>(We can’t use these yet because we need to configure remote access in a
+particular way - that will come next week :).)</p>
+</div>
+<div id="thinking-about-editors-as-a-means-to-an-end" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Thinking about editors as a means to an end</h2>
+<p>At the end of the day, whatever editor you choose needs to be one that
+lets you achieve your end goal - which is to quickly and reliably edit
+text files.</p>
+<p>I personally switch between vi and emacs on a regular basis. Emacs is
+where I do long-form writing and editing (because I’ve got mine configured
+nicely for that), while vi is what I use for
+quick edits (because it’s fast to start, and I don’t need to configure it
+at all for it to be useful - so I can use it more places).</p>
+<p>Again, most people will probably end up using something like VScode,
+which got many rave reviews online and supports robust syntax
+highlighting and many different languages, as well as remote editing.</p>
+<p>But it <strong>really doesn’t matter</strong>. I think of an editor like a kitchen -
+you may customize your kitchen layout and tools differently from someone
+else, but at the end of the day, your goal is to cook something, and
+you (in this analogy) only really need to worry about another editor if you’re
+using an unfamiliar system, just like if you’re cooking in a strange kitchen.
+And then it will be maddening and infuriating but that’s ok :).</p>
+</div>
+<div id="other-ways-to-create-edit-filter-and-modify-files" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Other ways to create, edit, filter, and modify files</h2>
+<p>So editing is pretty cool, but if you’re in a hurry, or want to make a
+small change without switching windows, or need to work with some
+pretty big files, there are other approaches you can use. Read on!</p>
+<div id="redirection-appending-and-piping." class="section level3" number="2.6.1">
+<h3><span class="header-section-number">2.6.1</span> Redirection, appending, and piping.</h3>
+<p>By default, many UNIX commands like <code>cat</code> send output to something called
+standard out, or “stdout”. This is a catch-all phrase for “the basic
+place we send regular output.” (There’s also standard error, or “stderr”,
+which is where errors are printed; and standard input, or “stdin”, which
+is where input comes from.)</p>
+<p>Much of the power of the UNIX command line comes from working with
+stdout output, and if you work with UNIX a lot, you’ll see characters
+like <code>&gt;</code> (redirect), <code>&gt;&gt;</code> (append) and <code>|</code> (pipe) thrown around. These
+are redirection commands that say, respectively, “send stdout to a new
+file”, “append stdout to an existing file”, and “send stdout from one
+program to another program’s stdin.”</p>
+<p>Let’s start by going to our home directory:</p>
+<pre><code>cd ~/</code></pre>
+</div>
+<div id="the-simplest-possible-editor---echo" class="section level3" number="2.6.2">
+<h3><span class="header-section-number">2.6.2</span> The simplest possible “editor” - echo</h3>
+<p>You can create a file with <code>echo</code> and redirection, like so:</p>
+<pre><code>echo this is some content &gt; file.txt</code></pre>
+<p>which will put the words <code>this is some content</code> in the file named
+<code>file.txt</code>.</p>
+<p>CHALLENGE: how do you view the contents of <code>file.txt</code>?</p>
+<hr />
+<p>If you then run</p>
+<pre><code>echo this is other content &gt; file.txt</code></pre>
+<p>it will overwrite file.txt.</p>
+<p>(Note: if you don’t like this overwriting behavior, you can run <code>set -o noclobber</code> so that bash will complain.)</p>
+<p>Instead of overwriting, you can <em>append</em> by specifying <code>&gt;&gt;</code>, like so –</p>
+<pre><code>echo more content &gt;&gt; file.txt</code></pre>
+<p>This doesn’t just work with echo - you can do this with many UNIX commands,
+e.g.</p>
+<pre><code>cat file.txt file.txt &gt; newfile.txt</code></pre>
+<p>will create <code>newfile.txt</code> with two copies of file.txt in it, and you can
+add a third with</p>
+<pre><code>cat file.txt &gt;&gt; newfile.txt</code></pre>
+<p>You can also e.g. search for words with grep and then save the results –
+for example, this will search for the word “worst” in the Tale of Two
+Cities, and save the results to <code>worst-lines.txt</code>.</p>
+<pre><code>grep worst 2cities/book.txt &gt; worst-lines.txt</code></pre>
+</div>
+<div id="piping-and-filtering" class="section level3" number="2.6.3">
+<h3><span class="header-section-number">2.6.3</span> Piping and filtering</h3>
+<p>What if you wanted to count the number of lines in which the word
+<code>worst</code> shows up in the Tale of Two Cities?</p>
+<p>You <em>could</em> use the “wc” (wordcount) program -</p>
+<pre><code>grep worst 2cities/book.txt &gt; worst-lines.txt
+wc -l worst-lines.txt</code></pre>
+<p>(the answer is 18 :)</p>
+<p>but this creates an unnecessary intermediate file, <code>worst-lines.txt</code>.
+You can avoid creating this file by using <strong>piping</strong>:</p>
+<pre><code>grep worst 2cities/book.txt | wc -l</code></pre>
+<p>which says “send the output of grep to the input of wordcount”.</p>
+<p>You’ll see this a lot in UNIX, and below we’ll explore this on a new
+file type - CSV files!</p>
+</div>
+</div>
+<div id="working-with-csv-files" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Working with CSV files</h2>
+<p>CSV files - Comma Separated Value files - are another very common type
+of text files, especially in data science. Let’s explore working with them!</p>
+<p>We’ve put a list of South Park TV show quotes under <code>SouthParkData/All-seasons.csv.gz</code>. Let’s change into that directory to work with the CSV file.</p>
+<pre><code>cd ~/SouthParkData</code></pre>
+<p>Let’s now uncompress the file – remember, you can use Tab completion here by
+typing <code>gunzip A&lt;TAB&gt;</code> –</p>
+<pre><code>gunzip All-seasons.csv.gz</code></pre>
+<p>and look at the first few rows of the result <code>All-seasons.csv</code> file –</p>
+<pre><code>head All-seasons.csv</code></pre>
+<p>It looks like there are four columns, and the quotes are multi-line quotes.
+(I’ve never seen this before, but it seems to work!)</p>
+<p>Suppose you want to see if the word ‘computer’ is in there anywhere. You
+can use <code>grep</code> to do that –</p>
+<pre><code>grep computer All-seasons.csv</code></pre>
+<p>– and you get a lot of results!</p>
+<p>First, let’s count them:</p>
+<pre><code>grep computer All-seasons.csv | wc -l</code></pre>
+<p>– this will count the number of <em>lines</em> the word ‘computer’ shows up on.
+(It’s 78.)</p>
+<p>If you browse through the file, you might release that ‘Computer’ is a
+character on the show, but it turns out that grep is really literal
+and doesn’t match ‘Computer’ when you search for ‘computer’ - you need
+to provide ‘grep’ with ‘-i’ to do case-insensitive search! Let’s
+try that –</p>
+<pre><code>grep -i computer All-seasons.csv | wc -l</code></pre>
+<p>– and now it’s 101.</p>
+<p>How would we get at <em>just</em> the lines spoken by the computer? Well, if you look
+at the header of the file,</p>
+<pre><code>head All-seasons.csv</code></pre>
+<p>you’ll see that the third column is the one with the character in it. You
+can use the <code>cut</code> command to pick out just the third column by specifying
+comma as a separator with <code>-d</code> and <code>-f3</code> as the field number –</p>
+<pre><code>cut -d, -f3 All-seasons.csv | grep Computer</code></pre>
+<p>which will give you a manageable number of results - about 16.</p>
+<p>You might note that there is an inconsistency in the way the character
+is named - Computer vs Computer Voice (maybe these are different characters?
+I don’t watch enough South Park to know…) Let’s do some counting –</p>
+<pre><code>cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
+<p>This is hard to pull apart but let’s do so -</p>
+<ul>
+<li>first, cut out column 3</li>
+<li>then, search for Computer</li>
+<li>then, sort them alphabetically</li>
+<li>then, count the number of times each character shows up</li>
+</ul>
+<p>There are lots of ways this can come in handy for digging into csv files
+and figuring out where values are wonky.</p>
+<div id="use-csvtk-when-working-with-csv-files-maybe." class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Use csvtk when working with CSV files, maybe.</h3>
+<p>This section was mostly to show you other ways of interacting with generic
+text files with CSV as an example, but if you work a lot with CSV or TSV
+files, I wanted to suggest looking into <a href="https://bioinf.shenwei.me/csvtk/usage/">the csvtk program</a> – we’ll show you how to install it with conda in workshop 5, but we pre-installed it for you on this binder.</p>
+<p>With <code>csvtk</code>, you can run commands that make use of column headers - for
+example,</p>
+<pre><code>csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
+<p>gives you the same output, but it uses the header name.</p>
+<p>csvtk is a really nice piece of software that I am starting to use heavily.
+Highly recommended when doing a lot of CSV/TSV work - definitely <a href="https://bioinf.shenwei.me/csvtk/usage/">check out the manual</a>.</p>
+</div>
+</div>
+<div id="a-quick-primer-on-compression." class="section level2" number="2.8">
+<h2><span class="header-section-number">2.8</span> A quick primer on compression.</h2>
+<p>Make sure you’re in the <code>SouthParkData</code> directory and have uncompressed
+<code>All-seasons.csv</code> –</p>
+<pre><code>cd ~/SouthParkData
+gunzip All-seasons.csv</code></pre>
+<p>(it’s ok if you’ve already run these and they fail, just want to make sure!)</p>
+<p>Text files can be large, so often they are distributed in compressed version.</p>
+<div id="gzip-and-.gz-files." class="section level3" number="2.8.1">
+<h3><span class="header-section-number">2.8.1</span> Gzip and <code>.gz</code> files.</h3>
+<p>gzip is a common compression format that works with .gz files. It works
+with one file at a time, so <code>gzip</code> compresses that one file and makes a new
+.gz file.</p>
+<p>To compress <code>All-seasons.csv</code> with gzip, you can use:</p>
+<pre><code>gzip All-seasons.csv</code></pre>
+<p>If you try to run it again, you’ll get an error message; try it!</p>
+<pre><code>gzip All-seasons.csv</code></pre>
+<p>…because the file no longer exists - it’s been compressed into a new file, <code>All-seasons.csv.gz</code>!</p>
+<p>If you run <code>gunzip</code>, it will uncompress the file and delete the old
+one. Sometimes this isn’t what you want – you can use output
+redirection to uncompress it and make a new copy:</p>
+<pre><code>gunzip -c All-seasons.csv.gz &gt; All-seasons.csv</code></pre>
+<p>but, then, if you try to run <code>gzip All-seasons.csv</code> it will tell you that
+the .gz file already exists. Say ‘n’ or use CTRL-C to exit.</p>
+</div>
+<div id="zip-and-compressing-multiple-files." class="section level3" number="2.8.2">
+<h3><span class="header-section-number">2.8.2</span> zip and compressing <em>multiple</em> files.</h3>
+<p>The big downside to <code>gzip</code> is that it works one file at a time. What if
+you wanted to bundle up multiple files AND compress them?</p>
+<p>Our recommended approach is to use <code>zip</code> to build a zip bundle or archive.
+This will both compress files, and store multiple files (even a directory
+hierarchy!)</p>
+<p>First, create the archive -</p>
+<pre><code>cd ~/
+zip -r south-park.zip SouthParkData/</code></pre>
+<p>(the <code>-r</code> is needed on some versions of zip to package up directories.)</p>
+<p>Then make a copy in a new place (just to demonstrate that it all works :) -</p>
+<pre><code>mkdir new-place/
+cd new-place/
+unzip ../south-park.zip
+ls -R</code></pre>
+<p>and you will see a complete new copy under
+<code>~/new-place/south-park/SouthParkData</code>. This is handy for making quick
+backup copies of things and downloading them (see Workshop 4!) as well
+as sending people collections of files. We’ll show you a different
+way, using version control, in Workshop 8.</p>
+<p>Note, you can use <code>unzip -v</code> to see what’s <em>in</em> a zip archive,</p>
+<pre><code>unzip -v ../south-park.zip</code></pre>
+<p>and selectively unzip specific files by specifying them on the command line like so:</p>
+<pre><code>unzip ../south-park.zip SouthParkData/README.md</code></pre>
+</div>
+</div>
+<div id="concluding-thoughts" class="section level2" number="2.9">
+<h2><span class="header-section-number">2.9</span> Concluding thoughts</h2>
+<p>What we’ve shown you is a whole plethora of hopefully
+not-too-confusing options for editing and working with text files.</p>
+<p>In terms of editing, the only thing you really need to do is (1)
+bookmark this page when you need to figure out how to exit vi, and (2)
+remember to use nano!</p>
+<p>The redirection and compression stuff is really useful, but again,
+you just need to know it exists and that there’s this tutorial on it.</p>
+<p>Taking a step back, these first two workshops have been about
+introductory skills that you will use every day when you use a UNIX
+computer.</p>
+<p>These skills may seem confusing, but they will become second nature if
+you use them regularly. And we’ll be doing that through the next 9
+workshops!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-the-unix-command-line.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="connecting-to-remote-computers-with-ssh.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/02-text-files.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/02-text-files.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

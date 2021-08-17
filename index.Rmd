@@ -9,8 +9,6 @@ url: "https://ngs-docs.github.io/2021-august-remote-computing/"
 site: "bookdown::bookdown_site"
 knit: "bookdown::render_book"
 output:
-  html_document:
-    keep_md: true
   bookdown::gitbook:
     config:
       toc:

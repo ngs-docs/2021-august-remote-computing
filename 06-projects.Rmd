@@ -5,14 +5,12 @@ organizing your projects so that you can track inputs, outputs, and
 processing scripts over time, and keep yourself organized as your
 projects evolve.
 
-@CTB refer to workflow/exploratory paper
-
 ## Learning Objectives
 
 By the end of this lesson, students will:
 
-* understand how to set up a data-driven project
-* know how to submit & receive sequencing data from resources on campus
+* know how to transfer files around efficiently
+* understand how to set up a data-driven project for tracking and proper iteration
 * know how to store and work with mass quantities of data
 * understand _why_ to setup projects in a specific manner
 * gain an ability to work with subsets of data to test run workflows
@@ -230,6 +228,13 @@ like HPCs and shared workstations can provide larger resources at the
 cost of sometimes having to worry about what other users are doing.
 
 The "ride share" vs "personal car" analogy is fairly apt here, actually :).
+
+## Thinking about data science projects!
+
+![Figure 1 from Stoudt et al., 2021](proj-journal.pcbi.1008770.g001.PNG)
+
+For further discussion and details, I highly recommend
+[Principles for data analysis workflows, Stoudt et al., 2021](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008770), which is the best exploration of real data science practice I've yet seen. (Conflict alert: I was a reviewer :)
 
 ## a rough bioinformatics workflow
 
