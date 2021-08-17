@@ -316,7 +316,7 @@ But if we navigate into the `data/` directory we can see there is a `mini-chr1.f
 
 **CHALLENGE:** Determine if the two `mini-chr1.fna.gz` files are the same.
 
-Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)
+Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transferring data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)
 
 We can also make a list of md5sums for a group of files:
 
@@ -329,7 +329,7 @@ Here, we've redirected the output of the `md5sum` command to the `autosomes.md5`
 
 ## Storing data
 
-In any data analysis, we're going to end up producing a lot of intermedaiate
+In any data analysis, we're going to end up producing a lot of intermediate
 files. Which ones do we need to save? And how big are they?
 
 The answers will vary depending on workflows. For bioinformatics (and
@@ -443,7 +443,7 @@ Here we can see how organization allows for a tidy workspace:
 
 ![project paths](proj-paths_one_project.png)
 
-The list of files up top isn't too cringeworthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disater...
+The list of files up top isn't too cringe worthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disaster...
 
 ![paths](proj-paths_multiple_projects.png)
 

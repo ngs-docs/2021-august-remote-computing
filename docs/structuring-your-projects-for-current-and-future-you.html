@@ -548,7 +548,7 @@ ls -alh</code></pre>
 <pre><code>md5sum -c \@mini_A-torda.md5</code></pre>
 <p>But if we navigate into the <code>data/</code> directory we can see there is a <code>mini-chr1.fna.gz</code> file there too. Are they the same?</p>
 <p><strong>CHALLENGE:</strong> Determine if the two <code>mini-chr1.fna.gz</code> files are the same.</p>
-<p>Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)</p>
+<p>Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transferring data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)</p>
 <p>We can also make a list of md5sums for a group of files:</p>
 <pre><code>cd ~/298class8/mini_A-torda
 md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
@@ -557,7 +557,7 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 </div>
 <div id="storing-data" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> Storing data</h2>
-<p>In any data analysis, we’re going to end up producing a lot of intermedaiate
+<p>In any data analysis, we’re going to end up producing a lot of intermediate
 files. Which ones do we need to save? And how big are they?</p>
 <p>The answers will vary depending on workflows. For bioinformatics (and
 potentially a range of other data types - your mileage may vary!) we
@@ -698,7 +698,7 @@ suggest the following:</p>
 <img src="proj-paths_one_project.png" alt="" />
 <p class="caption">project paths</p>
 </div>
-<p>The list of files up top isn’t too cringeworthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disater…</p>
+<p>The list of files up top isn’t too cringe worthy if you only have one project. But multiple projects or experiments in one directory results in an organizational disaster…</p>
 <div class="figure">
 <img src="proj-paths_multiple_projects.png" alt="" />
 <p class="caption">paths</p>
