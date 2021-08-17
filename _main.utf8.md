@@ -3267,7 +3267,7 @@ less \@mini_A-torda.md5
 
 (press <kbd>Q</kbd> to exit)
 
-We can _check_ a list of md5sum's conatined in a file with the `-c` flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.
+We can _check_ a list of md5sums contained in a file with the `-c` flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.
 
 ```
 md5sum -c \@mini_A-torda.md5
@@ -3275,11 +3275,11 @@ md5sum -c \@mini_A-torda.md5
 
 But if we navigate into the `data/` directory we can see there is a `mini-chr1.fna.gz` file there too. Are they the same?
 
-**CHALLENGE:** Determine if the two `mini-chr1.fna.gz` scripts are the same.
+**CHALLENGE:** Determine if the two `mini-chr1.fna.gz` files are the same.
 
-Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sum's with your data. If they do not, email to request them!)
+Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)
 
-We can also make a list of md5sum's for a group of files:
+We can also make a list of md5sums for a group of files:
 
 ```
 cd ~/298class8/mini_A-torda
@@ -3288,15 +3288,22 @@ md5sum mini-chr[1-9]*.fna.gz  >> autosomes.md5
 
 Here, we've redirected the output of the `md5sum` command to the `autosomes.md5` file. We can then host/send our data with the md5 file for others to ensure the recipients know they've received the same data.
 
-
 ## Storing data
 
-### What do I back up?
+In any data analysis, we're going to end up producing a lot of intermedaiate
+files. Which ones do we need to save? And how big are they?
+
+The answers will vary depending on workflows. For bioinformatics (and
+potentially a range of other data types - your mileage may vary!) we
+suggest the following:
+
+### Bioinformatics: What do I back up?
+
 * **raw data** -- YES -- you only get them once!
 * **results files** -- YES -- they are so useful
 * **intermediate files** -- maybe -- they can be used in many different ways
 
-### How big should I expect the files to be?
+### Bioinformatics: How big should I expect the files to be?
 
 * **Raw data** will probably be the biggest
 * **Results files** depends on what you are doing
@@ -3320,13 +3327,13 @@ Examples:
 | Intermediate files from RADseq | ~25Mb | 20,925 | 741Gb |
 | Results of PopGen expt | 9.3Mb  | 2 | ~20Mb |
 
-Data files will come in a variety of sizes. In general, the largest single files will be the raw data files, you receive from the sequencing center. Individual files in each subsequent step will be smaller (but there might be more of them!) because each step throws out or compresses data. 
+Data files will come in a variety of sizes. In general, the largest single files will be the raw data files you receive from the sequencing center. Individual files in each subsequent step will be smaller (but there might be more of them!) because each step throws out or compresses data. 
 
-However, new files are generated at most steps in bioinformatics projects. Because of this, the sheer number of intermediate files can take up a lot of space!
+However, new files are generated at most steps in most projects. Because of this, the sheer number of intermediate files can take up a lot of space!
 
 ### How often should I backup my data?
 
-**Scripts:** This varies person to person. I suggest posting your scripts to GitHub and to push to GitHub _at least_ everyday you modify your scripts.  (This is what we'll teach next week!) GitHub will give you free private repositories as an academic, so you don't need to make things public.
+**Scripts and code:** This varies person to person. I suggest posting your scripts to GitHub and to push to GitHub _at least_ everyday you modify your scripts.  (This is what we'll teach in [workshop 8](keeping-track-of-your-files-with-version-control.html)!) GitHub will give you free private repositories as an academic, so you don't need to make things public.
 
 **Raw Data:** Luckily, you'll only need to backup your raw data once. Or maybe twice. Just don't delete it!
 
@@ -3340,7 +3347,7 @@ _**Small amounts of data (< 100 MB)**_ that you would like version controlled, s
 
 _**Small amounts of data  (100 Mb - 5Gb)**_ can be stored on a project by project basis at the [Open Science Framework](https://osf.io/). Each project is allocated 5Gb of space and there is no limit on number of projects. OSF also supports private and collaborative projects, and can be referred to in publications, so you can use it as your "raw results" location too.
 
-_**Large amounts of data (> 5Gb)**_ The most tangible solution to a bioinformatics problem is to back data up to a (or multiple) hard drives! Data can be stored via your Google Drive account. To store data using storage space that UC Davis has allocated to you, see this [Meet & Analyze Data tutorial](https://mad.oxli.org/t/2019-11-13-how-to-backup-data-on-a-remote-computer/82). 
+_**Large amounts of data (> 5Gb)**_ The most reasonable solution to this is to back data up to a (or multiple) hard drives! Data can be stored via your Google Drive account. To store data using storage space that UC Davis has allocated to you, see this [Meet & Analyze Data tutorial](https://mad.oxli.org/t/2019-11-13-how-to-backup-data-on-a-remote-computer/82). 
 
 -------------------------------
 
@@ -3364,7 +3371,8 @@ UC Davis has a number of clusters available to students, depending on your depar
 - requires an initial buy in to get a significant amount of space & compute
 
 ### Amazon Web Service
-These are cloud computing services provided by Amazon (what don't they provide!?)
+
+These are cloud computing services provided by Amazon (what don't they provide!?) We'll be showing you how to use Amazon for [workshop 11](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html).
 
 **Pros:**
 - Only pay for what you use
@@ -3377,7 +3385,7 @@ These are cloud computing services provided by Amazon (what don't they provide!?
 - no help desk
 - have to pay for downloading ("egress charges")
 
-All platforms have pluses and minuses. The one that will work best for you depends on your lab. I prefer the farm, for ease of use & consistency, if your lab will support you. 
+All platforms have pluses and minuses. The one that will work best for you depends on your lab. I prefer the farm, for ease of use & consistency, if your lab can support you. 
 
 ## Setting up your project
 
@@ -3403,86 +3411,7 @@ The list of files up top isn't too cringeworthy if you only have one project. Bu
 I like to have the following directory structure:
 ![directory structure](proj-example_directory_str.png)
 
--------------------------------
-
-## Working with data
-Let's work with some data on the farm! A brief note: for this lesson we will not be submitting jobs to the farm's job handler (slurm). That is because we are working with very small files. If you work on the farm during your grad school career, all of the analyses you carry out after this class _should_ be submitted through slurm (which we will go over in our farm lesson in a few weeks!).
-
-In this lesson, we are going to be carrying out part of an experiment where we call variants with a subset of E.coli sequencing data.
-
-### Learning objectives
-
-* subset data to test code
-* behold the power of Github and snakemake
-* understand how to name files
-
-### Testing code
-
-A great way of quickly testing to see if your code is working is by subsetting data. 
-
-We can take a small chunk of a file and use it to test if our newly written code works. 
-
-Let's grab some data:
-```
-mkdir -p ~/298class8/yeast/data
-cd !$
-ln -s /home/ctbrown/data/ggg201b/SRR2584403_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584404_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584405_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584857_1.fastq.gz .
-```
-
-These files each have up to 8.5 million lines! So we'll need smaller files to test our code.
-```
-for i in SRR258*.fastq.gz
-do
-    newname=$(basename $i .fastq.gz).n100000.fq
-    zcat $i | head -100000 >> ${newname}
-done
-```
-
-And now we have a subset of all of our fastq files!
-
-
-#### How GitHub + snakemake + conda can make your (research) life great
-
-(This will look veeeery familiar to GGG 201(b) students :)
-
-Using GitHub, snakemake and conda together can make life a lot easier. We can grab our collaborator's code by cloning their repo:
-
-```
-cd ~/298class8/yeast
-git clone https://github.com/shannonekj/2021_ggg298_variant_calling.git
-cd 2021_ggg298_variant_calling
-```
-
-then we'll install a few more pieces of software with conda
-
-```
-conda create -y -n fqc-day8 -c bioconda -c conda-forge samtools bcftools bwa snakemake-minimal
-conda activate fqc-day8
-```
-
-and run their Snakefile to test calling variants on the subset file.
-
-```
-snakemake -p -j 1
-```
-
-In this one command we've done the following:
-* downloaded a reference genome
-* indexed the genome
-* mapped reads
-* aligned the sequencing data to the genome
-* sorted aligned reads
-* indexed aligned reads
-* called variants
-
-And now, in a single command, we have a `variant.vcf` file with all of the variants in the four individuals compared to the reference genome. Pretty neat huh??
-
-(Q: why did this run so quickly?)
-
-### Naming files
+## Naming files
 
 Having files with consistent names allows us to do things to them en masse and can also allow us to know what has been done to them. Everyone has a different strategy in what they like their file names to contain and how they go about naming them but here a few suggestions.
 
@@ -3509,13 +3438,29 @@ If we keep our names consistent between plates/runs could run an analysis on all
 
 #### File endings
 
-The ends of files can be immensely helpful as well. Remember, at the command line, a file's ending ".whatever" exists to inform a human what kind of file/format to expect.
+The ends of files can be immensely helpful as well. Remember, at the
+command line, a file's ending ".whatever" exists to inform a human
+what kind of file/format to expect.  You'll see some examples of this
+in [workshop
+7](automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html)
+and [workshop
+9](automating-your-analyses-with-the-snakemake-workflow-system.html).
 
-We can use this to our advantage by making the ends of files denote what step(s) has already taken place. 
+-------------------------------
 
-Let's look at the [samtools](http://www.htslib.org/) steps that happen in our Snakefile
+## Looking forward to the next few workshops: working with data
 
-![file endings](proj-file_endings.png)
+The discussion below motivates the next few workshops :).
+
+In [workshop 7](automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html), we'll talk about basic scripting and working with many files and how to conduct long-running analyses.
+
+In [workshop 8](keeping-track-of-your-files-with-version-control.html), we'll show you git and how to track changes to text files.
+
+In [workshop 9](automating-your-analyses-with-the-snakemake-workflow-system.html), we'll talk about using the snakemake workflow system to efficiently and effectively automate larger scale analyses.
+
+In [workshop 10](executing-large-analyses-on-hpc-clusters-with-slurm.html), we'll discuss how to execute jobs using the SLURM system to tap into farm's compute cluster.
+
+And, finally, in [workshop 11](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html) we will demonstrate the use of cloud compute resources as another source of remote computing.
 
 -------------------------------
 

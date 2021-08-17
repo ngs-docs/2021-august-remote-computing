@@ -131,8 +131,8 @@ example-a-rough-bioinformatics-workflow
 sending-and-receiving-data
 downloading-data
 storing-data
-what-do-i-back-up
-how-big-should-i-expect-the-files-to-be
+bioinformatics-what-do-i-back-up
+bioinformatics-how-big-should-i-expect-the-files-to-be
 how-often-should-i-backup-my-data
 where-do-i-back-up-my-data
 where-do-i-work-with-large-amounts-of-data
@@ -140,13 +140,10 @@ high-performance-computing-clusters
 amazon-web-service
 setting-up-your-project
 things-to-think-about
-working-with-data
-learning-objectives-1
-testing-code
-how-github-snakemake-conda-can-make-your-research-life-great
 naming-files
 prefixes
 file-endings
+looking-forward-to-the-next-few-workshops-working-with-data
 additional-resources
 automating-your-analyses-and-executing-long-running-analyses-on-remote-computers
 keeping-track-of-your-files-with-version-control

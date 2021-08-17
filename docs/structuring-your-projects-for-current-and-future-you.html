@@ -271,8 +271,8 @@
 </ul></li>
 <li class="chapter" data-level="6.9" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#storing-data"><i class="fa fa-check"></i><b>6.9</b> Storing data</a>
 <ul>
-<li class="chapter" data-level="6.9.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#what-do-i-back-up"><i class="fa fa-check"></i><b>6.9.1</b> What do I back up?</a></li>
-<li class="chapter" data-level="6.9.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#how-big-should-i-expect-the-files-to-be"><i class="fa fa-check"></i><b>6.9.2</b> How big should I expect the files to be?</a></li>
+<li class="chapter" data-level="6.9.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#bioinformatics-what-do-i-back-up"><i class="fa fa-check"></i><b>6.9.1</b> Bioinformatics: What do I back up?</a></li>
+<li class="chapter" data-level="6.9.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#bioinformatics-how-big-should-i-expect-the-files-to-be"><i class="fa fa-check"></i><b>6.9.2</b> Bioinformatics: How big should I expect the files to be?</a></li>
 <li class="chapter" data-level="6.9.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#how-often-should-i-backup-my-data"><i class="fa fa-check"></i><b>6.9.3</b> How often should I backup my data?</a></li>
 <li class="chapter" data-level="6.9.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#where-do-i-back-up-my-data"><i class="fa fa-check"></i><b>6.9.4</b> Where do I back up my data?</a></li>
 </ul></li>
@@ -285,13 +285,9 @@
 <ul>
 <li class="chapter" data-level="6.11.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#things-to-think-about"><i class="fa fa-check"></i><b>6.11.1</b> Things to think about</a></li>
 </ul></li>
-<li class="chapter" data-level="6.12" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#working-with-data"><i class="fa fa-check"></i><b>6.12</b> Working with data</a>
-<ul>
-<li class="chapter" data-level="6.12.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#learning-objectives-1"><i class="fa fa-check"></i><b>6.12.1</b> Learning objectives</a></li>
-<li class="chapter" data-level="6.12.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#testing-code"><i class="fa fa-check"></i><b>6.12.2</b> Testing code</a></li>
-<li class="chapter" data-level="6.12.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#naming-files"><i class="fa fa-check"></i><b>6.12.3</b> Naming files</a></li>
-</ul></li>
-<li class="chapter" data-level="6.13" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#additional-resources"><i class="fa fa-check"></i><b>6.13</b> Additional resources</a></li>
+<li class="chapter" data-level="6.12" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#naming-files"><i class="fa fa-check"></i><b>6.12</b> Naming files</a></li>
+<li class="chapter" data-level="6.13" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#looking-forward-to-the-next-few-workshops-working-with-data"><i class="fa fa-check"></i><b>6.13</b> Looking forward to the next few workshops: working with data</a></li>
+<li class="chapter" data-level="6.14" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#additional-resources"><i class="fa fa-check"></i><b>6.14</b> Additional resources</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><i class="fa fa-check"></i><b>7</b> Automating your analyses and executing long-running analyses on remote computers</a></li>
 <li class="chapter" data-level="8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html"><i class="fa fa-check"></i><b>8</b> Keeping track of your files with version control</a></li>
@@ -548,12 +544,12 @@ ls -alh</code></pre>
 <p>First, take a look at the file:</p>
 <pre><code>less \@mini_A-torda.md5</code></pre>
 <p>(press <kbd>Q</kbd> to exit)</p>
-<p>We can <em>check</em> a list of md5sum’s conatined in a file with the <code>-c</code> flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.</p>
+<p>We can <em>check</em> a list of md5sums contained in a file with the <code>-c</code> flag. The command will automatically look for files contained in the list and check the md5sum against the ones printed in the file.</p>
 <pre><code>md5sum -c \@mini_A-torda.md5</code></pre>
 <p>But if we navigate into the <code>data/</code> directory we can see there is a <code>mini-chr1.fna.gz</code> file there too. Are they the same?</p>
-<p><strong>CHALLENGE:</strong> Determine if the two <code>mini-chr1.fna.gz</code> scripts are the same.</p>
-<p>Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sum’s with your data. If they do not, email to request them!)</p>
-<p>We can also make a list of md5sum’s for a group of files:</p>
+<p><strong>CHALLENGE:</strong> Determine if the two <code>mini-chr1.fna.gz</code> files are the same.</p>
+<p>Anytime you download data you should check to make sure it has downloaded successfully. This includes raw sequence data from a sequencing center, data from collaborators host on a shared space, sequence files from NCBI, transfering data between devices, downloading data from clusters and so on and so forth. (Most sequencing centers will automatically provide md5sums with your data. If they do not, email to request them!)</p>
+<p>We can also make a list of md5sums for a group of files:</p>
 <pre><code>cd ~/298class8/mini_A-torda
 md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 <p>Here, we’ve redirected the output of the <code>md5sum</code> command to the <code>autosomes.md5</code> file. We can then host/send our data with the md5 file for others to ensure the recipients know they’ve received the same data.</p>
@@ -561,16 +557,21 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 </div>
 <div id="storing-data" class="section level2" number="6.9">
 <h2><span class="header-section-number">6.9</span> Storing data</h2>
-<div id="what-do-i-back-up" class="section level3" number="6.9.1">
-<h3><span class="header-section-number">6.9.1</span> What do I back up?</h3>
+<p>In any data analysis, we’re going to end up producing a lot of intermedaiate
+files. Which ones do we need to save? And how big are they?</p>
+<p>The answers will vary depending on workflows. For bioinformatics (and
+potentially a range of other data types - your mileage may vary!) we
+suggest the following:</p>
+<div id="bioinformatics-what-do-i-back-up" class="section level3" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> Bioinformatics: What do I back up?</h3>
 <ul>
 <li><strong>raw data</strong> – YES – you only get them once!</li>
 <li><strong>results files</strong> – YES – they are so useful</li>
 <li><strong>intermediate files</strong> – maybe – they can be used in many different ways</li>
 </ul>
 </div>
-<div id="how-big-should-i-expect-the-files-to-be" class="section level3" number="6.9.2">
-<h3><span class="header-section-number">6.9.2</span> How big should I expect the files to be?</h3>
+<div id="bioinformatics-how-big-should-i-expect-the-files-to-be" class="section level3" number="6.9.2">
+<h3><span class="header-section-number">6.9.2</span> Bioinformatics: How big should I expect the files to be?</h3>
 <ul>
 <li><strong>Raw data</strong> will probably be the biggest</li>
 <li><strong>Results files</strong> depends on what you are doing</li>
@@ -629,12 +630,12 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Data files will come in a variety of sizes. In general, the largest single files will be the raw data files, you receive from the sequencing center. Individual files in each subsequent step will be smaller (but there might be more of them!) because each step throws out or compresses data.</p>
-<p>However, new files are generated at most steps in bioinformatics projects. Because of this, the sheer number of intermediate files can take up a lot of space!</p>
+<p>Data files will come in a variety of sizes. In general, the largest single files will be the raw data files you receive from the sequencing center. Individual files in each subsequent step will be smaller (but there might be more of them!) because each step throws out or compresses data.</p>
+<p>However, new files are generated at most steps in most projects. Because of this, the sheer number of intermediate files can take up a lot of space!</p>
 </div>
 <div id="how-often-should-i-backup-my-data" class="section level3" number="6.9.3">
 <h3><span class="header-section-number">6.9.3</span> How often should I backup my data?</h3>
-<p><strong>Scripts:</strong> This varies person to person. I suggest posting your scripts to GitHub and to push to GitHub <em>at least</em> everyday you modify your scripts. (This is what we’ll teach next week!) GitHub will give you free private repositories as an academic, so you don’t need to make things public.</p>
+<p><strong>Scripts and code:</strong> This varies person to person. I suggest posting your scripts to GitHub and to push to GitHub <em>at least</em> everyday you modify your scripts. (This is what we’ll teach in <a href="keeping-track-of-your-files-with-version-control.html">workshop 8</a>!) GitHub will give you free private repositories as an academic, so you don’t need to make things public.</p>
 <p><strong>Raw Data:</strong> Luckily, you’ll only need to backup your raw data once. Or maybe twice. Just don’t delete it!</p>
 <p><strong>Results:</strong> Again, these only need to be backed up once. However, if you reanalyze your data make sure you save the new results. Or at least the workflow you used to get there.</p>
 </div>
@@ -643,7 +644,7 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 <p>There are a number of places you <em>can</em> backup to, for better or for worse.</p>
 <p><em><strong>Small amounts of data (&lt; 100 MB)</strong></em> that you would like version controlled, such as code, can be backed up to GitHub. Note that GitHub is not archival and cannot be used as the permanent post-publication place for your scripts, but there are solutions for that (search “github zenodo”).</p>
 <p><em><strong>Small amounts of data (100 Mb - 5Gb)</strong></em> can be stored on a project by project basis at the <a href="https://osf.io/">Open Science Framework</a>. Each project is allocated 5Gb of space and there is no limit on number of projects. OSF also supports private and collaborative projects, and can be referred to in publications, so you can use it as your “raw results” location too.</p>
-<p><em><strong>Large amounts of data (&gt; 5Gb)</strong></em> The most tangible solution to a bioinformatics problem is to back data up to a (or multiple) hard drives! Data can be stored via your Google Drive account. To store data using storage space that UC Davis has allocated to you, see this <a href="https://mad.oxli.org/t/2019-11-13-how-to-backup-data-on-a-remote-computer/82">Meet &amp; Analyze Data tutorial</a>.</p>
+<p><em><strong>Large amounts of data (&gt; 5Gb)</strong></em> The most reasonable solution to this is to back data up to a (or multiple) hard drives! Data can be stored via your Google Drive account. To store data using storage space that UC Davis has allocated to you, see this <a href="https://mad.oxli.org/t/2019-11-13-how-to-backup-data-on-a-remote-computer/82">Meet &amp; Analyze Data tutorial</a>.</p>
 <hr />
 </div>
 </div>
@@ -667,7 +668,7 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 </div>
 <div id="amazon-web-service" class="section level3" number="6.10.2">
 <h3><span class="header-section-number">6.10.2</span> Amazon Web Service</h3>
-<p>These are cloud computing services provided by Amazon (what don’t they provide!?)</p>
+<p>These are cloud computing services provided by Amazon (what don’t they provide!?) We’ll be showing you how to use Amazon for <a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html">workshop 11</a>.</p>
 <p><strong>Pros:</strong>
 - Only pay for what you use
 - Can have temporary access to supercomputers which <em>could</em> end up costing less than consistent access on a cluster
@@ -677,7 +678,7 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 - must build everything yourself
 - no help desk
 - have to pay for downloading (“egress charges”)</p>
-<p>All platforms have pluses and minuses. The one that will work best for you depends on your lab. I prefer the farm, for ease of use &amp; consistency, if your lab will support you.</p>
+<p>All platforms have pluses and minuses. The one that will work best for you depends on your lab. I prefer the farm, for ease of use &amp; consistency, if your lab can support you.</p>
 </div>
 </div>
 <div id="setting-up-your-project" class="section level2" number="6.11">
@@ -704,68 +705,13 @@ md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
 </div>
 <p>I like to have the following directory structure:
 <img src="proj-example_directory_str.png" alt="directory structure" /></p>
-<hr />
 </div>
 </div>
-<div id="working-with-data" class="section level2" number="6.12">
-<h2><span class="header-section-number">6.12</span> Working with data</h2>
-<p>Let’s work with some data on the farm! A brief note: for this lesson we will not be submitting jobs to the farm’s job handler (slurm). That is because we are working with very small files. If you work on the farm during your grad school career, all of the analyses you carry out after this class <em>should</em> be submitted through slurm (which we will go over in our farm lesson in a few weeks!).</p>
-<p>In this lesson, we are going to be carrying out part of an experiment where we call variants with a subset of E.coli sequencing data.</p>
-<div id="learning-objectives-1" class="section level3" number="6.12.1">
-<h3><span class="header-section-number">6.12.1</span> Learning objectives</h3>
-<ul>
-<li>subset data to test code</li>
-<li>behold the power of Github and snakemake</li>
-<li>understand how to name files</li>
-</ul>
-</div>
-<div id="testing-code" class="section level3" number="6.12.2">
-<h3><span class="header-section-number">6.12.2</span> Testing code</h3>
-<p>A great way of quickly testing to see if your code is working is by subsetting data.</p>
-<p>We can take a small chunk of a file and use it to test if our newly written code works.</p>
-<p>Let’s grab some data:</p>
-<pre><code>mkdir -p ~/298class8/yeast/data
-cd !$
-ln -s /home/ctbrown/data/ggg201b/SRR2584403_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584404_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584405_1.fastq.gz .
-ln -s /home/ctbrown/data/ggg201b/SRR2584857_1.fastq.gz .</code></pre>
-<p>These files each have up to 8.5 million lines! So we’ll need smaller files to test our code.</p>
-<pre><code>for i in SRR258*.fastq.gz
-do
-    newname=$(basename $i .fastq.gz).n100000.fq
-    zcat $i | head -100000 &gt;&gt; ${newname}
-done</code></pre>
-<p>And now we have a subset of all of our fastq files!</p>
-<div id="how-github-snakemake-conda-can-make-your-research-life-great" class="section level4" number="6.12.2.1">
-<h4><span class="header-section-number">6.12.2.1</span> How GitHub + snakemake + conda can make your (research) life great</h4>
-<p>(This will look veeeery familiar to GGG 201(b) students :)</p>
-<p>Using GitHub, snakemake and conda together can make life a lot easier. We can grab our collaborator’s code by cloning their repo:</p>
-<pre><code>cd ~/298class8/yeast
-git clone https://github.com/shannonekj/2021_ggg298_variant_calling.git
-cd 2021_ggg298_variant_calling</code></pre>
-<p>then we’ll install a few more pieces of software with conda</p>
-<pre><code>conda create -y -n fqc-day8 -c bioconda -c conda-forge samtools bcftools bwa snakemake-minimal
-conda activate fqc-day8</code></pre>
-<p>and run their Snakefile to test calling variants on the subset file.</p>
-<pre><code>snakemake -p -j 1</code></pre>
-<p>In this one command we’ve done the following:
-* downloaded a reference genome
-* indexed the genome
-* mapped reads
-* aligned the sequencing data to the genome
-* sorted aligned reads
-* indexed aligned reads
-* called variants</p>
-<p>And now, in a single command, we have a <code>variant.vcf</code> file with all of the variants in the four individuals compared to the reference genome. Pretty neat huh??</p>
-<p>(Q: why did this run so quickly?)</p>
-</div>
-</div>
-<div id="naming-files" class="section level3" number="6.12.3">
-<h3><span class="header-section-number">6.12.3</span> Naming files</h3>
+<div id="naming-files" class="section level2" number="6.12">
+<h2><span class="header-section-number">6.12</span> Naming files</h2>
 <p>Having files with consistent names allows us to do things to them en masse and can also allow us to know what has been done to them. Everyone has a different strategy in what they like their file names to contain and how they go about naming them but here a few suggestions.</p>
-<div id="prefixes" class="section level4" number="6.12.3.1">
-<h4><span class="header-section-number">6.12.3.1</span> Prefixes</h4>
+<div id="prefixes" class="section level4" number="6.12.0.1">
+<h4><span class="header-section-number">6.12.0.1</span> Prefixes</h4>
 <p>Use the beginning of your file to your advantage. If you’ve sequenced individuals yourself, you can name these files according any or all of the following:
 * which <strong>individual</strong> they are from
 * what <strong>well</strong> in the plate they came from
@@ -782,21 +728,30 @@ Where:
 <p>Having some metadata in the file name can allow for efficient groupings when running quality controls (such as testing for batch effects).</p>
 <p>If we keep our names consistent between plates/runs could run an analysis on all individuals that were from any of these variables.</p>
 </div>
-<div id="file-endings" class="section level4" number="6.12.3.2">
-<h4><span class="header-section-number">6.12.3.2</span> File endings</h4>
-<p>The ends of files can be immensely helpful as well. Remember, at the command line, a file’s ending “.whatever” exists to inform a human what kind of file/format to expect.</p>
-<p>We can use this to our advantage by making the ends of files denote what step(s) has already taken place.</p>
-<p>Let’s look at the <a href="http://www.htslib.org/">samtools</a> steps that happen in our Snakefile</p>
-<div class="figure">
-<img src="proj-file_endings.png" alt="" />
-<p class="caption">file endings</p>
-</div>
+<div id="file-endings" class="section level4" number="6.12.0.2">
+<h4><span class="header-section-number">6.12.0.2</span> File endings</h4>
+<p>The ends of files can be immensely helpful as well. Remember, at the
+command line, a file’s ending “.whatever” exists to inform a human
+what kind of file/format to expect. You’ll see some examples of this
+in <a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html">workshop
+7</a>
+and <a href="automating-your-analyses-with-the-snakemake-workflow-system.html">workshop
+9</a>.</p>
 <hr />
 </div>
 </div>
+<div id="looking-forward-to-the-next-few-workshops-working-with-data" class="section level2" number="6.13">
+<h2><span class="header-section-number">6.13</span> Looking forward to the next few workshops: working with data</h2>
+<p>The discussion below motivates the next few workshops :).</p>
+<p>In <a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html">workshop 7</a>, we’ll talk about basic scripting and working with many files and how to conduct long-running analyses.</p>
+<p>In <a href="keeping-track-of-your-files-with-version-control.html">workshop 8</a>, we’ll show you git and how to track changes to text files.</p>
+<p>In <a href="automating-your-analyses-with-the-snakemake-workflow-system.html">workshop 9</a>, we’ll talk about using the snakemake workflow system to efficiently and effectively automate larger scale analyses.</p>
+<p>In <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html">workshop 10</a>, we’ll discuss how to execute jobs using the SLURM system to tap into farm’s compute cluster.</p>
+<p>And, finally, in <a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html">workshop 11</a> we will demonstrate the use of cloud compute resources as another source of remote computing.</p>
+<hr />
 </div>
-<div id="additional-resources" class="section level2" number="6.13">
-<h2><span class="header-section-number">6.13</span> Additional resources</h2>
+<div id="additional-resources" class="section level2" number="6.14">
+<h2><span class="header-section-number">6.14</span> Additional resources</h2>
 <ul>
 <li><a href="http://vincebuffalo.org/book/">Bioinformatics Data Skills</a> by Vince Buffalo</li>
 <li><a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1001745">Best Practices for Sci Comp</a> (Wilson et al. 2014)</li>
