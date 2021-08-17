@@ -90,6 +90,18 @@ bash first_script.sh
 
 ## `for` Loops
 
+
+a loop to create list of md5sum fingerprints for the mini-A-torda .fna.gz files:
+```
+(base) datalab-02@farm:~/seqdata/mini_A-torda$ for i in *.fna.gz; do echo md5sum $i; done
+
+# now, let's append those md5sum numbers to a text file
+(base) datalab-02@farm:~/seqdata/mini_A-torda$ for i in *.fna.gz; do md5sum $i >> my_md5sum_list.txt;done
+(base) datalab-02@farm:~/seqdata/mini_A-torda$ less my_md5sum_list.txt
+```
+
+
+
 - intro to `for` loops in scripts
    - discuss indentation in loop structure, or use `;`
    - using `echo`: to print statements, to check what command is being run before actually running it
