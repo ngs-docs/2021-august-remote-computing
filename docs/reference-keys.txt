@@ -175,7 +175,7 @@ using-.gitignore-to-ignore-files
 editing-on-github-directly
 zenodo-for-publishing-your-git-repo
 git-philosophy
-a-blog-post-to-read
+resources
 automating-your-analyses-with-the-snakemake-workflow-system
 executing-large-analyses-on-hpc-clusters-with-slurm
 making-use-of-on-demand-cloud-computers-from-amazon-web-services

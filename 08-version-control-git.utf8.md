@@ -561,9 +561,14 @@ Now go back to zenodo. You should see that a DOI has been assigned! This is a fr
 * do git commit & git push frequently (at end of every session, at least) - remember, you can always unwind, but you can't go back to a specific changeset you never committed!
 * commit messages are helpful, diffs are golden.
 
-## A blog post to read
+## Resources
 
-Check out Daniel Standage's blog post on [using github to collaborate with yourself](https://standage.github.io/developer-pull-request-thyself.html) for inspiration!
+* Check out Daniel Standage's blog post on [using github to collaborate with yourself](https://standage.github.io/developer-pull-request-thyself.html) for inspiration!
+* Mark Lodato's [visual reference on git](https://marklodato.github.io/visual-git-guide/index-en.html)
+* Roger Dudler's [simple guide to git](https://rogerdudler.github.io/git-guide/)
+* [Git-it](http://jlord.us/git-it/) which provides step by step tutorial with challenge exercises
+
+
 
 TODO:
 
