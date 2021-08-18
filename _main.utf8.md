@@ -3548,6 +3548,8 @@ well as backup your project files to github and transfer them to your
 laptop or desktop. We will demonstrate file sharing via github, and
 discuss ways to collaborate with a team.
 
+This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week7-Git_and_GitHub_for_file_tracking_and_sharing) co-authored by Shannon Joslin for GGG 298 at UC Davis.
+
 ## Learning objectives
 
 By the end of this lesson, students will:
