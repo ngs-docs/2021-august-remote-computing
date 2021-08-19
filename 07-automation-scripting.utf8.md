@@ -118,7 +118,12 @@ Check out the list (exit by pressing q)
 less my_md5sum_list.txt
 ```
 
-Now, let's practice for loops by renaming MiSeq sequence file names - we're going to build a for loop step by step. Go to this directory: `~/2021-remote-computing-binder/data/MiSeq`.
+Now, let's practice for loops by renaming MiSeq sequence file names - we're going to build a for loop step by step. Go to this directory: `~/2021-remote-computing-binder/data/MiSeq`:
+```
+cd ~/2021-remote-computing-binder/data/MiSeq
+```
+
+and then type
 
 ```
 for i in *.fastq
@@ -275,7 +280,13 @@ cd ~/2021-remote-computing-binder/data
 mkdir ./MiSeq/fastqc_reports
 ```
 
-2. Create a conda environment that has `fastqc` installed in it
+2. Create and activate a conda environment that has `fastqc` installed in it:
+
+```
+mamba create -n fqc -y fastqc
+conda activate fqc
+```
+
 3. Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)
 ```
 nano set_e.sh
@@ -323,7 +334,7 @@ If statements act on things conditionally. For example, you might want to do som
 
 `if` statement structure:
 
-- starts with `do` and ends with `fi`
+- starts with `if` and ends with `fi`
 - loop components are separated by `;` or indentation
 
 Here, we're wrapping if statements in a for loop:  
@@ -416,16 +427,14 @@ After the `bash <script name>`, the syntax now assigns the 1st element (`$1`) to
 bash ifs.sh 40 20
 ```
 
-**CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number?
-
-
+**CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $1 parameter against the numbers `20 30 40 50 60 70` to see if it matched one?
 
 
 ## Multiple screens
 
 What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?
 
-There are 2 programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). These are a bit tricky to get used to, so we'll do a demo.
+There are 2 programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). These are a bit tricky to get used too, so we'll do a demo.
 
 Basic commands for `screen` and `tmux` below. They both have keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
 
@@ -439,6 +448,11 @@ end session | `exit`  | `tmux kill-session -t <session name>`
 
 Like text editors, both programs basically do the same thing - choose the one you're most comfortable using!
 
+There are several reasons to use screen or tmux --
+
+* they keep output from long-running commands, including ones that are running interactively and need input;
+* they provide a way to "detach" from a particular shell prompt with a particular configuration, and resume it later;
+* they let you switch between terminal windows that are running on two different computers.
 
 ## Concluding thoughts
 
