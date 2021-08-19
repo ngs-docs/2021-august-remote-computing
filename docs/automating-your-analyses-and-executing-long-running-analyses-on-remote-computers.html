@@ -524,13 +524,13 @@ set -e
 
 OUTDIR=&#39;fastqc_reports&#39;
 
-for i in ./MiSeq/*.fastq
+for i in ./MiSeq/*.fq
 do
    echo $i
    fastqc $i -o $OUTDIR
 done</code></pre>
 <p><strong>Reminder:</strong> Another way to type bash <code>for</code> loops is with the <code>;</code>, for example this syntax does the same thing as above:</p>
-<pre><code>for i in ./MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done</code></pre>
+<pre><code>for i in ./MiSeq/*.fq; do echo $i; fastqc $i -o $OUTDIR; done</code></pre>
 <p>This command runs the script:</p>
 <pre><code>bash set_e.sh</code></pre>
 <p><strong>CHALLENGE</strong></p>
@@ -675,17 +675,17 @@ fi</code></pre>
 </ol>
 <p>Output with <code>set -e</code>:</p>
 <pre><code>(base) ~$ bash set_e.sh
-./MiSeq/F3D0_S188_L001_R1_001.fastq
+./MiSeq/F3D0_S188_L001_R1_001.fq
 Specified output directory &#39;fastqc_reports&#39; does not exist</code></pre>
 <p>Output without <code>set -e</code>:</p>
 <pre><code>(base) ~$ bash set_e.sh
-./MiSeq/F3D0_S188_L001_R1_001.fastq
+./MiSeq/F3D0_S188_L001_R1_001.fq
 Specified output directory &#39;fastqc_reports&#39; does not exist
-./MiSeq/F3D0_S188_L001_R2_001.fastq
+./MiSeq/F3D0_S188_L001_R2_001.fq
 Specified output directory &#39;fastqc_reports&#39; does not exist
-./MiSeq/F3D141_S207_L001_R1_001.fastq
+./MiSeq/F3D141_S207_L001_R1_001.fq
 Specified output directory &#39;fastqc_reports&#39; does not exist
-./MiSeq/F3D141_S207_L001_R2_001.fastq
+./MiSeq/F3D141_S207_L001_R2_001.fq
 Specified output directory &#39;fastqc_reports&#39; does not exist
 ...</code></pre>
 <ol start="2" style="list-style-type: decimal">
@@ -698,15 +698,16 @@ OUTDIR=&#39;fastqc_reports&#39;
 OUTDIR=&#39;./data/fastqc_reports&#39;</code></pre>
 <p><em>Answer for ifs.sh in a loop exercise</em></p>
 <p>This is one approach:</p>
-<pre><code>for i in {18..21}
+<pre><code>for i in {1..5}
 do
-   bash ifs.sh $i 20
+   bash ifs.sh $i 5
 done</code></pre>
 <p>The output will look like this:</p>
 <pre><code>a is not equal to b!
 a is not equal to b!
-a is equal to b!
-a is not equal to b!</code></pre>
+a is not equal to b!
+a is not equal to b!
+a is equal to b!</code></pre>
 
 </div>
 </div>

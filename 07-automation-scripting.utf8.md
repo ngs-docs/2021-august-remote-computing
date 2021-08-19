@@ -287,7 +287,7 @@ set -e
 
 OUTDIR='fastqc_reports'
 
-for i in ./MiSeq/*.fastq
+for i in ./MiSeq/*.fq
 do
    echo $i
    fastqc $i -o $OUTDIR
@@ -297,7 +297,7 @@ done
 **Reminder:** Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
 
 ```
-for i in ./MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
+for i in ./MiSeq/*.fq; do echo $i; fastqc $i -o $OUTDIR; done
 ```
 
 This command runs the script:
@@ -466,7 +466,7 @@ Output with `set -e`:
 
 ```
 (base) ~$ bash set_e.sh
-./MiSeq/F3D0_S188_L001_R1_001.fastq
+./MiSeq/F3D0_S188_L001_R1_001.fq
 Specified output directory 'fastqc_reports' does not exist
 ```
 
@@ -474,13 +474,13 @@ Output without `set -e`:
 
 ```
 (base) ~$ bash set_e.sh
-./MiSeq/F3D0_S188_L001_R1_001.fastq
+./MiSeq/F3D0_S188_L001_R1_001.fq
 Specified output directory 'fastqc_reports' does not exist
-./MiSeq/F3D0_S188_L001_R2_001.fastq
+./MiSeq/F3D0_S188_L001_R2_001.fq
 Specified output directory 'fastqc_reports' does not exist
-./MiSeq/F3D141_S207_L001_R1_001.fastq
+./MiSeq/F3D141_S207_L001_R1_001.fq
 Specified output directory 'fastqc_reports' does not exist
-./MiSeq/F3D141_S207_L001_R2_001.fastq
+./MiSeq/F3D141_S207_L001_R2_001.fq
 Specified output directory 'fastqc_reports' does not exist
 ...
 ```
@@ -500,9 +500,9 @@ OUTDIR='./data/fastqc_reports'
 
 This is one approach:
 ```
-for i in {18..21}
+for i in {1..5}
 do
-   bash ifs.sh $i 20
+   bash ifs.sh $i 5
 done
 ```
 
@@ -510,6 +510,7 @@ The output will look like this:
 ```
 a is not equal to b!
 a is not equal to b!
-a is equal to b!
 a is not equal to b!
+a is not equal to b!
+a is equal to b!
 ```
