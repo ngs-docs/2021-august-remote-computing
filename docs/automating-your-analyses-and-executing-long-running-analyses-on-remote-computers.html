@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-18" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -364,7 +364,7 @@ commands.</p>
 <li>Automate: don’t have to remember all the commands and type then one at a time</li>
 <li>Scale up: can use same script for multiple samples, multiple processes</li>
 <li>Reproduce &amp; share: easier to reproduce or share analyses because it’s all written down</li>
-<li>Version control: stay tuned for workshop 8!</li>
+<li>Version control: stay tuned for <a href="keeping-track-of-your-files-with-version-control.html">workshop 8</a>!</li>
 </ul>
 </div>
 <div id="getting-started" class="section level2" number="7.2">
@@ -385,14 +385,14 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 <h3><span class="header-section-number">7.3.1</span> Running scripts with <code>bash</code></h3>
 <p>At the terminal, we can type:</p>
 <pre><code>echo Hello, this is the terminal!</code></pre>
-<p>In a script, we can do the same thing - (we covered how to create and edit files with <code>nano</code> from Workshop 2!):</p>
+<p>In a script, we can do the same thing - (we covered how to create and edit files with <code>nano</code> from <a href="creating-and-modifying-text-files-on-remote-computers.html">Workshop 2!</a>):</p>
 <p>Create a script file with nano - The file extension for shell scripts is ‘.sh’.</p>
 <pre><code>nano first_script.sh</code></pre>
 <p>Add the following 3 lines to the script:</p>
 <pre><code>#!/bin/bash
 echo Hello, this is a script!
 echo I am on the next line!</code></pre>
-<p>The <code>#!/bin/bash</code> header (this is known as a “<a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>”) tells the shell how to interpret the script file.</p>
+<p>The <code>#!/bin/bash</code> header (this is known as a “<a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">sha-bang</a>” or hashbang) tells the shell how to interpret the script file. It will be used later!</p>
 <p>Execute the script</p>
 <pre><code>bash first_script.sh</code></pre>
 <p>Note that commands are executed in the order that they appear in the script</p>
@@ -442,7 +442,7 @@ do
    echo $newname
 done</code></pre>
 <p>What <code>$( ... )</code> does is run the command in the middle, and then replace the <code>$( )</code> with the output of running the command. This output is assigned to the variable “newname”.</p>
-<p><em>Side note:</em> you may see backticks used instead of <code>$(...)</code>. It does the same thing but the syntax is trickier to get right, so we teach <code>$(...)</code> instead of <code>`...`</code>.</p>
+<p><em>Side note:</em> you may see backticks used instead of <code>$(...)</code>. It does the same thing but the syntax is trickier to get right, so we teach <code>$(...)</code> instead of <code>`...`</code>. Note that <code>$( ... )</code> can be nested, to, so you can do <code>$( command $( command2 ))</code> which is occasionally handy.</p>
 <p>Now we have the old name (<code>$i</code>) and the new name (<code>$newname</code>) and we’re ready to write the rename command –</p>
 <pre><code>for i in *.fastq
 do
@@ -492,8 +492,11 @@ done</code></pre>
 <pre><code>MY${varname}SUBSET</code></pre>
 <p>would expand ${varname} and then put “MY” and “SUBSET” on either end, while</p>
 <pre><code>MY$varnameSUBSET</code></pre>
-<p>would try to put “MY” in front of $varnameSUBSET which won’t work.</p>
-<p>(Unknown/uncreated variables are empty.)</p>
+<p>would try to put “MY” in front of $varnameSUBSET which won’t work - unknown/uncreated variables are evaluated to empty by default, so this would just expand
+to <code>MY</code>.</p>
+<p>We recommend always using <code>${name}</code> instead of <code>$name</code>, because it
+always works the way you expect, unlike <code>$name</code>, which can be
+confusing when constructing new filenames as above.</p>
 <p>NOTE: <code>${varname}</code> is quite different from <code>$(expression)</code>! The former is replaced by the value assigned to <code>varname</code>; the latter is replaced by the result of running <code>expression</code>. So, both <em>replace</em> but they do different things. Think of <code>$</code> here as meaning, “replace me with something”.</p>
 </div>
 </div>
