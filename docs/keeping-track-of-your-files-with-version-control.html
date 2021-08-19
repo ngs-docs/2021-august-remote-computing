@@ -396,37 +396,38 @@ discuss ways to collaborate with a team.</p>
 </div>
 <div id="create-a-git-repository-on-github" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Create a git repository on GitHub</h3>
-<p>Click on the ‘plus’ in the upper right of the screen at github.com, and select ‘New repository’. Name it <code>2021-remotecompute-workshop8</code>. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)</p>
-<p>Also select ‘Initialize this repository with a README’.</p>
-<p>Then click ‘Create repository’.</p>
+<ul>
+<li>click on the <strong>plus</strong> in the upper right of the screen at github.com</li>
+<li>select <strong>New repository</strong></li>
+<li>name it <code>2021-remotecompute-workshop8</code>. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)</li>
+<li>also select ‘Initialize this repository with a README’</li>
+<li>click <strong>Create repository</strong>.</li>
+</ul>
 <p>After a few seconds, you should be redirected to a web page with a URL like <code>https://github.com/USERNAME/2021-remotecompute-workshop8</code>. This is your GitHub URL for this repository; note that it’s public (unless you selected private) which means that <em>anyone</em> can get a read-only copy of this repo.</p>
-<p>Select the URL and copy it into your paste buffer.</p>
 </div>
 <div id="log-in" class="section level3" number="8.3.3">
 <h3><span class="header-section-number">8.3.3</span> Log in!</h3>
 <p>Now, log in to farm, or start up a
 <a href="https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio">binder</a>
 and go to the terminal.</p>
-<p>You’ll also need to install snakemake –</p>
-<pre><code>conda create -c bioconda -c conda-forge -n 298week7 -y snakemake-minimal</code></pre>
-<p>and activate that environment:</p>
-<pre><code>conda activate 298week7</code></pre>
 </div>
 <div id="optional-set-up-a-password-helper" class="section level3" number="8.3.4">
 <h3><span class="header-section-number">8.3.4</span> Optional: set up a password helper</h3>
 <p>You’ll have to type in your password each time you want to make
 changes, unless you do this:</p>
-<pre><code>git config --global credential.helper cache</code></pre>
+<pre><code>git config --global credential.helper &#39;cache --timeout=7200&#39;</code></pre>
+<p>By default git will cache your password for 15 minutes. Here, the <code>timeout</code> parameter increases this to two hours.</p>
 </div>
 <div id="optional-configure-git-credentials-on-farm" class="section level3" number="8.3.5">
 <h3><span class="header-section-number">8.3.5</span> Optional: configure git credentials on Farm</h3>
 <p>To ensure the username and email are consistent between the farm account and your newly created GitHub account, you can update the git configuration on the farm account by replacing the <code>user.name</code> and <code>user.email</code> with your GitHub account credentials</p>
 <pre><code>git config --global user.name &quot;Your Name&quot;
 git config --global user.email you@example.com</code></pre>
-<p>This may not be necessary for your current accounts as they are temporary but would become useful when working within your own Farm accounts.</p>
+<p>This may not be necessary for your current accounts as they are temporary but will become useful to configure when working within your own Farm accounts.</p>
 </div>
 <div id="clone-the-repository" class="section level3" number="8.3.6">
 <h3><span class="header-section-number">8.3.6</span> Clone the repository</h3>
+<p>Go to the GitHub repository you created, select the URL and copy it into your paste buffer.</p>
 <p>Run:</p>
 <pre><code>cd ~/
 git clone https://github.com/USERNAME/2021-remotecompute-workshop8</code></pre>
@@ -434,6 +435,9 @@ git clone https://github.com/USERNAME/2021-remotecompute-workshop8</code></pre>
 <p>Change into it:</p>
 <pre><code>cd 2021-remotecompute-workshop8</code></pre>
 <p>and look around with <code>ls -a</code>. You’ll notice two files: a <code>.git</code> subdirectory (this is a directory that git uses to keep information about this repo!) and a <code>README.md</code> file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.</p>
+<p>If you wanted to track files in the <code>2021-remote-computing-binder</code> folder that we have been working with, run</p>
+<pre><code>git init</code></pre>
+<p>which converts any existing directory into a git repository.</p>
 </div>
 <div id="edit-a-file" class="section level3" number="8.3.7">
 <h3><span class="header-section-number">8.3.7</span> Edit a file</h3>
@@ -563,7 +567,7 @@ ad7e8de..9bf6695 main -&gt; main</p>
 <p>Commit it with</p>
 <pre><code>git commit -m &quot;&lt;commit message&gt;&quot;</code></pre>
 <p>Verify it’s committed with <code>git status</code> and <code>git diff</code>.</p>
-<p>Push your commited file with:</p>
+<p>Push your committed file with:</p>
 <pre><code>git push</code></pre>
 <p>Verify that the changes show up on github by refreshing your webpage.</p>
 <p>Look at the change history, view the diffs.</p>

@@ -40,15 +40,13 @@ By default the free accounts allow unlimited private repositories with up to thr
 
 ### Create a git repository on GitHub
 
-Click on the 'plus' in the upper right of the screen at github.com, and select 'New repository'. Name it `2021-remotecompute-workshop8`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
-
-Also select 'Initialize this repository with a README'.
-
-Then click 'Create repository'.
+* click on the **plus** in the upper right of the screen at github.com
+* select **New repository**
+* name it `2021-remotecompute-workshop8`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
+* also select 'Initialize this repository with a README'
+* click **Create repository**.
 
 After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-remotecompute-workshop8`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
-
-Select the URL and copy it into your paste buffer.
 
 ### Log in!
 
@@ -56,24 +54,17 @@ Now, log in to farm, or start up a
 [binder](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
 and go to the terminal.
 
-You'll also need to install snakemake --
-
-```
-conda create -c bioconda -c conda-forge -n 298week7 -y snakemake-minimal
-```
-
-and activate that environment:
-```
-conda activate 298week7
-```
 ### Optional: set up a password helper
 
 You'll have to type in your password each time you want to make
 changes, unless you do this:
 
 ```
-git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=7200'
 ```
+
+By default git will cache your password for 15 minutes. Here, the `timeout` parameter increases this to two hours.
+
 ### Optional: configure git credentials on Farm
 
 To ensure the username and email are consistent between the farm account and your newly created GitHub account, you can update the git configuration on the farm account by replacing the `user.name` and `user.email` with your GitHub account credentials
@@ -83,9 +74,11 @@ git config --global user.name "Your Name"
 git config --global user.email you@example.com
 ```
 
-This may not be necessary for your current accounts as they are temporary but would become useful when working within your own Farm accounts.
+This may not be necessary for your current accounts as they are temporary but will become useful to configure when working within your own Farm accounts.
 
 ### Clone the repository 
+
+Go to the GitHub repository you created, select the URL and copy it into your paste buffer.
 
 Run:
 
@@ -100,6 +93,12 @@ Change into it:
 cd 2021-remotecompute-workshop8
 ```
 and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
+
+If you wanted to track files in the `2021-remote-computing-binder` folder that we have been working with, run 
+```
+git init
+```
+which converts any existing directory into a git repository. 
 
 ### Edit a file
 
@@ -298,7 +297,7 @@ git commit -m "<commit message>"
 
 Verify it's committed with `git status` and `git diff`.
 
-Push your commited file with:
+Push your committed file with:
 ```
 git push
 ```
