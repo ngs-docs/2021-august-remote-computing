@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-18" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -424,7 +424,9 @@ done</code></pre>
 <pre><code>for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt; done</code></pre>
 <p>Check out the list (exit by pressing q)</p>
 <pre><code>less my_md5sum_list.txt</code></pre>
-<p>Now, let’s practice for loops by renaming MiSeq sequence file names - we’re going to build a for loop step by step. Go to this directory: <code>~/2021-remote-computing-binder/data/MiSeq</code>.</p>
+<p>Now, let’s practice for loops by renaming MiSeq sequence file names - we’re going to build a for loop step by step. Go to this directory: <code>~/2021-remote-computing-binder/data/MiSeq</code>:</p>
+<pre><code>cd ~/2021-remote-computing-binder/data/MiSeq</code></pre>
+<p>and then type</p>
 <pre><code>for i in *.fastq
 do
    echo $i
@@ -513,7 +515,11 @@ done</code></pre>
 <pre><code>cd ~/2021-remote-computing-binder/data
 mkdir ./MiSeq/fastqc_reports</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Create a conda environment that has <code>fastqc</code> installed in it</li>
+<li>Create and activate a conda environment that has <code>fastqc</code> installed in it:</li>
+</ol>
+<pre><code>mamba create -n fqc -y fastqc
+conda activate fqc</code></pre>
+<ol start="3" style="list-style-type: decimal">
 <li>Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)</li>
 </ol>
 <pre><code>nano set_e.sh</code></pre>
@@ -546,7 +552,7 @@ done</code></pre>
 <p>(Note that <a href="https://www.tutorialspoint.com/unix/unix-basic-operators.htm">conditional operators in Unix</a> are not all the same as in other programming languages)</p>
 <p><code>if</code> statement structure:</p>
 <ul>
-<li>starts with <code>do</code> and ends with <code>fi</code></li>
+<li>starts with <code>if</code> and ends with <code>fi</code></li>
 <li>loop components are separated by <code>;</code> or indentation</li>
 </ul>
 <p>Here, we’re wrapping if statements in a for loop:</p>
@@ -604,13 +610,13 @@ else
 fi</code></pre>
 <p>After the <code>bash &lt;script name&gt;</code>, the syntax now assigns the 1st element (<code>$1</code>) to <code>40</code> and the 2nd element (<code>$2</code>) to <code>20</code>. This means you can enter different numbers when executing the script, without needing to edit the script file at all!</p>
 <pre><code>bash ifs.sh 40 20</code></pre>
-<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number?</p>
+<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $1 parameter against the numbers <code>20 30 40 50 60 70</code> to see if it matched one?</p>
 </div>
 </div>
 <div id="multiple-screens" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Multiple screens</h2>
 <p>What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?</p>
-<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). These are a bit tricky to get used to, so we’ll do a demo.</p>
+<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). These are a bit tricky to get used too, so we’ll do a demo.</p>
 <p>Basic commands for <code>screen</code> and <code>tmux</code> below. They both have keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>
 <table>
 <colgroup>
@@ -654,6 +660,12 @@ fi</code></pre>
 </tbody>
 </table>
 <p>Like text editors, both programs basically do the same thing - choose the one you’re most comfortable using!</p>
+<p>There are several reasons to use screen or tmux –</p>
+<ul>
+<li>they keep output from long-running commands, including ones that are running interactively and need input;</li>
+<li>they provide a way to “detach” from a particular shell prompt with a particular configuration, and resume it later;</li>
+<li>they let you switch between terminal windows that are running on two different computers.</li>
+</ul>
 </div>
 <div id="concluding-thoughts-1" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> Concluding thoughts</h2>
