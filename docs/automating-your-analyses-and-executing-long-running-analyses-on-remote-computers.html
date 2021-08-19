@@ -386,47 +386,45 @@ log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
 <p>At the terminal, we can type:</p>
 <pre><code>echo Hello, this is the terminal!</code></pre>
 <p>In a script, we can do the same thing - (we covered how to create and edit files with <code>nano</code> from Workshop 2!):</p>
-<p>Create a script file with nano:</p>
+<p>Create a script file with nano - The file extension for shell scripts is ‘.sh’.</p>
 <pre><code>nano first_script.sh</code></pre>
 <p>Add the following 3 lines to the script:</p>
 <pre><code>#!/bin/bash
-echo Hello this is a script!
-echo I&#39;m on the next line!</code></pre>
+echo Hello, this is a script!
+echo I am on the next line!</code></pre>
+<p>The <code>#!/bin/bash</code> header (this is known as a “<a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>”) tells the shell how to interpret the script file.</p>
 <p>Execute the script</p>
 <pre><code>bash first_script.sh</code></pre>
-<ul>
-<li>Note that commands are executed in the order that they appear in the script</li>
-<li>The file extension for shell scripts is ‘.sh’</li>
-<li><code>#!/bin/bash</code> header (this is known as a “<a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>”) - it tells the shell how to interpret the script file</li>
-</ul>
+<p>Note that commands are executed in the order that they appear in the script</p>
 </div>
 </div>
 <div id="for-loops" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> <code>for</code> Loops</h2>
 <p>Scripts can do far more than print echo statements! We’re gonna take a detour to learn about for loops and then run loops in scripts.</p>
 <p>In workshop 6, we showed you a way to create a list of the md5sum numbers for the autosome files:</p>
-<pre><code>md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
-<p>This approach uses wildcards to tell the shell to grab the md5sum for all files starting with <code>mini-chr</code>, with a number from 1 to 9, and ending with ‘.fna.gz’. Another way to do this, and include the Z chromosome file as well, is to write a for loop that runs the <code>md5sum</code> command for each ‘.fna.gz’ file in the directory:</p>
-<pre><code>for i in *.fna.gz; do echo md5sum $i; done
+<pre><code>cd ~/seqdata/mini_A-torda
 
-# or enter this way, you type enter at the end of each line in the terminal
-for i in *.fna.gz
+md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
+<p>This approach uses wildcards to tell the shell to grab the md5sum for all files starting with <code>mini-chr</code>, with a number from 1 to 9, and ending with ‘.fna.gz’. Another way to do this, and include the Z chromosome file as well, is to write a for loop that runs the <code>md5sum</code> command for each ‘.fna.gz’ file in the directory:</p>
+<p>(To type this in the terminal, type ‘enter’ or ‘return’ after each line)</p>
+<pre><code>for i in *.fna.gz
 do
    echo md5sum $i
 done</code></pre>
+<p><strong>QUESTION:</strong> why did we put <code>echo</code> here?</p>
+<p>Another way to enter the for loop code into the terminal uses <code>;</code>:</p>
+<pre><code>for i in *.fna.gz; do echo md5sum $i; done</code></pre>
 <p>for loop structure:</p>
 <ul>
 <li>we set the counter for the thing we want to iterate (“loop”) through with the <code>for i in *.fna.gz</code>. In this case, we are running the same command for each file in our current directory that ends in ‘.fna.gz’. The <code>i</code> represents the ith file in our loop and we refer to it with the <code>$</code> notation (more on variables later!) - also, “i” is an arbitrary name; it could be “potato” :)</li>
 <li>starts with <code>do</code> and ends with <code>done</code></li>
 <li>loop components are separated by <code>;</code> or indentation</li>
 </ul>
-<pre><code># now, let&#39;s append those md5sum numbers to a text file
-for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt;done
-
-# check out the list (exit by pressing q)
-less my_md5sum_list.txt</code></pre>
-<p><strong>Question:</strong> why did we put <code>echo</code> here?</p>
-<p>Now, let’s practice for loops by renaming MiSeq sequence file names. Go to this directory: <code>2021-remote-computing-binder/data/MiSeq</code>.</p>
+<p>Now, let’s append those md5sum numbers to a text file</p>
+<pre><code>for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt; done</code></pre>
+<p>Check out the list (exit by pressing q)</p>
+<pre><code>less my_md5sum_list.txt</code></pre>
+<p>Now, let’s practice for loops by renaming MiSeq sequence file names - we’re going to build a for loop step by step. Go to this directory: <code>~/2021-remote-computing-binder/data/MiSeq</code>.</p>
 <pre><code>for i in *.fastq
 do
    echo $i
@@ -451,7 +449,7 @@ do
    newname=$(basename $i .fastq).fq
    echo mv $i $newname
 done</code></pre>
-<p><strong>Challenge:</strong> Run the above loop in a shell script called <code>rename_file.sh</code>.</p>
+<p><strong>CHALLENGE:</strong> Run the above loop in a shell script called <code>rename_file.sh</code>.</p>
 <p>Now that we’re pretty sure it all looks good, let’s run it for realz - the shell script should look like this:</p>
 <pre><code>#!/bin/bash
 
@@ -464,8 +462,8 @@ done</code></pre>
 <h3><span class="header-section-number">7.4.1</span> Subsetting</h3>
 <p>Let’s do something quite useful - subset a bunch of FASTQ files.</p>
 <p>If you look at one of the FASTQ files with head,</p>
-<pre><code>head F3D0_S188_L001_R1.fq</code></pre>
-<p>you’ll see that it’s full of FASTQ sequencing records. Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works (“data forensics”). So I’d like to subset all of these files <em>without</em> modifying the originals.</p>
+<pre><code>head F3D0_S188_L001_R1_001.fq</code></pre>
+<p>you’ll see that it’s full of FASTQ sequencing records. Often I want to run a bioinformatics pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands work (“data forensics”). So I’d like to subset all of these files <em>without</em> modifying the originals.</p>
 <p>First, let’s make sure the originals are read-only</p>
 <pre><code>chmod u-w *.fq</code></pre>
 <p>Now, let’s make a ‘subset’ directory</p>
@@ -476,12 +474,14 @@ done</code></pre>
 do
    echo &quot;head -400 $i &gt; subset/$i&quot;
 done</code></pre>
+<p><strong>QUESTION:</strong> We need to use <code>" "</code> for the echo statement above - why?</p>
 <p>If that command looks right, run it for realz:</p>
 <pre><code>for i in *.fq
 do
    head -400 $i &gt; subset/$i
 done</code></pre>
-<p>and voila, you have your subsets!</p>
+<p>and voila, you have your subsets! We can check the number of lines for all the subset files:</p>
+<pre><code>wc -l ./subset/*</code></pre>
 <p>(This is incredibly useful. You have no idea :)</p>
 <p><strong>CHALLENGE:</strong> Can you rename all of your files in subset/ to have ‘subset.fq’ at the end?</p>
 </div>
@@ -490,9 +490,9 @@ done</code></pre>
 <p>Let’s backtrack a bit - what are variables?</p>
 <p>You can use either $varname or ${varname}. The latter is useful when you want to construct a new filename, e.g.</p>
 <pre><code>MY${varname}SUBSET</code></pre>
-<p>would expand ${varname} and then put MY .. SUBSET on either end, while</p>
+<p>would expand ${varname} and then put “MY” and “SUBSET” on either end, while</p>
 <pre><code>MY$varnameSUBSET</code></pre>
-<p>would try to put MY in front of $varnameSUBSET which won’t work.</p>
+<p>would try to put “MY” in front of $varnameSUBSET which won’t work.</p>
 <p>(Unknown/uncreated variables are empty.)</p>
 <p>NOTE: <code>${varname}</code> is quite different from <code>$(expression)</code>! The former is replaced by the value assigned to <code>varname</code>; the latter is replaced by the result of running <code>expression</code>. So, both <em>replace</em> but they do different things. Think of <code>$</code> here as meaning, “replace me with something”.</p>
 </div>
@@ -508,17 +508,15 @@ done</code></pre>
 <div id="practicing-set--e-in-bash-scripts" class="section level3" number="7.5.1">
 <h3><span class="header-section-number">7.5.1</span> Practicing <code>set -e</code> in bash scripts</h3>
 <ol style="list-style-type: decimal">
-<li>We’re going to use the MiSeq .fq files again</li>
-<li>Create a conda environment that has <code>fastqc</code> installed in it</li>
-<li>Write a for loop that runs fastqc on each .fq files with a shell script</li>
+<li>We’re going to use the MiSeq .fq files again. Create an output report directory</li>
 </ol>
-<pre><code># create output report directory
-cd ~/2021-remote-computing-binder/data
-mkdir ./MiSeq/fastqc_reports
-
-# create bash script using nano text editor
-# save and exit with ctrl-o, enter, ctrl-x on keyboard
-nano set_e.sh</code></pre>
+<pre><code>cd ~/2021-remote-computing-binder/data
+mkdir ./MiSeq/fastqc_reports</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create a conda environment that has <code>fastqc</code> installed in it</li>
+<li>Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)</li>
+</ol>
+<pre><code>nano set_e.sh</code></pre>
 <p>Create a bash script with the following commands, this version includes <code>set -e</code>:</p>
 <pre><code>#!/bin/bash
 
@@ -588,7 +586,9 @@ then
 else
   echo &#39;a is equal to b!&#39;
 fi</code></pre>
-<p><strong>Question:</strong> What does the <code>!=</code> conditional operator mean?</p>
+<p>Run the script:</p>
+<pre><code>bash ifs.sh</code></pre>
+<p><strong>QUESTION:</strong> What does the <code>!=</code> conditional operator mean?</p>
 <p>Now, let’s edit this script to give it arguments. Instead of editing the values for “a” and “b” in the script, we’ll create “a” and “b” arguments so we can change them when executing the script.</p>
 <p>Here’s how we change the script - <code>$</code> and the number assigns the argument a position in the line of code.</p>
 <pre><code>#!/bin/bash
@@ -604,7 +604,7 @@ else
 fi</code></pre>
 <p>After the <code>bash &lt;script name&gt;</code>, the syntax now assigns the 1st element (<code>$1</code>) to <code>40</code> and the 2nd element (<code>$2</code>) to <code>20</code>. This means you can enter different numbers when executing the script, without needing to edit the script file at all!</p>
 <pre><code>bash ifs.sh 40 20</code></pre>
-<p><strong>Challenge:</strong> How might you use this script in a for loop to compare a range of numbers to one number?</p>
+<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number?</p>
 </div>
 </div>
 <div id="multiple-screens" class="section level2" number="7.7">
@@ -638,7 +638,7 @@ fi</code></pre>
 </tr>
 <tr class="odd">
 <td>list existing sessions</td>
-<td><code>screen ls</code></td>
+<td><code>screen -ls</code></td>
 <td><code>tmux ls</code></td>
 </tr>
 <tr class="even">
@@ -668,7 +668,7 @@ fi</code></pre>
 <div id="appendix-exercise-answers" class="section level2" number="7.9">
 <h2><span class="header-section-number">7.9</span> Appendix: exercise answers</h2>
 <p><em>Answer for subset exercise</em></p>
-<pre><code>for i in *.fastq; do echo &quot;head -400 $i &gt; subset/$i&quot;; newname=$(basename $i .fastq).subset.fastq; echo mv subset/$i subset/$newname; done</code></pre>
+<pre><code>for i in *.fq; do echo &quot;head -400 $i &gt; subset/$i&quot;; newname=$(basename $i .fastq)subset.fq; echo mv subset/$i subset/$newname; done</code></pre>
 <p><em>Answers for <code>set -e</code> exercises</em></p>
 <ol style="list-style-type: decimal">
 <li>Fails on 1st iteration with <code>set -e</code>, fails each iteration of the loop without <code>set -e</code></li>

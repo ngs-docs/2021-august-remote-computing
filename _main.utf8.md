@@ -3583,7 +3583,7 @@ echo Hello, this is the terminal!
 
 In a script, we can do the same thing - (we covered how to create and edit files with `nano` from Workshop 2!):
 
-Create a script file with nano:
+Create a script file with nano - The file extension for shell scripts is '.sh'.
 ```
 nano first_script.sh
 ```
@@ -3591,19 +3591,18 @@ nano first_script.sh
 Add the following 3 lines to the script:
 ```
 #!/bin/bash
-echo Hello this is a script!
-echo I'm on the next line!
+echo Hello, this is a script!
+echo I am on the next line!
 ```
+
+The `#!/bin/bash` header (this is known as a "[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))") tells the shell how to interpret the script file.
 
 Execute the script
 ```
 bash first_script.sh
 ```
 
-- Note that commands are executed in the order that they appear in the script
-- The file extension for shell scripts is '.sh'
-- `#!/bin/bash` header (this is known as a "[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))") - it tells the shell how to interpret the script file
-
+Note that commands are executed in the order that they appear in the script
 
 
 ## `for` Loops
@@ -3612,19 +3611,26 @@ Scripts can do far more than print echo statements! We're gonna take a detour to
 
 In workshop 6, we showed you a way to create a list of the md5sum numbers for the autosome files:
 ```
+cd ~/seqdata/mini_A-torda
+
 md5sum mini-chr[1-9]*.fna.gz  >> autosomes.md5
 ```
 
 This approach uses wildcards to tell the shell to grab the md5sum for all files starting with `mini-chr`, with a number from 1 to 9, and ending with '.fna.gz'. Another way to do this, and include the Z chromosome file as well, is to write a for loop that runs the `md5sum` command for each '.fna.gz' file in the directory:
 
+(To type this in the terminal, type 'enter' or 'return' after each line)
 ```
-for i in *.fna.gz; do echo md5sum $i; done
-
-# or enter this way, you type enter at the end of each line in the terminal
 for i in *.fna.gz
 do
    echo md5sum $i
 done
+```
+
+**QUESTION:** why did we put `echo` here?
+
+Another way to enter the for loop code into the terminal uses `;`:
+```
+for i in *.fna.gz; do echo md5sum $i; done
 ```
 
 for loop structure:
@@ -3633,17 +3639,17 @@ for loop structure:
 - starts with `do` and ends with `done`
 - loop components are separated by `;` or indentation
 
+Now, let's append those md5sum numbers to a text file
 ```
-# now, let's append those md5sum numbers to a text file
-for i in *.fna.gz; do md5sum $i >> my_md5sum_list.txt;done
+for i in *.fna.gz; do md5sum $i >> my_md5sum_list.txt; done
+```
 
-# check out the list (exit by pressing q)
+Check out the list (exit by pressing q)
+```
 less my_md5sum_list.txt
 ```
 
-**Question:** why did we put `echo` here?
-
-Now, let's practice for loops by renaming MiSeq sequence file names. Go to this directory: `2021-remote-computing-binder/data/MiSeq`.
+Now, let's practice for loops by renaming MiSeq sequence file names - we're going to build a for loop step by step. Go to this directory: `~/2021-remote-computing-binder/data/MiSeq`.
 
 ```
 for i in *.fastq
@@ -3687,7 +3693,7 @@ do
 done
 ```
 
-**Challenge:** Run the above loop in a shell script called `rename_file.sh`.
+**CHALLENGE:** Run the above loop in a shell script called `rename_file.sh`.
 
 
 Now that we're pretty sure it all looks good, let's run it for realz - the shell script should look like this:
@@ -3710,10 +3716,10 @@ Let's do something quite useful - subset a bunch of FASTQ files.
 If you look at one of the FASTQ files with head,
 
 ```
-head F3D0_S188_L001_R1.fq
+head F3D0_S188_L001_R1_001.fq
 ```
 
-you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works ("data forensics"). So I'd like to subset all of these files *without* modifying the originals.
+you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatics pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands work ("data forensics"). So I'd like to subset all of these files *without* modifying the originals.
 
 First, let's make sure the originals are read-only
 
@@ -3738,6 +3744,8 @@ do
 done
 ```
 
+**QUESTION:** We need to use `" "` for the echo statement above - why?
+
 If that command looks right, run it for realz:
 
 ```
@@ -3747,7 +3755,10 @@ do
 done
 ```
 
-and voila, you have your subsets!
+and voila, you have your subsets! We can check the number of lines for all the subset files:
+```
+wc -l ./subset/*
+```
 
 (This is incredibly useful. You have no idea :)
 
@@ -3763,13 +3774,13 @@ You can use either $varname or ${varname}.  The latter is useful when you want t
 MY${varname}SUBSET
 ```
 
-would expand ${varname} and then put MY .. SUBSET on either end, while
+would expand ${varname} and then put "MY" and "SUBSET" on either end, while
 
 ```
 MY$varnameSUBSET
 ```
 
-would try to put MY in front of $varnameSUBSET which won't work.
+would try to put "MY" in front of $varnameSUBSET which won't work.
 
 (Unknown/uncreated variables are empty.)
 
@@ -3786,17 +3797,15 @@ There are several `set` options that are useful to determine what happens to you
 
 ### Practicing `set -e` in bash scripts
 
-1. We're going to use the MiSeq .fq files again
-2. Create a conda environment that has `fastqc` installed in it
-3. Write a for loop that runs fastqc on each .fq files with a shell script
-
+1. We're going to use the MiSeq .fq files again. Create an output report directory
 ```
-# create output report directory
 cd ~/2021-remote-computing-binder/data
 mkdir ./MiSeq/fastqc_reports
+```
 
-# create bash script using nano text editor
-# save and exit with ctrl-o, enter, ctrl-x on keyboard
+2. Create a conda environment that has `fastqc` installed in it
+3. Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)
+```
 nano set_e.sh
 ```
 
@@ -3904,7 +3913,12 @@ else
 fi
 ```
 
-**Question:** What does the `!=` conditional operator mean?
+Run the script:
+```
+bash ifs.sh
+```
+
+**QUESTION:** What does the `!=` conditional operator mean?
 
 Now, let's edit this script to give it arguments. Instead of editing the values for "a" and "b" in the script, we'll create "a" and "b" arguments so we can change them when executing the script.
 
@@ -3930,7 +3944,7 @@ After the `bash <script name>`, the syntax now assigns the 1st element (`$1`) to
 bash ifs.sh 40 20
 ```
 
-**Challenge:** How might you use this script in a for loop to compare a range of numbers to one number?
+**CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number?
 
 
 
@@ -3947,7 +3961,7 @@ Description | screen | tmux
 --- | --- | ---
 start a screen session | `screen -S <session name>` | `tmux new -s <session name>`
 close a session | `screen -d <session name>` | `tmux detach`
-list existing sessions | `screen ls`  | `tmux ls`
+list existing sessions | `screen -ls`  | `tmux ls`
 go to existing session | `screen -r <session name>` | `tmux attach -t <session name>`
 end session | `exit`  | `tmux kill-session -t <session name>`
 
@@ -3972,7 +3986,7 @@ We'll return to the concept of using scripts to execute analysis workflows in wo
 
 *Answer for subset exercise*
 ```
-for i in *.fastq; do echo "head -400 $i > subset/$i"; newname=$(basename $i .fastq).subset.fastq; echo mv subset/$i subset/$newname; done
+for i in *.fq; do echo "head -400 $i > subset/$i"; newname=$(basename $i .fastq)subset.fq; echo mv subset/$i subset/$newname; done
 ```
 
 *Answers for `set -e` exercises*
