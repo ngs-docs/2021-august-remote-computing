@@ -40,13 +40,13 @@ By default the free accounts allow unlimited private repositories with up to thr
 
 ### Create a git repository on GitHub
 
-Click on the 'plus' in the upper right of the screen at github.com, and select 'New repository'. Name it `2021-remotecompute-wrkshp8`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
+Click on the 'plus' in the upper right of the screen at github.com, and select 'New repository'. Name it `2021-remotecompute-workshop8`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
 
 Also select 'Initialize this repository with a README'.
 
 Then click 'Create repository'.
 
-After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-remotecompute-wrkshp8`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
+After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-remotecompute-workshop8`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
 
 Select the URL and copy it into your paste buffer.
 
@@ -66,7 +66,6 @@ and activate that environment:
 ```
 conda activate 298week7
 ```
-
 ### Optional: set up a password helper
 
 You'll have to type in your password each time you want to make
@@ -75,6 +74,16 @@ changes, unless you do this:
 ```
 git config --global credential.helper cache
 ```
+### Optional: configure git credentials on Farm
+
+To ensure the username and email are consistent between the farm account and your newly created GitHub account, you can update the git configuration on the farm account by replacing the `user.name` and `user.email` with your GitHub account credentials
+
+```
+git config --global user.name "Your Name"
+git config --global user.email you@example.com
+```
+
+This may not be necessary for your current accounts as they are temporary but would become useful when working within your own Farm accounts.
 
 ### Clone the repository 
 
@@ -82,13 +91,13 @@ Run:
 
 ```
 cd ~/
-git clone https://github.com/USERNAME/2021-remotecompute-wrkshp8
+git clone https://github.com/USERNAME/2021-remotecompute-workshop8
 ```
-This will create a directory `2021-remotecompute-wrkshp8` under your home directory.
+This will create a directory `2021-remotecompute-workshop8` under your home directory.
 
 Change into it:
 ```
-cd 2021-remotecompute-wrkshp8
+cd 2021-remotecompute-workshop8
 ```
 and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
 
@@ -99,7 +108,7 @@ Let's edit the README.md file; on binder, you can use RStudio, or use
 ```
 nano README.md
 ```
-and add a new line like "example github repo for GGG 298 at UC Davis." to the file, then save it and exit nano using CTRL-X.
+and add a new line like "This is a example respoitory for 2021 Remote Computing workshop at UC Davis" to the file, then save it and exit nano using CTRL-X.
 
 Now type:
 ```
@@ -134,14 +143,16 @@ git diff
 >You should see something like:
 ```
 diff --git a/README.md b/README.md
-index a5af6ae..f46e8b3 100644
+index 8d2d4d8..0a92250 100644
 --- a/README.md
 +++ b/README.md
-@@ -1 +1,3 @@
--# 2021-ggg298-week7
->+# 2021-ggg298-week7
->+
-+example repository for ggg 298
+@@ -1 +1,4 @@
+-# 2021-remotecompute-test
+\ No newline at end of file
++# 2021-remotecompute-test
++
++This is a example respoitory for 2021 Remote Computing workshop at UC Davis
++
 ```
 
 This is telling you that you changed one file (README.md), and that you changed three lines: you added a newline at the end of the first line, a blank line, and, for the third line, whatever text you added.
@@ -155,10 +166,16 @@ git commit -am "added info to README"
 ```
 
 This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the **commit message** "added info to README". You should see something like:
->[main e5f2790] added info to README
+>[main 9bf6695] added info to README
 > 1 file changed, 3 insertions(+), 1 deletion(-)
 
-here, `e5f2790` is the changeset id. We'll talk about this later.
+here, `9bf6695` is the changeset id. We'll talk about this later.
+
+Note that if you didn't config git with user.name and user.email, the first commit message will also contain information on the account information:
+
+```
+Committer: datalab account 03 <datalab-03@farm.cse.ucdavis.edu>
+```
 
 Now type:
 ```
@@ -187,12 +204,42 @@ Let's fix that:
 ```
 git push
 ```
-It should now ask you for a username and a password; enter your GitHub username and password. At the end it will say something like
 
-> To https://github.com/ctb/2021-ggg298-week7
->   a6faf82..e5f2790  main -> main
+It should now ask you for a username and a password. If you enter your GitHub username and your password, it will result in an error with this message
 
-which tells you that it pushed your changes through changeset e5f2790 to your GitHub URL.
+```
+remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
+fatal: unable to access 'https://github.com/s-canchi/2021-remotecompute-workshop8.git/': The requested URL returned error: 403
+```
+
+#### GitHub PAT setup
+
+Github has disabled passwords in favor of personal access tokens (PAT). We can generate a PAT on GitHub:
+
+* go back to GitHub interface
+* click on your icon on the top right corner 
+* from the drop down menu select **Settings**
+* click on **Developer settings** from the left panel to be directed to a new page
+* click on **Personal access tokens** 
+* click on **Generate new token**, give it a name in the **Note** to help you remember what the token if for/when it was created
+* scroll down and click **Generate token**
+
+Remember to save the token somewhere safe (e.g., password manager). After you leave this page, the token will no longer be viewable. 
+
+We also have a detailed tutorial on [GitHub PAT authentication](https://www.nih-cfde.org/resource/setting-up-github-authentication/) with pointers for resetting previous passwords. 
+
+Going back to commiting the changes, now let's try again
+
+```
+git push
+```
+
+Enter your username and PAT token for password. You should see something similar
+
+> To https://github.com/s-canchi/2021-remotecompute-workshop8.git
+>   ad7e8de..9bf6695  main -> main
+
+which tells you that it pushed your changes through changeset 9bf6695 to your GitHub URL.
 
 Now, if you go to the GitHub URL, you should see your changes in the README.md file.
 

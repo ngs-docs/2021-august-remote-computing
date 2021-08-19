@@ -155,9 +155,11 @@ create-an-account
 create-a-git-repository-on-github
 log-in
 optional-set-up-a-password-helper
+optional-configure-git-credentials-on-farm
 clone-the-repository
 edit-a-file
 commit-a-file
+github-pat-setup
 viewing-repository-history-on-github
 the-single-repo-to-github-model
 lets-do-it-all-again
