@@ -312,7 +312,7 @@
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#lets-do-it-all-again"><i class="fa fa-check"></i><b>8.4</b> Let’s do it all again!</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#on-your-own-commit-and-push-changes"><i class="fa fa-check"></i><b>8.4.1</b> On your own, commit and push changes!</a></li>
+<li class="chapter" data-level="8.4.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#challenge-on-your-own-commit-and-push-changes"><i class="fa fa-check"></i><b>8.4.1</b> Challenge: On your own, commit and push changes!</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#working-with-multiple-files"><i class="fa fa-check"></i><b>8.5</b> Working with multiple files</a>
 <ul>
@@ -479,11 +479,17 @@ index 8d2d4d8..0a92250 100644
 </div>
 <div id="commit-a-file" class="section level3" number="8.3.8">
 <h3><span class="header-section-number">8.3.8</span> Commit a file</h3>
-<p>At this point you still haven’t told git that you want to keep this change. Let’s do that. Type:</p>
-<pre><code>git commit -am &quot;added info to README&quot;</code></pre>
-<p>This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the <strong>commit message</strong> “added info to README”. You should see something like:
-&gt;[main 9bf6695] added info to README
-&gt; 1 file changed, 3 insertions(+), 1 deletion(-)</p>
+<p>At this point you still haven’t told git that you want to keep this change. Let’s do that. We can add the changes the file using</p>
+<pre><code>git add README.md</code></pre>
+<p>We can check the status:</p>
+<pre><code>git status</code></pre>
+<p>To commit these changes:</p>
+<pre><code>git commit -m &quot;added info to README&quot;</code></pre>
+<p>This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the <strong>commit message</strong> “added info to README”. You should see something like:</p>
+<blockquote>
+<p>[main 9bf6695] added info to README
+1 file changed, 3 insertions(+), 1 deletion(-)</p>
+</blockquote>
 <p>here, <code>9bf6695</code> is the changeset id. We’ll talk about this later.</p>
 <p>Note that if you didn’t config git with user.name and user.email, the first commit message will also contain information on the account information:</p>
 <pre><code>Committer: datalab account 03 &lt;datalab-03@farm.cse.ucdavis.edu&gt;</code></pre>
@@ -547,13 +553,15 @@ ad7e8de..9bf6695 main -&gt; main</p>
 <div id="lets-do-it-all-again" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Let’s do it all again!</h2>
 <p>Let’s try that again…</p>
-<div id="on-your-own-commit-and-push-changes" class="section level3" number="8.4.1">
-<h3><span class="header-section-number">8.4.1</span> On your own, commit and push changes!</h3>
+<div id="challenge-on-your-own-commit-and-push-changes" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Challenge: On your own, commit and push changes!</h3>
 <p>Go to your command line on farm.</p>
 <p>Edit the file with <code>nano README.md</code>, and add a new line.</p>
 <p>Verify with <code>git status</code> and <code>git diff</code> that the change is to the right file.</p>
+<p>Add those changes</p>
+<pre><code>git add README.md</code></pre>
 <p>Commit it with</p>
-<pre><code>git commit -am &quot;another change to update README&quot;</code></pre>
+<pre><code>git commit -m &quot;&lt;commit message&gt;&quot;</code></pre>
 <p>Verify it’s committed with <code>git status</code> and <code>git diff</code>.</p>
 <p>Push your commited file with:</p>
 <pre><code>git push</code></pre>

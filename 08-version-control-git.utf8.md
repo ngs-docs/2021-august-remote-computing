@@ -159,13 +159,26 @@ This is telling you that you changed one file (README.md), and that you changed 
 
 ### Commit a file
 
-At this point you still haven't told git that you want to keep this change. Let's do that. Type:
+At this point you still haven't told git that you want to keep this change. Let's do that. We can add the changes the file using
 
 ```
-git commit -am "added info to README"
+git add README.md
+```
+
+We can check the status:
+
+```
+git status
+```
+
+To commit these changes:
+
+```
+git commit -m "added info to README"
 ```
 
 This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the **commit message** "added info to README". You should see something like:
+
 >[main 9bf6695] added info to README
 > 1 file changed, 3 insertions(+), 1 deletion(-)
 
@@ -184,6 +197,7 @@ git diff
 again - it should show you nothing at all.
 
 What if you run
+
 ```
 git status
 ```
@@ -263,7 +277,7 @@ What we're doing is the simplest way to use git and GitHub to manage your own re
 
 Let's try that again...
 
-### On your own, commit and push changes!
+### Challenge: On your own, commit and push changes!
 
 Go to your command line on farm.
 
@@ -271,9 +285,15 @@ Edit the file with `nano README.md`, and add a new line.
 
 Verify with `git status` and `git diff` that the change is to the right file.
 
+Add those changes
+
+```
+git add README.md
+```
+
 Commit it with
 ```
-git commit -am "another change to update README"
+git commit -m "<commit message>"
 ```
 
 Verify it's committed with `git status` and `git diff`.

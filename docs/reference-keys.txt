@@ -163,7 +163,7 @@ github-pat-setup
 viewing-repository-history-on-github
 the-single-repo-to-github-model
 lets-do-it-all-again
-on-your-own-commit-and-push-changes
+challenge-on-your-own-commit-and-push-changes
 working-with-multiple-files
 create-some-files
 add-more-stuff-to-the-snakefile
