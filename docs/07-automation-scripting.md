@@ -26,6 +26,8 @@ Why and when would we want to use scripts vs. typing commands directly at the te
    - Reproduce & share: easier to reproduce or share analyses because it's all written down
    - Version control: stay tuned for [workshop 8](keeping-track-of-your-files-with-version-control.html)!
 
+Note that scripts are especially helpful for processing many files with the same commands - but sometimes it's not always worth the time/effort for an uncommon task. See [xkcd comic](https://xkcd.com/1205/) - is it worth the time? :)
+
 ## Getting started
 
 As per the instructions in [workshop
@@ -106,12 +108,16 @@ for loop structure:
 
 - we set the counter for the thing we want to iterate ("loop") through with the `for i in *.fna.gz`. In this case, we are running the same command for each file in our current directory that ends in '.fna.gz'. The `i` represents the ith file in our loop and we refer to it with the `$` notation (more on variables later!) - also, "i" is an arbitrary name; it could be "potato" :)
 - starts with `do` and ends with `done`
-- loop components are separated by `;` or indentation
+- loop components are separated by `;` or new lines.
+
+*We have used indentation to make it easier to read the for loops in the notes, but the shell does NOT need indentation to interpret the loop! Note that other programming languages like Python do require indentation!*
 
 Now, let's append those md5sum numbers to a text file
 ```
 for i in *.fna.gz; do md5sum $i >> my_md5sum_list.txt; done
 ```
+
+**Reminder:** The `>>` are appending the md5sum values to 1 text file.
 
 Check out the list (exit by pressing q)
 ```
@@ -242,6 +248,15 @@ wc -l ./subset/*
 
 Let's backtrack a bit - what are variables?
 
+We've seen 2 examples of variables so far - `$i` and `$newname`:
+```
+for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   mv $i $newname
+done
+```
+
 You can use either $varname or ${varname}.  The latter is useful when you want to construct a new filename, e.g.
 
 ```
@@ -280,14 +295,14 @@ cd ~/2021-remote-computing-binder/data
 mkdir ./MiSeq/fastqc_reports
 ```
 
-2. Create and activate a conda environment that has `fastqc` installed in it:
+2. Create and activate a conda environment that has `fastqc` installed in it (see [workshop 5 notes on conda](installing-software-on-remote-computers-with-conda.html)):
 
 ```
 mamba create -n fqc -y fastqc
 conda activate fqc
 ```
 
-3. Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)
+3. Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with CTRL-O, enter, CTRL-X on keyboard)
 ```
 nano set_e.sh
 ```
@@ -339,6 +354,12 @@ If statements act on things conditionally. For example, you might want to do som
 
 Here, we're wrapping if statements in a for loop:  
 
+```
+cd ~/
+nano if-for.sh
+```
+
+Put this loop in the `if-for.sh` script file:
 ```
 for i in *
 do
@@ -427,14 +448,33 @@ After the `bash <script name>`, the syntax now assigns the 1st element (`$1`) to
 bash ifs.sh 40 20
 ```
 
-**CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $1 parameter against the numbers `20 30 40 50 60 70` to see if it matched one?
+Note, you can add `echo` statements to the script to remind you what the arguments are. This is often helpful for troubleshooting and building the script, for example:
+```
+#!/bin/bash
+
+echo running $0
+echo a will be $1
+echo b will be $2
+
+a=$1
+b=$2
+
+if [ $a != $b ]
+then
+  echo 'a is not equal to b!'
+else
+  echo 'a is equal to b!'
+fi
+```
+
+**CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers `20 30 40 50 60 70` to see if it matched one of them?
 
 
 ## Multiple screens
 
 What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?
 
-There are 2 programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). These are a bit tricky to get used too, so we'll do a demo.
+There are 2 programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). If you're running these programs on the Farm, you can logout and even turn your computer off. :) We'll get back to these details in workshop 10. These are a bit tricky to get used too, so we'll do a demo.
 
 Basic commands for `screen` and `tmux` below. They both have keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
 
@@ -464,15 +504,25 @@ There are several reasons to use screen or tmux --
 We'll return to the concept of using scripts to execute analysis workflows in workshops 9 (Snakemake) and 10 (Using SLURM on HPC).
 
 
-
-
-
-
 ## Appendix: exercise answers
+
+*Answers for questions*
+
+Why do we use `echo` in for loops?
+
+- `echo` prints out the command without running it; this is a good way to double-check the for loop is doing what you expect!
+
+Why did we need " " in the subset `echo` statement for loop?
+
+- In this case, the shell will evaluate the `echo` statement as everything in the double-quotes. Without the quotes, the echo statement will send "head -400 $i" to a file in the `subset` directory; it will not run the subset command properly.
+
+What does the `!=` conditional operator mean?
+
+- This means "not equal to". The "!" means "not". Whereas, "==" means "equal to".
 
 *Answer for subset exercise*
 ```
-for i in *.fq; do echo "head -400 $i > subset/$i"; newname=$(basename $i .fastq)subset.fq; echo mv subset/$i subset/$newname; done
+for i in *.fq; do echo "head -400 $i > subset/$i"; newname=$(basename $i .fq)subset.fq; echo mv subset/$i subset/$newname; done
 ```
 
 *Answers for `set -e` exercises*
@@ -515,7 +565,37 @@ OUTDIR='./data/fastqc_reports'
 
 *Answer for ifs.sh in a loop exercise*
 
-This is one approach:
+This is one approach to compare 20 30 40 50 60 70 to the $2 argument:
+```
+for i in 20 30 40 50 60 70
+do
+   bash ifs.sh $i 40
+done
+```
+
+This output (including the helpful `echo` statements), looks like this:
+```
+a will be 20
+b will be 40
+a is not equal to b!
+a will be 30
+b will be 40
+a is not equal to b!
+a will be 40
+b will be 40
+a is equal to b!
+a will be 50
+b will be 40
+a is not equal to b!
+a will be 60
+b will be 40
+a is not equal to b!
+a will be 70
+b will be 40
+a is not equal to b!
+```
+
+This is one approach to compare a range of numbers to the $2 argument:
 ```
 for i in {1..5}
 do
@@ -523,11 +603,21 @@ do
 done
 ```
 
-The output will look like this:
+The output (including the helpful `echo` statements) will look like this:
 ```
+a will be 1
+b will be 5
 a is not equal to b!
+a will be 2
+b will be 5
 a is not equal to b!
+a will be 3
+b will be 5
 a is not equal to b!
+a will be 4
+b will be 5
 a is not equal to b!
-a is equal to b!
+a will be 5
+b will be 5
+a is equal to b
 ```

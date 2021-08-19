@@ -248,7 +248,7 @@ wc -l ./subset/*
 
 Let's backtrack a bit - what are variables?
 
-We've seen 2 examples of variables so far - "$i" and "$newname":
+We've seen 2 examples of variables so far - `$i` and `$newname`:
 ```
 for i in *.fastq
 do
@@ -509,12 +509,15 @@ We'll return to the concept of using scripts to execute analysis workflows in wo
 *Answers for questions*
 
 Why do we use `echo` in for loops?
+
 - `echo` prints out the command without running it; this is a good way to double-check the for loop is doing what you expect!
 
 Why did we need " " in the subset `echo` statement for loop?
+
 - In this case, the shell will evaluate the `echo` statement as everything in the double-quotes. Without the quotes, the echo statement will send "head -400 $i" to a file in the `subset` directory; it will not run the subset command properly.
 
 What does the `!=` conditional operator mean?
+
 - This means "not equal to". The "!" means "not". Whereas, "==" means "equal to".
 
 *Answer for subset exercise*
@@ -566,7 +569,7 @@ This is one approach to compare 20 30 40 50 60 70 to the $2 argument:
 ```
 for i in 20 30 40 50 60 70
 do
-bash ifs.sh $i 40
+   bash ifs.sh $i 40
 done
 ```
 
