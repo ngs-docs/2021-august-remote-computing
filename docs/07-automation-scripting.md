@@ -21,7 +21,7 @@ A script is like a recipe of commands for the computer to execute. We're teachin
 
 Why and when would we want to use scripts vs. typing commands directly at the terminal?
 
-   - Automate: don't have to remember all the commands and type then one at a time
+   - Automate: don't have to remember all the commands and type them one at a time
    - Scale up: can use same script for multiple samples, multiple processes
    - Reproduce & share: easier to reproduce or share analyses because it's all written down
    - Version control: stay tuned for workshop 8!
@@ -188,7 +188,7 @@ If you look at one of the FASTQ files with head,
 head F3D0_S188_L001_R1.fq
 ```
 
-you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatices pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works ("data forensics"). So I'd like to subset all of these files *without* modifying the originals.
+you'll see that it's full of FASTQ sequencing records.  Often I want to run a bioinformatics pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands works ("data forensics"). So I'd like to subset all of these files *without* modifying the originals.
 
 First, let's make sure the originals are read-only
 
@@ -295,7 +295,7 @@ do
 done
 ```
 
-**Reminder:** Another way to type bash `for` loops is with the `;`, for example this syntax does the same thing as above:
+**Reminder:** Another way to type bash `for` loops is with the `;`, for example, this syntax does the same thing as above:
 
 ```
 for i in ./MiSeq/*.fastq; do echo $i; fastqc $i -o $OUTDIR; done
