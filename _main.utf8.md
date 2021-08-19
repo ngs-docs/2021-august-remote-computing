@@ -3555,7 +3555,7 @@ Why and when would we want to use scripts vs. typing commands directly at the te
    - Automate: don't have to remember all the commands and type then one at a time
    - Scale up: can use same script for multiple samples, multiple processes
    - Reproduce & share: easier to reproduce or share analyses because it's all written down
-   - Version control: stay tuned for workshop 8!
+   - Version control: stay tuned for [workshop 8](keeping-track-of-your-files-with-version-control.html)!
 
 ## Getting started
 
@@ -3581,7 +3581,7 @@ At the terminal, we can type:
 echo Hello, this is the terminal!
 ```
 
-In a script, we can do the same thing - (we covered how to create and edit files with `nano` from Workshop 2!):
+In a script, we can do the same thing - (we covered how to create and edit files with `nano` from [Workshop 2!](creating-and-modifying-text-files-on-remote-computers.html)):
 
 Create a script file with nano - The file extension for shell scripts is '.sh'.
 ```
@@ -3595,7 +3595,7 @@ echo Hello, this is a script!
 echo I am on the next line!
 ```
 
-The `#!/bin/bash` header (this is known as a "[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))") tells the shell how to interpret the script file.
+The `#!/bin/bash` header (this is known as a "[sha-bang](https://en.wikipedia.org/wiki/Shebang_(Unix))" or hashbang) tells the shell how to interpret the script file.  It will be used later!
 
 Execute the script
 ```
@@ -3686,7 +3686,7 @@ done
 
 What `$( ... )` does is run the command in the middle, and then replace the `$( )` with the output of running the command. This output is assigned to the variable "newname".
 
-*Side note:* you may see backticks used instead of `$(...)`. It does the same thing but the syntax is trickier to get right, so we teach `$(...)` instead of `` `...` ``.
+*Side note:* you may see backticks used instead of `$(...)`. It does the same thing but the syntax is trickier to get right, so we teach `$(...)` instead of `` `...` ``. Note that `$( ... )` can be nested, to, so you can do `$( command $( command2 ))` which is occasionally handy.
 
 Now we have the old name (`$i`) and the new name (`$newname`) and we're ready to write the rename command --
 
@@ -3785,9 +3785,12 @@ would expand ${varname} and then put "MY" and "SUBSET" on either end, while
 MY$varnameSUBSET
 ```
 
-would try to put "MY" in front of $varnameSUBSET which won't work.
+would try to put "MY" in front of $varnameSUBSET which won't work - unknown/uncreated variables are evaluated to empty by default, so this would just expand
+to `MY`.
 
-(Unknown/uncreated variables are empty.)
+We recommend always using `${name}` instead of `$name`, because it
+always works the way you expect, unlike `$name`, which can be
+confusing when constructing new filenames as above.
 
 NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both *replace* but they do different things. Think of `$` here as meaning, "replace me with something".
 
