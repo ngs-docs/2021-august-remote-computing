@@ -1,7 +1,7 @@
 ---
 title: Introduction to Remote Computing
 author: C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.
-date: "2021-08-17"
+date: "2021-08-18"
 
 github-repo: ngs-docs/2021-august-remote-computing/
 url: "https://ngs-docs.github.io/2021-august-remote-computing/"
@@ -3542,9 +3542,9 @@ This lesson was adapted from [a lesson](https://github.com/ngs-docs/2021-GGG298/
 
 Learning objectives:
 
-- commands `for`, `basename`, `echo`, `if`
-- how to write and execute shell scripts
-- learning how to use multiple screens for long-running analyses
+- Commands `for`, `basename`, `echo`, `if`
+- How to write and execute shell scripts
+- Learning how to use multiple screens for long-running analyses
 
 ## What is a script?
 
@@ -3582,33 +3582,27 @@ echo Hello, this is the terminal!
 ```
 
 In a script, we can do the same thing - (we covered how to create and edit files with `nano` from Workshop 2!):
-```
-# create a script file with nano
-nano first_script.sh
 
-# add this to the script
+Create a script file with nano:
+```
+nano first_script.sh
+```
+
+Add the following 3 lines to the script:
+```
+#!/bin/bash
 echo Hello this is a script!
 echo I'm on the next line!
+```
 
-# execute the script
+Execute the script
+```
 bash first_script.sh
 ```
 
 - Note that commands are executed in the order that they appear in the script
 - The file extension for shell scripts is '.sh'
-
-
-
-### Bash script headers and permissions
-
-> TO DO: need help here
-
-- putting a header in and changing permissions; executing via shell prompt
 - `#!/bin/bash` header (this is known as a "[shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))") - it tells the shell how to interpret the script file
-
-
-
-
 
 
 
@@ -3635,7 +3629,7 @@ done
 
 for loop structure:
 
-- we set the counter for the thing we want to iterate ("loop") through with the `for i in *.fna.gz`. In this case, we are running the same command for each file in our current directory that ends in '.fna.gz'. The `i` represents the ith file in our loop and we refer to it with the `$` notation (more on variables later!) - also, "i" is an arbitrary name; it could be "potato". :)
+- we set the counter for the thing we want to iterate ("loop") through with the `for i in *.fna.gz`. In this case, we are running the same command for each file in our current directory that ends in '.fna.gz'. The `i` represents the ith file in our loop and we refer to it with the `$` notation (more on variables later!) - also, "i" is an arbitrary name; it could be "potato" :)
 - starts with `do` and ends with `done`
 - loop components are separated by `;` or indentation
 
@@ -3780,10 +3774,6 @@ would try to put MY in front of $varnameSUBSET which won't work.
 (Unknown/uncreated variables are empty.)
 
 NOTE: `${varname}` is quite different from `$(expression)`! The former is replaced by the value assigned to `varname`; the latter is replaced by the result of running `expression`. So, both *replace* but they do different things. Think of `$` here as meaning, "replace me with something".
-
-<!-- **Question:** We used "\$varname" above - what happens if we use single quotes - e.g. '$varname'?
-
-(Variables are interpreted inside of "", and not inside of ''.) -->
 
 ## Troubleshooting scripts
 

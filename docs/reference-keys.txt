@@ -151,7 +151,6 @@ what-is-a-script
 getting-started
 automating-commands-by-putting-them-in-a-text-file
 running-scripts-with-bash
-bash-script-headers-and-permissions
 for-loops
 subsetting
 variables
