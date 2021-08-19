@@ -3769,7 +3769,7 @@ fatal: unable to access 'https://github.com/s-canchi/2021-remotecompute-workshop
 
 #### GitHub PAT setup
 
-Github has disabled passwords in favor of personal access tokens (PAT). We can generate a PAT on GitHub:
+Github has disabled passwords in favor of personal access tokens (PAT). Follow these steps on Github to generate a PAT:
 
 * go back to GitHub interface
 * click on your icon on the top right corner 
