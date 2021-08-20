@@ -1,11 +1,11 @@
 # Automating your analyses with the snakemake workflow system
 
-This two hour workshop will introduce attendees to the snakemake
+This ~2.5 hour workshop will introduce you to the snakemake
 workflow system, for executing large-scale automated analyses.
 
 By the end of this lecture, we will:
 
-- know how to make basic workflows in snakemake rules
+- know how to make basic workflows in snakemake 
 - understand variable substitution in snakemake rules
 - understand wildcard matching in snakemake rules
 - be introduced to reasons why workflow systems can help you do your computing more easily
@@ -30,17 +30,22 @@ The name 'snakemake' comes from the fact that it's written in (and can be extend
 
 ### The Snakefile
 - Snakemake works by looking at a file called the Snakefile.
-- Snakefile contains recipes (or rules) for creating files. 
+- Snakefile contains recipes (or rules) for running tasks and creating files. 
 - Each rule is defined as a step in the workflow. 
 - Snakemake uses the rules and command line options to figure out how the rules relate to each other so it can manage the workflow steps.
 
+## Getting started
+## Farm log in
+As per the instructions in [workshop 3](https://ngs-docs.github.io/2021-august-remote-computing/connecting-to-remote-computers-with-ssh.html) and [workshop 4](https://ngs-docs.github.io/2021-august-remote-computing/running-programs-on-remote-computers-and-retrieving-the-results.html), log into farm.cse.ucdavis.edu using your datalab-XX account.
+
+When you log in, your prompt should look like this:
+
+(base) datalab-01@farm:~$
+If it doesn’t, please alert a TA and we will help you out!
 
 ## Installing snakemake
 
 We will use conda to install snakemake-minimal. You have conda pre-installed from workshop 4.
-
-
-### Now install snakemake
 
 We will install snakemake inside a conda environment called "snakemake"
 
@@ -61,8 +66,13 @@ Check the version of snakemake with
 snakemake --version
 ```
 
+Add two bioinformatics software to the snakemake environment: `fastqc` and `salmon`
 
-## Getting setup 
+```
+conda install -y fastqc salmon
+```
+
+## More setup
 
 ### Create a working directory
 Create a working directory called snakemake_lesson
@@ -72,13 +82,6 @@ mkdir -p ~/snakemake_lesson
 cd ~/snakemake_lesson
 ```
 
-Add two bioinformatics software to the snakemake environment: `fastqc` and `salmon`
-
-```
-conda install -y fastqc salmon
-```
-
-
 ### Download some data
 
 ```
@@ -87,8 +90,6 @@ curl -L https://osf.io/8rvh5/download -o ERR458494.fastq.gz
 curl -L https://osf.io/xju4a/download -o ERR458500.fastq.gz
 curl -L https://osf.io/nmqe6/download -o ERR458501.fastq.gz
 ```
-
-
 
 Now we're all set!
 
@@ -118,8 +119,13 @@ rm ERR458493_fastqc.html
 
 ### Create a Snakefile
 
-Create a new file in the RStudio editor and call it "Snakefile"
+Create a new file and call it "Snakefile"
 
+```
+nano Snakefile
+```
+
+Copy and paste this text into the Snakefile:
 
 ```
 rule all:
@@ -138,12 +144,14 @@ rule make_fastqc:
 
 ```
 
+Save and close.
+
 To run the snakefile, type:
 ```
 snakemake -p -j 1
 ```
 
-It worked! There is an html file and a zip file.
+It worked! There is a html file and a zip file.
 
 Let's explore the logic of what happened:
 
@@ -288,7 +296,7 @@ The download_reference shell command is:
 curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
 ```
 
-==Note that you can always run the command at the prompt if you want to make sure that they work!==
+Note that you can always run the command at the prompt if you want to make sure that they work!
 
 
 To add to the snakefile
@@ -299,8 +307,7 @@ rule all:
         "ERR458493_fastqc.zip",
         "ERR458501_fastqc.html",
         "ERR458501_fastqc.zip",
-        "orf_coding.fasta.gz",
-        directory("yeast_orfs")
+        "orf_coding.fasta.gz"
 
 rule make_fastqc:
     input:
@@ -318,7 +325,19 @@ rule download_reference:
         "curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz"
 ```
 
-CHALLENGE: How can you run this Snakefile to produce the outputs you just added?
+How can we run one rule at a time?
+
+Specifying the rule name, tells snakemake to run that specific rule:
+
+```
+snakemake -p -j1 download_reference
+```
+
+Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
+
+```
+snakemake -p -j orf_coding.fasta.gz
+```
 
 ### Add the index genome command:
 
