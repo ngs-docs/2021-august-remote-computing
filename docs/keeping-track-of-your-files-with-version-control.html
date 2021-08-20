@@ -333,7 +333,14 @@
 <li class="chapter" data-level="8.7.3" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#zenodo-for-publishing-your-git-repo"><i class="fa fa-check"></i><b>8.7.3</b> Zenodo for publishing your git repo</a></li>
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#git-philosophy"><i class="fa fa-check"></i><b>8.8</b> Git philosophy</a></li>
-<li class="chapter" data-level="8.9" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#resources"><i class="fa fa-check"></i><b>8.9</b> Resources</a></li>
+<li class="chapter" data-level="8.9" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#bonus-setting-up-remote-respoitory-for-local-directories"><i class="fa fa-check"></i><b>8.9</b> Bonus: setting up remote respoitory for local directories</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#create-directory-and-files"><i class="fa fa-check"></i><b>8.9.1</b> Create directory and files</a></li>
+<li class="chapter" data-level="8.9.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#setup-git"><i class="fa fa-check"></i><b>8.9.2</b> Setup git</a></li>
+<li class="chapter" data-level="8.9.3" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#setup-github-repo"><i class="fa fa-check"></i><b>8.9.3</b> Setup GitHub Repo</a></li>
+<li class="chapter" data-level="8.9.4" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#link-local-and-remote-repositories"><i class="fa fa-check"></i><b>8.9.4</b> Link local and remote repositories</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#resources"><i class="fa fa-check"></i><b>8.10</b> Resources</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html"><i class="fa fa-check"></i><b>9</b> Automating your analyses with the snakemake workflow system</a></li>
 <li class="chapter" data-level="10" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html"><i class="fa fa-check"></i><b>10</b> Executing large analyses on HPC clusters with slurm</a></li>
@@ -435,9 +442,6 @@ git clone https://github.com/USERNAME/2021-remotecompute-workshop8</code></pre>
 <p>Change into it:</p>
 <pre><code>cd 2021-remotecompute-workshop8</code></pre>
 <p>and look around with <code>ls -a</code>. You’ll notice two files: a <code>.git</code> subdirectory (this is a directory that git uses to keep information about this repo!) and a <code>README.md</code> file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.</p>
-<p>If you wanted to track files in the <code>2021-remote-computing-binder</code> folder that we have been working with, run</p>
-<pre><code>git init</code></pre>
-<p>which converts any existing directory into a git repository.</p>
 </div>
 <div id="edit-a-file" class="section level3" number="8.3.7">
 <h3><span class="header-section-number">8.3.7</span> Edit a file</h3>
@@ -782,8 +786,51 @@ git status</code></pre>
 <li>commit messages are helpful, diffs are golden.</li>
 </ul>
 </div>
-<div id="resources" class="section level2" number="8.9">
-<h2><span class="header-section-number">8.9</span> Resources</h2>
+<div id="bonus-setting-up-remote-respoitory-for-local-directories" class="section level2" number="8.9">
+<h2><span class="header-section-number">8.9</span> Bonus: setting up remote respoitory for local directories</h2>
+<p>So far you have learnt the git workflow for how to work on single and multiple files within a newly created remote repository. But what if you have an existing directory with files that you now wish to track using git ?</p>
+<p>In this section we will show you how to set that up.</p>
+<div id="create-directory-and-files" class="section level3" number="8.9.1">
+<h3><span class="header-section-number">8.9.1</span> Create directory and files</h3>
+<p>Let’s create a directory on farm to host all the script files we have created thus far.</p>
+<pre><code>mkdir workshop_scripts
+cd workshop_scripts</code></pre>
+<p>You can either copy the <code>first_script.sh</code> from Home directory that you created in <a href="https://ngs-docs.github.io/2021-august-remote-computing/automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-with-bash">Workshop 7</a></p>
+<pre><code>cp ../first_script.sh .</code></pre>
+<p>Alternatively, you can create one using nano</p>
+<pre><code>nano first_script.sh</code></pre>
+<p>Add the following 3 lines to the script:</p>
+<pre><code>#!/bin/bash
+echo Hello, this is a script!
+echo I am on the next line!</code></pre>
+</div>
+<div id="setup-git" class="section level3" number="8.9.2">
+<h3><span class="header-section-number">8.9.2</span> Setup git</h3>
+<p>First, initialize git</p>
+<pre><code>git init</code></pre>
+<p>which converts any existing directory into a git repository.</p>
+<p>Then, add files</p>
+<pre><code>git add first_script.sh</code></pre>
+<p>Commit with a message</p>
+<pre><code>git commit -m &quot;first bash script&quot;</code></pre>
+</div>
+<div id="setup-github-repo" class="section level3" number="8.9.3">
+<h3><span class="header-section-number">8.9.3</span> Setup GitHub Repo</h3>
+<p>Things are now setup on the local repository. Let’s shift to the GitHub interface. Follow steps from “Create a git repository on GitHub” section to create <code>workshop_scripts</code> repository [You can name it anything you want but helps to keep the local and remote names same].</p>
+<p>Copy the GitHub URL in your paste buffer.</p>
+</div>
+<div id="link-local-and-remote-repositories" class="section level3" number="8.9.4">
+<h3><span class="header-section-number">8.9.4</span> Link local and remote repositories</h3>
+<p>At the Farm command line, link the GitHub repo to the local repo:</p>
+<pre><code>git remote add origin https://github.com/USERNAME/workshop_scripts.git</code></pre>
+<p>Next link your local master branch to the remote master branch</p>
+<pre><code>git push --set-upstream origin master</code></pre>
+<p>Note that you have to run the above command only the first time. Subsequent commits to local repo can be updated on the remote repo using <code>git push</code>.</p>
+<p>Go to the GitHub repo and select <code>master</code> from the branches drop down menu. You should see the script file in the repository!</p>
+</div>
+</div>
+<div id="resources" class="section level2" number="8.10">
+<h2><span class="header-section-number">8.10</span> Resources</h2>
 <ul>
 <li>Check out Daniel Standage’s blog post on <a href="https://standage.github.io/developer-pull-request-thyself.html">using github to collaborate with yourself</a> for inspiration!</li>
 <li><a href="https://education.github.com/git-cheat-sheet-education.pdf">Handy git cheatsheet</a> from GitHub</li>

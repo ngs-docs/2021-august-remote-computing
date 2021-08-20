@@ -3636,12 +3636,6 @@ cd 2021-remotecompute-workshop8
 ```
 and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
 
-If you wanted to track files in the `2021-remote-computing-binder` folder that we have been working with, run 
-```
-git init
-```
-which converts any existing directory into a git repository. 
-
 ### Edit a file
 
 Let's edit the README.md file; on binder, you can use RStudio, or use
@@ -4168,6 +4162,79 @@ Now go back to zenodo. You should see that a DOI has been assigned! This is a fr
 * big data files should be kept in some other place, read-only.
 * do git commit & git push frequently (at end of every session, at least) - remember, you can always unwind, but you can't go back to a specific changeset you never committed!
 * commit messages are helpful, diffs are golden.
+
+## Bonus: setting up remote respoitory for local directories
+
+So far you have learnt the git workflow for how to work on single and multiple files within a newly created remote repository. But what if you have an existing directory with files that you now wish to track using git ?
+
+In this section we will show you how to set that up.
+
+### Create directory and files
+
+Let's create a directory on farm to host all the script files we have created thus far.
+
+```
+mkdir workshop_scripts
+cd workshop_scripts
+```
+
+You can either copy the `first_script.sh` from Home directory that you created in [Workshop 7](https://ngs-docs.github.io/2021-august-remote-computing/automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-with-bash)
+```
+cp ../first_script.sh .
+```
+
+Alternatively, you can create one using nano
+```
+nano first_script.sh
+```
+
+Add the following 3 lines to the script:
+```
+#!/bin/bash
+echo Hello, this is a script!
+echo I am on the next line!
+```
+
+### Setup git
+
+First, initialize git
+
+```
+git init
+```
+which converts any existing directory into a git repository. 
+
+Then, add files
+```
+git add first_script.sh
+```
+
+Commit with a message
+```
+git commit -m "first bash script"
+```
+
+### Setup GitHub Repo
+
+Things are now setup on the local repository. Let's shift to the GitHub interface. Follow steps from "Create a git repository on GitHub" section to create `workshop_scripts` repository [You can name it anything you want but helps to keep the local and remote names same].
+
+Copy the GitHub URL in your paste buffer.
+
+### Link local and remote repositories
+
+At the Farm command line, link the GitHub repo to the local repo:
+```
+git remote add origin https://github.com/USERNAME/workshop_scripts.git
+```
+
+Next link your local master branch to the remote master branch
+```
+git push --set-upstream origin master
+```
+
+Note that you have to run the above command only the first time. Subsequent commits to local repo can be updated on the remote repo using `git push`. 
+
+Go to the GitHub repo and select `master` from the branches drop down menu. You should see the script file in the repository!
 
 ## Resources
 

@@ -177,6 +177,11 @@ using-.gitignore-to-ignore-files
 editing-on-github-directly
 zenodo-for-publishing-your-git-repo
 git-philosophy
+bonus-setting-up-remote-respoitory-for-local-directories
+create-directory-and-files
+setup-git
+setup-github-repo
+link-local-and-remote-repositories
 resources
 automating-your-analyses-with-the-snakemake-workflow-system
 executing-large-analyses-on-hpc-clusters-with-slurm
