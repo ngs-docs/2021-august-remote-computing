@@ -1,7 +1,7 @@
 ---
 title: Introduction to Remote Computing
 author: C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.
-date: "2021-08-19"
+date: "2021-08-20"
 
 github-repo: ngs-docs/2021-august-remote-computing/
 url: "https://ngs-docs.github.io/2021-august-remote-computing/"
@@ -4172,16 +4172,10 @@ Now go back to zenodo. You should see that a DOI has been assigned! This is a fr
 ## Resources
 
 * Check out Daniel Standage's blog post on [using github to collaborate with yourself](https://standage.github.io/developer-pull-request-thyself.html) for inspiration!
+* [Handy git cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf) from GitHub
 * Mark Lodato's [visual reference on git](https://marklodato.github.io/visual-git-guide/index-en.html)
 * Roger Dudler's [simple guide to git](https://rogerdudler.github.io/git-guide/)
 * [Git-it](http://jlord.us/git-it/) which provides step by step tutorial with challenge exercises
-
-
-
-TODO:
-
-- discuss `git stash` / `git stash apply`
-- discuss `git add` with wildcards, and `git add -f`
 
 <!--chapter:end:08-version-control-git.Rmd-->
 
