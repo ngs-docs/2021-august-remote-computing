@@ -59,7 +59,7 @@ your own files. Collaborating with others is harder, and this workshop will
 only cover the basics. Keep an eye out for future DataLab workshops to learn
 more :)
 
-## Git and GitHub - creating and using a repository
+## What is GitHub?
 
 We're going to introduce you to git through [GitHub][], a website used to
 store, share, and collaborate on git repositories. You don't *have* to use
@@ -111,6 +111,8 @@ Unless you selected "Private" on the "Create a new repository" page, your new
 repository is public. That means _anyone_ can see and copy files you put in the
 repository (but only you and people you grant permission to can edit the
 repository).
+
+## Using git
 
 ### Set up git on Farm
 
@@ -275,7 +277,7 @@ and that you changed three lines. Two are blank lines and one is the text you
 added to the file. If you edited the file differently, you'll see a different
 message, but you should see the changes you made.
 
-### Commit a file
+### Commit a File
 
 Now let's commit the changes. The `git commit` command creates a commit. When
 you create a commit, git will ask you to write a one-sentence **commit
@@ -345,7 +347,7 @@ fatal: unable to access 'https://github.com/s-canchi/2021-remotecompute-workshop
 Most remote git repos accept a username and password, but as of August 13,
 2021, GitHub does not.
 
-#### Setting up a Personal Access Token
+#### Set up a Personal Access Token
 
 Github disabled passwords in favor of personal access tokens (PAT) and SSH
 keys. Follow these steps on GitHub to generate a PAT:
@@ -390,7 +392,7 @@ Now if you go to the GitHub page for your repo, you should see your changes to
 the `README.md` file.
 
 
-### Viewing Repository History on GitHub
+### View the Repository History on GitHub
 
 On the GitHub page for your repo, click on the "2 commits" link on the right
 side of the blue box.
@@ -405,6 +407,7 @@ view the version of the file that was saved in this commit. This is one way to
 view old versions of files in your repository (you can do this for any commit).
 
 
+<!--
 ### The single-repo-to-GitHub model
 
 What we're doing is the simplest way to use git and GitHub to manage your own
@@ -412,6 +415,7 @@ repository. There are more complicated options but this is a nice blend of
 practicality and features (backups, change tracking, sharing options).
 
 ![](./git-one-repo-model.png)
+-->
 
 ## Challenge Question 1
 
