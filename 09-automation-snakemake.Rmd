@@ -21,7 +21,7 @@ Every computational workflow consists of multiple steps, taking previous outputs
 
 [Snakemake](https://snakemake.readthedocs.io/en/stable/) is a commonly used workflow system created by Johannes Koester and others (see [2012 publication](https://academic.oup.com/bioinformatics/article/28/19/2520/290322))
 
-Many other workflow systems exist. E.g. nextflow, Common Workflow Language, and Workflow Definition Language are all good! Each workflow system comes with its own syntax and set of advantages.
+Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL) are all good! Each workflow system comes with its own syntax and set of advantages.
 
 Today we're going to talk about ways of automating workflows using snakemake.
 
@@ -438,8 +438,8 @@ Snakemake doesn't automatically look at all the files in the directory and figur
 
 CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.
 
-## Random aside: -n
-If you give snakemake a -n parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
+## Random aside: --dry-run or -n
+If you give snakemake a --dry-run (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
 
 ## Advanced features 
 There are many advanced features to snakemake, and we'll touch on a few of them here.
