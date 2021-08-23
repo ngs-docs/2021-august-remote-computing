@@ -1,61 +1,139 @@
-# Keeping track of your files with version control
+# Keeping Track of Your Files with Version Control
 
-This two hour workshop will show attendees how to use the git version
-control system to track changes to your files on the remote system, as
-well as backup your project files to github and transfer them to your
-laptop or desktop. We will demonstrate file sharing via github, and
-discuss ways to collaborate with a team.
+This two hour workshop will show attendees how to use the git version control
+system to track changes to files, back up files to GitHub, and sync files
+between your laptop/desktop and a remote server. We will also discuss ways to
+collaborate with a team.
 
-This lesson was adopted from [a lesson](https://github.com/ngs-docs/2021-GGG298/tree/latest/Week7-Git_and_GitHub_for_file_tracking_and_sharing) co-authored by Shannon Joslin for GGG 298 at UC Davis.
+This lesson was adapted from several UC Davis sources:
 
-## Learning objectives
+* Shannon Joslin's [lesson from GGG 298][ggg298]
+* DataLab's workshops [on git][workshop1] and [git for teams][workshop2]
+* Nick Ulle's [lesson from STA 141B][141b]
 
-By the end of this lesson, students will:
+[ggg298]: https://github.com/ngs-docs/2021-GGG298/tree/latest/Week7-Git_and_GitHub_for_file_tracking_and_sharing
+[workshop1]: https://ucdavisdatalab.github.io/workshop_introduction_to_version_control/
+[workshop2]: https://ucdavisdatalab.github.io/workshop_git_for_teams/
+[141b]: https://github.com/2019-winter-ucdavis-sta141b/notes/blob/master/lecture/01.15/notes.ipynb
 
-* setup git and GitHub repositories
-* learn how to add and track single and multiple files
-* revert changes to a file
-* learn to resolve merge conflicts
 
-## What is git ?
+## Learning Objectives
 
-git is a **version control system** that lets you track changes to text files. It can also be used for collaborating with others. It's like Word change tracking, on steroids. 
+By the end of this lesson, students will be able to:
 
-Git takes a while to learn, like anything else. This lesson will teach you most of what you need to do to collaborate with yourself. Collaborating with others is a lot harder and will maybe be the subject of a different tutorial :)
+* setup git repositories (on GitHub or a local machine)
+* add and track changes to files with `git add`
+* save changes by committing them with `git commit`
+* undo changes with `git revert` and `git restore`
+* resolve merge conflicts
+
+## What is git?
+
+git is a **version control system**. A version control system tracks the
+changes you make to files, so that you can go back to a previous version at any
+time. It's like Microsoft Word's change tracking on steroids. Besides version
+control, git can also be used for collaborating with others.
+
+git works in terms of **repositories** and **commits**. A repository is a
+directory (including its subdirectories) that's managed by git. A commit is a
+checkpoint or savepoint for the files in a repository. git keeps track of every
+commit you make, so you can go back to older commits whenever you want.
+
+This diagram shows the overall workflow for git:
+
+![](./git-workflow.png)
+
+All git commands begin with `git` followed by the name of a subcommand. The
+arrows on the diagram represent several of the subcommands we'll learn about in
+this workshop, and we'll revisit the diagram after learning a few.
+
+In git jargon, the **local** computer is the computer where you're running
+`git` commands. The local computer will usually be your laptop or desktop, but
+for this workshop, the local computer will be Farm. A **remote** computer (or
+just "remote") is any other computer online. The remote computer will usually
+be a server like [GitHub][], which we'll learn more about in the next section.
+
+git takes practice to learn, like anything else. This lesson will teach you
+everything you need to know to get started with using git to track changes to
+your own files. Collaborating with others is harder, and this workshop will
+only cover the basics. Keep an eye out for future DataLab workshops to learn
+more :)
 
 ## Git and GitHub - creating and using a repository
 
-git works in terms of **repositories** and **changesets**. Repositories (or "repos") are directories (including all subdirectories) that contain files; changesets are a set of changes to one or more files.
-
-We're going to introduce you to git through GitHub, a website that is used to store, share, and collaborate on git repositories. You don't *need* to use GitHub, or one of its competitors (bitbucket, GitLab, etc.) to carry out your research, but doing so provides a convenient way to:
+We're going to introduce you to git through [GitHub][], a website used to
+store, share, and collaborate on git repositories. You don't *have* to use
+GitHub or its competitors (such as [GitLab][] and [BitBucket][]) in order to
+use git, but doing so provides a convenient way to:
 
 * back up your repo
 * look at your changesets
 * share your software with others (including both future you and your lab/advisor)
 
-### Create an account
+[GitHub]: https://www.github.com/
+[GitLab]: https://about.gitlab.com/
+[BitBucket]: https://bitbucket.org/
 
-Please create a free account at github.com. You'll need to choose a username (this is public, and kind of like a social media handle, so choose wisely :) and a password (something you can remember and type!)
+### Create a GitHub Account
 
-By default the free accounts allow unlimited private repositories with up to three collaborators, and unlimited public repositories; you can apply for an academic account if you want more collaborators on private repositories.
+Please go to [GitHub][] and create a free account. You'll need to choose a
+username (this is public, and kind of like a social media handle, so choose
+wisely :) and a password (something you can remember and type!).
 
-### Create a git repository on GitHub
+As of writing this, GitHub's free accounts allow unlimited private repositories
+with up to three collaborators, and unlimited public repositories. You can
+apply for an academic account or upgrade your account if you want more
+collaborators on private repositories.
 
-* click on the **plus** in the upper right of the screen at github.com
-* select **New repository**
-* name it `2021-remotecompute-workshop8`. (You can name it whatever you want, but this should make it clear to you and others that this is a time-dated repo; also, all of the examples below use this name :)
-* also select 'Initialize this repository with a README'
-* click **Create repository**.
+### Create a New Repository
 
-After a few seconds, you should be redirected to a web page with a URL like `https://github.com/USERNAME/2021-remotecompute-workshop8`. This is your GitHub URL for this repository; note that it's public (unless you selected private) which means that _anyone_ can get a read-only copy of this repo.
+Let's use GitHub to create a new repository. The steps are:
 
-### Log in!
+1. Navigate to [GitHub].
+2. Click on the plus sign in the upper right of the screen.
+3. Select "New repository" from the drop-down menu.
+4. On the "Create a new repository" page, choose a name for your repository.
+   For this workshop, name the repository `2021-my-first-repo`. A repository
+   can have any valid directory name, but putting the year at the beginning is
+   a good practice because it makes it clear when the repo was created.
+5. Check the box "Add a README file".
+6. Click the green "Create repository" button at the bottom of the page.
 
-Now, log in to farm, or start up a
-[binder](https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio)
-and go to the terminal.
+Here's a screenshot of the "Create new repository" page:
 
-### Optional: set up a password helper
+![](./github-create.png)
+
+After a few seconds, you should be redirected to a web page with a URL like
+`https://github.com/USERNAME/2021-my-first-repo`, where `USERNAME` is replaced
+by your GitHub username. This is your new repository's URL.
+
+Unless you selected "Private" on the "Create a new repository" page, your new
+repository is public. That means _anyone_ can see and copy files you put in the
+repository (but only you and people you grant permission to can edit the
+repository).
+
+### Set up git on Farm
+
+Now, log in to Farm, or start up a [Binder][] and go to the terminal.
+
+[Binder]: https://binder.pangeo.io/v2/gh/binder-examples/r-conda/master?urlpath=rstudio
+
+The `git config` command changes git's configuration. The first time you use
+git on a computer (such as Farm), it's a good idea to configure git with your
+name and email address. Make sure to use the same email address you used to
+sign up for GitHub, so that GitHub will recognize your work.
+
+The commands to set your name and email address are:
+```
+git config --global user.name "Your Name"
+git config --global user.email you@example.com
+```
+
+If you decide to use git on your laptop or desktop, or get a new Farm account
+after this workshop, you'll need to run these commands again.
+
+
+### Optional: Set up a Password Helper
 
 You'll have to type in your password each time you want to make
 changes, unless you do this:
@@ -66,75 +144,115 @@ git config --global credential.helper 'cache --timeout=7200'
 
 By default git will cache your password for 15 minutes. Here, the `timeout` parameter increases this to two hours.
 
-### Optional: configure git credentials on Farm
+### Clone the Repository 
 
-To ensure the username and email are consistent between the farm account and your newly created GitHub account, you can update the git configuration on the farm account by replacing the `user.name` and `user.email` with your GitHub account credentials
+In order to work with your new repository, you first need to download it to
+Farm. The `git clone` command downloads a repository from a remote server for
+the first time.
 
-```
-git config --global user.name "Your Name"
-git config --global user.email you@example.com
-```
+Go to the GitHub repository you created, click the green "Code" button in the
+top right corner, and copy the HTTPS URL shown.
 
-This may not be necessary for your current accounts as they are temporary but will become useful to configure when working within your own Farm accounts.
-
-### Clone the repository 
-
-Go to the GitHub repository you created, select the URL and copy it into your paste buffer.
-
-Run:
+Then change to your home directory on Farm (`cd ~`), type `git clone `, and 
+paste the URL you copied. The command should look like this:
 
 ```
-cd ~/
-git clone https://github.com/USERNAME/2021-remotecompute-workshop8
+git clone https://github.com/USERNAME/2021-my-first-repo
 ```
-This will create a directory `2021-remotecompute-workshop8` under your home directory.
 
-Change into it:
+Press enter to run the command. This will create a directory
+`2021-my-first-repo` in your home directory.
+
+Change into the new directory and take a look around:
 ```
-cd 2021-remotecompute-workshop8
+cd 2021-my-first-repo
+ls -a
 ```
-and look around with `ls -a`. You'll notice two files: a `.git` subdirectory (this is a directory that git uses to keep information about this repo!) and a `README.md` file that contains the name of the repository. This file is the same README that is displayed at the above GitHub URL when you go to it.
+You'll notice two files:
 
-### Edit a file
+1. A hidden `.git` subdirectory, which git uses to keep track of changes you
+   make to the repo
+2. A `README.md` file, which GitHub created when you checked the "Add a README
+   file" box. This file is also displayed on the GitHub page for your
+   repository.
 
-Let's edit the README.md file; on binder, you can use RStudio, or use
-`nano` on farm:
+
+### Edit a File
+
+Let's edit the `README.md` file. You can use `nano` on Farm or RStudio on
+binder:
+
 ```
 nano README.md
 ```
-and add a new line like "This is a example respoitory for 2021 Remote Computing workshop at UC Davis" to the file, then save it and exit nano using CTRL-X.
 
-Now type:
+Add a new line like `Hello, git!`, then save the file and exit.
+
+Now let's see if git recognizes the changes. The `git status` command checks
+the status of a git repo. In the terminal, enter:
+
 ```
 git status
 ```
 
 You should see the following message:
 
->On branch main
->Your branch is up to date with 'origin/main'.
->
->Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
->
->        modified:   README.md
->
->no changes added to commit (use "git add" and/or "git commit -a")
-
-This is telling you a few things.
-
-* the most important is that README.md has been modified!
-* it also tells you that, as far as git knows, you have the latest version of what's on github ('origin' branch 'main'). We'll revisit this later.
-* it also gives you some instructions. You can trash the modifications to README.md by typing `git checkout -- README.md` and it will **revert** the file to the last change that git tracked. Alternatively, you can do `git add` to tell git that you plan to `commit` these changes.
-
-We'll commit these changes in a second; let's look at them first. Run:
-
 ```
-git diff
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+ (use "git add <file>..." to update what will be committed)
+ (use "git restore <file>..." to discard changes in working directory)
+
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
->You should see something like:
+This is telling you a few things:
+
+* `README.md` has been modified. This is the most important part!
+* Your copy of the repository is up to date with `origin/main`, which is what
+  git calls GitHub's copy of the repository. We'll revisit what `origin/main`
+  means later.
+* Commands to add changes you plan to keep ("commit"), or to undo changes you
+  decided don't want to keep. You'll learn more about these commands later.
+
+Before you can make a commit, you have to tell git which changes you want to
+include in the commit. You do this by adding changes to git's **staging area**
+(or index) with the `git add` command. You can think of the staging area as a
+box you're packing up to get ready to store.
+
+Add your changes to `README.md` to the staging area by entering this command:
+
+```
+git add README.md
+```
+
+Now check the status:
+
+```
+git status
+```
+
+The status should now say that your changes to `README.md` are "staged for
+commit". They are now in the staging area, but haven't been committed yet.
+
+Before making a commit, it's a good habit to review the changes in the staging
+area. This is especially important if you're working with multiple files. The
+`git diff` command shows differences between your working directory and
+previous commits.
+
+You can use `git diff` with the argument `--staged` to compare the staging area
+to the most recent commit (GitHub made a commit when you created the repo). Run
+this command:
+```
+git diff --staged
+```
+
+You should see something like:
+
 ```
 diff --git a/README.md b/README.md
 index 8d2d4d8..0a92250 100644
@@ -143,167 +261,176 @@ index 8d2d4d8..0a92250 100644
 @@ -1 +1,4 @@
 -# 2021-remotecompute-test
 \ No newline at end of file
-+# 2021-remotecompute-test
++# 2021-my-first-repo
 +
-+This is a example respoitory for 2021 Remote Computing workshop at UC Davis
++Hello, git!
 +
 ```
 
-This is telling you that you changed one file (README.md), and that you changed three lines: you added a newline at the end of the first line, a blank line, and, for the third line, whatever text you added.
+For each file you changed, the `git diff` command shows lines you added
+prefixed with `+` (in green) and lines you removed prefixed with `-` (in red).
+
+So the message above is telling you that you changed one file (`README.md`),
+and that you changed three lines. Two are blank lines and one is the text you
+added to the file. If you edited the file differently, you'll see a different
+message, but you should see the changes you made.
 
 ### Commit a file
 
-At this point you still haven't told git that you want to keep this change. Let's do that. We can add the changes the file using
+Now let's commit the changes. The `git commit` command creates a commit. When
+you create a commit, git will ask you to write a one-sentence **commit
+message** to describe your changes. It's a good habit to write a concise,
+informative commit message to remind yourself and your collaborators of what
+changed.
+
+If you run `git commit` in the terminal without any other arguments, git will
+open an editor (usually `vi`) for you to enter and save your commit message.
+
+You can use the `-m` argument to enter your commit message directly into the
+terminal (without opening an editor). Make sure to surround the message in
+quotes.
+
+Enter this in the terminal:
 
 ```
-git add README.md
+git commit -m "Added a line to README."
 ```
 
-We can check the status:
+git should reply with something like this:
 
 ```
-git status
+[main 9bf6695] added info to README
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 ```
 
-To commit these changes:
+Here `9bf6695` is the commit's ID. Your commit will have a different ID, and
+we'll learn more about how to use the ID later.
 
-```
-git commit -m "added info to README"
-```
-
-This tells git that the changes to the README.md file are worth keeping as a changeset, and that you want to tag this changeset with the **commit message** "added info to README". You should see something like:
-
->[main 9bf6695] added info to README
-> 1 file changed, 3 insertions(+), 1 deletion(-)
-
-here, `9bf6695` is the changeset id. We'll talk about this later.
-
-Note that if you didn't config git with user.name and user.email, the first commit message will also contain information on the account information:
-
-```
-Committer: datalab account 03 <datalab-03@farm.cse.ucdavis.edu>
-```
-
-Now type:
-```
-git diff
-```
-again - it should show you nothing at all.
-
-What if you run
+What if you run `git status` now?
 
 ```
 git status
 ```
-again?
 
 You should see:
 
->On branch main
->Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
->
->nothing to commit, working tree clean
+```
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+ (use "git push" to publish your local commits)
 
-What this tells you is that you are now **out of sync** with your origin/main git repo, which is the GitHub URL above from which you cloned this repo.
+nothing to commit, working tree clean
+```
 
-Let's fix that:
+This tells you there are no new, uncommitted changes in your repo (because you
+just committed the changes). It also tells you that your repo is now **out of
+sync** with GitHub (`origin/main`) by 1 commit. In other words, GitHub does not
+yet have the commit you just made.
+
+Let's send the commit to GitHub. The command to send a commit from the local
+repo to a remote repo is `git push`. Run the command now:
 
 ```
 git push
 ```
 
-It should now ask you for a username and a password. If you enter your GitHub username and your password, it will result in an error with this message
+git will ask for a username and a password. Enter your GitHub username and
+password. You'll see this error message:
 
 ```
 remote: Support for password authentication was removed on August 13, 2021. Please use a personal access token instead.
 fatal: unable to access 'https://github.com/s-canchi/2021-remotecompute-workshop8.git/': The requested URL returned error: 403
 ```
 
-#### GitHub PAT setup
+Most remote git repos accept a username and password, but as of August 13,
+2021, GitHub does not.
 
-Github has disabled passwords in favor of personal access tokens (PAT). Follow these steps on Github to generate a PAT:
+#### Setting up a Personal Access Token
 
-* go back to GitHub interface
-* click on your icon on the top right corner 
-* from the drop down menu select **Settings**
-* click on **Developer settings** from the left panel to be directed to a new page
-* click on **Personal access tokens** 
-* click on **Generate new token**, give it a name in the **Note** to help you remember what the token if for/when it was created
-* scroll down and click **Generate token**
+Github disabled passwords in favor of personal access tokens (PAT) and SSH
+keys. Follow these steps on GitHub to generate a PAT:
 
-Remember to save the token somewhere safe (e.g., password manager). After you leave this page, the token will no longer be viewable. 
+1. Navigate to [GitHub]
+2. Click on your user icon in the top right corner 
+3. Select "Settings" from the drop-down menu
+4. On the left panel of the page that opens, click on "Developer settings"
+5. On the left panel of the page that opens, click on "Personal access tokens"
+6. Click the "Generate new token" button.
+7. On the "New personal access token" page, give your token a name in the
+   "Note" field to help you remember when and why you created the token.
+8. Click the green "Generate token" button at the bottom of the page.
+9. On the "Personal access tokens" page, copy the new token (in the green box).
+   The token will no longer be viewable once you navigate away from this page.
 
-We also have a detailed tutorial on [GitHub PAT authentication](https://www.nih-cfde.org/resource/setting-up-github-authentication/) with pointers for resetting previous passwords. 
+Save the token somewhere safe (for example, a password manager). If you want to
+learn more about GitHub's PAT authentication, read [our detailed
+tutorial][PAT].
 
-Going back to commiting the changes, now let's try again
+[PAT]: https://www.nih-cfde.org/resource/setting-up-github-authentication/
+
+Now let's try pushing the commit again. Run this command in the terminal:
 
 ```
 git push
 ```
 
-Enter your username and PAT token for password. You should see something similar
+When prompted, enter your GitHub username and the PAT token as your password.
+Pushing commits to a remote repository can take a moment. If the command
+finishes running successfully, you should see something like this:
 
-> To https://github.com/s-canchi/2021-remotecompute-workshop8.git
->   ad7e8de..9bf6695  main -> main
+```
+To https://github.com/s-canchi/2021-remotecompute-workshop8.git
+  ad7e8de..9bf6695  main -> main
+```
 
-which tells you that it pushed your changes through changeset 9bf6695 to your GitHub URL.
+This tells you that git pushed all of your commits up to and including commit
+`9bf6695` to your GitHub repo.
 
-Now, if you go to the GitHub URL, you should see your changes in the README.md file.
+Now if you go to the GitHub page for your repo, you should see your changes to
+the `README.md` file.
 
-### Viewing repository history on GitHub
 
-Toggle to your GitHub repository.
+### Viewing Repository History on GitHub
 
-Try clicking on the "1 commit" message. You'll see two commit messages, one "initial commit" (from when you created the repository) and one with your commit message above. They'll be in reverse order of time (most recent first).
+On the GitHub page for your repo, click on the "2 commits" link on the right
+side of the blue box.
 
-If you click on your commit message that you entered at the command line, you will see a nice colored 'diff' that shows you what changed.
+You'll see two commit messages: one "initial commit" from when you created the
+repository, and one with the commit message you just wrote. They'll be ordered
+from most to least recent.
 
-If you go over to the '...' menu on the far right, you can view the file as of this commit. (Right now, it will look like the latest version of this file, since this is the most recent commit.)
+Click on the commit message you just wrote. You'll see a colored `diff` that
+shows what you changed. If you click on the `...` in the right corner, you can
+view the version of the file that was saved in this commit. This is one way to
+view old versions of files in your repository (you can do this for any commit).
+
 
 ### The single-repo-to-GitHub model
 
-What we're doing is the simplest way to use git and GitHub to manage your own repository. There are more complicated options but this is a nice blend of practicality and features (backups, change tracking, sharing options).
+What we're doing is the simplest way to use git and GitHub to manage your own
+repository. There are more complicated options but this is a nice blend of
+practicality and features (backups, change tracking, sharing options).
 
 ![](./git-one-repo-model.png)
 
-## Let's do it all again!
+## Challenge Question 1
 
-Let's try that again...
+For this challenge:
 
-### Challenge: On your own, commit and push changes!
-
-Go to your command line on farm.
-
-Edit the file with `nano README.md`, and add a new line.
-
-Verify with `git status` and `git diff` that the change is to the right file.
-
-Add those changes
-
-```
-git add README.md
-```
-
-Commit it with
-```
-git commit -m "<commit message>"
-```
-
-Verify it's committed with `git status` and `git diff`.
-
-Push your committed file with:
-```
-git push
-```
-
-Verify that the changes show up on github by refreshing your webpage.
-
-Look at the change history, view the diffs.
+1. Go back to the terminal on Farm.
+2. Make some more changes to the `README.md` file.
+3. Use `git add` to add your changes.
+4. Inspect your changes with `git status` and `git diff`.
+5. Once you're happy with your changes, commit them with `git commit`.
+6. Verify the changes were comitted with `git status` and `git diff`.
+7. Push your commit to GitHub with `git push`.
+8. Open the GitHub page for your repo and verify that the changes have been
+   made. Take a look at the `diff` for the change.
 
 Voila!
 
-## Working with multiple files
+
+## Part 2: Working with multiple files
 
 So far we've only worked with one file, `README.md`.
 
