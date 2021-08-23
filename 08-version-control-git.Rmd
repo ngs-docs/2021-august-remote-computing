@@ -28,6 +28,7 @@ Git takes a while to learn, like anything else. This lesson will teach you most 
 git works in terms of **repositories** and **changesets**. Repositories (or "repos") are directories (including all subdirectories) that contain files; changesets are a set of changes to one or more files.
 
 We're going to introduce you to git through GitHub, a website that is used to store, share, and collaborate on git repositories. You don't *need* to use GitHub, or one of its competitors (bitbucket, GitLab, etc.) to carry out your research, but doing so provides a convenient way to:
+
 * back up your repo
 * look at your changesets
 * share your software with others (including both future you and your lab/advisor)
@@ -254,7 +255,7 @@ Now, if you go to the GitHub URL, you should see your changes in the README.md f
 
 Toggle to your GitHub repository.
 
-Try clicking on the "1 commit" message. You'll see two commit messages, one "initial commit" (from when you created the repository) and one with your commit message above.  They'll be in reverse order of time (most recent first).
+Try clicking on the "1 commit" message. You'll see two commit messages, one "initial commit" (from when you created the repository) and one with your commit message above. They'll be in reverse order of time (most recent first).
 
 If you click on your commit message that you entered at the command line, you will see a nice colored 'diff' that shows you what changed.
 
@@ -674,7 +675,7 @@ git commit -m "first bash script"
 
 ### Setup GitHub Repo
 
-Things are now setup on the local repository. Let's shift to the GitHub interface. Follow steps from "Create a git repository on GitHub" section to create `workshop_scripts` repository [You can name it anything you want but helps to keep the local and remote names same].
+Things are now setup on the local repository. Let's shift to the GitHub interface. Follow steps from [Create a git repository on GitHub] section to create `workshop_scripts` repository (You can name it anything you want but helps to keep the local and remote names same).
 
 Copy the GitHub URL in your paste buffer.
 
