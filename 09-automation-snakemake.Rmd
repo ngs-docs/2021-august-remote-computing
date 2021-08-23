@@ -181,6 +181,25 @@ Meta-notes:
 
 
 ## Some features of workflows
+
+When you run snakemake, by default, it runs the first rule. 
+
+How can we run a different rule?
+
+Specifying the rule name, tells snakemake to run that specific rule:
+
+```
+snakemake -p -j1 make_fastqc
+```
+
+Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
+
+```
+snakemake -p -j ERR458493_fastqc.html
+```
+
+
+
 If you run snakemake -p -j 1 again, it won't do anything. That's because all of the input files for the first rule already exist!
 
 However, if you remove a file and run snakemake
@@ -325,19 +344,6 @@ rule download_reference:
         "curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz"
 ```
 
-How can we run one rule at a time?
-
-Specifying the rule name, tells snakemake to run that specific rule:
-
-```
-snakemake -p -j1 download_reference
-```
-
-Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
-
-```
-snakemake -p -j orf_coding.fasta.gz
-```
 
 ### Add the index genome command:
 

@@ -167,9 +167,10 @@ what-is-a-workflow-and-why-use-one
 snakemake-a-workflow-management-system
 fun-fact
 the-snakefile
+getting-started-1
+farm-log-in
 installing-snakemake
-now-install-snakemake
-getting-setup
+more-setup
 create-a-working-directory
 download-some-data
 rna-seq-workflow-we-will-automate
