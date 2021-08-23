@@ -3923,7 +3923,7 @@ Pushing commits to a remote repository can take a moment. If the command
 finishes running successfully, you should see something like this:
 
 ```
-To https://github.com/s-canchi/2021-remotecompute-workshop8.git
+To https://github.com/s-canchi/2021-my-first-repo.git
   ad7e8de..9bf6695  main -> main
 ```
 
@@ -4348,7 +4348,7 @@ git commit -m "first bash script"
 
 ### Setup GitHub Repo
 
-Things are now setup on the local repository. Let's shift to the GitHub interface. Follow steps from [Create a git repository on GitHub] section to create `workshop_scripts` repository (You can name it anything you want but helps to keep the local and remote names same).
+Things are now setup on the local repository. Let's shift to the GitHub interface. Follow steps from [Create a New Repository] section to create `workshop_scripts` repository (You can name it anything you want but helps to keep the local and remote names same).
 
 Copy the GitHub URL in your paste buffer.
 
