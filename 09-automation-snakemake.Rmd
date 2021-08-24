@@ -250,7 +250,7 @@ rule make_fastqc:
 It replaces the {input} with whatever is in the "input:" line, above.
 
 
-EXERCISE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz
+CHALLENGE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz
 
 Does it run?
 
@@ -281,9 +281,10 @@ We can make use of this commonality by adding a wild card! We will tell snakemak
 
 Change the make_fastqc rule:
 
-the input: is "{sample}.fastq.gz"
-the output is "{sample}_fastqc.html", "{sample}_fastqc.zip"
-delete the make_fastqc2 rule.
+- the input: is "{sample}.fastq.gz"
+- the output is "{sample}_fastqc.html", "{sample}_fastqc.zip"
+- **delete the make_fastqc2 rule!**
+
 Your complete Snakefile should look like this:
 
 ```

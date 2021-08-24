@@ -542,8 +542,8 @@ snakemake -p -j 1</code></pre>
 <p>This ability to selectively figure out whether or not to run a command is one of the most convenient features of snakemake.</p>
 <div id="what-are-these-flags--p--j" class="section level3" number="9.9.1">
 <h3><span class="header-section-number">9.9.1</span> What are these flags (<code>-p</code>, <code>-j</code>)?</h3>
-<p>-p: prints the shell command.
--j: assignes number of cores that snakemake can use.</p>
+<p><code>-p</code> or <code>--printshellcmd</code>: Print out the shell commands that will be executed.</p>
+<p><code>-j</code> or <code>--jobs</code>: Use at most N CPU cluster/cloud jobs in parallel.</p>
 </div>
 <div id="when-you-run-snakemake-by-default-it-runs-the-first-rule." class="section level3" number="9.9.2">
 <h3><span class="header-section-number">9.9.2</span> When you run snakemake, by default, it runs the first rule.</h3>
@@ -551,7 +551,7 @@ snakemake -p -j 1</code></pre>
 <p>Specifying the rule name, tells snakemake to run that specific rule:</p>
 <pre><code>snakemake -p -j 1 make_fastqc</code></pre>
 <p>Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:</p>
-<pre><code>snakemake -p -j ERR458493_fastqc.html</code></pre>
+<pre><code>snakemake -p -j 1 ERR458493_fastqc.html</code></pre>
 </div>
 </div>
 <div id="making-the-rules-more-generic" class="section level2" number="9.10">
@@ -566,7 +566,7 @@ snakemake -p -j 1</code></pre>
     shell:
         &quot;fastqc {input}&quot;</code></pre>
 <p>It replaces the {input} with whatever is in the “input:” line, above.</p>
-<p>EXERCISE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz</p>
+<p>CHALLENGE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz</p>
 <p>Does it run?</p>
 <p>Reminder: add the desired output file to the “all” rule as an input, too!</p>
 </div>
@@ -588,10 +588,12 @@ ERR458501_fastqc.zip
 ^^^^^^^^^</code></pre>
 <p>We can make use of this commonality by adding a wild card! We will tell snakemake that any time it is asked for a file that ends with <code>_fastqc.html</code> or <code>_fastqc.zip</code>, it should look for a similarly named file that ends with .fastq.gz. If it finds one, it can run fastqc on that file to produce those outputs.</p>
 <p>Change the make_fastqc rule:</p>
-<p>the input: is “{sample}.fastq.gz”
-the output is “{sample}_fastqc.html”, “{sample}_fastqc.zip”
-delete the make_fastqc2 rule.
-Your complete Snakefile should look like this:</p>
+<ul>
+<li>the input: is “{sample}.fastq.gz”</li>
+<li>the output is “{sample}_fastqc.html”, “{sample}_fastqc.zip”</li>
+<li><strong>delete the make_fastqc2 rule!</strong></li>
+</ul>
+<p>Your complete Snakefile should look like this:</p>
 <pre><code>rule all:
     input:
         &quot;ERR458493_fastqc.html&quot;,

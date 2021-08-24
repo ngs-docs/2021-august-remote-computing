@@ -4282,8 +4282,10 @@ Then snakemake will run fastqc again, because now you don't have one of the file
 This ability to selectively figure out whether or not to run a command is one of the most convenient features of snakemake.
 
 ### What are these flags (`-p`, `-j`)?
--p: prints the shell command.
--j: assignes number of cores that snakemake can use.
+
+`-p` or `--printshellcmd`: Print out the shell commands that will be executed.
+
+`-j` or `--jobs`: Use at most N CPU cluster/cloud jobs in parallel. 
 
 ### When you run snakemake, by default, it runs the first rule. 
 
@@ -4298,7 +4300,7 @@ snakemake -p -j 1 make_fastqc
 Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
 
 ```
-snakemake -p -j ERR458493_fastqc.html
+snakemake -p -j 1 ERR458493_fastqc.html
 ```
 
 
@@ -4325,7 +4327,7 @@ rule make_fastqc:
 It replaces the {input} with whatever is in the "input:" line, above.
 
 
-EXERCISE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz
+CHALLENGE: Add a new rule, called make_fastqc2, that runs fastqc on ERR458501.fastq.gz
 
 Does it run?
 
@@ -4356,9 +4358,10 @@ We can make use of this commonality by adding a wild card! We will tell snakemak
 
 Change the make_fastqc rule:
 
-the input: is "{sample}.fastq.gz"
-the output is "{sample}_fastqc.html", "{sample}_fastqc.zip"
-delete the make_fastqc2 rule.
+- the input: is "{sample}.fastq.gz"
+- the output is "{sample}_fastqc.html", "{sample}_fastqc.zip"
+- **delete the make_fastqc2 rule!**
+
 Your complete Snakefile should look like this:
 
 ```
