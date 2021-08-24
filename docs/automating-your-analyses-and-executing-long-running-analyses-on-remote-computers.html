@@ -404,6 +404,7 @@ commands.</p>
 <li>Reproduce &amp; share: easier to reproduce or share analyses because it’s all written down</li>
 <li>Version control: stay tuned for <a href="keeping-track-of-your-files-with-version-control.html">workshop 8</a>!</li>
 </ul>
+<p>Note that scripts are especially helpful for processing many files with the same commands - but sometimes it’s not always worth the time/effort for an uncommon task. See <a href="https://xkcd.com/1205/">xkcd comic</a> - is it worth the time? :)</p>
 </div>
 <div id="getting-started" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Getting started</h2>
@@ -456,10 +457,12 @@ done</code></pre>
 <ul>
 <li>we set the counter for the thing we want to iterate (“loop”) through with the <code>for i in *.fna.gz</code>. In this case, we are running the same command for each file in our current directory that ends in ‘.fna.gz’. The <code>i</code> represents the ith file in our loop and we refer to it with the <code>$</code> notation (more on variables later!) - also, “i” is an arbitrary name; it could be “potato” :)</li>
 <li>starts with <code>do</code> and ends with <code>done</code></li>
-<li>loop components are separated by <code>;</code> or indentation</li>
+<li>loop components are separated by <code>;</code> or new lines.</li>
 </ul>
+<p><em>We have used indentation to make it easier to read the for loops in the notes, but the shell does NOT need indentation to interpret the loop! Note that other programming languages like Python do require indentation!</em></p>
 <p>Now, let’s append those md5sum numbers to a text file</p>
 <pre><code>for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt; done</code></pre>
+<p><strong>Reminder:</strong> The <code>&gt;&gt;</code> are appending the md5sum values to 1 text file.</p>
 <p>Check out the list (exit by pressing q)</p>
 <pre><code>less my_md5sum_list.txt</code></pre>
 <p>Now, let’s practice for loops by renaming MiSeq sequence file names - we’re going to build a for loop step by step. Go to this directory: <code>~/2021-remote-computing-binder/data/MiSeq</code>:</p>
@@ -528,6 +531,12 @@ done</code></pre>
 <div id="variables" class="section level3" number="7.4.2">
 <h3><span class="header-section-number">7.4.2</span> Variables</h3>
 <p>Let’s backtrack a bit - what are variables?</p>
+<p>We’ve seen 2 examples of variables so far - <code>$i</code> and <code>$newname</code>:</p>
+<pre><code>for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   mv $i $newname
+done</code></pre>
 <p>You can use either $varname or ${varname}. The latter is useful when you want to construct a new filename, e.g.</p>
 <pre><code>MY${varname}SUBSET</code></pre>
 <p>would expand ${varname} and then put “MY” and “SUBSET” on either end, while</p>
@@ -556,12 +565,12 @@ confusing when constructing new filenames as above.</p>
 <pre><code>cd ~/2021-remote-computing-binder/data
 mkdir ./MiSeq/fastqc_reports</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Create and activate a conda environment that has <code>fastqc</code> installed in it:</li>
+<li>Create and activate a conda environment that has <code>fastqc</code> installed in it (see <a href="installing-software-on-remote-computers-with-conda.html">workshop 5 notes on conda</a>):</li>
 </ol>
 <pre><code>mamba create -n fqc -y fastqc
 conda activate fqc</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with ctrl-o, enter, ctrl-x on keyboard)</li>
+<li>Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with CTRL-O, enter, CTRL-X on keyboard)</li>
 </ol>
 <pre><code>nano set_e.sh</code></pre>
 <p>Create a bash script with the following commands, this version includes <code>set -e</code>:</p>
@@ -597,6 +606,9 @@ done</code></pre>
 <li>loop components are separated by <code>;</code> or indentation</li>
 </ul>
 <p>Here, we’re wrapping if statements in a for loop:</p>
+<pre><code>cd ~/
+nano if-for.sh</code></pre>
+<p>Put this loop in the <code>if-for.sh</code> script file:</p>
 <pre><code>for i in *
 do
    if [ -f $i ]; then
@@ -651,13 +663,29 @@ else
 fi</code></pre>
 <p>After the <code>bash &lt;script name&gt;</code>, the syntax now assigns the 1st element (<code>$1</code>) to <code>40</code> and the 2nd element (<code>$2</code>) to <code>20</code>. This means you can enter different numbers when executing the script, without needing to edit the script file at all!</p>
 <pre><code>bash ifs.sh 40 20</code></pre>
-<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $1 parameter against the numbers <code>20 30 40 50 60 70</code> to see if it matched one?</p>
+<p>Note, you can add <code>echo</code> statements to the script to remind you what the arguments are. This is often helpful for troubleshooting and building the script, for example:</p>
+<pre><code>#!/bin/bash
+
+echo running $0
+echo a will be $1
+echo b will be $2
+
+a=$1
+b=$2
+
+if [ $a != $b ]
+then
+  echo &#39;a is not equal to b!&#39;
+else
+  echo &#39;a is equal to b!&#39;
+fi</code></pre>
+<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers <code>20 30 40 50 60 70</code> to see if it matched one of them?</p>
 </div>
 </div>
 <div id="multiple-screens" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Multiple screens</h2>
 <p>What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?</p>
-<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). These are a bit tricky to get used too, so we’ll do a demo.</p>
+<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). If you’re running these programs on the Farm, you can logout and even turn your computer off. :) We’ll get back to these details in workshop 10. These are a bit tricky to get used too, so we’ll do a demo.</p>
 <p>Basic commands for <code>screen</code> and <code>tmux</code> below. They both have keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>
 <table>
 <colgroup>
@@ -720,8 +748,21 @@ fi</code></pre>
 </div>
 <div id="appendix-exercise-answers" class="section level2" number="7.9">
 <h2><span class="header-section-number">7.9</span> Appendix: exercise answers</h2>
+<p><em>Answers for questions</em></p>
+<p>Why do we use <code>echo</code> in for loops?</p>
+<ul>
+<li><code>echo</code> prints out the command without running it; this is a good way to double-check the for loop is doing what you expect!</li>
+</ul>
+<p>Why did we need ” ” in the subset <code>echo</code> statement for loop?</p>
+<ul>
+<li>In this case, the shell will evaluate the <code>echo</code> statement as everything in the double-quotes. Without the quotes, the echo statement will send “head -400 $i” to a file in the <code>subset</code> directory; it will not run the subset command properly.</li>
+</ul>
+<p>What does the <code>!=</code> conditional operator mean?</p>
+<ul>
+<li>This means “not equal to”. The “!” means “not”. Whereas, “==” means “equal to”.</li>
+</ul>
 <p><em>Answer for subset exercise</em></p>
-<pre><code>for i in *.fq; do echo &quot;head -400 $i &gt; subset/$i&quot;; newname=$(basename $i .fastq)subset.fq; echo mv subset/$i subset/$newname; done</code></pre>
+<pre><code>for i in *.fq; do echo &quot;head -400 $i &gt; subset/$i&quot;; newname=$(basename $i .fq)subset.fq; echo mv subset/$i subset/$newname; done</code></pre>
 <p><em>Answers for <code>set -e</code> exercises</em></p>
 <ol style="list-style-type: decimal">
 <li>Fails on 1st iteration with <code>set -e</code>, fails each iteration of the loop without <code>set -e</code></li>
@@ -750,17 +791,51 @@ OUTDIR=&#39;fastqc_reports&#39;
 # correct path
 OUTDIR=&#39;./data/fastqc_reports&#39;</code></pre>
 <p><em>Answer for ifs.sh in a loop exercise</em></p>
-<p>This is one approach:</p>
+<p>This is one approach to compare 20 30 40 50 60 70 to the $2 argument:</p>
+<pre><code>for i in 20 30 40 50 60 70
+do
+   bash ifs.sh $i 40
+done</code></pre>
+<p>This output (including the helpful <code>echo</code> statements), looks like this:</p>
+<pre><code>a will be 20
+b will be 40
+a is not equal to b!
+a will be 30
+b will be 40
+a is not equal to b!
+a will be 40
+b will be 40
+a is equal to b!
+a will be 50
+b will be 40
+a is not equal to b!
+a will be 60
+b will be 40
+a is not equal to b!
+a will be 70
+b will be 40
+a is not equal to b!</code></pre>
+<p>This is one approach to compare a range of numbers to the $2 argument:</p>
 <pre><code>for i in {1..5}
 do
    bash ifs.sh $i 5
 done</code></pre>
-<p>The output will look like this:</p>
-<pre><code>a is not equal to b!
+<p>The output (including the helpful <code>echo</code> statements) will look like this:</p>
+<pre><code>a will be 1
+b will be 5
 a is not equal to b!
+a will be 2
+b will be 5
 a is not equal to b!
+a will be 3
+b will be 5
 a is not equal to b!
-a is equal to b!</code></pre>
+a will be 4
+b will be 5
+a is not equal to b!
+a will be 5
+b will be 5
+a is equal to b</code></pre>
 
 </div>
 </div>
