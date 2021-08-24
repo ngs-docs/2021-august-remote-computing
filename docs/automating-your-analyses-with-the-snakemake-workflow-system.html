@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-23" />
+<meta name="date" content="2021-08-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -339,7 +339,11 @@
 <ul>
 <li class="chapter" data-level="9.8.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#create-a-snakefile"><i class="fa fa-check"></i><b>9.8.1</b> Create a Snakefile</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#some-features-of-workflows"><i class="fa fa-check"></i><b>9.9</b> Some features of workflows</a></li>
+<li class="chapter" data-level="9.9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#some-features-of-workflows"><i class="fa fa-check"></i><b>9.9</b> Some features of workflows</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#what-are-these-flags--p--j"><i class="fa fa-check"></i><b>9.9.1</b> What are these flags (<code>-p</code>, <code>-j</code>)?</a></li>
+<li class="chapter" data-level="9.9.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#when-you-run-snakemake-by-default-it-runs-the-first-rule."><i class="fa fa-check"></i><b>9.9.2</b> When you run snakemake, by default, it runs the first rule.</a></li>
+</ul></li>
 <li class="chapter" data-level="9.10" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#making-the-rules-more-generic"><i class="fa fa-check"></i><b>9.10</b> Making the rules more generic</a></li>
 <li class="chapter" data-level="9.11" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#wildcards"><i class="fa fa-check"></i><b>9.11</b> Wildcards</a></li>
 <li class="chapter" data-level="9.12" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#adding-more-rules"><i class="fa fa-check"></i><b>9.12</b> Adding more rules</a>
@@ -348,7 +352,7 @@
 <li class="chapter" data-level="9.12.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#add-the-index-genome-command"><i class="fa fa-check"></i><b>9.12.2</b> Add the index genome command:</a></li>
 <li class="chapter" data-level="9.12.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#running-salmon-quant"><i class="fa fa-check"></i><b>9.12.3</b> Running Salmon quant</a></li>
 </ul></li>
-<li class="chapter" data-level="9.13" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#random-aside--n"><i class="fa fa-check"></i><b>9.13</b> Random aside: -n</a></li>
+<li class="chapter" data-level="9.13" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#random-aside-dry-run-or--n"><i class="fa fa-check"></i><b>9.13</b> Random aside: –dry-run or -n</a></li>
 <li class="chapter" data-level="9.14" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#advanced-features"><i class="fa fa-check"></i><b>9.14</b> Advanced features</a>
 <ul>
 <li class="chapter" data-level="9.14.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#rule-specific-conda-environments-with-conda-and-use-conda"><i class="fa fa-check"></i><b>9.14.1</b> Rule-specific conda environments with conda: and –use-conda</a></li>
@@ -399,13 +403,18 @@ workflow system, for executing large-scale automated analyses.</p>
 </ul>
 <div id="what-is-a-workflow-and-why-use-one" class="section level2" number="9.1">
 <h2><span class="header-section-number">9.1</span> What is a workflow and why use one?</h2>
-<p>A workflow is a series of sequential tasks that need to be completed in order to reach a goal. Many things in bioinformatics are workflows.</p>
-<p>Every computational workflow consists of multiple steps, taking previous outputs and/or data/information in and executing upon them and outputting something. Raw data goes in, results come out!</p>
+<p>A workflow is a series of sequential tasks that need to be completed in order to reach a goal.</p>
+<p>Workflows are ubiquitous!</p>
+<p>Making pizza is a workflow!
+<img src="https://i.imgur.com/xXkH9Qf.png" /></p>
+<p>Many things in bioinformatics are workflows.</p>
+<p>Every bioinformatics workflow consists of multiple steps, taking previous outputs (data or information) in and executing upon them and outputting something.</p>
+<p>Raw data goes in, results come out!</p>
 </div>
 <div id="snakemake-a-workflow-management-system" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Snakemake: A workflow management system</h2>
 <p><a href="https://snakemake.readthedocs.io/en/stable/">Snakemake</a> is a commonly used workflow system created by Johannes Koester and others (see <a href="https://academic.oup.com/bioinformatics/article/28/19/2520/290322">2012 publication</a>)</p>
-<p>Many other workflow systems exist. E.g. nextflow, Common Workflow Language, and Workflow Definition Language are all good! Each workflow system comes with its own syntax and set of advantages.</p>
+<p>Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL). Are all good! Each workflow system comes with its own syntax and set of advantages. They are all here to make computational methods reproducible and shareable.</p>
 <p>Today we’re going to talk about ways of automating workflows using snakemake.</p>
 <div id="fun-fact" class="section level3" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Fun fact</h3>
@@ -517,26 +526,33 @@ rule make_fastqc:
 <li>Rule names are arbitrary (letters, numbers, _)</li>
 <li>You can specify a subset of outputs, e.g. just the .html file, and snakemake will run the rule even if it only needs one of the files.</li>
 <li>It goes all red if it fails! (try breaking one command :)</li>
-<li>It’s all case sensitive</li>
-<li>Tabs and spacing matter…</li>
-<li>You can make lists for multiple input or output files by separating filenames with a comma</li>
+<li>It’s all case sensitive.</li>
+<li>Tabs and spacing matter!</li>
+<li>You can make lists for multiple input or output files by separating filenames with a comma.</li>
 </ul>
 </div>
 </div>
 <div id="some-features-of-workflows" class="section level2" number="9.9">
 <h2><span class="header-section-number">9.9</span> Some features of workflows</h2>
-<p>When you run snakemake, by default, it runs the first rule.</p>
-<p>How can we run a different rule?</p>
-<p>Specifying the rule name, tells snakemake to run that specific rule:</p>
-<pre><code>snakemake -p -j1 make_fastqc</code></pre>
-<p>Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:</p>
-<pre><code>snakemake -p -j ERR458493_fastqc.html</code></pre>
-<p>If you run snakemake -p -j 1 again, it won’t do anything. That’s because all of the input files for the first rule already exist!</p>
+<p>If you run <code>snakemake -p -j 1</code> again, it won’t do anything. That’s because all of the input files for the first rule already exist!</p>
 <p>However, if you remove a file and run snakemake</p>
 <pre><code>rm ERR458493_fastqc.html
 snakemake -p -j 1</code></pre>
 <p>Then snakemake will run fastqc again, because now you don’t have one of the files you’re asking it to make!</p>
 <p>This ability to selectively figure out whether or not to run a command is one of the most convenient features of snakemake.</p>
+<div id="what-are-these-flags--p--j" class="section level3" number="9.9.1">
+<h3><span class="header-section-number">9.9.1</span> What are these flags (<code>-p</code>, <code>-j</code>)?</h3>
+<p>-p: prints the shell command.
+-j: assignes number of cores that snakemake can use.</p>
+</div>
+<div id="when-you-run-snakemake-by-default-it-runs-the-first-rule." class="section level3" number="9.9.2">
+<h3><span class="header-section-number">9.9.2</span> When you run snakemake, by default, it runs the first rule.</h3>
+<p>How can we run a different rule?</p>
+<p>Specifying the rule name, tells snakemake to run that specific rule:</p>
+<pre><code>snakemake -p -j 1 make_fastqc</code></pre>
+<p>Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:</p>
+<pre><code>snakemake -p -j ERR458493_fastqc.html</code></pre>
+</div>
 </div>
 <div id="making-the-rules-more-generic" class="section level2" number="9.10">
 <h2><span class="header-section-number">9.10</span> Making the rules more generic</h2>
@@ -699,9 +715,9 @@ snakemake -p -j 1 index_reference</code></pre>
 <p>CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.</p>
 </div>
 </div>
-<div id="random-aside--n" class="section level2" number="9.13">
-<h2><span class="header-section-number">9.13</span> Random aside: -n</h2>
-<p>If you give snakemake a -n parameter, it will tell you what it thinks it should run but won’t actually run it. This is useful for situations where you don’t know what needs to be run and want to find out without actually running it.</p>
+<div id="random-aside-dry-run-or--n" class="section level2" number="9.13">
+<h2><span class="header-section-number">9.13</span> Random aside: –dry-run or -n</h2>
+<p>If you give snakemake a –dry-run (-n) parameter, it will tell you what it thinks it should run but won’t actually run it. This is useful for situations where you don’t know what needs to be run and want to find out without actually running it.</p>
 </div>
 <div id="advanced-features" class="section level2" number="9.14">
 <h2><span class="header-section-number">9.14</span> Advanced features</h2>

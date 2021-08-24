@@ -1,7 +1,7 @@
 ---
 title: Introduction to Remote Computing
 author: C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.
-date: "2021-08-23"
+date: "2021-08-24"
 
 github-repo: ngs-docs/2021-august-remote-computing/
 url: "https://ngs-docs.github.io/2021-august-remote-computing/"
@@ -4089,16 +4089,25 @@ By the end of this lecture, we will:
 
 ## What is a workflow and why use one?
 
-A workflow is a series of sequential tasks that need to be completed in order to reach a goal. Many things in bioinformatics are workflows. 
+A workflow is a series of sequential tasks that need to be completed in order to reach a goal. 
 
-Every computational workflow consists of multiple steps, taking previous outputs and/or data/information in and executing upon them and outputting something. Raw data goes in, results come out! 
+Workflows are ubiquitous!
+
+Making pizza is a workflow!
+![](https://i.imgur.com/xXkH9Qf.png)
+
+Many things in bioinformatics are workflows. 
+ 
+Every bioinformatics workflow consists of multiple steps, taking previous outputs (data or information) in and executing upon them and outputting something. 
+
+Raw data goes in, results come out! 
 
 
 ## Snakemake: A workflow management system
 
 [Snakemake](https://snakemake.readthedocs.io/en/stable/) is a commonly used workflow system created by Johannes Koester and others (see [2012 publication](https://academic.oup.com/bioinformatics/article/28/19/2520/290322))
 
-Many other workflow systems exist. E.g. nextflow, Common Workflow Language, and Workflow Definition Language are all good! Each workflow system comes with its own syntax and set of advantages.
+Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL). Are all good! Each workflow system comes with its own syntax and set of advantages. They are all here to make computational methods reproducible and shareable.
 
 Today we're going to talk about ways of automating workflows using snakemake.
 
@@ -4252,32 +4261,14 @@ Meta-notes:
 * Rule names are arbitrary (letters, numbers, _)
 * You can specify a subset of outputs, e.g. just the .html file, and snakemake will run the rule even if it only needs one of the files.
 * It goes all red if it fails! (try breaking one command :)
-* It's all case sensitive
-* Tabs and spacing matter...
-* You can make lists for multiple input or output files by separating filenames with a comma
+* It's all case sensitive.
+* Tabs and spacing matter!
+* You can make lists for multiple input or output files by separating filenames with a comma.
 
 
 ## Some features of workflows
 
-When you run snakemake, by default, it runs the first rule. 
-
-How can we run a different rule?
-
-Specifying the rule name, tells snakemake to run that specific rule:
-
-```
-snakemake -p -j1 make_fastqc
-```
-
-Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
-
-```
-snakemake -p -j ERR458493_fastqc.html
-```
-
-
-
-If you run snakemake -p -j 1 again, it won't do anything. That's because all of the input files for the first rule already exist!
+If you run `snakemake -p -j 1` again, it won't do anything. That's because all of the input files for the first rule already exist!
 
 However, if you remove a file and run snakemake
 
@@ -4289,6 +4280,32 @@ snakemake -p -j 1
 Then snakemake will run fastqc again, because now you don't have one of the files you're asking it to make!
 
 This ability to selectively figure out whether or not to run a command is one of the most convenient features of snakemake.
+
+### What are these flags (`-p`, `-j`)?
+-p: prints the shell command.
+-j: assignes number of cores that snakemake can use.
+
+### When you run snakemake, by default, it runs the first rule. 
+
+How can we run a different rule?
+
+Specifying the rule name, tells snakemake to run that specific rule:
+
+```
+snakemake -p -j 1 make_fastqc
+```
+
+Specifying the output file you want, tells snakemake to run the rule that produces the desired output file:
+
+```
+snakemake -p -j ERR458493_fastqc.html
+```
+
+
+
+
+
+
 
 ## Making the rules more generic
 
@@ -4515,8 +4532,8 @@ Snakemake doesn't automatically look at all the files in the directory and figur
 
 CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.
 
-## Random aside: -n
-If you give snakemake a -n parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
+## Random aside: --dry-run or -n
+If you give snakemake a --dry-run (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
 
 ## Advanced features 
 There are many advanced features to snakemake, and we'll touch on a few of them here.
