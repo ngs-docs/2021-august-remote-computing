@@ -1,11 +1,7 @@
 ---
 title: Introduction to Remote Computing
 author: C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.
-<<<<<<< HEAD
 date: "2021-08-24"
-=======
-date: "2021-08-19"
->>>>>>> 50b5af5bb79e1cb475614bd429b5372eddf367be
 
 github-repo: ngs-docs/2021-august-remote-computing/
 url: "https://ngs-docs.github.io/2021-august-remote-computing/"
