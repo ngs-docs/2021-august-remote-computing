@@ -428,7 +428,7 @@ For this challenge:
 3. Use `git add` to add your changes.
 4. Inspect your changes with `git status` and `git diff`.
 5. Once you're happy with your changes, commit them with `git commit`.
-6. Verify the changes were comitted with `git status` and `git diff`.
+6. Verify the changes were committed with `git status` and `git diff`.
 7. Push your commit to GitHub with `git push`.
 8. Open the GitHub page for your repo and verify that the changes have been
    made. Take a look at the `diff` for the change.
@@ -842,7 +842,7 @@ collaborators, but it's useful to know how to resolve them when they happen.
 
 ## Challenge Question 3
 
-For this final challege question, you're going to create and then fix a merge
+For this final challenge question, you're going to create and then fix a merge
 conflict. Here are the steps to work through:
 
 1. Edit the `README.md` file on GitHub and make a commit. Don't pull the commit
