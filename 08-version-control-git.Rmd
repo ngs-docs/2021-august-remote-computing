@@ -360,9 +360,11 @@ keys. Follow these steps on GitHub to generate a PAT:
 6. Click the "Generate new token" button.
 7. On the "New personal access token" page, give your token a name in the
    "Note" field to help you remember when and why you created the token.
-8. Click the green "Generate token" button at the bottom of the page.
-9. On the "Personal access tokens" page, copy the new token (in the green box).
-   The token will no longer be viewable once you navigate away from this page.
+8. Check the "repo" scope so the token can push to repos.
+9. Click the green "Generate token" button at the bottom of the page.
+10. On the "Personal access tokens" page, copy the new token (in the green
+    box). The token will no longer be viewable once you navigate away from this
+    page.
 
 Save the token somewhere safe (for example, a password manager). If you want to
 learn more about GitHub's PAT authentication, read [our detailed
