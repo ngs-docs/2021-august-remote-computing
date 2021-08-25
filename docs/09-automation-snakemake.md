@@ -373,7 +373,7 @@ The index reference shell command is:
 salmon index --index yeast_orfs --transcripts orf_coding.fasta.gz
 ```
 
-This is what the final snakefile should look like:
+This is what the snakefile should look like:
 
 ```
 rule all:
