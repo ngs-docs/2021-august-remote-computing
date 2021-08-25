@@ -213,10 +213,11 @@ adding-more-rules
 downloading-the-reference-genome
 add-the-index-genome-command
 running-salmon-quant
-final-snakefile
-random-aside-dry-run-or--n
+one-version-of-the-final-snakefile
+titus-version-of-the-final-snakefile-as-created-during-the-workshop
+random-aside---dry-run-or--n
 advanced-features
-rule-specific-conda-environments-with-conda-and-use-conda
+rule-specific-conda-environments-with-conda-and---use-conda
 parallelizing-snakemake--j
 practical-advice-how-to-build-your-workflow
 approach-1-write-down-your-shell-commands
