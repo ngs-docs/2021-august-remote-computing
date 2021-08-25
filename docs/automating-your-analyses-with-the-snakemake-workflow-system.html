@@ -704,14 +704,18 @@ snakemake -p -j 1 index_reference</code></pre>
        &quot;salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias&quot;</code></pre>
 <p>Let’s decorate with input and output:</p>
 <pre><code>rule salmon_quant:
-    input: &quot;ERR458493.fastq.gz&quot;
-    output: &quot;ERR458493.fastq.gz.quant&quot;
+    input: 
+        &quot;ERR458493.fastq.gz&quot;
+    output: 
+        directory(&quot;ERR458493.fastq.gz.quant&quot;)
     shell:
         &quot;salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias&quot;</code></pre>
 <p>Wildcards next:</p>
 <pre><code>rule salmon_quant:
-    input: &quot;{sample}&quot;
-    output: &quot;{sample}.quant&quot;
+    input: 
+        &quot;{sample}&quot;
+    output: 
+        directory(&quot;{sample}.quant&quot;)
     shell:
         &quot;salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias&quot;</code></pre>
 <p>Snakemake doesn’t automatically look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.</p>
@@ -730,11 +734,11 @@ snakemake -p -j 1 index_reference</code></pre>
           &quot;ERR458494_fastqc.html&quot;,
         &quot;ERR458494_fastqc.zip&quot;,
         &quot;orf_coding.fasta.gz&quot;,
-        directory(&quot;yeast_orfs&quot;),
-        directory(&quot;ERR458493.fastq.gz.quant&quot;),
-        directory(&quot;ERR458501.fastq.gz.quant&quot;),
-          directory(&quot;ERR458494.fastq.gz.quant&quot;),
-          directory(&quot;ERR458500.fastq.gz.quant&quot;)
+        &quot;yeast_orfs&quot;,
+        &quot;ERR458493.fastq.gz.quant&quot;,
+        &quot;ERR458501.fastq.gz.quant&quot;,
+          &quot;ERR458494.fastq.gz.quant&quot;,
+          &quot;ERR458500.fastq.gz.quant&quot;
 
 rule make_fastqc:
     input:
@@ -760,8 +764,10 @@ rule index_reference:
         &quot;salmon index --index yeast_orfs --transcripts {input}&quot;
 
 rule salmon_quant:
-    input: &quot;{sample}&quot;
-    output: directory(&quot;{sample}.quant&quot;)
+    input: 
+        &quot;{sample}&quot;
+    output: 
+        directory(&quot;{sample}.quant&quot;)
     shell:
         &quot;salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias&quot;</code></pre>
 </div>

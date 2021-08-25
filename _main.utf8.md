@@ -4516,8 +4516,10 @@ Let's decorate with input and output:
 
 ```
 rule salmon_quant:
-    input: "ERR458493.fastq.gz"
-    output: "ERR458493.fastq.gz.quant"
+    input: 
+        "ERR458493.fastq.gz"
+    output: 
+        directory("ERR458493.fastq.gz.quant")
     shell:
         "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
@@ -4525,8 +4527,10 @@ rule salmon_quant:
 Wildcards next:
 ```
 rule salmon_quant:
-    input: "{sample}"
-    output: "{sample}.quant"
+    input: 
+        "{sample}"
+    output: 
+        directory("{sample}.quant")
     shell:
         "salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias"
 ```
@@ -4550,11 +4554,11 @@ rule all:
 	      "ERR458494_fastqc.html",
         "ERR458494_fastqc.zip",
         "orf_coding.fasta.gz",
-        directory("yeast_orfs"),
-        directory("ERR458493.fastq.gz.quant"),
-        directory("ERR458501.fastq.gz.quant"),
-	      directory("ERR458494.fastq.gz.quant"),
-	      directory("ERR458500.fastq.gz.quant")
+        "yeast_orfs",
+        "ERR458493.fastq.gz.quant",
+        "ERR458501.fastq.gz.quant",
+	      "ERR458494.fastq.gz.quant",
+	      "ERR458500.fastq.gz.quant"
 
 rule make_fastqc:
     input:
@@ -4580,8 +4584,10 @@ rule index_reference:
         "salmon index --index yeast_orfs --transcripts {input}"
 
 rule salmon_quant:
-    input: "{sample}"
-    output: directory("{sample}.quant")
+    input: 
+        "{sample}"
+    output: 
+        directory("{sample}.quant")
     shell:
         "salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias"
 ```
