@@ -1,7 +1,7 @@
 ---
 title: Introduction to Remote Computing
 author: C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle.
-date: "2021-08-24"
+date: "2021-08-25"
 
 github-repo: ngs-docs/2021-august-remote-computing/
 url: "https://ngs-docs.github.io/2021-august-remote-computing/"
@@ -5132,14 +5132,16 @@ Raw data goes in, results come out!
 
 ## Snakemake: A workflow management system
 
-[Snakemake](https://snakemake.readthedocs.io/en/stable/) is a commonly used workflow system created by Johannes Koester and others (see [2012 publication](https://academic.oup.com/bioinformatics/article/28/19/2520/290322))
+[Snakemake](https://snakemake.readthedocs.io/en/stable/) is a commonly used workflow system created by Johannes Koester and others (see [2012 publication](https://academic.oup.com/bioinformatics/article/28/19/2520/290322)).
 
 Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL). Are all good! Each workflow system comes with its own syntax and set of advantages. They are all here to make computational methods reproducible and shareable.
+
+(If you work in R a lot, you might be especially interested in [drake](https://github.com/ropensci/drake).)
 
 Today we're going to talk about ways of automating workflows using snakemake.
 
 ### Fun fact
-The name 'snakemake' comes from the fact that it's written in (and can be extended by) the Python programming language. (Confusingly, Python is actually named after Monty Python, not the reptiles, but whatever.)
+The name 'snakemake' comes from the fact that it's written in (and can be extended by) the Python programming language. (Confusingly, Python is actually named after Monty Python, not the reptiles.)
 
 ### The Snakefile
 - Snakemake works by looking at a file called the Snakefile.
@@ -5153,7 +5155,9 @@ As per the instructions in [workshop 3](https://ngs-docs.github.io/2021-august-r
 
 When you log in, your prompt should look like this:
 
-(base) datalab-01@farm:~$
+>~~~
+>(base) datalab-01@farm:~$
+>~~~
 If it doesn’t, please alert a TA and we will help you out!
 
 ## Installing snakemake
@@ -5166,7 +5170,7 @@ We will install snakemake inside a conda environment called "snakemake"
 conda create -y --name snakemake snakemake-minimal
 ```
 
-This command makes a new environment called "snakemake" and installs snakemake in it!
+This command makes a new environment called "snakemake" and installs snakemake in it! Here, `snakemake-minimal` is just the stuff needed to run snakemake, without some extra bells and whistles.
 
 Activate the environment with this command:
 
@@ -5178,12 +5182,15 @@ Check the version of snakemake with
 ```
 snakemake --version
 ```
+As of August 2021, the snakemake version is 6.7.0; yours should be that
+version or later.
 
-Add two bioinformatics software to the snakemake environment: `fastqc` and `salmon`
+Next, add two bioinformatics software to the snakemake environment: `fastqc` and `salmon`
 
 ```
 conda install -y fastqc salmon
 ```
+These are two packages that we will use for bioinformatics work.
 
 ## More setup
 
@@ -5203,13 +5210,14 @@ curl -L https://osf.io/8rvh5/download -o ERR458494.fastq.gz
 curl -L https://osf.io/xju4a/download -o ERR458500.fastq.gz
 curl -L https://osf.io/nmqe6/download -o ERR458501.fastq.gz
 ```
+You should now have four files in your current directory, representing
+four sequencing experiments.
 
 Now we're all set!
 
 ## RNA-Seq workflow we will automate
 
 ![](https://i.imgur.com/j0PaOac.png)
-
 
 ## First step: quality control with FASTQC
 
@@ -5425,7 +5433,7 @@ CHALLENGE: Update the Snakefile so that it runs fastqc on "ERR458494.fastq.gz" a
 
 Now let's add some more rules at the bottom.
 
-We need to do three things: 
+For our desired workflow, we need to do three things: 
 1) Download a reference transcriptome 
 2) Index the reference transcriptome
 3) Quantify the reference genes based on the reads (using salmon)
@@ -5438,11 +5446,11 @@ The download_reference shell command is:
 ```
 curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
 ```
+and it creates a local file `orf_coding.fasta.gz`.
 
-Note that you can always run the command at the prompt if you want to make sure that they work!
+(Note that you can always run the command at the prompt if you want to make sure that it works, and to find out what the output filename is!)
 
-
-To add to the snakefile
+Add the appropriate rule to the Snakefile - it should look like this:
 ```
 rule all:
     input:
@@ -5539,7 +5547,7 @@ rule salmon_quant:
        "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
 
-Let's decorate with input and output:
+and then let's decorate with input and output:
 
 ```
 rule salmon_quant:
@@ -5551,7 +5559,7 @@ rule salmon_quant:
         "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
 
-Wildcards next:
+Now replace the filename with wildcards next:
 ```
 rule salmon_quant:
     input: 

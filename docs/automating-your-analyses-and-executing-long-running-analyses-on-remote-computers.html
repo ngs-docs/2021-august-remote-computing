@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -317,7 +317,6 @@
 <li class="chapter" data-level="7.8" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#concluding-thoughts-1"><i class="fa fa-check"></i><b>7.8</b> Concluding thoughts</a></li>
 <li class="chapter" data-level="7.9" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#appendix-exercise-answers"><i class="fa fa-check"></i><b>7.9</b> Appendix: exercise answers</a></li>
 </ul></li>
-
 <li class="chapter" data-level="8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html"><i class="fa fa-check"></i><b>8</b> Keeping Track of Your Files with Version Control</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#learning-objectives-1"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
@@ -357,8 +356,56 @@
 </ul></li>
 <li class="chapter" data-level="8.12" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#additional-resources-1"><i class="fa fa-check"></i><b>8.12</b> Additional Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html"><i class="fa fa-check"></i><b>9</b> Automating your analyses with the snakemake workflow system</a></li>
-
+<li class="chapter" data-level="9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html"><i class="fa fa-check"></i><b>9</b> Automating your analyses with the snakemake workflow system</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#what-is-a-workflow-and-why-use-one"><i class="fa fa-check"></i><b>9.1</b> What is a workflow and why use one?</a></li>
+<li class="chapter" data-level="9.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#snakemake-a-workflow-management-system"><i class="fa fa-check"></i><b>9.2</b> Snakemake: A workflow management system</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#fun-fact"><i class="fa fa-check"></i><b>9.2.1</b> Fun fact</a></li>
+<li class="chapter" data-level="9.2.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#the-snakefile"><i class="fa fa-check"></i><b>9.2.2</b> The Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#getting-started-1"><i class="fa fa-check"></i><b>9.3</b> Getting started</a></li>
+<li class="chapter" data-level="9.4" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#farm-log-in"><i class="fa fa-check"></i><b>9.4</b> Farm log in</a></li>
+<li class="chapter" data-level="9.5" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#installing-snakemake"><i class="fa fa-check"></i><b>9.5</b> Installing snakemake</a></li>
+<li class="chapter" data-level="9.6" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#more-setup"><i class="fa fa-check"></i><b>9.6</b> More setup</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#create-a-working-directory"><i class="fa fa-check"></i><b>9.6.1</b> Create a working directory</a></li>
+<li class="chapter" data-level="9.6.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#download-some-data"><i class="fa fa-check"></i><b>9.6.2</b> Download some data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#rna-seq-workflow-we-will-automate"><i class="fa fa-check"></i><b>9.7</b> RNA-Seq workflow we will automate</a></li>
+<li class="chapter" data-level="9.8" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#first-step-quality-control-with-fastqc"><i class="fa fa-check"></i><b>9.8</b> First step: quality control with FASTQC</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#create-a-snakefile"><i class="fa fa-check"></i><b>9.8.1</b> Create a Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#some-features-of-workflows"><i class="fa fa-check"></i><b>9.9</b> Some features of workflows</a>
+<ul>
+<li class="chapter" data-level="9.9.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#what-are-these-flags--p--j"><i class="fa fa-check"></i><b>9.9.1</b> What are these flags (<code>-p</code>, <code>-j</code>)?</a></li>
+<li class="chapter" data-level="9.9.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#when-you-run-snakemake-by-default-it-runs-the-first-rule."><i class="fa fa-check"></i><b>9.9.2</b> When you run snakemake, by default, it runs the first rule.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.10" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#making-the-rules-more-generic"><i class="fa fa-check"></i><b>9.10</b> Making the rules more generic</a></li>
+<li class="chapter" data-level="9.11" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#wildcards"><i class="fa fa-check"></i><b>9.11</b> Wildcards</a></li>
+<li class="chapter" data-level="9.12" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#adding-more-rules"><i class="fa fa-check"></i><b>9.12</b> Adding more rules</a>
+<ul>
+<li class="chapter" data-level="9.12.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#downloading-the-reference-genome"><i class="fa fa-check"></i><b>9.12.1</b> Downloading the reference genome</a></li>
+<li class="chapter" data-level="9.12.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#add-the-index-genome-command"><i class="fa fa-check"></i><b>9.12.2</b> Add the index genome command:</a></li>
+<li class="chapter" data-level="9.12.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#running-salmon-quant"><i class="fa fa-check"></i><b>9.12.3</b> Running Salmon quant</a></li>
+<li class="chapter" data-level="9.12.4" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#final-snakefile"><i class="fa fa-check"></i><b>9.12.4</b> Final Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#random-aside-dry-run-or--n"><i class="fa fa-check"></i><b>9.13</b> Random aside: –dry-run or -n</a></li>
+<li class="chapter" data-level="9.14" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#advanced-features"><i class="fa fa-check"></i><b>9.14</b> Advanced features</a>
+<ul>
+<li class="chapter" data-level="9.14.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#rule-specific-conda-environments-with-conda-and-use-conda"><i class="fa fa-check"></i><b>9.14.1</b> Rule-specific conda environments with conda: and –use-conda</a></li>
+<li class="chapter" data-level="9.14.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#parallelizing-snakemake--j"><i class="fa fa-check"></i><b>9.14.2</b> parallelizing snakemake: -j</a></li>
+</ul></li>
+<li class="chapter" data-level="9.15" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#practical-advice-how-to-build-your-workflow"><i class="fa fa-check"></i><b>9.15</b> Practical advice: How to build your workflow</a>
+<ul>
+<li class="chapter" data-level="9.15.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#approach-1-write-down-your-shell-commands"><i class="fa fa-check"></i><b>9.15.1</b> Approach 1: write down your shell commands</a></li>
+<li class="chapter" data-level="9.15.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#approach-2-automate-one-step-that-you-run-a-lot"><i class="fa fa-check"></i><b>9.15.2</b> Approach 2: automate one step that you run a lot</a></li>
+</ul></li>
+<li class="chapter" data-level="9.16" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#summary-of-what-we-did-today."><i class="fa fa-check"></i><b>9.16</b> Summary of what we did today.</a></li>
+<li class="chapter" data-level="9.17" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#more-snakemake-resources"><i class="fa fa-check"></i><b>9.17</b> More Snakemake resources</a></li>
+<li class="chapter" data-level="9.18" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#a-quick-checklist"><i class="fa fa-check"></i><b>9.18</b> A quick checklist:</a></li>
+</ul></li>
 <li class="chapter" data-level="10" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html"><i class="fa fa-check"></i><b>10</b> Executing large analyses on HPC clusters with slurm</a></li>
 <li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a></li>
 <li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
