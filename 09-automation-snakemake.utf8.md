@@ -472,16 +472,16 @@ rule all:
         "ERR458493_fastqc.zip",
         "ERR458501_fastqc.html",
         "ERR458501_fastqc.zip",
-	      "ERR458500_fastqc.html",
+        "ERR458500_fastqc.html",
         "ERR458500_fastqc.zip",
-	      "ERR458494_fastqc.html",
+        "ERR458494_fastqc.html",
         "ERR458494_fastqc.zip",
         "orf_coding.fasta.gz",
         "yeast_orfs",
         "ERR458493.fastq.gz.quant",
         "ERR458501.fastq.gz.quant",
-	      "ERR458494.fastq.gz.quant",
-	      "ERR458500.fastq.gz.quant"
+        "ERR458494.fastq.gz.quant",
+        "ERR458500.fastq.gz.quant"
 
 rule make_fastqc:
     input:
