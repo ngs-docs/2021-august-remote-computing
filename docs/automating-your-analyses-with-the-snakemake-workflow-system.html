@@ -757,7 +757,7 @@ snakemake -p -j 1 index_reference</code></pre>
         directory(&quot;ERR458493.fastq.gz.quant&quot;)
     shell:
         &quot;salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias&quot;</code></pre>
-<p>Now replace the filename with wildcards next:</p>
+<p>Next, replace the filename with wildcards:</p>
 <pre><code>rule salmon_quant:
     input: 
         &quot;{sample}&quot;
@@ -766,7 +766,7 @@ snakemake -p -j 1 index_reference</code></pre>
     shell:
         &quot;salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias&quot;</code></pre>
 <p>Snakemake doesn’t automatically look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.</p>
-<p>CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.</p>
+<p>CHALLENGE: make the command snakemake run with no target rules for all four salmon quant commands.</p>
 </div>
 <div id="final-snakefile" class="section level3" number="9.12.4">
 <h3><span class="header-section-number">9.12.4</span> Final Snakefile</h3>

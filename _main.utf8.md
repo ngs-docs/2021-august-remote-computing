@@ -5559,7 +5559,7 @@ rule salmon_quant:
         "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
 
-Now replace the filename with wildcards next:
+Next, replace the filename with wildcards:
 ```
 rule salmon_quant:
     input: 
@@ -5572,8 +5572,7 @@ rule salmon_quant:
 
 Snakemake doesn't automatically look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.
 
-CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.
-
+CHALLENGE: make the command snakemake run with no target rules for all four salmon quant commands.
 
 ### Final Snakefile
 
