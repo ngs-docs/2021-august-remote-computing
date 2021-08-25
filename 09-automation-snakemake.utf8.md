@@ -531,9 +531,11 @@ If you give snakemake a --dry-run (-n) parameter, it will tell you what it think
 There are many advanced features to snakemake, and we'll touch on a few of them here.
 
 ### Rule-specific conda environments with conda: and --use-conda
-If you specify a conda environment file, in an conda: block in a rule, and run conda with --use-conda, it will always run that rule in that software environment.
+If you specify a conda environment file, in a `conda:` block in a rule, and run snakemake with `--use-conda`, it will always run that rule in that software environment.
 
-This is useful when you want to version-pin a specific action, and/or have conflicting software in different rules.
+This is useful when you want to version-pin software a specific action, and/or have conflicting software in different rules.
+
+See [Making and using environment files] for more information on conda environment files!
 
 ### parallelizing snakemake: -j
 You can tell snakemake to run things in parallel by doing
