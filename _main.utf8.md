@@ -5577,7 +5577,7 @@ Next, replace the filename with wildcards:
 ```
 rule salmon_quant:
     input: 
-        "{sample}"
+        "{sample}.fastq.gz"
     output: 
         directory("{sample}.quant")
     shell:

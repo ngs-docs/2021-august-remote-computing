@@ -758,7 +758,7 @@ snakemake -p -j 1 index_reference</code></pre>
 <p>Next, replace the filename with wildcards:</p>
 <pre><code>rule salmon_quant:
     input: 
-        &quot;{sample}&quot;
+        &quot;{sample}.fastq.gz&quot;
     output: 
         directory(&quot;{sample}.quant&quot;)
     shell:
