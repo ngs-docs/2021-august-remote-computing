@@ -225,4 +225,16 @@ summary-of-what-we-did-today.
 more-snakemake-resources
 a-quick-checklist
 executing-large-analyses-on-hpc-clusters-with-slurm
+what-is-a-cluster
+how-do-clusters-work
+job-schedulers
+run-an-interactive-session-with-srun
+submit-batch-scripts-with-sbatch
+flags-to-use-when-submitting-jobs
+repeatability
+a-real-example
+monitor-your-jobs-with-squeue
+cancel-your-jobs-with-scancel
+space-issues
+nodes-vs-cpus-vs-tasks
 making-use-of-on-demand-cloud-computers-from-amazon-web-services
