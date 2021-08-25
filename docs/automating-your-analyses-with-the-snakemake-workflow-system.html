@@ -351,6 +351,7 @@
 <li class="chapter" data-level="9.12.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#downloading-the-reference-genome"><i class="fa fa-check"></i><b>9.12.1</b> Downloading the reference genome</a></li>
 <li class="chapter" data-level="9.12.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#add-the-index-genome-command"><i class="fa fa-check"></i><b>9.12.2</b> Add the index genome command:</a></li>
 <li class="chapter" data-level="9.12.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#running-salmon-quant"><i class="fa fa-check"></i><b>9.12.3</b> Running Salmon quant</a></li>
+<li class="chapter" data-level="9.12.4" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#final-snakefile"><i class="fa fa-check"></i><b>9.12.4</b> Final Snakefile</a></li>
 </ul></li>
 <li class="chapter" data-level="9.13" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#random-aside-dry-run-or--n"><i class="fa fa-check"></i><b>9.13</b> Random aside: –dry-run or -n</a></li>
 <li class="chapter" data-level="9.14" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#advanced-features"><i class="fa fa-check"></i><b>9.14</b> Advanced features</a>
@@ -716,6 +717,54 @@ snakemake -p -j 1 index_reference</code></pre>
 <p>Snakemake doesn’t automatically look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.</p>
 <p>CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.</p>
 </div>
+<div id="final-snakefile" class="section level3" number="9.12.4">
+<h3><span class="header-section-number">9.12.4</span> Final Snakefile</h3>
+<pre><code>rule all:
+    input:
+        &quot;ERR458493_fastqc.html&quot;,
+        &quot;ERR458493_fastqc.zip&quot;,
+        &quot;ERR458501_fastqc.html&quot;,
+        &quot;ERR458501_fastqc.zip&quot;,
+          &quot;ERR458500_fastqc.html&quot;,
+        &quot;ERR458500_fastqc.zip&quot;,
+          &quot;ERR458494_fastqc.html&quot;,
+        &quot;ERR458494_fastqc.zip&quot;,
+        &quot;orf_coding.fasta.gz&quot;,
+        directory(&quot;yeast_orfs&quot;),
+        directory(&quot;ERR458493.fastq.gz.quant&quot;),
+        directory(&quot;ERR458501.fastq.gz.quant&quot;),
+          directory(&quot;ERR458494.fastq.gz.quant&quot;),
+          directory(&quot;ERR458500.fastq.gz.quant&quot;)
+
+rule make_fastqc:
+    input:
+        &quot;{sample}.fastq.gz&quot;,
+    output:
+        &quot;{sample}_fastqc.html&quot;,
+        &quot;{sample}_fastqc.zip&quot;  
+    shell:
+        &quot;fastqc {input}&quot;
+        
+rule download_reference:
+    output:
+        &quot;orf_coding.fasta.gz&quot;
+    shell:
+        &quot;curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz&quot;
+        
+rule index_reference:
+    input:
+        &quot;orf_coding.fasta.gz&quot;
+    output:
+        directory(&quot;yeast_orfs&quot;)
+    shell:
+        &quot;salmon index --index yeast_orfs --transcripts {input}&quot;
+
+rule salmon_quant:
+    input: &quot;{sample}&quot;
+    output: directory(&quot;{sample}.quant&quot;)
+    shell:
+        &quot;salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias&quot;</code></pre>
+</div>
 </div>
 <div id="random-aside-dry-run-or--n" class="section level2" number="9.13">
 <h2><span class="header-section-number">9.13</span> Random aside: –dry-run or -n</h2>
@@ -759,9 +808,11 @@ This will tell snakemake that it can run up to two jobs at a time. (It automatic
 </div>
 <div id="summary-of-what-we-did-today." class="section level2" number="9.16">
 <h2><span class="header-section-number">9.16</span> Summary of what we did today.</h2>
-<p>Snakefiles contain rules
-snakemake uses those rules to figure out what files to build
-the basic idea is simple, but there are lots of tricks that we will teach you!</p>
+<ul>
+<li><p>Snakefiles contain rules</p></li>
+<li><p>Snakemake uses those rules to figure out what files to build</p></li>
+<li><p>The basic idea is simple, but there are lots of tricks that we will teach you!</p></li>
+</ul>
 </div>
 <div id="more-snakemake-resources" class="section level2" number="9.17">
 <h2><span class="header-section-number">9.17</span> More Snakemake resources</h2>

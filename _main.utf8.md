@@ -4535,6 +4535,58 @@ Snakemake doesn't automatically look at all the files in the directory and figur
 
 CHALLENGE: make the command snakemake run with no arguments for all four salmon quant commands.
 
+
+### Final Snakefile
+
+```
+rule all:
+    input:
+        "ERR458493_fastqc.html",
+        "ERR458493_fastqc.zip",
+        "ERR458501_fastqc.html",
+        "ERR458501_fastqc.zip",
+	      "ERR458500_fastqc.html",
+        "ERR458500_fastqc.zip",
+	      "ERR458494_fastqc.html",
+        "ERR458494_fastqc.zip",
+        "orf_coding.fasta.gz",
+        directory("yeast_orfs"),
+        directory("ERR458493.fastq.gz.quant"),
+        directory("ERR458501.fastq.gz.quant"),
+	      directory("ERR458494.fastq.gz.quant"),
+	      directory("ERR458500.fastq.gz.quant")
+
+rule make_fastqc:
+    input:
+        "{sample}.fastq.gz",
+    output:
+        "{sample}_fastqc.html",
+        "{sample}_fastqc.zip"  
+    shell:
+        "fastqc {input}"
+        
+rule download_reference:
+    output:
+        "orf_coding.fasta.gz"
+    shell:
+        "curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz"
+        
+rule index_reference:
+    input:
+        "orf_coding.fasta.gz"
+    output:
+        directory("yeast_orfs")
+    shell:
+        "salmon index --index yeast_orfs --transcripts {input}"
+
+rule salmon_quant:
+    input: "{sample}"
+    output: directory("{sample}.quant")
+    shell:
+        "salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias"
+```
+
+
 ## Random aside: --dry-run or -n
 If you give snakemake a --dry-run (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
 
@@ -4570,9 +4622,11 @@ Alternatively, if you have a complex workflow that would take a lot of time and 
 
 
 ## Summary of what we did today.
-Snakefiles contain rules
-snakemake uses those rules to figure out what files to build
-the basic idea is simple, but there are lots of tricks that we will teach you!
+- Snakefiles contain rules
+
+- Snakemake uses those rules to figure out what files to build
+
+- The basic idea is simple, but there are lots of tricks that we will teach you!
 
 ## More Snakemake resources
 Google is your friend!
