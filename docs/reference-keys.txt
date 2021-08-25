@@ -213,7 +213,8 @@ adding-more-rules
 downloading-the-reference-genome
 add-the-index-genome-command
 running-salmon-quant
-final-snakefile
+one-version-of-the-final-snakefile
+titus-version-of-the-final-snakefile-as-created-during-the-workshop
 random-aside-dry-run-or--n
 advanced-features
 rule-specific-conda-environments-with-conda-and-use-conda

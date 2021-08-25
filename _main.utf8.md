@@ -5121,7 +5121,8 @@ A workflow is a series of sequential tasks that need to be completed in order to
 Workflows are ubiquitous!
 
 Making pizza is a workflow!
-![](snakemake-pizza.png)
+
+![](https://i.imgur.com/xXkH9Qf.png)
 
 Many things in bioinformatics are workflows. 
  
@@ -5136,7 +5137,7 @@ Raw data goes in, results come out!
 
 Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL). Are all good! Each workflow system comes with its own syntax and set of advantages. They are all here to make computational methods reproducible and shareable.
 
-(If you work in R a lot, you might be especially interested in [drake](https://github.com/ropensci/drake).)
+(If you work in R a lot, you might be especially interested in [drake](https://github.com/ropensci/drake) -- which is now called [Targets](https://docs.ropensci.org/targets/).)
 
 Today we're going to talk about ways of automating workflows using snakemake.
 
@@ -5149,15 +5150,18 @@ The name 'snakemake' comes from the fact that it's written in (and can be extend
 - Each rule is defined as a step in the workflow. 
 - Snakemake uses the rules and command line options to figure out how the rules relate to each other so it can manage the workflow steps.
 
+
 ## Getting started - logging into farm!
 
 As per the instructions in [workshop 3](https://ngs-docs.github.io/2021-august-remote-computing/connecting-to-remote-computers-with-ssh.html) and [workshop 4](https://ngs-docs.github.io/2021-august-remote-computing/running-programs-on-remote-computers-and-retrieving-the-results.html), log into farm.cse.ucdavis.edu using your datalab-XX account.
 
 When you log in, your prompt should look like this:
 
+
 >~~~
 >(base) datalab-01@farm:~$
 >~~~
+
 If it doesn’t, please alert a TA and we will help you out!
 
 ## Installing snakemake
@@ -5169,6 +5173,7 @@ We will install snakemake inside a conda environment called "snakemake"
 ```
 conda create -y --name snakemake snakemake-minimal
 ```
+
 
 This command makes a new environment called "snakemake" and installs snakemake in it! Here, `snakemake-minimal` is just the stuff needed to run snakemake, without some extra bells and whistles.
 
@@ -5182,6 +5187,7 @@ Check the version of snakemake with
 ```
 snakemake --version
 ```
+
 As of August 2021, the snakemake version is 6.7.0; yours should be that
 version or later.
 
@@ -5190,6 +5196,7 @@ Next, add two bioinformatics software to the snakemake environment: `fastqc` and
 ```
 conda install -y fastqc salmon
 ```
+
 These are two packages that we will use for bioinformatics work.
 
 ## More setup
@@ -5210,6 +5217,7 @@ curl -L https://osf.io/8rvh5/download -o ERR458494.fastq.gz
 curl -L https://osf.io/xju4a/download -o ERR458500.fastq.gz
 curl -L https://osf.io/nmqe6/download -o ERR458501.fastq.gz
 ```
+
 You should now have four files in your current directory, representing
 four sequencing experiments.
 
@@ -5297,7 +5305,8 @@ Meta-notes:
 * You can specify a subset of outputs, e.g. just the .html file, and snakemake will run the rule even if it only needs one of the files.
 * It goes all red if it fails! (try breaking one command :)
 * It's all case sensitive.
-* Tabs and spacing matter!
+* Tabs and spacing matter! You could use the `-ET4` flag in nano to make the editor treat tabs as 4 spaces.
+* If you see syntax error messages, always check your tabs first. Replacing tabs with spaces could fix the problem!
 * You can make lists for multiple input or output files by separating filenames with a comma.
 
 
@@ -5446,11 +5455,13 @@ The download_reference shell command is:
 ```
 curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz
 ```
+
 and it creates a local file `orf_coding.fasta.gz`.
 
 (Note that you can always run the command at the prompt if you want to make sure that it works, and to find out what the output filename is!)
 
 Add the appropriate rule to the Snakefile - it should look like this:
+
 ```
 rule all:
     input:
@@ -5547,6 +5558,7 @@ rule salmon_quant:
        "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
 
+
 and then let's decorate with input and output:
 
 ```
@@ -5559,7 +5571,9 @@ rule salmon_quant:
         "salmon quant -i yeast_orfs --libType U -r ERR458493.fastq.gz -o ERR458493.fastq.gz.quant --seqBias --gcBias"
 ```
 
+
 Next, replace the filename with wildcards:
+
 ```
 rule salmon_quant:
     input: 
@@ -5572,9 +5586,10 @@ rule salmon_quant:
 
 Snakemake doesn't automatically look at all the files in the directory and figure out which ones it can apply rules to - you have to ask it more specifically, by asking for the specific files you want.
 
+
 CHALLENGE: make the command snakemake run with no target rules for all four salmon quant commands.
 
-### Final Snakefile
+### One version of the final Snakefile
 
 ```
 rule all:
@@ -5627,6 +5642,52 @@ rule salmon_quant:
 ```
 
 
+## Titus' version of the final snakefile as created during the workshop
+
+```
+SAMPLES=["ERR458493", "ERR458501", "ERR458494", "ERR458500"]
+print('samples are:', SAMPLES)
+rule all:
+    input:
+        expand("{sample}_fastqc.html", sample=SAMPLES),
+        "orf_coding.fasta.gz",
+        "yeast_orfs",
+        expand("{sample}.quant", sample=SAMPLES),
+
+rule make_fastqc:
+    input:
+        "{sample}.fastq.gz",
+    output:
+        "{sample}_fastqc.html",
+        "{sample}_fastqc.zip"  
+    shell:
+        "fastqc {input}"
+        
+rule download_reference:
+    output:
+        "orf_coding.fasta.gz"
+    shell:
+        "curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz"
+
+rule index_reference:
+    input:
+        "orf_coding.fasta.gz"
+    output:
+        directory("yeast_orfs")
+    shell:
+        "salmon index --index yeast_orfs --transcripts {input}"
+
+rule salmon_quant:
+    input: 
+        fastq = "{sample}.fastq.gz",
+        index = "yeast_orfs"
+    output: 
+        directory("{sample}.quant")
+    shell:
+        "salmon quant -i {input.index} --libType U -r {input.fastq} -o {output} --seqBias --gcBias"
+```
+
+
 ## Random aside: --dry-run or -n
 If you give snakemake a --dry-run (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
 
@@ -5634,11 +5695,13 @@ If you give snakemake a --dry-run (-n) parameter, it will tell you what it think
 There are many advanced features to snakemake, and we'll touch on a few of them here.
 
 ### Rule-specific conda environments with conda: and --use-conda
+
 If you specify a conda environment file, in a `conda:` block in a rule, and run snakemake with `--use-conda`, it will always run that rule in that software environment.
 
 This is useful when you want to version-pin software a specific action, and/or have conflicting software in different rules.
 
 See [Making and using environment files] for more information on conda environment files!
+
 
 ### parallelizing snakemake: -j
 You can tell snakemake to run things in parallel by doing

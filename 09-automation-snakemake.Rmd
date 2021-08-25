@@ -33,7 +33,7 @@ Raw data goes in, results come out!
 
 Many other workflow systems exist. E.g. nextflow, Common Workflow Language (CWL), and Workflow Definition Language (WDL). Are all good! Each workflow system comes with its own syntax and set of advantages. They are all here to make computational methods reproducible and shareable.
 
-(If you work in R a lot, you might be especially interested in [drake](https://github.com/ropensci/drake).)
+(If you work in R a lot, you might be especially interested in [drake](https://github.com/ropensci/drake) -- which is now called [Targets](https://docs.ropensci.org/targets/).)
 
 Today we're going to talk about ways of automating workflows using snakemake.
 
@@ -201,7 +201,8 @@ Meta-notes:
 * You can specify a subset of outputs, e.g. just the .html file, and snakemake will run the rule even if it only needs one of the files.
 * It goes all red if it fails! (try breaking one command :)
 * It's all case sensitive.
-* Tabs and spacing matter!
+* Tabs and spacing matter! You could use the `-ET4` flag in nano to make the editor treat tabs as 4 spaces.
+* If you see syntax error messages, always check your tabs first. Replacing tabs with spaces could fix the problem!
 * You can make lists for multiple input or output files by separating filenames with a comma.
 
 
@@ -484,7 +485,7 @@ Snakemake doesn't automatically look at all the files in the directory and figur
 
 CHALLENGE: make the command snakemake run with no target rules for all four salmon quant commands.
 
-### Final Snakefile
+### One version of the final Snakefile
 
 ```
 rule all:
@@ -534,6 +535,52 @@ rule salmon_quant:
         directory("{sample}.quant")
     shell:
         "salmon quant -i yeast_orfs --libType U -r {input} -o {output} --seqBias --gcBias"
+```
+
+
+## Titus' version of the final snakefile as created during the workshop
+
+```
+SAMPLES=["ERR458493", "ERR458501", "ERR458494", "ERR458500"]
+print('samples are:', SAMPLES)
+rule all:
+    input:
+        expand("{sample}_fastqc.html", sample=SAMPLES),
+        "orf_coding.fasta.gz",
+        "yeast_orfs",
+        expand("{sample}.quant", sample=SAMPLES),
+
+rule make_fastqc:
+    input:
+        "{sample}.fastq.gz",
+    output:
+        "{sample}_fastqc.html",
+        "{sample}_fastqc.zip"  
+    shell:
+        "fastqc {input}"
+        
+rule download_reference:
+    output:
+        "orf_coding.fasta.gz"
+    shell:
+        "curl -L -O https://downloads.yeastgenome.org/sequence/S288C_reference/orf_dna/orf_coding.fasta.gz"
+
+rule index_reference:
+    input:
+        "orf_coding.fasta.gz"
+    output:
+        directory("yeast_orfs")
+    shell:
+        "salmon index --index yeast_orfs --transcripts {input}"
+
+rule salmon_quant:
+    input: 
+        fastq = "{sample}.fastq.gz",
+        index = "yeast_orfs"
+    output: 
+        directory("{sample}.quant")
+    shell:
+        "salmon quant -i {input.index} --libType U -r {input.fastq} -o {output} --seqBias --gcBias"
 ```
 
 
