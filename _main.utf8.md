@@ -5688,13 +5688,13 @@ rule salmon_quant:
 ```
 
 
-## Random aside: --dry-run or -n
-If you give snakemake a --dry-run (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
+## Random aside: `--dry-run` or `-n`
+If you give snakemake a `--dry-run` (-n) parameter, it will tell you what it thinks it should run but won't actually run it. This is useful for situations where you don't know what needs to be run and want to find out without actually running it.
 
 ## Advanced features 
 There are many advanced features to snakemake, and we'll touch on a few of them here.
 
-### Rule-specific conda environments with conda: and --use-conda
+### Rule-specific conda environments with conda: and `--use-conda`
 
 If you specify a conda environment file, in a `conda:` block in a rule, and run snakemake with `--use-conda`, it will always run that rule in that software environment.
 
