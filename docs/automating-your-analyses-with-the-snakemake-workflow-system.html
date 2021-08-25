@@ -828,8 +828,9 @@ rule salmon_quant:
 <p>There are many advanced features to snakemake, and we’ll touch on a few of them here.</p>
 <div id="rule-specific-conda-environments-with-conda-and-use-conda" class="section level3" number="9.14.1">
 <h3><span class="header-section-number">9.14.1</span> Rule-specific conda environments with conda: and –use-conda</h3>
-<p>If you specify a conda environment file, in an conda: block in a rule, and run conda with –use-conda, it will always run that rule in that software environment.</p>
-<p>This is useful when you want to version-pin a specific action, and/or have conflicting software in different rules.</p>
+<p>If you specify a conda environment file, in a <code>conda:</code> block in a rule, and run snakemake with <code>--use-conda</code>, it will always run that rule in that software environment.</p>
+<p>This is useful when you want to version-pin software a specific action, and/or have conflicting software in different rules.</p>
+<p>See <a href="installing-software-on-remote-computers-with-conda.html#making-and-using-environment-files">Making and using environment files</a> for more information on conda environment files!</p>
 </div>
 <div id="parallelizing-snakemake--j" class="section level3" number="9.14.2">
 <h3><span class="header-section-number">9.14.2</span> parallelizing snakemake: -j</h3>
