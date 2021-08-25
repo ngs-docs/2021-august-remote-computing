@@ -5121,7 +5121,7 @@ A workflow is a series of sequential tasks that need to be completed in order to
 Workflows are ubiquitous!
 
 Making pizza is a workflow!
-![](https://i.imgur.com/xXkH9Qf.png)
+![](snakemake-pizza.png)
 
 Many things in bioinformatics are workflows. 
  
@@ -5149,8 +5149,8 @@ The name 'snakemake' comes from the fact that it's written in (and can be extend
 - Each rule is defined as a step in the workflow. 
 - Snakemake uses the rules and command line options to figure out how the rules relate to each other so it can manage the workflow steps.
 
-## Getting started
-## Farm log in
+## Getting started - logging into farm!
+
 As per the instructions in [workshop 3](https://ngs-docs.github.io/2021-august-remote-computing/connecting-to-remote-computers-with-ssh.html) and [workshop 4](https://ngs-docs.github.io/2021-august-remote-computing/running-programs-on-remote-computers-and-retrieving-the-results.html), log into farm.cse.ucdavis.edu using your datalab-XX account.
 
 When you log in, your prompt should look like this:
@@ -5217,7 +5217,7 @@ Now we're all set!
 
 ## RNA-Seq workflow we will automate
 
-![](https://i.imgur.com/j0PaOac.png)
+![](snakemake-workflow.png)
 
 ## First step: quality control with FASTQC
 
