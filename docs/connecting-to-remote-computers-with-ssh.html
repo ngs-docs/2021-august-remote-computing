@@ -24,7 +24,7 @@
 <meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, and Nick Ulle." />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2021-08-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -411,8 +411,24 @@
 <li class="chapter" data-level="10.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-do-clusters-work"><i class="fa fa-check"></i><b>10.2</b> How do clusters work?</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#job-schedulers"><i class="fa fa-check"></i><b>10.2.1</b> Job Schedulers</a></li>
-<li class="chapter" data-level="10.2.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#space-issues"><i class="fa fa-check"></i><b>10.2.2</b> Space Issues</a></li>
-<li class="chapter" data-level="10.2.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.2.3</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.2.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#either-run-an-interactive-session-with-srun"><i class="fa fa-check"></i><b>10.2.2</b> EITHER: run an interactive session with <code>srun</code></a></li>
+<li class="chapter" data-level="10.2.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#or-submit-batch-scripts-with-sbatch"><i class="fa fa-check"></i><b>10.2.3</b> OR: Submit batch scripts with <code>sbatch</code></a></li>
+<li class="chapter" data-level="10.2.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#flags-to-use-when-submitting-jobs-with-sbatch-or-srun"><i class="fa fa-check"></i><b>10.2.4</b> Flags to use when submitting jobs with sbatch or srun</a></li>
+<li class="chapter" data-level="10.2.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#repeatability-through-sbatch-variables-in-shell-scripts"><i class="fa fa-check"></i><b>10.2.5</b> Repeatability through SBATCH variables in shell scripts</a></li>
+<li class="chapter" data-level="10.2.6" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#reprise-running-helloworld.sh-via-srun"><i class="fa fa-check"></i><b>10.2.6</b> Reprise: running <code>HelloWorld.sh</code> via srun</a></li>
+<li class="chapter" data-level="10.2.7" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#choosing-between-srun-and-sbatch"><i class="fa fa-check"></i><b>10.2.7</b> Choosing between <code>srun</code> and <code>sbatch</code></a></li>
+<li class="chapter" data-level="10.2.8" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#a-stock-sbatch-script-that-includes-activating-a-conda-environment"><i class="fa fa-check"></i><b>10.2.8</b> A stock sbatch script that includes activating a conda environment</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#some-useful-tips-and-tricks-for-happy-slurm-ing"><i class="fa fa-check"></i><b>10.3</b> Some useful tips and tricks for happy slurm-ing</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#trick-1-running-srun-inside-of-a-screen."><i class="fa fa-check"></i><b>10.3.1</b> Trick 1: running <code>srun</code> inside of a screen.</a></li>
+<li class="chapter" data-level="10.3.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#trick-2-running-snakemake-inside-of-an-sbatch-script."><i class="fa fa-check"></i><b>10.3.2</b> Trick 2: running snakemake inside of an sbatch script.</a></li>
+<li class="chapter" data-level="10.3.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#monitoring-your-jobs-with-squeue"><i class="fa fa-check"></i><b>10.3.3</b> Monitoring your jobs with <code>squeue</code></a></li>
+<li class="chapter" data-level="10.3.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#cancelling-your-jobs-with-scancel"><i class="fa fa-check"></i><b>10.3.4</b> Cancelling your jobs with <code>scancel</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#more-on-resources-and-queues-and-sharing"><i class="fa fa-check"></i><b>10.4</b> More on resources and queues and sharing</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.1</b> Nodes vs CPUs vs tasks</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a></li>
