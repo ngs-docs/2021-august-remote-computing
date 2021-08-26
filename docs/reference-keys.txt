@@ -158,7 +158,7 @@ troubleshooting-scripts
 practicing-set--e-in-bash-scripts
 if-statements
 running-scripts-in-a-loop
-multiple-screens
+persistent-sessions-with-screen-and-tmux
 concluding-thoughts-1
 appendix-exercise-answers
 keeping-track-of-your-files-with-version-control
@@ -242,5 +242,11 @@ trick-2-running-snakemake-inside-of-an-sbatch-script.
 monitoring-your-jobs-with-squeue
 canceling-your-jobs-with-scancel
 more-on-resources-and-queues-and-sharing
+measuring-your-resource-usage
 nodes-vs-cpus-vs-tasks
+partitions
+how-to-share-within-your-group
+how-can-you-get-an-account-on-your-hpc
+what-weve-shown-you-today.
+some-final-thoughts-before-departing-farm-and-moving-into-the-cloud.
 making-use-of-on-demand-cloud-computers-from-amazon-web-services

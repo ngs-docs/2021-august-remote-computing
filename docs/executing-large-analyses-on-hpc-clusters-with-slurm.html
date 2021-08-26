@@ -313,7 +313,7 @@
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-in-a-loop"><i class="fa fa-check"></i><b>7.6.1</b> Running scripts in a loop</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#multiple-screens"><i class="fa fa-check"></i><b>7.7</b> Multiple screens</a></li>
+<li class="chapter" data-level="7.7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#persistent-sessions-with-screen-and-tmux"><i class="fa fa-check"></i><b>7.7</b> Persistent sessions with screen and tmux</a></li>
 <li class="chapter" data-level="7.8" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#concluding-thoughts-1"><i class="fa fa-check"></i><b>7.8</b> Concluding thoughts</a></li>
 <li class="chapter" data-level="7.9" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#appendix-exercise-answers"><i class="fa fa-check"></i><b>7.9</b> Appendix: exercise answers</a></li>
 </ul></li>
@@ -429,8 +429,14 @@
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#more-on-resources-and-queues-and-sharing"><i class="fa fa-check"></i><b>10.4</b> More on resources and queues and sharing</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.1</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#measuring-your-resource-usage"><i class="fa fa-check"></i><b>10.4.1</b> Measuring your resource usage</a></li>
+<li class="chapter" data-level="10.4.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.2</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.4.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#partitions"><i class="fa fa-check"></i><b>10.4.3</b> Partitions</a></li>
+<li class="chapter" data-level="10.4.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-to-share-within-your-group"><i class="fa fa-check"></i><b>10.4.4</b> How to share within your group</a></li>
+<li class="chapter" data-level="10.4.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-can-you-get-an-account-on-your-hpc"><i class="fa fa-check"></i><b>10.4.5</b> How can you get an account on your HPC?</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#what-weve-shown-you-today."><i class="fa fa-check"></i><b>10.5</b> What we’ve shown you today.</a></li>
+<li class="chapter" data-level="10.6" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#some-final-thoughts-before-departing-farm-and-moving-into-the-cloud."><i class="fa fa-check"></i><b>10.6</b> Some final thoughts before departing farm and moving into the cloud.</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a></li>
 <li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
@@ -631,7 +637,7 @@ from Slurm:</p>
 this will also dictate the <em>priority</em> with which our job is run. This is
 heavily cluster and account dependent; on farm, your datalab-XX accounts
 have access to <code>high2</code>, <code>med2</code>, and <code>low2</code>, for example, which let you run
-on CPU-intensive nodes at high, medium, and low priority. (<span class="citation">@CTB</span> see below)</li>
+on CPU-intensive nodes at high, medium, and low priority. See <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#partitions">Partitions</a>, below.</li>
 <li>the <strong>memory</strong> required to run our job. We can request a specified amount of memory with the following flag: <code>--mem=&lt;number&gt;Gb</code></li>
 <li>we can have slurm <strong>e-mail</strong> us updates about our job, such as when it starts(<code>BEGIN</code>), ends(<code>END</code>), if it fails(<code>FAIL</code>) or all of the above (<code>ALL</code>). There are many other mail-type arguments: REQUEUE, ALL, TIME_LIMIT, TIME_LIMIT_90 (reached 90 percent of time limit), TIME_LIMIT_80 (reached 80 percent of time limit), TIME_LIMIT_50 (reached 50 percent of time limit) and ARRAY_TASKS. We can request slurm emails us with the following flags: <code>--mail-user=&lt;your_email&gt; --mail-type=&lt;argument&gt;</code></li>
 <li>we can also give jobs specific <strong>names</strong>. To name your job use: <code>-J &lt;job_name&gt;</code> Be careful, as there is a limit to the number of characters your job name can be.</li>
@@ -728,7 +734,7 @@ I <em>almost always</em> regret it when I do this. (Be better than me!)</p>
 <li>the script is a text file, so I can correct it if I get something wrong!</li>
 <li>the script specifies the resources at the top, so I can edit those easily!</li>
 <li>I can comment the script so I can understand it later.</li>
-<li>I can use version control (see <a href="keeping-track-of-your-files-with-version-control.html#keeping-track-of-your-files-with-version-control">Keeping Track of Your Files with Version Control</a>) to track changes to my sbatch scripts.</li>
+<li>I can use version control to track changes to my sbatch scripts (see <a href="keeping-track-of-your-files-with-version-control.html#keeping-track-of-your-files-with-version-control">Keeping Track of Your Files with Version Control</a>)</li>
 <li>I can run one (or a dozen) sbatch scripts at various priorities, and can be notified by e-mail when they’re done. This lets me walk away from the computer :)</li>
 </ul>
 </div>
@@ -739,7 +745,7 @@ features:</p>
 <ul>
 <li>it lists the parameters that I usually end up modifying (<code>-c</code>, <code>-t</code>, <code>--mem</code>)</li>
 <li>it supports conda environment activation (see <a href="installing-software-on-remote-computers-with-conda.html#installing-software-on-remote-computers-with-conda">Installing software on remote computers with conda</a>)</li>
-<li></li>
+<li>it prints out the resources I actually used at the end! (See <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#measuring-your-resource-usage">Measuring your resource usage</a> below)</li>
 </ul>
 <pre><code>#!/bin/bash -login
 #SBATCH -p med2                # use &#39;med2&#39; partition for medium priority
@@ -773,7 +779,8 @@ scontrol show job ${SLURM_JOB_ID}
 
 sstat --format &#39;JobID,MaxRSS,AveCPU&#39; -P ${SLURM_JOB_ID}.batch</code></pre>
 <p>We’ll talk a bit more about the choices made in this script,
-below, when we talk about choosing your CPU and memory. <span class="citation">@CTB</span></p>
+below, when we talk about choosing your CPU and memory.
+See <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#measuring-your-resource-usage">Measuring your resource usage</a>, below.</p>
 <p>But first, let’s cover…</p>
 </div>
 </div>
@@ -781,10 +788,29 @@ below, when we talk about choosing your CPU and memory. <span class="citation">@
 <h2><span class="header-section-number">10.3</span> Some useful tips and tricks for happy slurm-ing</h2>
 <div id="trick-1-running-srun-inside-of-a-screen." class="section level3" number="10.3.1">
 <h3><span class="header-section-number">10.3.1</span> Trick 1: running <code>srun</code> inside of a screen.</h3>
-<p><span class="citation">@CTB</span></p>
+<p>Back in <a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#automating-your-analyses-and-executing-long-running-analyses-on-remote-computers">Automating your analyses and executing long-running analyses on remote computers</a>, we introduced you to <a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#persistent-sessions-with-screen-and-tmux">Persistent sessions with screen and tmux</a>.</p>
+<p>If you are using srun to run commands, it is just like any other interactive
+shell - if you close your laptop, or your network is disconnected, you’ll
+terminate the shell.</p>
+<p>So I often use <code>screen</code> to make my <code>srun</code> sessions resilient to laptop closure
+and shell termination.</p>
+<p>There’s one key trick here: run <code>screen</code> <em>first</em>, then run <code>srun</code>.</p>
+<p>(I’ll show a demo, you don’t need to follow along - just know that this
+is a possibility.)</p>
 </div>
 <div id="trick-2-running-snakemake-inside-of-an-sbatch-script." class="section level3" number="10.3.2">
 <h3><span class="header-section-number">10.3.2</span> Trick 2: running snakemake inside of an sbatch script.</h3>
+<p>In our previous workshop, we introduced you to <a href="automating-your-analyses-with-the-snakemake-workflow-system.html#automating-your-analyses-with-the-snakemake-workflow-system">Automating your
+analyses with the snakemake workflow system</a>. You can use snakemake
+inside of an srun or sbatch script!</p>
+<p>CHALLENGE: Try using srun to run the following commands:</p>
+<pre><code>conda activate snakemake
+cd ~/snakemake_lesson
+rm *.zip *.html
+snakemake -j 1</code></pre>
+<p>How would you run this with more CPUs? Hint: you need to modify BOTH
+your srun command AND your snakemake command.</p>
+<p>How would you modify the sbatch script in <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#a-stock-sbatch-script-that-includes-activating-a-conda-environment">A stock sbatch script that includes activating a conda environment</a> to run this in an sbatch environment?</p>
 </div>
 <div id="monitoring-your-jobs-with-squeue" class="section level3" number="10.3.3">
 <h3><span class="header-section-number">10.3.3</span> Monitoring your jobs with <code>squeue</code></h3>
@@ -833,6 +859,8 @@ on the status of your slurm group; here, our slurm group is <code>ctbrowngrp</co
 <pre><code>squeue -p high2</code></pre>
 <p>These will show you what resources are being used so you can figure
 out which are free, sort of.</p>
+<p><strong>Note:</strong> <code>squeue -u username</code> is how I figured out what my NODES and CPU
+specs were for the srun, above.</p>
 </div>
 <div id="canceling-your-jobs-with-scancel" class="section level3" number="10.3.4">
 <h3><span class="header-section-number">10.3.4</span> Canceling your jobs with <code>scancel</code></h3>
@@ -845,42 +873,179 @@ out which are free, sort of.</p>
 </div>
 <div id="more-on-resources-and-queues-and-sharing" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> More on resources and queues and sharing</h2>
-<div id="nodes-vs-cpus-vs-tasks" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> Nodes vs CPUs vs tasks</h3>
+<div id="measuring-your-resource-usage" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Measuring your resource usage</h3>
+<p>There’s an old joke that you can tell to your kids if you want to teach
+them to distrust you.</p>
+<blockquote>
+<p>Do you know how they figure out what the weight limits are on bridges?</p>
+</blockquote>
+<blockquote>
+<p>They build the bridge, and then they run bigger and bigger trucks
+over it until the bridge fails. Then they record the weight of the
+last truck that succeeded in crossing the bridge, and use that as the
+weight limit for the bridge.</p>
+</blockquote>
+<p>It’s funny because it’s not true…</p>
+<p>…unless you’re doing big compute, in which case it’s basically exactly
+that.</p>
+<p>For Reasons, there is no one-size-fits-all 100% reliable way to estimate
+the resources needed. But you can measure the resources used when a job
+completes successfully!</p>
+<p>(For this reason, I suggest that the first time you run a job, you
+request more resources than you think you’ll need - more time, more
+memory - and then trim it back after measuring it.)</p>
+<p>There are two ways to estimate your resources.</p>
+<p>First, you can use <code>/usr/bin/time -v</code> to measure the time and memory needed
+to run a command.</p>
+<p>You’re looking for the following output:</p>
+<blockquote>
+<pre><code>...
+Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+...
+Maximum resident set size (kbytes): 2516
+...</code></pre>
+</blockquote>
+<p>The first is how much time it took, the second is the max amount of memory
+(in kb) needed.</p>
+<p>You can use this to measure the amount of time it takes to run a script.</p>
+<p>CHALLENGE: Use <code>/usr/bin/time -v</code> to run the HelloWorld.sh
+script. What resources does it need?</p>
+<p>The other way is to add the following command to the bottom of your HelloWorld.sh script:</p>
+<blockquote>
+<p>sstat –format ‘JobID,MaxRSS,AveCPU’ -P ${SLURM_JOB_ID}.batch</p>
+</blockquote>
+<p>which will put the following output in your .out file:</p>
+<blockquote>
+<pre><code>JobID|MaxRSS|AveCPU
+37971877.batch|952K|00:00.000</code></pre>
+</blockquote>
+<p>OPTIONAL CHALLENGE: Let’s do this to look at the snakemake workflow!</p>
+<p>Steps:
+* create the sbatch script to run snakemake - see <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#a-stock-sbatch-script-that-includes-activating-a-conda-environment">A stock sbatch script that includes activating a conda environment</a>
+* remove <em>.zip and </em>.html
+* submit the script with <code>sbatch</code>
+* …wait…
+* inspect the output file.</p>
+</div>
+<div id="nodes-vs-cpus-vs-tasks" class="section level3" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Nodes vs CPUs vs tasks</h3>
+<p>You will at some point see slurm docs making distinctions between nodes,
+tasks, and CPUs per task.</p>
+<p>My advice for people just beginning to work with slurm is to ignore all
+of this until you need it, and just use <code>-c</code> or <code>--cpus-per-task</code>, and
+leave <code>-N</code> and <code>-n</code> set at 1 (which is the default).</p>
+<p>That having been said…</p>
 <ul>
 <li><strong>Node</strong>: A physical box that connects memory systems with extension cards and <em>CPU cores</em>.</li>
 <li><strong>CPU Core</strong>: An independent computing unit that can access a certain number of <em>CPU threads</em> with all the threads having independent input streams but sharing the core’s total memory.</li>
-<li><strong>tasks</strong>: Most bioinformatics software use tasks. A task is an object that represents work that needs to be done.</li>
+<li><strong>tasks</strong>: A way to organize tasks that may have multiple CPUs per each task.</li>
 </ul>
 <p>The <code>-c</code> flag will adjust the number of CPUs per process. Alter this
 if the job is multithreaded and requires more than one CPU per task to
 perform optimally. If this option is specified without the -n flag,
 then as many tasks will be allocated to per node as possible. The
 <code>-n</code> flag will determine the number of tasks to run. The default Slurm
-setting is one task per node but is adjusted when using -c.</p>
+setting is one CPU per task per node but is adjusted when using -c.</p>
 <p><img src="slurm-nodes.png" /></p>
-<p><span class="citation">@CTB</span> questions to discuss:</p>
-<ul>
-<li><p>queuing policy, fair share vs dedicated model</p></li>
-<li><p>different partitions and queues</p></li>
-<li><p>getting conda to work</p></li>
-<li><p>how to get an account at UC Davis, and elsewhere</p>
-<ul>
-<li>parallel nodes names: <code>high2</code>, <code>med2</code>, <code>low2</code> - good for disk/compute intensive jobs, like mapping and RNAseq
-<ul>
-<li>24 nodes with 64 CPUs and 256GB ram</li>
-<li>95 nodes with 32 CPUs and 64GB ram</li>
-</ul></li>
-<li>bigmem nodes names: <code>bmh</code>, <code>bmm</code>, <code>bml</code> - good for large memory jobs, like vertebrate genome assembly
-<ul>
-<li>13 nodes with 96 CPUs and 1TB ram</li>
-<li>9 nodes with 64 CPUs and 512GB</li>
-<li>1 node with 96 CPUs and 1024GB</li>
-</ul></li>
-</ul></li>
-</ul>
-
 </div>
+<div id="partitions" class="section level3" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Partitions</h3>
+<p>Partitions are the subsets of the cluster (or “partitions of the whole
+cluster”) that you have access to. I am not an expert on the details,
+but basically they specify (1) a set of computers and (2) a priority
+for running things on</p>
+<p>When you get your account on an HPC, you’ll get a listing of what you have
+partitions you have access to. Here’s what my group gets on farm.</p>
+<p>We have access to:</p>
+<ul>
+<li>low2 - low priority compute nodes</li>
+<li>med2 - medium priority compute nodes</li>
+<li>high2 - high priority compute nodes</li>
+</ul>
+<p>as well as</p>
+<ul>
+<li>bml - low priority big mem node (up to a TB)</li>
+<li>bmm - medium priority big mem node</li>
+<li>bmh - high priority big mem node</li>
+</ul>
+<p>The way priorities work on farm is as follows:</p>
+<ul>
+<li>bmh = get a dedicated computer that you purchased, within 1 minute</li>
+<li>bmm = get more than what you paid for, if there’s any free resources (which is usually), but your job might be suspended if another user asks for nodes on their computer in bmh.</li>
+<li>bml = get (way) more than you paid for (just like bmm) but your job might be killed and rescheduled.</li>
+</ul>
+<p>On bmh/bmm/bml, we have one bigmem node, so:</p>
+<ul>
+<li>1TB of memory max</li>
+<li>96 CPU</li>
+</ul>
+<p>On high2/med2/low2, we have two parallel nodes, so:</p>
+<ul>
+<li>512 GB RAM total, 256 GB max per job</li>
+<li>32 cores on one machine, 64 cores on the other machine</li>
+</ul>
+<p>These will all be different for your account and your compute node.
+See “What are HPC clusters’ access models?” at <a href="https://hpc.ucdavis.edu/faq">the HPC FAQ</a> for how this works at UC Davis.</p>
+</div>
+<div id="how-to-share-within-your-group" class="section level3" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> How to share within your group</h3>
+<p>Here’s the guidance I give my group:</p>
+<p>Users in <code>ctbrowngrp</code> collectively share resources. Currently, this
+group has priority access to 1 TB of ram and 96 CPUs on one machine,
+and 256 GB RAM and up to 64 CPUs on another two machines. The big mem
+machine is accessed using the big mem partition, <code>bm*</code>, while the
+smaller-memory machines are accessed on <code>high2</code>/<code>med2</code>/<code>low2</code>.</p>
+<p>As of February 2020, there are 31 researches who share these
+resources. To manage and share these resources equitably, we have
+created a set of rules for resource usage. When submitting jobs, if
+you submit to a <code>bm*</code> partition, please follow these rules:</p>
+<ul>
+<li><code>bmh</code>/<code>high2</code>: use for 1. small-ish interactive testing 2. single-core snakemake jobs that submit other jobs. 3. only if really needed: one job that uses a reasonable amount of resources of “things that I really need to not get bumped.” Things that fall into group 3 might be very long running jobs that would otherwise always be interrupted on <code>bmm</code>/<code>med2</code> or <code>bml</code>/<code>low2</code> (e.g. &gt; 5 days), or single jobs that need to be completed in time for a grant or presentation. If your single job on <code>bmh</code>/<code>high2</code> will exceed 1/3 of the groups resources for either RAM or CPU, please notify the group prior to submitting this job.</li>
+<li><code>bmm</code>/<code>med2</code>: don’t submit more than 1/3 of resources at once. This counts for cpu (96 total, so max 32) and ram (1TB total, so max 333 GB).</li>
+<li><code>bml</code>/<code>low2</code>: free for all! Go hog wild! Submit to your hearts content!</li>
+</ul>
+<p>Note that the <code>bmm</code>/<code>bml</code> and <code>med2</code>/<code>low2</code> queues have access to the
+full cluster, not just our machines; so if farm is not being highly
+utilized you may be able to run <em>more</em> jobs <em>faster</em> on those nodes
+than on <code>bmh</code>/<code>high2</code>.</p>
+</div>
+<div id="how-can-you-get-an-account-on-your-hpc" class="section level3" number="10.4.5">
+<h3><span class="header-section-number">10.4.5</span> How can you get an account on your HPC?</h3>
+<p>To figure out what you have access to at UC Davis, see <a href="https://hpc.ucdavis.edu/faq">the HPC
+FAQ</a>, “How do I request access to HPC
+clusters?”</p>
+</div>
+</div>
+<div id="what-weve-shown-you-today." class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> What we’ve shown you today.</h2>
+<p>We’ve discussed how a computer cluster differs from a single remote computer:
+you have far more resources at your fingertips, but you need to deal
+with the added complexity of slurm (or another scheduler).</p>
+<p>We’ve shown you how to reserve a node interactively (with srun) or
+for a script (with sbatch).</p>
+<p>We’ve given you <em>some</em> tips and tricks for using clusters effectively.</p>
+<p>We’ve shown you how to track and examine running jobs.</p>
+<p>And, finally, we’ve given you a few different ways to measure resource
+use, along with some suggestions on how to be a good person and share
+nicely.</p>
+<p>You may never need to use a really big compute cluster to run
+things. But if you do, you’re at least ready to get started :)</p>
+</div>
+<div id="some-final-thoughts-before-departing-farm-and-moving-into-the-cloud." class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> Some final thoughts before departing farm and moving into the cloud.</h2>
+<p>This is the last time we’ll use farm. &lt;waves goodbye&gt;</p>
+<p>For our last and final workshop in this series, <a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#making-use-of-on-demand-cloud-computers-from-amazon-web-services">Making use of
+on-demand “cloud” computers from Amazon Web Services</a>, we’ll show you
+how to rent computers from Amazon. In our view, this is a great
+fallback when you have a burst computing need, or don’t have access to
+specific resources that you need (like GPUs).</p>
+<p>Importantly, most of the stuff we’ve learned for remote computing will
+work just fine no matter what system we use. Shell, text editing,
+ssh, conda, project organization, shell scripting, version control,
+and snakemake will all work on any modern UNIX system.</p>
+<p>…and that’s why we taught them to you :).</p>
+
 </div>
 </div>
             </section>

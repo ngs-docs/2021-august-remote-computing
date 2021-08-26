@@ -313,7 +313,7 @@
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-in-a-loop"><i class="fa fa-check"></i><b>7.6.1</b> Running scripts in a loop</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#multiple-screens"><i class="fa fa-check"></i><b>7.7</b> Multiple screens</a></li>
+<li class="chapter" data-level="7.7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#persistent-sessions-with-screen-and-tmux"><i class="fa fa-check"></i><b>7.7</b> Persistent sessions with screen and tmux</a></li>
 <li class="chapter" data-level="7.8" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#concluding-thoughts-1"><i class="fa fa-check"></i><b>7.8</b> Concluding thoughts</a></li>
 <li class="chapter" data-level="7.9" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#appendix-exercise-answers"><i class="fa fa-check"></i><b>7.9</b> Appendix: exercise answers</a></li>
 </ul></li>
@@ -429,8 +429,14 @@
 </ul></li>
 <li class="chapter" data-level="10.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#more-on-resources-and-queues-and-sharing"><i class="fa fa-check"></i><b>10.4</b> More on resources and queues and sharing</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.1</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#measuring-your-resource-usage"><i class="fa fa-check"></i><b>10.4.1</b> Measuring your resource usage</a></li>
+<li class="chapter" data-level="10.4.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.2</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.4.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#partitions"><i class="fa fa-check"></i><b>10.4.3</b> Partitions</a></li>
+<li class="chapter" data-level="10.4.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-to-share-within-your-group"><i class="fa fa-check"></i><b>10.4.4</b> How to share within your group</a></li>
+<li class="chapter" data-level="10.4.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-can-you-get-an-account-on-your-hpc"><i class="fa fa-check"></i><b>10.4.5</b> How can you get an account on your HPC?</a></li>
 </ul></li>
+<li class="chapter" data-level="10.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#what-weve-shown-you-today."><i class="fa fa-check"></i><b>10.5</b> What we’ve shown you today.</a></li>
+<li class="chapter" data-level="10.6" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#some-final-thoughts-before-departing-farm-and-moving-into-the-cloud."><i class="fa fa-check"></i><b>10.6</b> Some final thoughts before departing farm and moving into the cloud.</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a></li>
 <li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
@@ -466,7 +472,7 @@ commands.</p>
 <ul>
 <li>Commands <code>for</code>, <code>basename</code>, <code>echo</code>, <code>if</code></li>
 <li>How to write and execute shell scripts</li>
-<li>Learning how to use multiple screens for long-running analyses</li>
+<li>Learning how to use multiple sessions with screen for long-running analyses</li>
 </ul>
 <div id="what-is-a-script" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> What is a script?</h2>
@@ -756,8 +762,8 @@ fi</code></pre>
 <p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers <code>20 30 40 50 60 70</code> to see if it matched one of them?</p>
 </div>
 </div>
-<div id="multiple-screens" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> Multiple screens</h2>
+<div id="persistent-sessions-with-screen-and-tmux" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Persistent sessions with screen and tmux</h2>
 <p>What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?</p>
 <p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). If you’re running these programs on the Farm, you can logout and even turn your computer off. :) We’ll get back to these details in workshop 10. These are a bit tricky to get used too, so we’ll do a demo.</p>
 <p>Basic commands for <code>screen</code> and <code>tmux</code> below. They both have keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>

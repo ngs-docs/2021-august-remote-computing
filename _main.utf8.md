@@ -3544,7 +3544,7 @@ Learning objectives:
 
 - Commands `for`, `basename`, `echo`, `if`
 - How to write and execute shell scripts
-- Learning how to use multiple screens for long-running analyses
+- Learning how to use multiple sessions with screen for long-running analyses
 
 ## What is a script?
 
@@ -4001,7 +4001,7 @@ fi
 **CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers `20 30 40 50 60 70` to see if it matched one of them?
 
 
-## Multiple screens
+## Persistent sessions with screen and tmux
 
 What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?
 
@@ -6017,7 +6017,7 @@ from Slurm:
 this will also dictate the _priority_ with which our job is run. This is
 heavily cluster and account dependent; on farm, your datalab-XX accounts
 have access to `high2`, `med2`, and `low2`, for example, which let you run
-on CPU-intensive nodes at high, medium, and low priority.  (@CTB see below)
+on CPU-intensive nodes at high, medium, and low priority.  See [Partitions], below.
 * the **memory** required to run our job. We can request a specified amount of memory with the following flag: `--mem=<number>Gb`
 * we can have slurm **e-mail** us updates about our job, such as when it starts(`BEGIN`), ends(`END`), if it fails(`FAIL`) or all of the above (`ALL`). There are many other mail-type arguments: REQUEUE, ALL, TIME_LIMIT, TIME_LIMIT_90 (reached 90 percent of time limit), TIME_LIMIT_80 (reached 80 percent of time limit), TIME_LIMIT_50 (reached 50 percent of time limit) and ARRAY_TASKS. We can request slurm emails us with the following flags: `--mail-user=<your_email> --mail-type=<argument>`
 * we can also give jobs specific **names**. To name your job use: `-J <job_name>` Be careful, as there is a limit to the number of characters your job name can be.
@@ -6141,7 +6141,7 @@ I almost always prefer `sbatch`. There are a bunch of reasons -
 * the script is a text file, so I can correct it if I get something wrong!
 * the script specifies the resources at the top, so I can edit those easily!
 * I can comment the script so I can understand it later.
-* I can use version control (see [Keeping Track of Your Files with Version Control]) to track changes to my sbatch scripts.
+* I can use version control to track changes to my sbatch scripts (see [Keeping Track of Your Files with Version Control])
 * I can run one (or a dozen) sbatch scripts at various priorities, and can be notified by e-mail when they're done. This lets me walk away from the computer :)
 
 ### A stock sbatch script that includes activating a conda environment
@@ -6151,7 +6151,7 @@ features:
 
 * it lists the parameters that I usually end up modifying (`-c`, `-t`, `--mem`)
 * it supports conda environment activation (see [Installing software on remote computers with conda])
-* 
+* it prints out the resources I actually used at the end! (See [Measuring your resource usage] below)
 
 ```
 #!/bin/bash -login
@@ -6188,7 +6188,8 @@ sstat --format 'JobID,MaxRSS,AveCPU' -P ${SLURM_JOB_ID}.batch
 ```
 
 We'll talk a bit more about the choices made in this script,
-below, when we talk about choosing your CPU and memory. @CTB
+below, when we talk about choosing your CPU and memory.
+See [Measuring your resource usage], below.
 
 But first, let's cover...
 
@@ -6196,9 +6197,39 @@ But first, let's cover...
 
 ### Trick 1: running `srun` inside of a screen.
 
-@CTB
+Back in [Automating your analyses and executing long-running analyses on remote computers], we introduced you to [Persistent sessions with screen and tmux].
+
+If you are using srun to run commands, it is just like any other interactive
+shell - if you close your laptop, or your network is disconnected, you'll
+terminate the shell.
+
+So I often use `screen` to make my `srun` sessions resilient to laptop closure
+and shell termination.
+
+There's one key trick here: run `screen` _first_, then run `srun`.
+
+(I'll show a demo, you don't need to follow along - just know that this
+is a possibility.)
 
 ### Trick 2: running snakemake inside of an sbatch script.
+
+In our previous workshop, we introduced you to [Automating your
+analyses with the snakemake workflow system]. You can use snakemake
+inside of an srun or sbatch script!
+
+CHALLENGE: Try using srun to run the following commands:
+
+```
+conda activate snakemake
+cd ~/snakemake_lesson
+rm *.zip *.html
+snakemake -j 1
+```
+
+How would you run this with more CPUs? Hint: you need to modify BOTH
+your srun command AND your snakemake command.
+
+How would you modify the sbatch script in [A stock sbatch script that includes activating a conda environment] to run this in an sbatch environment?
 
 ### Monitoring your jobs with `squeue`
 
@@ -6276,6 +6307,9 @@ squeue -p high2
 These will show you what resources are being used so you can figure
 out which are free, sort of.
 
+**Note:** `squeue -u username` is how I figured out what my NODES and CPU
+specs were for the srun, above.
+
 ### Canceling your jobs with `scancel`
 
 To cancel a single job you can specify the `JOBID`
@@ -6292,36 +6326,205 @@ CHALLENGE: Use `srun` to set yourself up with a 10 minute session on high2; then
 
 ## More on resources and queues and sharing
 
+### Measuring your resource usage
+
+There's an old joke that you can tell to your kids if you want to teach
+them to distrust you.
+
+>Do you know how they figure out what the weight limits are on bridges?
+
+>They build the bridge, and then they run bigger and bigger trucks
+ over it until the bridge fails. Then they record the weight of the
+ last truck that succeeded in crossing the bridge, and use that as the
+ weight limit for the bridge.
+
+It's funny because it's not true...
+
+...unless you're doing big compute, in which case it's basically exactly
+that.
+
+For Reasons, there is no one-size-fits-all 100% reliable way to estimate
+the resources needed. But you can measure the resources used when a job
+completes successfully!
+
+(For this reason, I suggest that the first time you run a job, you
+request more resources than you think you'll need - more time, more
+memory - and then trim it back after measuring it.)
+
+There are two ways to estimate your resources.
+
+First, you can use `/usr/bin/time -v` to measure the time and memory needed
+to run a command.
+
+You're looking for the following output:
+
+>~~~
+>...
+>Elapsed (wall clock) time (h:mm:ss or m:ss): 0:00.03
+>...
+>Maximum resident set size (kbytes): 2516
+>...
+>~~~
+
+The first is how much time it took, the second is the max amount of memory
+(in kb) needed.
+
+You can use this to measure the amount of time it takes to run a script.
+
+CHALLENGE: Use `/usr/bin/time -v` to run the HelloWorld.sh
+script. What resources does it need?
+
+The other way is to add the following command to the bottom of your HelloWorld.sh script:
+
+>sstat --format 'JobID,MaxRSS,AveCPU' -P ${SLURM_JOB_ID}.batch
+
+which will put the following output in your .out file:
+
+>~~~
+>JobID|MaxRSS|AveCPU
+>37971877.batch|952K|00:00.000
+>~~~
+
+OPTIONAL CHALLENGE: Let's do this to look at the snakemake workflow!
+
+Steps:
+* create the sbatch script to run snakemake - see [A stock sbatch script that includes activating a conda environment]
+* remove *.zip and *.html
+* submit the script with `sbatch`
+* ...wait...
+* inspect the output file.
+
 ### Nodes vs CPUs vs tasks
+
+You will at some point see slurm docs making distinctions between nodes,
+tasks, and CPUs per task.
+
+My advice for people just beginning to work with slurm is to ignore all
+of this until you need it, and just use `-c` or `--cpus-per-task`, and
+leave `-N` and `-n` set at 1 (which is the default).
+
+That having been said...
 
 * **Node**: A physical box that connects memory systems with extension cards and _CPU cores_. 
 * **CPU Core**: An independent computing unit that can access a certain number of _CPU threads_ with all the threads having independent input streams but sharing the core's total memory.
-* **tasks**: Most bioinformatics software use tasks. A task is an object that represents work that needs to be done. 
+* **tasks**: A way to organize tasks that may have multiple CPUs per each task.
 
 The `-c` flag will adjust the number of CPUs per process. Alter this
 if the job is multithreaded and requires more than one CPU per task to
 perform optimally. If this option is specified without the -n flag,
 then as many tasks will be allocated to per node as possible.  The
 `-n` flag will determine the number of tasks to run. The default Slurm
-setting is one task per node but is adjusted when using -c.
+setting is one CPU per task per node but is adjusted when using -c.
 
 ![](slurm-nodes.png)
 
-@CTB questions to discuss:
+### Partitions
 
-* queuing policy, fair share vs dedicated model
-* different partitions and queues
-* getting conda to work
-* how to get an account at UC Davis, and elsewhere
+Partitions are the subsets of the cluster (or "partitions of the whole
+cluster") that you have access to. I am not an expert on the details,
+but basically they specify (1) a set of computers and (2) a priority
+for running things on 
 
+When you get your account on an HPC, you'll get a listing of what you have
+partitions you have access to. Here's what my group gets on farm.
 
-    * parallel nodes names: `high2`, `med2`, `low2` - good for disk/compute intensive jobs, like mapping and RNAseq
-        * 24 nodes with 64 CPUs and 256GB ram
-        * 95 nodes with 32 CPUs and 64GB ram
-    * bigmem nodes names: `bmh`, `bmm`, `bml` - good for large memory jobs, like vertebrate genome assembly
-        * 13 nodes with 96 CPUs and 1TB ram
-        * 9 nodes with 64 CPUs and 512GB 
-        * 1 node with 96 CPUs and 1024GB 
+We have access to:
+
+* low2 - low priority compute nodes
+* med2 - medium priority compute nodes
+* high2 - high priority compute nodes
+
+as well as
+
+* bml - low priority big mem node (up to a TB)
+* bmm - medium priority big mem node
+* bmh - high priority big mem node
+
+The way priorities work on farm is as follows:
+
+* bmh = get a dedicated computer that you purchased, within 1 minute
+* bmm = get more than what you paid for, if there's any free resources (which is usually), but your job might be suspended if another user asks for nodes on their computer in bmh.
+* bml = get (way) more than you paid for (just like bmm) but your job might be killed and rescheduled.
+
+On bmh/bmm/bml, we have one bigmem node, so:
+
+- 1TB of memory max
+- 96 CPU
+
+On high2/med2/low2, we have two parallel nodes, so:
+
+- 512 GB RAM total, 256 GB max per job
+- 32 cores on one machine, 64 cores on the other machine
+
+These will all be different for your account and your compute node.
+See "What are HPC clusters' access models?" at [the HPC FAQ](https://hpc.ucdavis.edu/faq) for how this works at UC Davis.
+
+### How to share within your group
+
+Here's the guidance I give my group:
+
+Users in `ctbrowngrp` collectively share resources.  Currently, this
+group has priority access to 1 TB of ram and 96 CPUs on one machine,
+and 256 GB RAM and up to 64 CPUs on another two machines.  The big mem
+machine is accessed using the big mem partition, `bm*`, while the
+smaller-memory machines are accessed on `high2`/`med2`/`low2`.
+
+As of February 2020, there are 31 researches who share these
+resources.  To manage and share these resources equitably, we have
+created a set of rules for resource usage.  When submitting jobs, if
+you submit to a `bm*` partition, please follow these rules:
+
++ `bmh`/`high2`: use for 1. small-ish interactive testing 2. single-core snakemake jobs that submit other jobs. 3. only if really needed: one job that uses a reasonable amount of resources of “things that I really need to not get bumped.” Things that fall into group 3 might be very long running jobs that would otherwise always be interrupted on `bmm`/`med2` or `bml`/`low2` (e.g. > 5 days), or single jobs that need to be completed in time for a grant or presentation. If your single job on `bmh`/`high2` will exceed 1/3 of the groups resources for either RAM or CPU, please notify the group prior to submitting this job. 
++ `bmm`/`med2`: don’t submit more than 1/3 of resources at once. This counts for cpu (96 total, so max 32) and ram (1TB total, so max 333 GB).
++ `bml`/`low2`: free for all! Go hog wild! Submit to your hearts content!
+
+Note that the `bmm`/`bml` and `med2`/`low2` queues have access to the
+full cluster, not just our machines; so if farm is not being highly
+utilized you may be able to run *more* jobs _faster_ on those nodes
+than on `bmh`/`high2`.
+
+### How can you get an account on your HPC?
+
+To figure out what you have access to at UC Davis, see [the HPC
+FAQ](https://hpc.ucdavis.edu/faq), "How do I request access to HPC
+clusters?"
+
+## What we've shown you today.
+
+We've discussed how a computer cluster differs from a single remote computer:
+you have far more resources at your fingertips, but you need to deal
+with the added complexity of slurm (or another scheduler).
+
+We've shown you how to reserve a node interactively (with srun) or
+for a script (with sbatch).
+
+We've given you _some_ tips and tricks for using clusters effectively.
+
+We've shown you how to track and examine running jobs.
+
+And, finally, we've given you a few different ways to measure resource
+use, along with some suggestions on how to be a good person and share
+nicely.
+
+You may never need to use a really big compute cluster to run
+things. But if you do, you're at least ready to get started :)
+
+## Some final thoughts before departing farm and moving into the cloud.
+
+This is the last time we'll use farm. &lt;waves goodbye&gt;
+
+For our last and final workshop in this series, [Making use of
+on-demand “cloud” computers from Amazon Web Services], we'll show you
+how to rent computers from Amazon. In our view, this is a great
+fallback when you have a burst computing need, or don't have access to
+specific resources that you need (like GPUs).
+
+Importantly, most of the stuff we've learned for remote computing will
+work just fine no matter what system we use. Shell, text editing,
+ssh, conda, project organization, shell scripting, version control,
+and snakemake will all work on any modern UNIX system.
+
+...and that's why we taught them to you :).
 
 <!--chapter:end:10-hpc-slurm.Rmd-->
 

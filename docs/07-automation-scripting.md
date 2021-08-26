@@ -13,7 +13,7 @@ Learning objectives:
 
 - Commands `for`, `basename`, `echo`, `if`
 - How to write and execute shell scripts
-- Learning how to use multiple screens for long-running analyses
+- Learning how to use multiple sessions with screen for long-running analyses
 
 ## What is a script?
 
@@ -470,7 +470,7 @@ fi
 **CHALLENGE:** How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers `20 30 40 50 60 70` to see if it matched one of them?
 
 
-## Multiple screens
+## Persistent sessions with screen and tmux
 
 What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?
 
