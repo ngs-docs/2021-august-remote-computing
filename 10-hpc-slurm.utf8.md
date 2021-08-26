@@ -495,7 +495,7 @@ squeue -p high2
 These will show you what resources are being used so you can figure
 out which are free, sort of.
 
-### Cancelling your jobs with `scancel`
+### Canceling your jobs with `scancel`
 
 To cancel a single job you can specify the `JOBID`
 ```
@@ -529,7 +529,7 @@ setting is one task per node but is adjusted when using -c.
 @CTB questions to discuss:
 
 * queuing policy, fair share vs dedicated model
-* different partiions and queues
+* different partitions and queues
 * getting conda to work
 * how to get an account at UC Davis, and elsewhere
 
