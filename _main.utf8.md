@@ -6011,7 +6011,8 @@ See [Monitoring your jobs with `squeue`], below.
 ### Flags to use when submitting jobs with sbatch or srun
 
 We can use a number of different flags to specify resources we want
-from Slurm:
+from Slurm (we'll cover how to measure these in [Measuring your
+resource usage]).
 
 * the **partition** we would like to use for our job –
 this will also dictate the _priority_ with which our job is run. This is
@@ -6388,6 +6389,7 @@ which will put the following output in your .out file:
 OPTIONAL CHALLENGE: Let's do this to look at the snakemake workflow!
 
 Steps:
+
 * create the sbatch script to run snakemake - see [A stock sbatch script that includes activating a conda environment]
 * remove *.zip and *.html
 * submit the script with `sbatch`
@@ -6403,7 +6405,7 @@ My advice for people just beginning to work with slurm is to ignore all
 of this until you need it, and just use `-c` or `--cpus-per-task`, and
 leave `-N` and `-n` set at 1 (which is the default).
 
-That having been said...
+That having been said... here's what they mean:
 
 * **Node**: A physical box that connects memory systems with extension cards and _CPU cores_. 
 * **CPU Core**: An independent computing unit that can access a certain number of _CPU threads_ with all the threads having independent input streams but sharing the core's total memory.
