@@ -455,8 +455,15 @@
 <li class="chapter" data-level="11.4.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#spinning-up-instances"><i class="fa fa-check"></i><b>11.4.1</b> “Spinning up” instances</a></li>
 <li class="chapter" data-level="11.4.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#connecting-to-instance"><i class="fa fa-check"></i><b>11.4.2</b> Connecting to instance</a></li>
 </ul></li>
-<li class="chapter" data-level="11.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#installing-programs-and-running-them-in-the-cloud"><i class="fa fa-check"></i><b>11.5</b> Installing programs and running them in the cloud</a></li>
-<li class="chapter" data-level="11.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#downloading-data-from-aws-instance-onto-local-computer"><i class="fa fa-check"></i><b>11.6</b> Downloading data from AWS instance onto local computer</a></li>
+<li class="chapter" data-level="11.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#using-your-computer-in-the-cloud"><i class="fa fa-check"></i><b>11.5</b> Using your computer “in the cloud”</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#inspecting-your-computer"><i class="fa fa-check"></i><b>11.5.1</b> Inspecting your computer</a></li>
+<li class="chapter" data-level="11.5.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#you-can-do-all-the-unix-things"><i class="fa fa-check"></i><b>11.5.2</b> You can do all the UNIX things</a></li>
+<li class="chapter" data-level="11.5.3" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#install-conda"><i class="fa fa-check"></i><b>11.5.3</b> Install conda</a></li>
+<li class="chapter" data-level="11.5.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#run-programs-snakemake"><i class="fa fa-check"></i><b>11.5.4</b> Run programs / snakemake</a></li>
+<li class="chapter" data-level="11.5.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#summing-things-up-round-1"><i class="fa fa-check"></i><b>11.5.5</b> Summing things up, round 1</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#configuring-your-instance-differently."><i class="fa fa-check"></i><b>11.6</b> Configuring your instance differently.</a></li>
 <li class="chapter" data-level="11.7" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#shutting-down-instances"><i class="fa fa-check"></i><b>11.7</b> Shutting down instances</a></li>
 <li class="chapter" data-level="11.8" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#exercise"><i class="fa fa-check"></i><b>11.8</b> Exercise</a></li>
 <li class="chapter" data-level="11.9" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#checklist-of-things-you-learned-today"><i class="fa fa-check"></i><b>11.9</b> Checklist of things you learned today!</a>
@@ -497,17 +504,15 @@
             <section class="normal" id="section-">
 <div id="making-use-of-on-demand-cloud-computers-from-amazon-web-services" class="section level1" number="11">
 <h1><span class="header-section-number">11</span> Making use of on-demand “cloud” computers from Amazon Web Services</h1>
-<p>TODO <span class="citation">@CTB</span>:</p>
-<ul>
-<li>imgur links</li>
-<li>check names of everything (keys, computers, etc.)</li>
-<li>check connection on VMWare</li>
-<li>create accounts!</li>
-</ul>
+<!-- TODO @CTB:
+
+* imgur links
+* check connection on VMWare
+-->
 <p>This two hour workshop will introduce attendees to AWS computer
 “instances” that let you rent compute time on large or specialized
 computers. We’ll create a small general-purpose Linux computer,
-connect to it, install some software, and explore the computiung
+connect to it, install some software, and explore the computing
 environment.</p>
 <p>This lesson is based on <a href="https://github.com/nih-cfde/training-and-engagement/wiki/A-Hands-On-Introduction-to-AWS:-June-30,-2021#lets-get-started">materials</a> originally developed by Abhijna Parigi,
 Marisa Lim, and Saranya Canchi for the CFDE training site.</p>
@@ -518,10 +523,8 @@ use of cloud computers for your work.</p>
 <ul>
 <li>Brief introduction to AWS and the cloud</li>
 <li>Set up an instance and connect to it</li>
-<li>Install and run things in the cloud computer</li>
-<li><span class="citation">@CTB</span></li>
-<li>Learn how to download output files to local machine</li>
-<li>Take your questions</li>
+<li>Install and run things on the cloud computer</li>
+<li>View optional configuration settings for AWS instances</li>
 </ul>
 </div>
 <div id="some-background" class="section level2" number="11.2">
@@ -570,7 +573,7 @@ AWS administratively.</p>
 <div id="ec2" class="section level3" number="11.3.1">
 <h3><span class="header-section-number">11.3.1</span> EC2</h3>
 <ul>
-<li>Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.</li>
+<li>Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, re-sizable compute capacity in the cloud.</li>
 <li>Basically, you rent virtual computers that are configured according to your needs and run applications and analyses on that computer.</li>
 <li>Well suited for analyses that could crash your local computer. E.g. those that generate or use large output files or take too long</li>
 <li>HIPAA compliant/secure computing is available!</li>
@@ -598,13 +601,13 @@ AWS administratively.</p>
 <li>Select a region: geographic area where AWS has data centers</li>
 <li>Pick the AMI (OS)</li>
 <li>Pick an instance (T2 micro free tier!)</li>
-<li>Edit security groups</li>
 <li>Launch</li>
 </ul>
 <div id="step-1-log-in" class="section level4" number="11.4.1.1">
 <h4><span class="header-section-number">11.4.1.1</span> Step 1: log in</h4>
 <p><strong>Log in at</strong>: <a href="https://cfde-ctb.signin.aws.amazon.com/console" class="uri">https://cfde-ctb.signin.aws.amazon.com/console</a></p>
-<p>Use your registration e-mail and password <code>CFDErocks!</code> <span class="citation">@CTB</span></p>
+<p>Use your datalab-XX account (<code>datalab-08</code>) and the password
+<code>datalab-cfde</code>.</p>
 <p>Put up a hand on Zoom when you’ve successfully logged in with the
 workshop user credentials.</p>
 </div>
@@ -705,52 +708,8 @@ of compute you perform in a one month.</p>
 <li>You can proceed to launch the instance with default configurations by clicking on <span style="background-color: #FFFF00">Review and Launch</span>.</li>
 </ul>
 </div>
-<div id="step-6-optional-configurations" class="section level4" number="11.4.1.6">
-<h4><span class="header-section-number">11.4.1.6</span> Step 6: Optional configurations</h4>
-<p>(We’ll go through this after we get our first instance running! <span class="citation">@CTB</span>)</p>
-<p>There are several <em>optional</em> set up configurations.</p>
-<ul>
-<li>Start the first option by clicking <span style="background-color: #FFFF00">Next: Configure Instance Details</span> on the AWS page.</li>
-</ul>
-<p><strong>“Configure Instance”</strong></p>
-<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Configure_Instance.html">Configure the instance to suit your requirements</a>. You can:</p>
-<ul>
-<li>change number of instances to launch</li>
-<li>select the subnet to use</li>
-<li>modify Stop or Terminate behaviors</li>
-<li>control if you would like the instance to update with any patches when in use</li>
-<li>request Spot Instances</li>
-</ul>
-<p><strong>A note on “Spot Instance”:</strong> A <a href="https://aws.amazon.com/ec2/spot/?cards.sort-by=item.additionalFields.startDateTime&amp;cards.sort-order=asc">Spot
-Instance</a>
-is an unused EC2 instance that is available for less than the
-On-Demand price. Because Spot Instances enable you to request unused
-EC2 instances at steep discounts, you can lower your Amazon EC2 costs
-significantly.</p>
-<p><strong>“Configure Storage”</strong></p>
-<ul>
-<li>Your instance comes with a in built storage called <strong>instance store</strong> and is useful for temporary data storage. The default root volume on a <code>t2.micro</code> is 8 GB.</li>
-<li>For data you might want to retain longer or use across multiple instances or encrypt it is best to use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html"><strong>Amazon Elastic Block Store volumes (Amazon EBS)</strong></a>.</li>
-<li>Attaching EBS volumes to an instance are similar to using external hard drives connected to a computer.</li>
-<li>Click on <span style="background-color: #FFFF00">Add New Volume</span> for additional storage.</li>
-</ul>
-<p>You can get upto 30 GB of EBS general purpose (SSD) or Magnetic storage when using Free tier instances.</p>
-<p><strong>“Add Tags”</strong></p>
-<ul>
-<li>Tags are useful to categorize your AWS resources when you have many of them.</li>
-<li>A tag consists of a case-sensitive key-value pair. Some examples: GTEx-RNAseq, General-GWAS, KF-GWAS.</li>
-<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Learn more about tagging your Amazon EC2 resources</a>.</li>
-</ul>
-<p><strong>“Configure Security Group”</strong></p>
-<ul>
-<li>Similar to setting up a firewall through which we would modify connection of external world and the EC2 instance.</li>
-<li>Blocks/allow connections based on port number and IP.</li>
-<li>You can create a new security group or select from an existing one.</li>
-<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html">Learn more about Security groups for EC2 instances</a>.</li>
-</ul>
-</div>
-<div id="step-7-review-and-launch-instance" class="section level4" number="11.4.1.7">
-<h4><span class="header-section-number">11.4.1.7</span> Step 7: Review and launch instance</h4>
+<div id="step-6-review-and-launch-instance" class="section level4" number="11.4.1.6">
+<h4><span class="header-section-number">11.4.1.6</span> Step 6: Review and launch instance</h4>
 <p>The last tab in setup is <strong>Review</strong> which summarizes all the selected configurations for the instance.</p>
 <ul>
 <li>Click <span style="background-color: #FFFF00">Launch</span> after review.</li>
@@ -760,8 +719,8 @@ significantly.</p>
 <p class="caption">launch instance</p>
 </div>
 </div>
-<div id="step-7a-ssh-key-pair" class="section level4" number="11.4.1.8">
-<h4><span class="header-section-number">11.4.1.8</span> Step 7a: SSH Key pair</h4>
+<div id="step-6a-ssh-key-pair" class="section level4" number="11.4.1.7">
+<h4><span class="header-section-number">11.4.1.7</span> Step 6a: SSH Key pair</h4>
 <p>If you are launching an AWS instance for the first time, you will need to generate an ssh key pair. (See <a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-ssh-privatepublic-key-pairs">Using SSH private/public key pairs</a> from workshop 4!)</p>
 <ul>
 <li>Choose the <span style="background-color: #FFFF00">Create a new key pair</span> option from the drop down menu.</li>
@@ -781,8 +740,8 @@ you will not be able to connect to the instance.*</p>
 authentication improves security as it frees users from remembering
 complicated passwords and allows automated logins as well.</p>
 </div>
-<div id="step-7b-launch-status" class="section level4" number="11.4.1.9">
-<h4><span class="header-section-number">11.4.1.9</span> Step 7b: Launch status</h4>
+<div id="step-6b-launch-status" class="section level4" number="11.4.1.8">
+<h4><span class="header-section-number">11.4.1.8</span> Step 6b: Launch status</h4>
 <p>You will be directed to the <strong>Launch Status</strong> page where the green colored box on top indicates a successful launch!</p>
 <ul>
 <li>Click on this first hyperlink, which is the instance ID. Your hyperlink will be different!</li>
@@ -792,8 +751,8 @@ complicated passwords and allows automated logins as well.</p>
 <p class="caption">SSH</p>
 </div>
 </div>
-<div id="step-7c-get-your-machine-network-address" class="section level4" number="11.4.1.10">
-<h4><span class="header-section-number">11.4.1.10</span> Step 7c: Get your machine network address</h4>
+<div id="step-6c-get-your-machine-network-address" class="section level4" number="11.4.1.9">
+<h4><span class="header-section-number">11.4.1.9</span> Step 6c: Get your machine network address</h4>
 <p>The instance console page shows you a list of all your active instances. If you followed the instructions above, you should have only one.</p>
 <p>Here, you should <strong>name your machine</strong> by clicking on the empty spot under
 “Name”. Please name it something like “datalab-XX first machine”.</p>
@@ -836,13 +795,141 @@ to your instance via ssh can be found in the “SSH client” tab:</p>
 </div>
 </div>
 </div>
-<div id="installing-programs-and-running-them-in-the-cloud" class="section level2" number="11.5">
-<h2><span class="header-section-number">11.5</span> Installing programs and running them in the cloud</h2>
-<p><span class="citation">@CTB</span></p>
+<div id="using-your-computer-in-the-cloud" class="section level2" number="11.5">
+<h2><span class="header-section-number">11.5</span> Using your computer “in the cloud”</h2>
+<p>At this point, we can use most of the command we learned in the previous
+workshops!</p>
+<div id="inspecting-your-computer" class="section level3" number="11.5.1">
+<h3><span class="header-section-number">11.5.1</span> Inspecting your computer</h3>
+<p>See how much disk space you have in your home directory:</p>
+<pre><code>cd ~/
+df -h .</code></pre>
+<p>See how much memory you have access to:</p>
+<pre><code>free</code></pre>
+<p>Look at your available CPUs:</p>
+<pre><code>cat /proc/cpuinfo</code></pre>
 </div>
-<div id="downloading-data-from-aws-instance-onto-local-computer" class="section level2" number="11.6">
-<h2><span class="header-section-number">11.6</span> Downloading data from AWS instance onto local computer</h2>
-<p><span class="citation">@CTB</span></p>
+<div id="you-can-do-all-the-unix-things" class="section level3" number="11.5.2">
+<h3><span class="header-section-number">11.5.2</span> You can do all the UNIX things</h3>
+<p>Let’s start by taking a look at some of our friendly old data:</p>
+<pre><code>cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-binder/</code></pre>
+<p>and now you run <code>grep</code>, <code>gunzip</code>, <code>cut</code>, and <code>head</code> as usual –</p>
+<pre><code>cd ~/2021-remote-computing-binder/SouthParkData/
+gunzip All-seasons.csv.gz
+head All-seasons.csv
+cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
+<p>As before, you can’t run csvtk, though, because that’s not a commonly
+installed UNIX command -</p>
+<pre><code>csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
+</div>
+<div id="install-conda" class="section level3" number="11.5.3">
+<h3><span class="header-section-number">11.5.3</span> Install conda</h3>
+<p>Let’s install conda!</p>
+<p>Go to the <a href="https://docs.conda.io/en/latest/miniconda.html#linux-installers">miniconda download page</a> and copy the URL for Python 3.9, Miniconda3 Linux 64-bit.</p>
+<p>Then, run:</p>
+<pre><code>cd ~/
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh</code></pre>
+<p>Now, following <a href="https://conda.io/projects/conda/en/latest/user-guide/install/linux.html">the instructions for Linux install</a>, do:</p>
+<pre><code>bash ~/Miniconda3-py39_4.10.3-Linux-x86_64.sh</code></pre>
+<p>and answer “yes” to accept the license, and “yes” to have the installer
+initialize Miniconda.</p>
+<p>Then, reload your .bashrc:</p>
+<pre><code>source ~/.bashrc</code></pre>
+<p>and you should now be at a prompt that includes <code>(base)</code>, e.g. <code>(base) ubuntu@ip-172-30-2-92:~$</code>.</p>
+<p>We also need to add some channels (see <a href="installing-software-on-remote-computers-with-conda.html#installing-conda">Installing conda</a>) -</p>
+<pre><code>conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge</code></pre>
+<p>and then let’s install mamba, a faster version of the ‘conda’ command.</p>
+<pre><code>conda install -y mamba</code></pre>
+</div>
+<div id="run-programs-snakemake" class="section level3" number="11.5.4">
+<h3><span class="header-section-number">11.5.4</span> Run programs / snakemake</h3>
+<p>Let’s reprise <a href="automating-your-analyses-with-the-snakemake-workflow-system.html#automating-your-analyses-with-the-snakemake-workflow-system">Automating your analyses with the snakemake workflow system</a>.</p>
+<p>First, let’s check out a git repository that contains our snakemake
+workflow:</p>
+<pre><code>cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-snakemake</code></pre>
+<p>Then, create a conda environment with the necessary software:</p>
+<pre><code>mamba create -n snakemake -y snakemake-minimal fastqc salmon
+conda activate snakemake</code></pre>
+<p>Change our working directory to the git repo:</p>
+<pre><code>cd ~/2021-remote-computing-snakemake/</code></pre>
+<p>Run a shell script to download the raw data:</p>
+<pre><code>./download.sh</code></pre>
+<p>…and finally, run snakemake!</p>
+<pre><code>snakemake -j 1</code></pre>
+<p>Tada!</p>
+</div>
+<div id="summing-things-up-round-1" class="section level3" number="11.5.5">
+<h3><span class="header-section-number">11.5.5</span> Summing things up, round 1</h3>
+<p>This highlights many of the things that we’ve taught you in this workshop
+series:</p>
+<ul>
+<li>logging into a remote computer - in this case, an amazon instance</li>
+<li>downloading files directly to a remote computer</li>
+<li>installing software with conda</li>
+<li>cloning a git repository containing text files</li>
+<li>using a shell script to automate some tasks</li>
+<li>using snakemake to orchestrate a workflow</li>
+</ul>
+<p>and it’s worth noting that essentially everything we did works equally
+well on a local Linux laptop, a remote HPC, and a remote cloud computer.</p>
+<p>In this case, this is a private computer that only you have access to,
+so you don’t need to worry about protecting your files or using a queue
+to run software.</p>
+</div>
+</div>
+<div id="configuring-your-instance-differently." class="section level2" number="11.6">
+<h2><span class="header-section-number">11.6</span> Configuring your instance differently.</h2>
+<p>There are several <em>optional</em> set up configurations. Let’s explore them!</p>
+<p>Go back to your <a href="https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#Instances:">instance
+page</a>
+and let’s set up a new computer and explore some of the options that
+are available to you.</p>
+<p>Click launch and then:</p>
+<ul>
+<li>Pick the AMI (OS) - Ubuntu Pro 20.04 LTS</li>
+<li>Pick an instance (T2 micro free tier!)</li>
+</ul>
+<p>and now click <span style="background-color: #FFFF00">Next: Configure
+Instance Details</span> on the AWS page.</p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Configure_Instance.html">Configure the instance to suit your requirements</a>. You can:</p>
+<ul>
+<li>change number of instances to launch</li>
+<li>select the subnet to use</li>
+<li>modify Stop or Terminate behaviors</li>
+<li>control if you would like the instance to update with any patches when in use</li>
+<li>request Spot Instances</li>
+</ul>
+<p><strong>A note on “Spot Instance”:</strong> A <a href="https://aws.amazon.com/ec2/spot/?cards.sort-by=item.additionalFields.startDateTime&amp;cards.sort-order=asc">Spot
+Instance</a>
+is an unused EC2 instance that is available for less than the
+On-Demand price. Because Spot Instances enable you to request unused
+EC2 instances at steep discounts, you can lower your Amazon EC2 costs
+significantly.</p>
+<p><strong>“Configure Storage”</strong></p>
+<ul>
+<li>Your instance comes with a in built storage called <strong>instance store</strong> and is useful for temporary data storage. The default root volume on a <code>t2.micro</code> is 8 GB.</li>
+<li>For data you might want to retain longer or use across multiple instances or encrypt it is best to use the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html"><strong>Amazon Elastic Block Store volumes (Amazon EBS)</strong></a>.</li>
+<li>Attaching EBS volumes to an instance are similar to using external hard drives connected to a computer.</li>
+<li>Click on <span style="background-color: #FFFF00">Add New Volume</span> for additional storage.</li>
+</ul>
+<p>You can get up to 30 GB of EBS general purpose (SSD) or Magnetic storage when using Free tier instances.</p>
+<p><strong>“Add Tags”</strong></p>
+<ul>
+<li>Tags are useful to categorize your AWS resources when you have many of them.</li>
+<li>A tag consists of a case-sensitive key-value pair. Some examples: GTEx-RNAseq, General-GWAS, KF-GWAS.</li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Learn more about tagging your Amazon EC2 resources</a>.</li>
+</ul>
+<p><strong>“Configure Security Group”</strong></p>
+<ul>
+<li>Similar to setting up a firewall through which we would modify connection of external world and the EC2 instance.</li>
+<li>Blocks/allow connections based on port number and IP.</li>
+<li>You can create a new security group or select from an existing one.</li>
+<li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html">Learn more about Security groups for EC2 instances</a>.</li>
+</ul>
 </div>
 <div id="shutting-down-instances" class="section level2" number="11.7">
 <h2><span class="header-section-number">11.7</span> Shutting down instances</h2>
@@ -867,7 +954,7 @@ to your instance via ssh can be found in the “SSH client” tab:</p>
 <li>complete shutdown</li>
 <li>separate disks are detached</li>
 <li>data stored in EBS root volume is lost forever</li>
-<li>instance cannot be relaunched</li>
+<li>instance cannot be re-launched</li>
 </ul></li>
 </ul>
 <p>To enable Hibernation, click the box in the Configure Instance step of the setup.</p>
@@ -892,6 +979,7 @@ to your instance via ssh can be found in the “SSH client” tab:</p>
 <li>How to install and run a software program on the instance</li>
 <li>How to terminate your instance</li>
 </ul>
+<p><strong>Reminder:</strong> Terminate all your instances!</p>
 <div id="additional-resources-2" class="section level3" number="11.9.1">
 <h3><span class="header-section-number">11.9.1</span> Additional Resources</h3>
 <ul>
@@ -958,9 +1046,8 @@ GB/month is still free, but the next 9.999 TB/month cost $0.25 per GB.</p>
 <div id="concluding-thoughts-on-the-cloud" class="section level2" number="11.11">
 <h2><span class="header-section-number">11.11</span> Concluding thoughts on the cloud</h2>
 <p>Laptop vs farm head node vs farm compute node vs cloud computing</p>
-<p>Remote computing is generic - Almost everything we taught you works the
-same, except workshop 10 / slurm.</p>
-<p><span class="citation">@CTB</span> check notes</p>
+<!-- @CTB check notes ->
+
 
 </div>
 </div>

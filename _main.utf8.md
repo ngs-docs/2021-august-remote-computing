@@ -6532,17 +6532,16 @@ and snakemake will all work on any modern UNIX system.
 
 # Making use of on-demand “cloud” computers from Amazon Web Services
 
-TODO @CTB:
+<!-- TODO @CTB:
 
 * imgur links
-* check names of everything (keys, computers, etc.)
 * check connection on VMWare
-* create accounts!
+-->
 
 This two hour workshop will introduce attendees to AWS computer
 “instances” that let you rent compute time on large or specialized
 computers.  We'll create a small general-purpose Linux computer,
-connect to it, install some software, and explore the computiung
+connect to it, install some software, and explore the computing
 environment.
 
 This lesson is based on [materials](https://github.com/nih-cfde/training-and-engagement/wiki/A-Hands-On-Introduction-to-AWS:-June-30,-2021#lets-get-started) originally developed by Abhijna Parigi,
@@ -6555,10 +6554,8 @@ use of cloud computers for your work.
 
 * Brief introduction to AWS and the cloud
 * Set up an instance and connect to it
-* Install and run things in the cloud computer
-* @CTB
-* Learn how to download output files to local machine
-* Take your questions
+* Install and run things on the cloud computer
+* View optional configuration settings for AWS instances
 
 ## Some background
 
@@ -6608,7 +6605,7 @@ For more on why EC2 is named the way it is, see [Elasticity (cloud computing)](h
 
 ### EC2
 
-- Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud.
+- Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, re-sizable compute capacity in the cloud.
 - Basically, you rent virtual computers that are configured according to your needs and run applications and analyses on that computer. 
 - Well suited for analyses that could crash your local computer. E.g. those that generate or use large output files or take too long
 - HIPAA compliant/secure computing is available!
@@ -6634,14 +6631,14 @@ We're going do go through the following:
 - Select a region: geographic area where AWS has data centers
 - Pick the AMI (OS)
 - Pick an instance (T2 micro free tier!) 
-- Edit security groups
 - Launch
 
 #### Step 1: log in
 
 **Log in at**: https://cfde-ctb.signin.aws.amazon.com/console
 
-Use your registration e-mail and password `CFDErocks!` @CTB
+Use your datalab-XX account (`datalab-08`) and the password
+`datalab-cfde`.
 
 Put up a hand on Zoom when you've successfully logged in with the
 workshop user credentials.
@@ -6721,54 +6718,7 @@ of compute you perform in a one month.
 
 * You can proceed to launch the instance with default configurations by clicking on <span style="background-color: #FFFF00">Review and Launch</span>.
 
-#### Step 6: Optional configurations
-
-(We'll go through this after we get our first instance running! @CTB)
-
-There are several _optional_ set up configurations.
-
-* Start the first option by clicking <span style="background-color: #FFFF00">Next: Configure Instance Details</span> on the AWS page.
-
-**"Configure Instance"**
-
-[Configure the instance to suit your requirements](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Configure_Instance.html). You can:
-
-* change number of instances to launch
-* select the subnet to use
-* modify Stop or Terminate behaviors
-* control if you would like the instance to update with any patches when in use
-* request Spot Instances
-
-**A note on "Spot Instance":** A [Spot
-Instance](https://aws.amazon.com/ec2/spot/?cards.sort-by=item.additionalFields.startDateTime&cards.sort-order=asc)
-is an unused EC2 instance that is available for less than the
-On-Demand price. Because Spot Instances enable you to request unused
-EC2 instances at steep discounts, you can lower your Amazon EC2 costs
-significantly.
-
-**"Configure Storage"**
-
-* Your instance comes with a in built storage called **instance store** and is useful for temporary data storage. The default root volume on a `t2.micro` is 8 GB.
-* For data you might want to retain longer or use across multiple instances or encrypt it is best to use the [**Amazon Elastic Block Store volumes (Amazon EBS)**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html).
-* Attaching EBS volumes to an instance are similar to using external hard drives connected to a computer.
-* Click on <span style="background-color: #FFFF00">Add New Volume</span> for additional storage.
-
-You can get upto 30 GB of EBS general purpose (SSD) or Magnetic storage when using Free tier instances.
-
-**"Add Tags"**
-
-* Tags are useful to categorize your AWS resources when you have many of them.
-* A tag consists of a case-sensitive key-value pair. Some examples: GTEx-RNAseq, General-GWAS, KF-GWAS.
-* [Learn more about tagging your Amazon EC2 resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
-
-**"Configure Security Group"**
-
-* Similar to setting up a firewall through which we would modify connection of external world and the EC2 instance.
-* Blocks/allow connections based on port number and IP.
-* You can create a new security group or select from an existing one.
-* [Learn more about Security groups for EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html).   
-
-#### Step 7: Review and launch instance
+#### Step 6: Review and launch instance
 
 The last tab in setup is **Review** which summarizes all the selected configurations for the instance.
 
@@ -6776,7 +6726,7 @@ The last tab in setup is **Review** which summarizes all the selected configurat
 
 ![launch instance](aws_launch.png "launch the instance")
 
-#### Step 7a: SSH Key pair
+#### Step 6a: SSH Key pair
 If you are launching an AWS instance for the first time, you will need to generate an ssh key pair. (See [Using SSH private/public key pairs] from workshop 4!)
 
 * Choose the <span style="background-color: #FFFF00">Create a new key pair</span> option from the drop down menu.
@@ -6795,7 +6745,7 @@ If you are launching an AWS instance for the first time, you will need to genera
 authentication improves security as it frees users from remembering
 complicated passwords and allows automated logins as well.
 
-#### Step 7b: Launch status
+#### Step 6b: Launch status
 
 You will be directed to the **Launch Status** page where the green colored box on top indicates a successful launch!
 
@@ -6804,7 +6754,7 @@ You will be directed to the **Launch Status** page where the green colored box o
 ![SSH](aws_11.png "Instance ID link")
 
 
-#### Step 7c: Get your machine network address
+#### Step 6c: Get your machine network address
 
 The instance console page shows you a list of all your active instances. If you followed the instructions above, you should have only one.
 
@@ -6849,13 +6799,204 @@ to your instance via ssh can be found in the "SSH client" tab:
 
 ![](https://i.imgur.com/EilADhq.png)
 
-## Installing programs and running them in the cloud
+## Using your computer "in the cloud"
 
-@CTB
+At this point, we can use most of the command we learned in the previous
+workshops!
 
-## Downloading data from AWS instance onto local computer
+### Inspecting your computer
 
-@CTB
+See how much disk space you have in your home directory:
+```
+cd ~/
+df -h .
+```
+
+See how much memory you have access to:
+```
+free
+```
+
+Look at your available CPUs:
+```
+cat /proc/cpuinfo
+```
+
+### You can do all the UNIX things
+
+Let's start by taking a look at some of our friendly old data:
+
+```
+cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-binder/
+```
+
+and now you run `grep`, `gunzip`, `cut`, and `head` as usual --
+
+```
+cd ~/2021-remote-computing-binder/SouthParkData/
+gunzip All-seasons.csv.gz
+head All-seasons.csv
+cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c
+```
+
+As before, you can't run csvtk, though, because that's not a commonly
+installed UNIX command -
+
+```
+csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
+```
+
+### Install conda
+
+Let's install conda!
+
+Go to the [miniconda download page](https://docs.conda.io/en/latest/miniconda.html#linux-installers) and copy the URL for Python 3.9, Miniconda3 Linux 64-bit.
+
+Then, run:
+
+```
+cd ~/
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-py39_4.10.3-Linux-x86_64.sh
+```
+
+Now, following [the instructions for Linux install](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html), do:
+
+```
+bash ~/Miniconda3-py39_4.10.3-Linux-x86_64.sh
+```
+
+and answer "yes" to accept the license, and "yes" to have the installer
+initialize Miniconda.
+
+Then, reload your .bashrc:
+```
+source ~/.bashrc
+```
+
+and you should now be at a prompt that includes `(base)`, e.g. `(base)
+ubuntu@ip-172-30-2-92:~$ `.
+
+We also need to add some channels (see [Installing conda]) -
+
+```
+conda config --add channels defaults
+conda config --add channels bioconda
+conda config --add channels conda-forge
+```
+
+and then let's install mamba, a faster version of the 'conda' command.
+```
+conda install -y mamba
+```
+
+### Run programs / snakemake
+
+Let's reprise [Automating your analyses with the snakemake workflow system].
+
+First, let's check out a git repository that contains our snakemake
+workflow:
+```
+cd ~/
+git clone https://github.com/ngs-docs/2021-remote-computing-snakemake
+```
+
+Then, create a conda environment with the necessary software:
+```
+mamba create -n snakemake -y snakemake-minimal fastqc salmon
+conda activate snakemake
+```
+
+Change our working directory to the git repo:
+```
+cd ~/2021-remote-computing-snakemake/
+```
+
+Run a shell script to download the raw data:
+```
+./download.sh
+```
+
+...and finally, run snakemake!
+
+```
+snakemake -j 1
+```
+
+Tada!
+
+### Summing things up, round 1
+
+This highlights many of the things that we've taught you in this workshop
+series:
+
+* logging into a remote computer - in this case, an amazon instance
+* downloading files directly to a remote computer
+* installing software with conda
+* cloning a git repository containing text files
+* using a shell script to automate some tasks
+* using snakemake to orchestrate a workflow
+
+and it's worth noting that essentially everything we did works equally
+well on a local Linux laptop, a remote HPC, and a remote cloud computer.
+
+In this case, this is a private computer that only you have access to,
+so you don't need to worry about protecting your files or using a queue
+to run software.
+
+## Configuring your instance differently.
+
+There are several _optional_ set up configurations. Let's explore them!
+
+Go back to your [instance
+page](https://us-west-1.console.aws.amazon.com/ec2/v2/home?region=us-west-1#Instances:)
+and let's set up a new computer and explore some of the options that
+are available to you.
+
+Click launch and then:
+
+- Pick the AMI (OS) - Ubuntu Pro 20.04 LTS
+- Pick an instance (T2 micro free tier!)
+
+and now click <span style="background-color: #FFFF00">Next: Configure
+Instance Details</span> on the AWS page.
+
+[Configure the instance to suit your requirements](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Configure_Instance.html). You can:
+
+* change number of instances to launch
+* select the subnet to use
+* modify Stop or Terminate behaviors
+* control if you would like the instance to update with any patches when in use
+* request Spot Instances
+
+**A note on "Spot Instance":** A [Spot
+Instance](https://aws.amazon.com/ec2/spot/?cards.sort-by=item.additionalFields.startDateTime&cards.sort-order=asc)
+is an unused EC2 instance that is available for less than the
+On-Demand price. Because Spot Instances enable you to request unused
+EC2 instances at steep discounts, you can lower your Amazon EC2 costs
+significantly.
+
+**"Configure Storage"**
+
+* Your instance comes with a in built storage called **instance store** and is useful for temporary data storage. The default root volume on a `t2.micro` is 8 GB.
+* For data you might want to retain longer or use across multiple instances or encrypt it is best to use the [**Amazon Elastic Block Store volumes (Amazon EBS)**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html).
+* Attaching EBS volumes to an instance are similar to using external hard drives connected to a computer.
+* Click on <span style="background-color: #FFFF00">Add New Volume</span> for additional storage.
+
+You can get up to 30 GB of EBS general purpose (SSD) or Magnetic storage when using Free tier instances.
+
+**"Add Tags"**
+
+* Tags are useful to categorize your AWS resources when you have many of them.
+* A tag consists of a case-sensitive key-value pair. Some examples: GTEx-RNAseq, General-GWAS, KF-GWAS.
+* [Learn more about tagging your Amazon EC2 resources](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html).
+
+**"Configure Security Group"**
+
+* Similar to setting up a firewall through which we would modify connection of external world and the EC2 instance.
+* Blocks/allow connections based on port number and IP.
+* You can create a new security group or select from an existing one.
+* [Learn more about Security groups for EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-security-groups.html).   
 
 ## Shutting down instances
 
@@ -6878,7 +7019,7 @@ When you shut down your instance, any data that is on a non-persistent disk goes
     - complete shutdown 
     - separate disks are detached
     - data stored in EBS root volume is lost forever
-    - instance cannot be relaunched
+    - instance cannot be re-launched
 
 To enable Hibernation, click the box in the Configure Instance step of the setup.
 
@@ -6902,6 +7043,8 @@ Hints:
 - How to connect to the instance
 - How to install and run a software program on the instance 
 - How to terminate your instance 
+
+**Reminder:** Terminate all your instances!
 
 ### Additional Resources
 
@@ -6964,10 +7107,7 @@ Check out our [AWS discussion board](https://github.com/nih-cfde/training-and-en
 
 Laptop vs farm head node vs farm compute node vs cloud computing
 
-Remote computing is generic - Almost everything we taught you works the
-same, except workshop 10 / slurm.
-
-@CTB check notes
+<!-- @CTB check notes ->
 
 <!--chapter:end:11-aws-cloud.Rmd-->
 
