@@ -288,3 +288,4 @@ what-are-the-advantages-of-using-aws-over-an-academic-hpc
 can-you-set-up-multiple-instances-at-once
 can-you-launch-more-than-one-instance-with-the-same-configurations
 can-you-copy-an-instance-or-share-an-instance-with-collaborators
+concluding-thoughts-on-the-cloud

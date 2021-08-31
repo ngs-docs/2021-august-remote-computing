@@ -396,7 +396,9 @@ snakemake -j 1
 
 Tada! You'll have all your output files etc.
 
-<!-- @CTB transfer? -->
+(Note that you could perfectly well have run this inside of a screen session - see [Persistent sessions with screen and tmux].)
+
+<!-- @CTB transfer files? -->
 
 ### Summing things up, round 1
 
@@ -414,8 +416,8 @@ and it's worth noting that essentially everything we did works equally
 well on a local Linux laptop, a remote HPC, and a remote cloud computer.
 
 In this case, this is a private computer that only you have access to,
-so you don't need to worry about protecting your files or using a queue
-to run software.
+so you don't need to worry about file permissions or using a queue
+to run workflows.
 
 ## Configuring your instance differently.
 
@@ -562,7 +564,7 @@ See https://aws.amazon.com/ebs/pricing/
 ### Can you set up multiple instances at once
 
 - Yes!
-- There is a limit per account but it is a very large number and doesn't apply to most people
+- There is a limit per account but it is a very large number and won't apply to most people. (The limit is there to keep you from spending a lot of money by accident.)
 
 ### Can you launch more than one instance with the same configurations?
 
@@ -576,8 +578,30 @@ See https://aws.amazon.com/ebs/pricing/
 
 Check out our [AWS discussion board](https://github.com/nih-cfde/training-and-engagement/discussions/categories/aws) for FAQs and discussion. We encourage you to post questions there!
 
-<!-- ## Concluding thoughts on the cloud
+## Concluding thoughts on the cloud
 
-Laptop vs farm head node vs farm compute node vs cloud computing
--->
-<!-- @CTB check notes ->
+If your laptop can run your analysis, there's no need to use the cloud.
+
+Binder is a free, configurable option that runs in the cloud (remember
+binder, from [Introduction to the UNIX Command Line]? :)
+
+Sometimes labs have workstations, and you can use those, too!
+
+If you have an HPC account, you can try using that.
+
+Cloud computing is most useful when you _don't_ have an investment in
+an existing computer, _and_ you have a sudden need to do a bunch of
+compute.  It can also be a way to briefly expand your compute options.
+Last but by no means least, cloud computers often have fast and cheap
+access to VERY large data sets; this is one reason why the NIH is so
+interested in data reuse via cloud computing.
+
+AWS and GCP are commercial cloud options. If you prefer to write mini
+grant applications, NSF XSEDE will give you AWS-like computers via
+Jetstream, and HPC-like computers via PSC Blacklight and others. (Ask
+us for more information on these!)
+
+The key thing is that everything we showed you works almost equally
+well independent of where you're computing. The only differences are
+when you start needing to cooperate with others, via e.g. Slurm
+queueing.

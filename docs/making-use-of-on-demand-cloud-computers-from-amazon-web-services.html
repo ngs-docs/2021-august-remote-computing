@@ -479,6 +479,7 @@
 <li class="chapter" data-level="11.10.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-launch-more-than-one-instance-with-the-same-configurations"><i class="fa fa-check"></i><b>11.10.5</b> Can you launch more than one instance with the same configurations?</a></li>
 <li class="chapter" data-level="11.10.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-copy-an-instance-or-share-an-instance-with-collaborators"><i class="fa fa-check"></i><b>11.10.6</b> Can you copy an instance or share an instance with collaborators?</a></li>
 </ul></li>
+<li class="chapter" data-level="11.11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#concluding-thoughts-on-the-cloud"><i class="fa fa-check"></i><b>11.11</b> Concluding thoughts on the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
 <ul>
@@ -862,7 +863,8 @@ conda activate snakemake</code></pre>
 <p>…and finally, run snakemake!</p>
 <pre><code>snakemake -j 1</code></pre>
 <p>Tada! You’ll have all your output files etc.</p>
-<!-- @CTB transfer? -->
+<p>(Note that you could perfectly well have run this inside of a screen session - see <a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#persistent-sessions-with-screen-and-tmux">Persistent sessions with screen and tmux</a>.)</p>
+<!-- @CTB transfer files? -->
 </div>
 <div id="summing-things-up-round-1" class="section level3" number="11.5.5">
 <h3><span class="header-section-number">11.5.5</span> Summing things up, round 1</h3>
@@ -879,8 +881,8 @@ series:</p>
 <p>and it’s worth noting that essentially everything we did works equally
 well on a local Linux laptop, a remote HPC, and a remote cloud computer.</p>
 <p>In this case, this is a private computer that only you have access to,
-so you don’t need to worry about protecting your files or using a queue
-to run software.</p>
+so you don’t need to worry about file permissions or using a queue
+to run workflows.</p>
 </div>
 </div>
 <div id="configuring-your-instance-differently." class="section level2" number="11.6">
@@ -1026,7 +1028,7 @@ GB/month is still free, but the next 9.999 TB/month cost $0.25 per GB.</p>
 <h3><span class="header-section-number">11.10.4</span> Can you set up multiple instances at once</h3>
 <ul>
 <li>Yes!</li>
-<li>There is a limit per account but it is a very large number and doesn’t apply to most people</li>
+<li>There is a limit per account but it is a very large number and won’t apply to most people. (The limit is there to keep you from spending a lot of money by accident.)</li>
 </ul>
 </div>
 <div id="can-you-launch-more-than-one-instance-with-the-same-configurations" class="section level3" number="11.10.5">
@@ -1043,14 +1045,30 @@ GB/month is still free, but the next 9.999 TB/month cost $0.25 per GB.</p>
 <li>The way to clone an instance is via <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html">snapshots</a></li>
 </ul>
 <p>Check out our <a href="https://github.com/nih-cfde/training-and-engagement/discussions/categories/aws">AWS discussion board</a> for FAQs and discussion. We encourage you to post questions there!</p>
-<!-- ## Concluding thoughts on the cloud
-
-Laptop vs farm head node vs farm compute node vs cloud computing
--->
-<!-- @CTB check notes ->
-
-
 </div>
+</div>
+<div id="concluding-thoughts-on-the-cloud" class="section level2" number="11.11">
+<h2><span class="header-section-number">11.11</span> Concluding thoughts on the cloud</h2>
+<p>If your laptop can run your analysis, there’s no need to use the cloud.</p>
+<p>Binder is a free, configurable option that runs in the cloud (remember
+binder, from <a href="introduction-to-the-unix-command-line.html#introduction-to-the-unix-command-line">Introduction to the UNIX Command Line</a>? :)</p>
+<p>Sometimes labs have workstations, and you can use those, too!</p>
+<p>If you have an HPC account, you can try using that.</p>
+<p>Cloud computing is most useful when you <em>don’t</em> have an investment in
+an existing computer, <em>and</em> you have a sudden need to do a bunch of
+compute. It can also be a way to briefly expand your compute options.
+Last but by no means least, cloud computers often have fast and cheap
+access to VERY large data sets; this is one reason why the NIH is so
+interested in data reuse via cloud computing.</p>
+<p>AWS and GCP are commercial cloud options. If you prefer to write mini
+grant applications, NSF XSEDE will give you AWS-like computers via
+Jetstream, and HPC-like computers via PSC Blacklight and others. (Ask
+us for more information on these!)</p>
+<p>The key thing is that everything we showed you works almost equally
+well independent of where you’re computing. The only differences are
+when you start needing to cooperate with others, via e.g. Slurm
+queueing.</p>
+
 </div>
 </div>
             </section>
