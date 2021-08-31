@@ -394,7 +394,9 @@ Run a shell script to download the raw data:
 snakemake -j 1
 ```
 
-Tada!
+Tada! You'll have all your output files etc.
+
+<!-- @CTB transfer? -->
 
 ### Summing things up, round 1
 
