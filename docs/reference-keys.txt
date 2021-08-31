@@ -274,7 +274,7 @@ using-your-computer-in-the-cloud
 inspecting-your-computer
 you-can-do-all-the-unix-things
 install-conda
-run-programs-snakemake
+run-a-snakemake-workflow
 summing-things-up-round-1
 configuring-your-instance-differently.
 shutting-down-instances
@@ -288,4 +288,3 @@ what-are-the-advantages-of-using-aws-over-an-academic-hpc
 can-you-set-up-multiple-instances-at-once
 can-you-launch-more-than-one-instance-with-the-same-configurations
 can-you-copy-an-instance-or-share-an-instance-with-collaborators
-concluding-thoughts-on-the-cloud

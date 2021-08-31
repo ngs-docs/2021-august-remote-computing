@@ -460,7 +460,7 @@
 <li class="chapter" data-level="11.5.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#inspecting-your-computer"><i class="fa fa-check"></i><b>11.5.1</b> Inspecting your computer</a></li>
 <li class="chapter" data-level="11.5.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#you-can-do-all-the-unix-things"><i class="fa fa-check"></i><b>11.5.2</b> You can do all the UNIX things</a></li>
 <li class="chapter" data-level="11.5.3" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#install-conda"><i class="fa fa-check"></i><b>11.5.3</b> Install conda</a></li>
-<li class="chapter" data-level="11.5.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#run-programs-snakemake"><i class="fa fa-check"></i><b>11.5.4</b> Run programs / snakemake</a></li>
+<li class="chapter" data-level="11.5.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#run-a-snakemake-workflow"><i class="fa fa-check"></i><b>11.5.4</b> Run a snakemake workflow</a></li>
 <li class="chapter" data-level="11.5.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#summing-things-up-round-1"><i class="fa fa-check"></i><b>11.5.5</b> Summing things up, round 1</a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#configuring-your-instance-differently."><i class="fa fa-check"></i><b>11.6</b> Configuring your instance differently.</a></li>
@@ -479,7 +479,6 @@
 <li class="chapter" data-level="11.10.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-launch-more-than-one-instance-with-the-same-configurations"><i class="fa fa-check"></i><b>11.10.5</b> Can you launch more than one instance with the same configurations?</a></li>
 <li class="chapter" data-level="11.10.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-copy-an-instance-or-share-an-instance-with-collaborators"><i class="fa fa-check"></i><b>11.10.6</b> Can you copy an instance or share an instance with collaborators?</a></li>
 </ul></li>
-<li class="chapter" data-level="11.11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#concluding-thoughts-on-the-cloud"><i class="fa fa-check"></i><b>11.11</b> Concluding thoughts on the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
 <ul>
@@ -822,6 +821,8 @@ cut -d, -f3 All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
 <p>As before, you can’t run csvtk, though, because that’s not a commonly
 installed UNIX command -</p>
 <pre><code>csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c</code></pre>
+<p>Also, note that the nano and vi editors are installed by default, but
+not emacs.</p>
 </div>
 <div id="install-conda" class="section level3" number="11.5.3">
 <h3><span class="header-section-number">11.5.3</span> Install conda</h3>
@@ -844,8 +845,8 @@ conda config --add channels conda-forge</code></pre>
 <p>and then let’s install mamba, a faster version of the ‘conda’ command.</p>
 <pre><code>conda install -y mamba</code></pre>
 </div>
-<div id="run-programs-snakemake" class="section level3" number="11.5.4">
-<h3><span class="header-section-number">11.5.4</span> Run programs / snakemake</h3>
+<div id="run-a-snakemake-workflow" class="section level3" number="11.5.4">
+<h3><span class="header-section-number">11.5.4</span> Run a snakemake workflow</h3>
 <p>Let’s reprise <a href="automating-your-analyses-with-the-snakemake-workflow-system.html#automating-your-analyses-with-the-snakemake-workflow-system">Automating your analyses with the snakemake workflow system</a>.</p>
 <p>First, let’s check out a git repository that contains our snakemake
 workflow:</p>
@@ -1041,14 +1042,14 @@ GB/month is still free, but the next 9.999 TB/month cost $0.25 per GB.</p>
 <li>The way to clone an instance is via <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html">snapshots</a></li>
 </ul>
 <p>Check out our <a href="https://github.com/nih-cfde/training-and-engagement/discussions/categories/aws">AWS discussion board</a> for FAQs and discussion. We encourage you to post questions there!</p>
-</div>
-</div>
-<div id="concluding-thoughts-on-the-cloud" class="section level2" number="11.11">
-<h2><span class="header-section-number">11.11</span> Concluding thoughts on the cloud</h2>
-<p>Laptop vs farm head node vs farm compute node vs cloud computing</p>
+<!-- ## Concluding thoughts on the cloud
+
+Laptop vs farm head node vs farm compute node vs cloud computing
+-->
 <!-- @CTB check notes ->
 
 
+</div>
 </div>
 </div>
             </section>

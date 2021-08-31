@@ -6847,6 +6847,9 @@ installed UNIX command -
 csvtk cut -f Character All-seasons.csv | grep Computer | sort | uniq -c
 ```
 
+Also, note that the nano and vi editors are installed by default, but
+not emacs.
+
 ### Install conda
 
 Let's install conda!
@@ -6890,7 +6893,7 @@ and then let's install mamba, a faster version of the 'conda' command.
 conda install -y mamba
 ```
 
-### Run programs / snakemake
+### Run a snakemake workflow
 
 Let's reprise [Automating your analyses with the snakemake workflow system].
 
@@ -7103,10 +7106,10 @@ See https://aws.amazon.com/ebs/pricing/
 
 Check out our [AWS discussion board](https://github.com/nih-cfde/training-and-engagement/discussions/categories/aws) for FAQs and discussion. We encourage you to post questions there!
 
-## Concluding thoughts on the cloud
+<!-- ## Concluding thoughts on the cloud
 
 Laptop vs farm head node vs farm compute node vs cloud computing
-
+-->
 <!-- @CTB check notes ->
 
 <!--chapter:end:11-aws-cloud.Rmd-->
