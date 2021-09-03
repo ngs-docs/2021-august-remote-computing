@@ -1,6 +1,15 @@
-# remote-computing-base
+# An Introduction to Remote Computing
 
-CTB fill in :)
+These are the source materials for the August 2021 offering of An
+Introduction to Remote Computing.
+
+See
+[the course Web site](https://ngs-docs.github.io/2021-august-remote-computing)
+for the rendered materials, including links to recordings!
+
+See
+[the base repository](https://github.com/ngs-docs/remote-computing-base)
+for material that may be more up to date and can be reused/remixed.
 
 ## Legacy material
 
