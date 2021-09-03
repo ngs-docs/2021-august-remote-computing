@@ -30,28 +30,28 @@ output:
 
 ## Introductory skills {-}
 
-Workshop 1: [Introduction to the UNIX Command Line](introduction-to-the-unix-command-line.html) - Tues Aug 3
+Workshop 1: [Introduction to the UNIX Command Line](introduction-to-the-unix-command-line.html)
 
-Workshop 2: [Creating and modifying text files on remote computers](creating-and-modifying-text-files-on-remote-computers.html) - Wed Aug 4
+Workshop 2: [Creating and modifying text files on remote computers](creating-and-modifying-text-files-on-remote-computers.html)
 
 ## Intermediate skills {-}
 
-Workshop 3: [Connecting to remote computers with ssh](connecting-to-remote-computers-with-ssh.html) - Tues Aug 10
+Workshop 3: [Connecting to remote computers with ssh](connecting-to-remote-computers-with-ssh.html)
 
-Workshop 4: [Running programs on remote computers and retrieving the results](running-programs-on-remote-computers-and-retrieving-the-results.html) - Th Aug 12
+Workshop 4: [Running programs on remote computers and retrieving the results](running-programs-on-remote-computers-and-retrieving-the-results.html)
 
-Workshop 5: [Installing software on remote computers with conda](installing-software-on-remote-computers-with-conda.html) - Fri Aug 13
+Workshop 5: [Installing software on remote computers with conda](installing-software-on-remote-computers-with-conda.html)
 
-Workshop 6: [Structuring your projects for current and future you](structuring-your-projects-for-current-and-future-you.html) - Tues Aug 17
+Workshop 6: [Structuring your projects for current and future you](structuring-your-projects-for-current-and-future-you.html)
 
-Workshop 7: [Automating your analyses and executing long-running analyses on remote computers](automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html) - Th Aug 19
+Workshop 7: [Automating your analyses and executing long-running analyses on remote computers](automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html)
 
-Workshop 8: [Keeping track of your files with version control](keeping-track-of-your-files-with-version-control.html) - Tues Aug 24
+Workshop 8: [Keeping track of your files with version control](keeping-track-of-your-files-with-version-control.html)
 
 ## Advanced skills {-}
 
-Workshop 9: [Automating your analyses with the snakemake workflow system](automating-your-analyses-with-the-snakemake-workflow-system.html) - Wed Aug 25
+Workshop 9: [Automating your analyses with the snakemake workflow system](automating-your-analyses-with-the-snakemake-workflow-system.html)
 
-Workshop 10: [Executing large analyses on HPC clusters with slurm](executing-large-analyses-on-hpc-clusters-with-slurm.html) - Th Aug 26
+Workshop 10: [Executing large analyses on HPC clusters with slurm](executing-large-analyses-on-hpc-clusters-with-slurm.html)
 
-Workshop 11: [Making use of on-demand "cloud" computers from Amazon Web Services](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html) - Tues Aug 31
+Workshop 11: [Making use of on-demand "cloud" computers from Amazon Web Services](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html)

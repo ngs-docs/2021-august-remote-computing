@@ -27,3 +27,17 @@ Temporary Items
 # Bookdown intermediate files
 _main*
 *~
+01-command-line.utf8.md
+02-text-files.utf8.md
+03-ssh-farm.utf8.md
+04-ssh-file-transfer.utf8.md
+05-conda.utf8.md
+06-projects.utf8.md
+07-automation-scripting.utf8.md
+08-version-control-git.utf8.md
+09-automation-snakemake.utf8.md
+10-hpc-slurm.utf8.md
+11-aws-cloud.utf8.md
+appendix.utf8.md
+docs/
+index.utf8.md
