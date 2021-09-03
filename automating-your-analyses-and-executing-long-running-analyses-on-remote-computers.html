@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Automating your analyses and executing long-running analyses on remote computers | Introduction to Remote Computing</title>
+  <meta name="description" content="7 Automating your analyses and executing long-running analyses on remote computers | Introduction to Remote Computing" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Automating your analyses and executing long-running analyses on remote computers | Introduction to Remote Computing" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://ngs-docs.github.io/2021-august-remote-computing/" />
+  
+  
+  <meta name="github-repo" content="ngs-docs/2021-august-remote-computing/" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Automating your analyses and executing long-running analyses on remote computers | Introduction to Remote Computing" />
+  
+  
+  
+
+<meta name="author" content="C. Titus Brown, Saranya Canchi, Amanda Charbonneau, Marisa Lim, Abhijna Parigi, Pamela Reynolds, Nick Ulle, and Shannon Joslin." />
+
+
+<meta name="date" content="2021-09-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="structuring-your-projects-for-current-and-future-you.html"/>
+<link rel="next" href="keeping-track-of-your-files-with-version-control.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://datalab.ucdavis.edu/">
+  <img src="https://datalab.ucdavis.edu/wp-content/uploads/2019/07/datalab-logo-full-color-rgb-1.png" style="height: 100%; width: 100%; object-fit: contain" />
+</a></li>
+<li><a href="https://www.nih-cfde.org/">
+  <img src="cfde-logo.png" style="height: 60%; width: 60%; object-fit: contain" />
+</a></li>
+<li><a href="./" style="font-size: 18px">Introduction to Remote Computing (Pilot)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Overview</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#introductory-skills"><i class="fa fa-check"></i>Introductory skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#intermediate-skills"><i class="fa fa-check"></i>Intermediate skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#advanced-skills"><i class="fa fa-check"></i>Advanced skills</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#additional-materials"><i class="fa fa-check"></i>Additional materials</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html"><i class="fa fa-check"></i><b>1</b> Introduction to the UNIX Command Line</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#introduction-to-unix"><i class="fa fa-check"></i><b>1.1</b> Introduction to UNIX</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals"><i class="fa fa-check"></i><b>1.1.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#navigation"><i class="fa fa-check"></i><b>1.2</b> Navigation</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-1"><i class="fa fa-check"></i><b>1.2.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#viewing-searching"><i class="fa fa-check"></i><b>1.3</b> Viewing &amp; Searching</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-2"><i class="fa fa-check"></i><b>1.3.1</b> Learning Goals</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#file-manipulation"><i class="fa fa-check"></i><b>1.4</b> File Manipulation</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#learning-goals-3"><i class="fa fa-check"></i><b>1.4.1</b> Learning Goals</a></li>
+<li class="chapter" data-level="1.4.2" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#renaming-a-bunch-of-files"><i class="fa fa-check"></i><b>1.4.2</b> Renaming a bunch of files</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="introduction-to-the-unix-command-line.html"><a href="introduction-to-the-unix-command-line.html#some-final-notes"><i class="fa fa-check"></i><b>1.5</b> Some final notes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html"><i class="fa fa-check"></i><b>2</b> Creating and modifying text files on remote computers</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#text-files-vs-other-files"><i class="fa fa-check"></i><b>2.1</b> Text files vs other files</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#ok-ok-what-does-this-all-mean-in-practice"><i class="fa fa-check"></i><b>2.1.1</b> OK, OK, what does this all mean in practice?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-gzipped-files"><i class="fa fa-check"></i><b>2.1.2</b> Working with gzipped files</a></li>
+<li class="chapter" data-level="2.1.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#digression-file-extensions-are-often-meaningful-but-dont-have-to-be"><i class="fa fa-check"></i><b>2.1.3</b> Digression: file extensions are often meaningful (but don’t have to be)</a></li>
+<li class="chapter" data-level="2.1.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#lets-edit-this-file"><i class="fa fa-check"></i><b>2.1.4</b> Let’s edit this file!</a></li>
+<li class="chapter" data-level="2.1.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#running-the-editor-and-exitingsaving"><i class="fa fa-check"></i><b>2.1.5</b> Running the editor and exiting/saving</a></li>
+<li class="chapter" data-level="2.1.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#navigating-in-nano"><i class="fa fa-check"></i><b>2.1.6</b> Navigating in nano</a></li>
+<li class="chapter" data-level="2.1.7" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#long-lines---note"><i class="fa fa-check"></i><b>2.1.7</b> Long lines - note!</a></li>
+<li class="chapter" data-level="2.1.8" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#slightly-more-advanced-features"><i class="fa fa-check"></i><b>2.1.8</b> Slightly more advanced features</a></li>
+<li class="chapter" data-level="2.1.9" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#getting-help"><i class="fa fa-check"></i><b>2.1.9</b> Getting help!</a></li>
+<li class="chapter" data-level="2.1.10" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#challenges"><i class="fa fa-check"></i><b>2.1.10</b> Challenges:</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editors"><i class="fa fa-check"></i><b>2.2</b> Big Powerful Editors</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-1-vi"><i class="fa fa-check"></i><b>2.2.1</b> Big Powerful Editor 1: vi</a></li>
+<li class="chapter" data-level="2.2.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#big-powerful-editor-2-emacs"><i class="fa fa-check"></i><b>2.2.2</b> Big Powerful Editor 2: emacs</a></li>
+<li class="chapter" data-level="2.2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#an-opinion"><i class="fa fa-check"></i><b>2.2.3</b> An opinion</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#remote-vs-local-and-why-editors"><i class="fa fa-check"></i><b>2.3</b> Remote vs local, and why editors?</a></li>
+<li class="chapter" data-level="2.4" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#editors-that-run-locally-on-your-laptopdesktop"><i class="fa fa-check"></i><b>2.4</b> Editors that run locally on your laptop/desktop</a></li>
+<li class="chapter" data-level="2.5" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#thinking-about-editors-as-a-means-to-an-end"><i class="fa fa-check"></i><b>2.5</b> Thinking about editors as a means to an end</a></li>
+<li class="chapter" data-level="2.6" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#other-ways-to-create-edit-filter-and-modify-files"><i class="fa fa-check"></i><b>2.6</b> Other ways to create, edit, filter, and modify files</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#redirection-appending-and-piping."><i class="fa fa-check"></i><b>2.6.1</b> Redirection, appending, and piping.</a></li>
+<li class="chapter" data-level="2.6.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#the-simplest-possible-editor---echo"><i class="fa fa-check"></i><b>2.6.2</b> The simplest possible “editor” - echo</a></li>
+<li class="chapter" data-level="2.6.3" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#piping-and-filtering"><i class="fa fa-check"></i><b>2.6.3</b> Piping and filtering</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#working-with-csv-files"><i class="fa fa-check"></i><b>2.7</b> Working with CSV files</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#use-csvtk-when-working-with-csv-files-maybe."><i class="fa fa-check"></i><b>2.7.1</b> Use csvtk when working with CSV files, maybe.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#a-quick-primer-on-compression."><i class="fa fa-check"></i><b>2.8</b> A quick primer on compression.</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#gzip-and-.gz-files."><i class="fa fa-check"></i><b>2.8.1</b> Gzip and <code>.gz</code> files.</a></li>
+<li class="chapter" data-level="2.8.2" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#zip-and-compressing-multiple-files."><i class="fa fa-check"></i><b>2.8.2</b> zip and compressing <em>multiple</em> files.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="creating-and-modifying-text-files-on-remote-computers.html"><a href="creating-and-modifying-text-files-on-remote-computers.html#concluding-thoughts"><i class="fa fa-check"></i><b>2.9</b> Concluding thoughts</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html"><i class="fa fa-check"></i><b>3</b> Connecting to remote computers with ssh</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#ssh-and-clients"><i class="fa fa-check"></i><b>3.1</b> SSH and Clients</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-security-thoughts"><i class="fa fa-check"></i><b>3.1.1</b> Some security thoughts</a></li>
+<li class="chapter" data-level="3.1.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#ssh-as-a-protocol---many-clients"><i class="fa fa-check"></i><b>3.1.2</b> ssh as a protocol - many clients!</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-using-the-terminal-program"><i class="fa fa-check"></i><b>3.2</b> Mac OS X: Using the Terminal program</a></li>
+<li class="chapter" data-level="3.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-connecting-to-remote-computers-with-mobaxterm"><i class="fa fa-check"></i><b>3.3</b> Windows: Connecting to remote computers with MobaXterm</a></li>
+<li class="chapter" data-level="3.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#logging-out-and-logging-back-in."><i class="fa fa-check"></i><b>3.4</b> Logging out and logging back in.</a></li>
+<li class="chapter" data-level="3.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#youre-logged-on-to-a-remote-computer.-now-what"><i class="fa fa-check"></i><b>3.5</b> You’re logged on to a remote computer. Now what?</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#welcome-to-your-account"><i class="fa fa-check"></i><b>3.5.1</b> Welcome to your account!</a></li>
+<li class="chapter" data-level="3.5.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#loading-some-files-into-your-account"><i class="fa fa-check"></i><b>3.5.2</b> Loading some files into your account</a></li>
+<li class="chapter" data-level="3.5.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-and-path-manipulation"><i class="fa fa-check"></i><b>3.5.3</b> Revisiting file and path manipulation</a></li>
+<li class="chapter" data-level="3.5.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#revisiting-file-editing"><i class="fa fa-check"></i><b>3.5.4</b> Revisiting file editing</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copying-files-to-and-from-your-local-computer."><i class="fa fa-check"></i><b>3.6</b> Copying files to and from your local computer.</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#mac-os-x-copying-files-using-ssh."><i class="fa fa-check"></i><b>3.6.1</b> Mac OS X: Copying files using ssh.</a></li>
+<li class="chapter" data-level="3.6.2" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#windows-copying-files-using-mobaxterm."><i class="fa fa-check"></i><b>3.6.2</b> Windows: Copying files using MobaXterm.</a></li>
+<li class="chapter" data-level="3.6.3" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#view-and-change-the-file-you-just-downloaded"><i class="fa fa-check"></i><b>3.6.3</b> View and change the file you just downloaded</a></li>
+<li class="chapter" data-level="3.6.4" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#copy-the-file-back-to-farm."><i class="fa fa-check"></i><b>3.6.4</b> Copy the file back to farm.</a></li>
+<li class="chapter" data-level="3.6.5" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#digression-why-do-you-need-to-log-intolog-out-of-farm-on-mac-os-x"><i class="fa fa-check"></i><b>3.6.5</b> Digression: why do you need to log into/log out of farm on Mac OS X?</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#some-commands-are-available-others-are-not."><i class="fa fa-check"></i><b>3.7</b> Some commands are available! Others are not.</a></li>
+<li class="chapter" data-level="3.8" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#summing-up-file-transfer---a-challenge"><i class="fa fa-check"></i><b>3.8</b> Summing up file transfer - a challenge!</a></li>
+<li class="chapter" data-level="3.9" data-path="connecting-to-remote-computers-with-ssh.html"><a href="connecting-to-remote-computers-with-ssh.html#summing-things-up"><i class="fa fa-check"></i><b>3.9</b> Summing things up</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html"><i class="fa fa-check"></i><b>4</b> Running programs on remote computers and retrieving the results</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-ssh-privatepublic-key-pairs"><i class="fa fa-check"></i><b>4.1</b> Using SSH private/public key pairs</a></li>
+<li class="chapter" data-level="4.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#mac-os-x-and-linux-using-ssh-private-keys-to-log-in"><i class="fa fa-check"></i><b>4.2</b> Mac OS X and Linux: Using ssh private keys to log in</a></li>
+<li class="chapter" data-level="4.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#windowsmobaxterm-using-ssh-private-keys-to-log-in"><i class="fa fa-check"></i><b>4.3</b> Windows/MobaXterm: Using ssh private keys to log in</a></li>
+<li class="chapter" data-level="4.4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#some-tips-on-your-private-key"><i class="fa fa-check"></i><b>4.4</b> Some tips on your private key</a></li>
+<li class="chapter" data-level="4.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#working-on-farm"><i class="fa fa-check"></i><b>4.5</b> Working on farm</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#first-download-some-files"><i class="fa fa-check"></i><b>4.5.1</b> First, download some files:</a></li>
+<li class="chapter" data-level="4.5.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#configuring-your-account-on-login"><i class="fa fa-check"></i><b>4.5.2</b> Configuring your account on login</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#using-multiple-terminals"><i class="fa fa-check"></i><b>4.6</b> Using multiple terminals</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#who-am-i-and-where-am-i-running"><i class="fa fa-check"></i><b>4.6.1</b> Who am I and where am I running!?</a></li>
+<li class="chapter" data-level="4.6.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#looking-at-whats-running"><i class="fa fa-check"></i><b>4.6.2</b> Looking at what’s running</a></li>
+<li class="chapter" data-level="4.6.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#e-mailing-the-systems-administrators"><i class="fa fa-check"></i><b>4.6.3</b> E-mailing the systems administrators</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#file-systems-directories-and-shared-systems"><i class="fa fa-check"></i><b>4.7</b> File systems, directories, and shared systems</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#read-and-write-permissions-into-other-directories"><i class="fa fa-check"></i><b>4.7.1</b> Read and write permissions into other directories</a></li>
+<li class="chapter" data-level="4.7.2" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#listing-directory-and-file-permissions"><i class="fa fa-check"></i><b>4.7.2</b> Listing directory and file permissions</a></li>
+<li class="chapter" data-level="4.7.3" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#files-have-the-same-permission-options"><i class="fa fa-check"></i><b>4.7.3</b> Files have the same permission options</a></li>
+<li class="chapter" data-level="4.7.4" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#how-do-groups-work"><i class="fa fa-check"></i><b>4.7.4</b> How do groups work?</a></li>
+<li class="chapter" data-level="4.7.5" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#how-can-you-use-this"><i class="fa fa-check"></i><b>4.7.5</b> How can you use this?</a></li>
+<li class="chapter" data-level="4.7.6" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#things-that-regular-users-cannot-do"><i class="fa fa-check"></i><b>4.7.6</b> Things that regular users cannot do</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#disk-space-file-size-and-temporary-files"><i class="fa fa-check"></i><b>4.8</b> Disk space, file size, and temporary files</a></li>
+<li class="chapter" data-level="4.9" data-path="running-programs-on-remote-computers-and-retrieving-the-results.html"><a href="running-programs-on-remote-computers-and-retrieving-the-results.html#summing-things-up-1"><i class="fa fa-check"></i><b>4.9</b> Summing things up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html"><i class="fa fa-check"></i><b>5</b> Installing software on remote computers with conda</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#why-is-software-installation-hard"><i class="fa fa-check"></i><b>5.1</b> Why is software installation hard?</a></li>
+<li class="chapter" data-level="5.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#getting-started-with-conda"><i class="fa fa-check"></i><b>5.2</b> Getting started with conda</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installing-conda"><i class="fa fa-check"></i><b>5.2.1</b> Installing conda</a></li>
+<li class="chapter" data-level="5.2.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#log-into-farm"><i class="fa fa-check"></i><b>5.2.2</b> Log into farm</a></li>
+<li class="chapter" data-level="5.2.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#creating-your-first-environment-installing-csvtk"><i class="fa fa-check"></i><b>5.2.3</b> Creating your first environment &amp; installing csvtk!</a></li>
+<li class="chapter" data-level="5.2.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installation"><i class="fa fa-check"></i><b>5.2.4</b> Installation!</a></li>
+<li class="chapter" data-level="5.2.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#csvtk-in-a-bit-more-detail"><i class="fa fa-check"></i><b>5.2.5</b> csvtk in a bit more detail</a></li>
+<li class="chapter" data-level="5.2.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#where-is-the-software-coming-from"><i class="fa fa-check"></i><b>5.2.6</b> Where is the software coming from!?</a></li>
+<li class="chapter" data-level="5.2.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#digression-there-are-many-ways-to-install-software"><i class="fa fa-check"></i><b>5.2.7</b> Digression: there are many ways to install software!</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#installing-more-software-in-your-current-environment"><i class="fa fa-check"></i><b>5.3</b> Installing more software in your current environment</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#finding-and-specifying-versions"><i class="fa fa-check"></i><b>5.3.1</b> Finding and specifying versions</a></li>
+<li class="chapter" data-level="5.3.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#making-and-using-environment-files"><i class="fa fa-check"></i><b>5.3.2</b> Making and using environment files</a></li>
+<li class="chapter" data-level="5.3.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#updating-removing-etc-software"><i class="fa fa-check"></i><b>5.3.3</b> Updating, removing, etc software</a></li>
+<li class="chapter" data-level="5.3.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#creating-multiple-environments"><i class="fa fa-check"></i><b>5.3.4</b> Creating multiple environments</a></li>
+<li class="chapter" data-level="5.3.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#tech-interlude-what-is-conda-doing"><i class="fa fa-check"></i><b>5.3.5</b> Tech interlude: what is conda doing?</a></li>
+<li class="chapter" data-level="5.3.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#challenges-with-using-one-big-environment"><i class="fa fa-check"></i><b>5.3.6</b> Challenges with using one big environment</a></li>
+<li class="chapter" data-level="5.3.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#how-titus-uses-conda"><i class="fa fa-check"></i><b>5.3.7</b> How Titus uses conda</a></li>
+<li class="chapter" data-level="5.3.8" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#finding-packages-within-conda"><i class="fa fa-check"></i><b>5.3.8</b> Finding packages within conda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#using-the-bioconda-and-conda-forge-channels"><i class="fa fa-check"></i><b>5.4</b> Using the ‘bioconda’ and ‘conda-forge’ channels</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#mac-os-x-and-linux-but-not-windows"><i class="fa fa-check"></i><b>5.4.1</b> Mac OS X and Linux, but not Windows</a></li>
+<li class="chapter" data-level="5.4.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#how-to-engage-with-conda-forge-and-bioconda"><i class="fa fa-check"></i><b>5.4.2</b> How to engage with conda-forge and bioconda</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-data-science-r-and-python"><i class="fa fa-check"></i><b>5.5</b> Conda and data science: R and Python</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-r"><i class="fa fa-check"></i><b>5.5.1</b> Conda and R</a></li>
+<li class="chapter" data-level="5.5.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#conda-and-python"><i class="fa fa-check"></i><b>5.5.2</b> Conda and Python</a></li>
+<li class="chapter" data-level="5.5.3" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#supporting-interactive-packages-rstudio-and-jupyterlab"><i class="fa fa-check"></i><b>5.5.3</b> Supporting interactive packages (RStudio and JupyterLab)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#tricky-things-to-think-about-with-conda"><i class="fa fa-check"></i><b>5.6</b> Tricky things to think about with conda</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#it-can-take-a-long-time-to-install-lots-of-software"><i class="fa fa-check"></i><b>5.6.1</b> It can take a long time to install lots of software</a></li>
+<li class="chapter" data-level="5.6.2" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#explicit-package-listing"><i class="fa fa-check"></i><b>5.6.2</b> Explicit package listing</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#reference-list-of-conda-commands"><i class="fa fa-check"></i><b>5.7</b> Reference list of Conda Commands</a></li>
+<li class="chapter" data-level="5.8" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#more-reading-on-conda"><i class="fa fa-check"></i><b>5.8</b> More Reading on Conda</a></li>
+<li class="chapter" data-level="5.9" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#discussion-items"><i class="fa fa-check"></i><b>5.9</b> Discussion items:</a></li>
+<li class="chapter" data-level="5.10" data-path="installing-software-on-remote-computers-with-conda.html"><a href="installing-software-on-remote-computers-with-conda.html#in-summary"><i class="fa fa-check"></i><b>5.10</b> In summary</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html"><i class="fa fa-check"></i><b>6</b> Structuring your projects for current and future you</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#learning-objectives"><i class="fa fa-check"></i><b>6.1</b> Learning Objectives</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#lesson-requirements"><i class="fa fa-check"></i><b>6.1.1</b> Lesson requirements</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#transferring-files-around-efficiently"><i class="fa fa-check"></i><b>6.2</b> Transferring files around efficiently</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#recursive-scp-with--r"><i class="fa fa-check"></i><b>6.2.1</b> recursive <code>scp</code> with <code>-r</code></a></li>
+<li class="chapter" data-level="6.2.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#sftp"><i class="fa fa-check"></i><b>6.2.2</b> <code>sftp</code></a></li>
+<li class="chapter" data-level="6.2.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#zip--r-to-create-collections-of-files"><i class="fa fa-check"></i><b>6.2.3</b> <code>zip -r</code> to create collections of files</a></li>
+<li class="chapter" data-level="6.2.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#working-with-.tar.gz-files"><i class="fa fa-check"></i><b>6.2.4</b> Working with <code>.tar.gz</code> files</a></li>
+<li class="chapter" data-level="6.2.5" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#probably-the-most-useful-advice-use-a-transfer-directory"><i class="fa fa-check"></i><b>6.2.5</b> Probably the most useful advice: use a transfer directory</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#retrieving-remote-files-from-web-sites"><i class="fa fa-check"></i><b>6.3</b> Retrieving remote files from Web sites</a></li>
+<li class="chapter" data-level="6.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#dealing-with-files-some-recommendations"><i class="fa fa-check"></i><b>6.4</b> Dealing with files: some recommendations</a></li>
+<li class="chapter" data-level="6.5" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#farm-vs-cloud"><i class="fa fa-check"></i><b>6.5</b> Farm vs cloud</a></li>
+<li class="chapter" data-level="6.6" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#thinking-about-data-science-projects"><i class="fa fa-check"></i><b>6.6</b> Thinking about data science projects!</a></li>
+<li class="chapter" data-level="6.7" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#one-example-a-rough-bioinformatics-workflow"><i class="fa fa-check"></i><b>6.7</b> One example: a rough bioinformatics workflow</a></li>
+<li class="chapter" data-level="6.8" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#sending-and-receiving-data"><i class="fa fa-check"></i><b>6.8</b> Sending and Receiving Data</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#downloading-data---is-it-correct"><i class="fa fa-check"></i><b>6.8.1</b> Downloading data - is it correct?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#storing-data"><i class="fa fa-check"></i><b>6.9</b> Storing data</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#bioinformatics-what-do-i-back-up"><i class="fa fa-check"></i><b>6.9.1</b> Bioinformatics: What do I back up?</a></li>
+<li class="chapter" data-level="6.9.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#bioinformatics-how-big-should-i-expect-the-files-to-be"><i class="fa fa-check"></i><b>6.9.2</b> Bioinformatics: How big should I expect the files to be?</a></li>
+<li class="chapter" data-level="6.9.3" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#how-often-should-i-backup-my-data"><i class="fa fa-check"></i><b>6.9.3</b> How often should I backup my data?</a></li>
+<li class="chapter" data-level="6.9.4" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#where-do-i-back-up-my-data"><i class="fa fa-check"></i><b>6.9.4</b> Where do I back up my data?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#where-do-i-work-with-large-amounts-of-data"><i class="fa fa-check"></i><b>6.10</b> Where do I work with large amounts of data?</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#high-performance-computing-clusters"><i class="fa fa-check"></i><b>6.10.1</b> High Performance Computing Clusters</a></li>
+<li class="chapter" data-level="6.10.2" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#amazon-web-service"><i class="fa fa-check"></i><b>6.10.2</b> Amazon Web Service</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#setting-up-your-project"><i class="fa fa-check"></i><b>6.11</b> Setting up your project</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#things-to-think-about"><i class="fa fa-check"></i><b>6.11.1</b> Things to think about</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#naming-files"><i class="fa fa-check"></i><b>6.12</b> Naming files</a></li>
+<li class="chapter" data-level="6.13" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#looking-forward-to-the-next-few-workshops-techniques-for-doing-data-science-on-remote-computers."><i class="fa fa-check"></i><b>6.13</b> Looking forward to the next few workshops: techniques for doing data science on remote computers.</a></li>
+<li class="chapter" data-level="6.14" data-path="structuring-your-projects-for-current-and-future-you.html"><a href="structuring-your-projects-for-current-and-future-you.html#additional-resources"><i class="fa fa-check"></i><b>6.14</b> Additional resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><i class="fa fa-check"></i><b>7</b> Automating your analyses and executing long-running analyses on remote computers</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#what-is-a-script"><i class="fa fa-check"></i><b>7.1</b> What is a script?</a></li>
+<li class="chapter" data-level="7.2" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#getting-started"><i class="fa fa-check"></i><b>7.2</b> Getting started</a></li>
+<li class="chapter" data-level="7.3" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#automating-commands-by-putting-them-in-a-text-file"><i class="fa fa-check"></i><b>7.3</b> Automating commands by putting them in a text file</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-with-bash"><i class="fa fa-check"></i><b>7.3.1</b> Running scripts with <code>bash</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#for-loops"><i class="fa fa-check"></i><b>7.4</b> <code>for</code> Loops</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#subsetting"><i class="fa fa-check"></i><b>7.4.1</b> Subsetting</a></li>
+<li class="chapter" data-level="7.4.2" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#variables"><i class="fa fa-check"></i><b>7.4.2</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#troubleshooting-scripts"><i class="fa fa-check"></i><b>7.5</b> Troubleshooting scripts</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#practicing-set--e-in-bash-scripts"><i class="fa fa-check"></i><b>7.5.1</b> Practicing <code>set -e</code> in bash scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#if-statements"><i class="fa fa-check"></i><b>7.6</b> If statements</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#running-scripts-in-a-loop"><i class="fa fa-check"></i><b>7.6.1</b> Running scripts in a loop</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#persistent-sessions-with-screen-and-tmux"><i class="fa fa-check"></i><b>7.7</b> Persistent sessions with screen and tmux</a></li>
+<li class="chapter" data-level="7.8" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#concluding-thoughts-1"><i class="fa fa-check"></i><b>7.8</b> Concluding thoughts</a></li>
+<li class="chapter" data-level="7.9" data-path="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html"><a href="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers.html#appendix-exercise-answers"><i class="fa fa-check"></i><b>7.9</b> Appendix: exercise answers</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html"><i class="fa fa-check"></i><b>8</b> Keeping Track of Your Files with Version Control</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#learning-objectives-1"><i class="fa fa-check"></i><b>8.1</b> Learning Objectives</a></li>
+<li class="chapter" data-level="8.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#what-is-git"><i class="fa fa-check"></i><b>8.2</b> What is git?</a></li>
+<li class="chapter" data-level="8.3" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#what-is-github"><i class="fa fa-check"></i><b>8.3</b> What is GitHub?</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#create-a-github-account"><i class="fa fa-check"></i><b>8.3.1</b> Create a GitHub Account</a></li>
+<li class="chapter" data-level="8.3.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#create-a-new-repository"><i class="fa fa-check"></i><b>8.3.2</b> Create a New Repository</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#using-git"><i class="fa fa-check"></i><b>8.4</b> Using git</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#set-up-git-on-farm"><i class="fa fa-check"></i><b>8.4.1</b> Set up git on Farm</a></li>
+<li class="chapter" data-level="8.4.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#optional-set-up-a-password-helper"><i class="fa fa-check"></i><b>8.4.2</b> Optional: Set up a Password Helper</a></li>
+<li class="chapter" data-level="8.4.3" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#clone-the-repository"><i class="fa fa-check"></i><b>8.4.3</b> Clone the Repository</a></li>
+<li class="chapter" data-level="8.4.4" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#edit-a-file"><i class="fa fa-check"></i><b>8.4.4</b> Edit a File</a></li>
+<li class="chapter" data-level="8.4.5" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#commit-a-file"><i class="fa fa-check"></i><b>8.4.5</b> Commit a File</a></li>
+<li class="chapter" data-level="8.4.6" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#view-the-repository-history-on-github"><i class="fa fa-check"></i><b>8.4.6</b> View the Repository History on GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#challenge-question-1"><i class="fa fa-check"></i><b>8.5</b> Challenge Question 1</a></li>
+<li class="chapter" data-level="8.6" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#revisiting-the-workflow"><i class="fa fa-check"></i><b>8.6</b> Revisiting the Workflow</a></li>
+<li class="chapter" data-level="8.7" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#undoing-changes"><i class="fa fa-check"></i><b>8.7</b> Undoing Changes</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#restoring-a-file"><i class="fa fa-check"></i><b>8.7.1</b> Restoring a File</a></li>
+<li class="chapter" data-level="8.7.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#reverting-a-commit"><i class="fa fa-check"></i><b>8.7.2</b> Reverting a Commit</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#challenge-question-2"><i class="fa fa-check"></i><b>8.8</b> Challenge Question 2</a></li>
+<li class="chapter" data-level="8.9" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#working-collaboratively"><i class="fa fa-check"></i><b>8.9</b> Working Collaboratively</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#editing-on-github"><i class="fa fa-check"></i><b>8.9.1</b> Editing on GitHub</a></li>
+<li class="chapter" data-level="8.9.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#merge-conflicts"><i class="fa fa-check"></i><b>8.9.2</b> Merge Conflicts</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#challenge-question-3"><i class="fa fa-check"></i><b>8.10</b> Challenge Question 3</a></li>
+<li class="chapter" data-level="8.11" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#odds-and-ends"><i class="fa fa-check"></i><b>8.11</b> Odds and Ends</a>
+<ul>
+<li class="chapter" data-level="8.11.1" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#ignoring-files-with-.gitignore"><i class="fa fa-check"></i><b>8.11.1</b> Ignoring Files with <code>.gitignore</code></a></li>
+<li class="chapter" data-level="8.11.2" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#setting-up-a-repository-without-github"><i class="fa fa-check"></i><b>8.11.2</b> Setting up a Repository without GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="keeping-track-of-your-files-with-version-control.html"><a href="keeping-track-of-your-files-with-version-control.html#additional-resources-1"><i class="fa fa-check"></i><b>8.12</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html"><i class="fa fa-check"></i><b>9</b> Automating your analyses with the snakemake workflow system</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#what-is-a-workflow-and-why-use-one"><i class="fa fa-check"></i><b>9.1</b> What is a workflow and why use one?</a></li>
+<li class="chapter" data-level="9.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#snakemake-a-workflow-management-system"><i class="fa fa-check"></i><b>9.2</b> Snakemake: A workflow management system</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#fun-fact"><i class="fa fa-check"></i><b>9.2.1</b> Fun fact</a></li>
+<li class="chapter" data-level="9.2.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#the-snakefile"><i class="fa fa-check"></i><b>9.2.2</b> The Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#getting-started---logging-into-farm"><i class="fa fa-check"></i><b>9.3</b> Getting started - logging into farm!</a></li>
+<li class="chapter" data-level="9.4" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#installing-snakemake"><i class="fa fa-check"></i><b>9.4</b> Installing snakemake</a></li>
+<li class="chapter" data-level="9.5" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#more-setup"><i class="fa fa-check"></i><b>9.5</b> More setup</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#create-a-working-directory"><i class="fa fa-check"></i><b>9.5.1</b> Create a working directory</a></li>
+<li class="chapter" data-level="9.5.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#download-some-data"><i class="fa fa-check"></i><b>9.5.2</b> Download some data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#rna-seq-workflow-we-will-automate"><i class="fa fa-check"></i><b>9.6</b> RNA-Seq workflow we will automate</a></li>
+<li class="chapter" data-level="9.7" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#first-step-quality-control-with-fastqc"><i class="fa fa-check"></i><b>9.7</b> First step: quality control with FASTQC</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#create-a-snakefile"><i class="fa fa-check"></i><b>9.7.1</b> Create a Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#some-features-of-workflows"><i class="fa fa-check"></i><b>9.8</b> Some features of workflows</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#what-are-these-flags--p--j"><i class="fa fa-check"></i><b>9.8.1</b> What are these flags (<code>-p</code>, <code>-j</code>)?</a></li>
+<li class="chapter" data-level="9.8.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#when-you-run-snakemake-by-default-it-runs-the-first-rule."><i class="fa fa-check"></i><b>9.8.2</b> When you run snakemake, by default, it runs the first rule.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#making-the-rules-more-generic"><i class="fa fa-check"></i><b>9.9</b> Making the rules more generic</a></li>
+<li class="chapter" data-level="9.10" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#wildcards"><i class="fa fa-check"></i><b>9.10</b> Wildcards</a></li>
+<li class="chapter" data-level="9.11" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#adding-more-rules"><i class="fa fa-check"></i><b>9.11</b> Adding more rules</a>
+<ul>
+<li class="chapter" data-level="9.11.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#downloading-the-reference-genome"><i class="fa fa-check"></i><b>9.11.1</b> Downloading the reference genome</a></li>
+<li class="chapter" data-level="9.11.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#add-the-index-genome-command"><i class="fa fa-check"></i><b>9.11.2</b> Add the index genome command:</a></li>
+<li class="chapter" data-level="9.11.3" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#running-salmon-quant"><i class="fa fa-check"></i><b>9.11.3</b> Running Salmon quant</a></li>
+<li class="chapter" data-level="9.11.4" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#one-version-of-the-final-snakefile"><i class="fa fa-check"></i><b>9.11.4</b> One version of the final Snakefile</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#titus-version-of-the-final-snakefile-as-created-during-the-workshop"><i class="fa fa-check"></i><b>9.12</b> Titus’ version of the final snakefile as created during the workshop</a></li>
+<li class="chapter" data-level="9.13" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#random-aside---dry-run-or--n"><i class="fa fa-check"></i><b>9.13</b> Random aside: <code>--dry-run</code> or <code>-n</code></a></li>
+<li class="chapter" data-level="9.14" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#advanced-features"><i class="fa fa-check"></i><b>9.14</b> Advanced features</a>
+<ul>
+<li class="chapter" data-level="9.14.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#rule-specific-conda-environments-with-conda-and---use-conda"><i class="fa fa-check"></i><b>9.14.1</b> Rule-specific conda environments with conda: and <code>--use-conda</code></a></li>
+<li class="chapter" data-level="9.14.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#parallelizing-snakemake--j"><i class="fa fa-check"></i><b>9.14.2</b> parallelizing snakemake: -j</a></li>
+</ul></li>
+<li class="chapter" data-level="9.15" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#practical-advice-how-to-build-your-workflow"><i class="fa fa-check"></i><b>9.15</b> Practical advice: How to build your workflow</a>
+<ul>
+<li class="chapter" data-level="9.15.1" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#approach-1-write-down-your-shell-commands"><i class="fa fa-check"></i><b>9.15.1</b> Approach 1: write down your shell commands</a></li>
+<li class="chapter" data-level="9.15.2" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#approach-2-automate-one-step-that-you-run-a-lot"><i class="fa fa-check"></i><b>9.15.2</b> Approach 2: automate one step that you run a lot</a></li>
+</ul></li>
+<li class="chapter" data-level="9.16" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#summary-of-what-we-did-today."><i class="fa fa-check"></i><b>9.16</b> Summary of what we did today.</a></li>
+<li class="chapter" data-level="9.17" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#more-snakemake-resources"><i class="fa fa-check"></i><b>9.17</b> More Snakemake resources</a></li>
+<li class="chapter" data-level="9.18" data-path="automating-your-analyses-with-the-snakemake-workflow-system.html"><a href="automating-your-analyses-with-the-snakemake-workflow-system.html#a-quick-checklist"><i class="fa fa-check"></i><b>9.18</b> A quick checklist:</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html"><i class="fa fa-check"></i><b>10</b> Executing large analyses on HPC clusters with slurm</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#what-is-a-cluster"><i class="fa fa-check"></i><b>10.1</b> What is a cluster?</a></li>
+<li class="chapter" data-level="10.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-do-clusters-work"><i class="fa fa-check"></i><b>10.2</b> How do clusters work?</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#job-schedulers"><i class="fa fa-check"></i><b>10.2.1</b> Job Schedulers</a></li>
+<li class="chapter" data-level="10.2.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#either-run-an-interactive-session-with-srun"><i class="fa fa-check"></i><b>10.2.2</b> EITHER: run an interactive session with <code>srun</code></a></li>
+<li class="chapter" data-level="10.2.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#or-submit-batch-scripts-with-sbatch"><i class="fa fa-check"></i><b>10.2.3</b> OR: Submit batch scripts with <code>sbatch</code></a></li>
+<li class="chapter" data-level="10.2.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#flags-to-use-when-submitting-jobs-with-sbatch-or-srun"><i class="fa fa-check"></i><b>10.2.4</b> Flags to use when submitting jobs with sbatch or srun</a></li>
+<li class="chapter" data-level="10.2.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#repeatability-through-sbatch-variables-in-shell-scripts"><i class="fa fa-check"></i><b>10.2.5</b> Repeatability through SBATCH variables in shell scripts</a></li>
+<li class="chapter" data-level="10.2.6" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#reprise-running-helloworld.sh-via-srun"><i class="fa fa-check"></i><b>10.2.6</b> Reprise: running <code>HelloWorld.sh</code> via srun</a></li>
+<li class="chapter" data-level="10.2.7" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#choosing-between-srun-and-sbatch"><i class="fa fa-check"></i><b>10.2.7</b> Choosing between <code>srun</code> and <code>sbatch</code></a></li>
+<li class="chapter" data-level="10.2.8" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#a-stock-sbatch-script-that-includes-activating-a-conda-environment"><i class="fa fa-check"></i><b>10.2.8</b> A stock sbatch script that includes activating a conda environment</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#some-useful-tips-and-tricks-for-happy-slurm-ing"><i class="fa fa-check"></i><b>10.3</b> Some useful tips and tricks for happy slurm-ing</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#trick-1-running-srun-inside-of-a-screen."><i class="fa fa-check"></i><b>10.3.1</b> Trick 1: running <code>srun</code> inside of a screen.</a></li>
+<li class="chapter" data-level="10.3.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#trick-2-running-snakemake-inside-of-an-sbatch-script."><i class="fa fa-check"></i><b>10.3.2</b> Trick 2: running snakemake inside of an sbatch script.</a></li>
+<li class="chapter" data-level="10.3.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#monitoring-your-jobs-with-squeue"><i class="fa fa-check"></i><b>10.3.3</b> Monitoring your jobs with <code>squeue</code></a></li>
+<li class="chapter" data-level="10.3.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#canceling-your-jobs-with-scancel"><i class="fa fa-check"></i><b>10.3.4</b> Canceling your jobs with <code>scancel</code></a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#more-on-resources-and-queues-and-sharing"><i class="fa fa-check"></i><b>10.4</b> More on resources and queues and sharing</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#measuring-your-resource-usage"><i class="fa fa-check"></i><b>10.4.1</b> Measuring your resource usage</a></li>
+<li class="chapter" data-level="10.4.2" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#nodes-vs-cpus-vs-tasks"><i class="fa fa-check"></i><b>10.4.2</b> Nodes vs CPUs vs tasks</a></li>
+<li class="chapter" data-level="10.4.3" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#partitions"><i class="fa fa-check"></i><b>10.4.3</b> Partitions</a></li>
+<li class="chapter" data-level="10.4.4" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-to-share-within-your-group"><i class="fa fa-check"></i><b>10.4.4</b> How to share within your group</a></li>
+<li class="chapter" data-level="10.4.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#how-can-you-get-an-account-on-your-hpc"><i class="fa fa-check"></i><b>10.4.5</b> How can you get an account on your HPC?</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#what-weve-shown-you-today."><i class="fa fa-check"></i><b>10.5</b> What we’ve shown you today.</a></li>
+<li class="chapter" data-level="10.6" data-path="executing-large-analyses-on-hpc-clusters-with-slurm.html"><a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#some-final-thoughts-before-departing-farm-and-moving-into-the-cloud."><i class="fa fa-check"></i><b>10.6</b> Some final thoughts before departing farm and moving into the cloud.</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><i class="fa fa-check"></i><b>11</b> Making use of on-demand “cloud” computers from Amazon Web Services</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#workshop-structure-and-plan"><i class="fa fa-check"></i><b>11.1</b> Workshop structure and plan</a></li>
+<li class="chapter" data-level="11.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#some-background"><i class="fa fa-check"></i><b>11.2</b> Some background</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#costs-and-payment"><i class="fa fa-check"></i><b>11.2.1</b> Costs and payment</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#amazon-terminology-and-logging-in"><i class="fa fa-check"></i><b>11.3</b> Amazon, terminology, and logging in!</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#ec2"><i class="fa fa-check"></i><b>11.3.1</b> EC2</a></li>
+<li class="chapter" data-level="11.3.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#some-features-of-aws"><i class="fa fa-check"></i><b>11.3.2</b> Some features of AWS</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#lets-get-started"><i class="fa fa-check"></i><b>11.4</b> Let’s get started!</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#spinning-up-instances"><i class="fa fa-check"></i><b>11.4.1</b> “Spinning up” instances</a></li>
+<li class="chapter" data-level="11.4.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#connecting-to-instance"><i class="fa fa-check"></i><b>11.4.2</b> Connecting to instance</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#using-your-computer-in-the-cloud"><i class="fa fa-check"></i><b>11.5</b> Using your computer “in the cloud”</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#inspecting-your-computer"><i class="fa fa-check"></i><b>11.5.1</b> Inspecting your computer</a></li>
+<li class="chapter" data-level="11.5.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#you-can-do-all-the-unix-things"><i class="fa fa-check"></i><b>11.5.2</b> You can do all the UNIX things</a></li>
+<li class="chapter" data-level="11.5.3" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#install-conda"><i class="fa fa-check"></i><b>11.5.3</b> Install conda</a></li>
+<li class="chapter" data-level="11.5.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#run-a-snakemake-workflow"><i class="fa fa-check"></i><b>11.5.4</b> Run a snakemake workflow</a></li>
+<li class="chapter" data-level="11.5.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#summing-things-up-round-1"><i class="fa fa-check"></i><b>11.5.5</b> Summing things up, round 1</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#configuring-your-instance-differently."><i class="fa fa-check"></i><b>11.6</b> Configuring your instance differently.</a></li>
+<li class="chapter" data-level="11.7" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#shutting-down-instances"><i class="fa fa-check"></i><b>11.7</b> Shutting down instances</a></li>
+<li class="chapter" data-level="11.8" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#exercise"><i class="fa fa-check"></i><b>11.8</b> Exercise</a></li>
+<li class="chapter" data-level="11.9" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#checklist-of-things-you-learned-today"><i class="fa fa-check"></i><b>11.9</b> Checklist of things you learned today!</a>
+<ul>
+<li class="chapter" data-level="11.9.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#additional-resources-2"><i class="fa fa-check"></i><b>11.9.1</b> Additional Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="11.10" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#faqs"><i class="fa fa-check"></i><b>11.10</b> FAQs</a>
+<ul>
+<li class="chapter" data-level="11.10.1" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#what-are-my-data-transfer-costs"><i class="fa fa-check"></i><b>11.10.1</b> What are my data transfer costs?</a></li>
+<li class="chapter" data-level="11.10.2" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#what-are-data-storage-costs"><i class="fa fa-check"></i><b>11.10.2</b> What are data storage costs?</a></li>
+<li class="chapter" data-level="11.10.3" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#what-are-the-advantages-of-using-aws-over-an-academic-hpc"><i class="fa fa-check"></i><b>11.10.3</b> What are the advantages of using AWS over an academic HPC?</a></li>
+<li class="chapter" data-level="11.10.4" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-set-up-multiple-instances-at-once"><i class="fa fa-check"></i><b>11.10.4</b> Can you set up multiple instances at once</a></li>
+<li class="chapter" data-level="11.10.5" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-launch-more-than-one-instance-with-the-same-configurations"><i class="fa fa-check"></i><b>11.10.5</b> Can you launch more than one instance with the same configurations?</a></li>
+<li class="chapter" data-level="11.10.6" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#can-you-copy-an-instance-or-share-an-instance-with-collaborators"><i class="fa fa-check"></i><b>11.10.6</b> Can you copy an instance or share an instance with collaborators?</a></li>
+</ul></li>
+<li class="chapter" data-level="11.11" data-path="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html"><a href="making-use-of-on-demand-cloud-computers-from-amazon-web-services.html#concluding-thoughts-on-the-cloud"><i class="fa fa-check"></i><b>11.11</b> Concluding thoughts on the cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i>Appendix</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html#previous-offerings"><i class="fa fa-check"></i>Previous offerings</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html#videos-from-august-2021"><i class="fa fa-check"></i>Videos from August, 2021</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix.html"><a href="appendix.html#workshop-protocol"><i class="fa fa-check"></i>Workshop Protocol</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introduction to Remote Computing</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="automating-your-analyses-and-executing-long-running-analyses-on-remote-computers" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Automating your analyses and executing long-running analyses on remote computers</h1>
+<p>This two hour workshop will show attendees how to automate their
+analyses using shell scripts, as well as run and manage software that
+takes minutes, hours, or days to execute. We’ll also show you how to
+disconnect from and resume running processes using the ‘screen’ and ‘tmux’
+commands.</p>
+<p>This lesson was adapted from <a href="https://github.com/ngs-docs/2021-GGG298/tree/latest/Week8-project_organization_and_UNIX_shell#file-manipulation">a lesson</a> co-authored by Shannon Joslin for GGG 298 at UC Davis.</p>
+<p>Learning objectives:</p>
+<ul>
+<li>Commands <code>for</code>, <code>basename</code>, <code>echo</code>, <code>if</code></li>
+<li>How to write and execute shell scripts</li>
+<li>Learning how to use multiple sessions with screen for long-running analyses</li>
+</ul>
+<div id="what-is-a-script" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> What is a script?</h2>
+<p>A script is like a recipe of commands for the computer to execute. We’re teaching you how to make shell scripts today, but scripts can be in any programming language (R, python, etc.).</p>
+<p>Why and when would we want to use scripts vs. typing commands directly at the terminal?</p>
+<ul>
+<li>Automate: don’t have to remember all the commands and type then one at a time</li>
+<li>Scale up: can use same script for multiple samples, multiple processes</li>
+<li>Reproduce &amp; share: easier to reproduce or share analyses because it’s all written down</li>
+<li>Version control: stay tuned for <a href="keeping-track-of-your-files-with-version-control.html">workshop 8</a>!</li>
+</ul>
+<p>Note that scripts are especially helpful for processing many files with the same commands - but sometimes it’s not always worth the time/effort for an uncommon task. See <a href="https://xkcd.com/1205/">xkcd comic</a> - is it worth the time? :)</p>
+</div>
+<div id="getting-started" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Getting started</h2>
+<p>As per the instructions in <a href="connecting-to-remote-computers-with-ssh.html">workshop
+3</a> and <a href="running-programs-on-remote-computers-and-retrieving-the-results.html">workshop
+4</a>,
+log into farm.cse.ucdavis.edu using your datalab-XX account.</p>
+<p>When you log in, your prompt should look like this:</p>
+<blockquote>
+<pre><code>(base) datalab-09@farm:~$</code></pre>
+</blockquote>
+<p>If it doesn’t, please alert a TA and we will help you out!</p>
+</div>
+<div id="automating-commands-by-putting-them-in-a-text-file" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Automating commands by putting them in a text file</h2>
+<div id="running-scripts-with-bash" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Running scripts with <code>bash</code></h3>
+<p>At the terminal, we can type:</p>
+<pre><code>echo Hello, this is the terminal!</code></pre>
+<p>In a script, we can do the same thing - (we covered how to create and edit files with <code>nano</code> from <a href="creating-and-modifying-text-files-on-remote-computers.html">Workshop 2!</a>):</p>
+<p>Create a script file with nano - The file extension for shell scripts is ‘.sh’.</p>
+<pre><code>nano first_script.sh</code></pre>
+<p>Add the following 3 lines to the script:</p>
+<pre><code>#!/bin/bash
+echo Hello, this is a script!
+echo I am on the next line!</code></pre>
+<p>The <code>#!/bin/bash</code> header (this is known as a “<a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">sha-bang</a>” or hashbang) tells the shell how to interpret the script file. It will be used later!</p>
+<p>Execute the script</p>
+<pre><code>bash first_script.sh</code></pre>
+<p>Note that commands are executed in the order that they appear in the script</p>
+</div>
+</div>
+<div id="for-loops" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> <code>for</code> Loops</h2>
+<p>Scripts can do far more than print echo statements! We’re gonna take a detour to learn about for loops and then run loops in scripts.</p>
+<p>In workshop 6, we showed you a way to create a list of the md5sum numbers for the autosome files:</p>
+<pre><code>cd ~/seqdata/mini_A-torda
+
+md5sum mini-chr[1-9]*.fna.gz  &gt;&gt; autosomes.md5</code></pre>
+<p>This approach uses wildcards to tell the shell to grab the md5sum for all files starting with <code>mini-chr</code>, with a number from 1 to 9, and ending with ‘.fna.gz’. Another way to do this, and include the Z chromosome file as well, is to write a for loop that runs the <code>md5sum</code> command for each ‘.fna.gz’ file in the directory:</p>
+<p>(To type this in the terminal, type ‘enter’ or ‘return’ after each line)</p>
+<pre><code>for i in *.fna.gz
+do
+   echo md5sum $i
+done</code></pre>
+<p><strong>QUESTION:</strong> why did we put <code>echo</code> here?</p>
+<p>Another way to enter the for loop code into the terminal uses <code>;</code>:</p>
+<pre><code>for i in *.fna.gz; do echo md5sum $i; done</code></pre>
+<p>for loop structure:</p>
+<ul>
+<li>we set the counter for the thing we want to iterate (“loop”) through with the <code>for i in *.fna.gz</code>. In this case, we are running the same command for each file in our current directory that ends in ‘.fna.gz’. The <code>i</code> represents the ith file in our loop and we refer to it with the <code>$</code> notation (more on variables later!) - also, “i” is an arbitrary name; it could be “potato” :)</li>
+<li>starts with <code>do</code> and ends with <code>done</code></li>
+<li>loop components are separated by <code>;</code> or new lines.</li>
+</ul>
+<p><em>We have used indentation to make it easier to read the for loops in the notes, but the shell does NOT need indentation to interpret the loop! Note that other programming languages like Python do require indentation!</em></p>
+<p>Now, let’s append those md5sum numbers to a text file</p>
+<pre><code>for i in *.fna.gz; do md5sum $i &gt;&gt; my_md5sum_list.txt; done</code></pre>
+<p><strong>Reminder:</strong> The <code>&gt;&gt;</code> are appending the md5sum values to 1 text file.</p>
+<p>Check out the list (exit by pressing q)</p>
+<pre><code>less my_md5sum_list.txt</code></pre>
+<p>Now, let’s practice for loops by renaming MiSeq sequence file names - we’re going to build a for loop step by step. Go to this directory: <code>~/2021-remote-computing-binder/data/MiSeq</code>:</p>
+<pre><code>cd ~/2021-remote-computing-binder/data/MiSeq</code></pre>
+<p>and then type</p>
+<pre><code>for i in *.fastq
+do
+   echo $i
+done</code></pre>
+<p>This is running the command <code>echo</code> for every value of the variable <code>i</code>, which is set (one by one) to all the values in the expression ’*.fastq’.</p>
+<p>If we want to get rid of the extension ‘.fastq’, we can use the <code>basename</code> command:</p>
+<pre><code>for i in *.fastq
+do
+   basename $i .fastq
+done</code></pre>
+<p>Now, this doesn’t actually rename the files - it just prints out the name, with the suffix ‘.fastq’ removed. To rename the files, we need to capture the new name in a variable:</p>
+<pre><code>for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   echo $newname
+done</code></pre>
+<p>What <code>$( ... )</code> does is run the command in the middle, and then replace the <code>$( )</code> with the output of running the command. This output is assigned to the variable “newname”.</p>
+<p><em>Side note:</em> you may see backticks used instead of <code>$(...)</code>. It does the same thing but the syntax is trickier to get right, so we teach <code>$(...)</code> instead of <code>`...`</code>. Note that <code>$( ... )</code> can be nested, to, so you can do <code>$( command $( command2 ))</code> which is occasionally handy.</p>
+<p>Now we have the old name (<code>$i</code>) and the new name (<code>$newname</code>) and we’re ready to write the rename command –</p>
+<pre><code>for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   echo mv $i $newname
+done</code></pre>
+<p><strong>CHALLENGE:</strong> Run the above loop in a shell script called <code>rename_file.sh</code>.</p>
+<p>Now that we’re pretty sure it all looks good, let’s run it for realz - the shell script should look like this:</p>
+<pre><code>#!/bin/bash
+
+for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   mv $i $newname
+done</code></pre>
+<div id="subsetting" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Subsetting</h3>
+<p>Let’s do something quite useful - subset a bunch of FASTQ files.</p>
+<p>If you look at one of the FASTQ files with head,</p>
+<pre><code>head F3D0_S188_L001_R1_001.fq</code></pre>
+<p>you’ll see that it’s full of FASTQ sequencing records. Often I want to run a bioinformatics pipeline on some small set of records first, before running it on the full set, just to make sure all the syntax for all the commands work (“data forensics”). So I’d like to subset all of these files <em>without</em> modifying the originals.</p>
+<p>First, let’s make sure the originals are read-only</p>
+<pre><code>chmod u-w *.fq</code></pre>
+<p>Now, let’s make a ‘subset’ directory</p>
+<pre><code>mkdir subset</code></pre>
+<p>Now, to subset each file, we want to run a ‘head’ with an argument that is the total number of lines we want to take. In this case, it should be a multiple of 4, because FASTQ records have 4 lines each. Let’s take the first 100 records of each file by using <code>head -400</code>.</p>
+<p>The for loop will now look something like:</p>
+<pre><code>for i in *.fq
+do
+   echo &quot;head -400 $i &gt; subset/$i&quot;
+done</code></pre>
+<p><strong>QUESTION:</strong> We need to use <code>" "</code> for the echo statement above - why?</p>
+<p>If that command looks right, run it for realz:</p>
+<pre><code>for i in *.fq
+do
+   head -400 $i &gt; subset/$i
+done</code></pre>
+<p>and voila, you have your subsets! We can check the number of lines for all the subset files:</p>
+<pre><code>wc -l ./subset/*</code></pre>
+<p>(This is incredibly useful. You have no idea :)</p>
+<p><strong>CHALLENGE:</strong> Can you rename all of your files in subset/ to have ‘subset.fq’ at the end?</p>
+</div>
+<div id="variables" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Variables</h3>
+<p>Let’s backtrack a bit - what are variables?</p>
+<p>We’ve seen 2 examples of variables so far - <code>$i</code> and <code>$newname</code>:</p>
+<pre><code>for i in *.fastq
+do
+   newname=$(basename $i .fastq).fq
+   mv $i $newname
+done</code></pre>
+<p>You can use either $varname or ${varname}. The latter is useful when you want to construct a new filename, e.g.</p>
+<pre><code>MY${varname}SUBSET</code></pre>
+<p>would expand ${varname} and then put “MY” and “SUBSET” on either end, while</p>
+<pre><code>MY$varnameSUBSET</code></pre>
+<p>would try to put “MY” in front of $varnameSUBSET which won’t work - unknown/uncreated variables are evaluated to empty by default, so this would just expand
+to <code>MY</code>.</p>
+<p>We recommend always using <code>${name}</code> instead of <code>$name</code>, because it
+always works the way you expect, unlike <code>$name</code>, which can be
+confusing when constructing new filenames as above.</p>
+<p>NOTE: <code>${varname}</code> is quite different from <code>$(expression)</code>! The former is replaced by the value assigned to <code>varname</code>; the latter is replaced by the result of running <code>expression</code>. So, both <em>replace</em> but they do different things. Think of <code>$</code> here as meaning, “replace me with something”.</p>
+</div>
+</div>
+<div id="troubleshooting-scripts" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Troubleshooting scripts</h2>
+<p>As we’ve seen above, the <code>echo</code> statements help to make sure the commands look correct before running for real.</p>
+<p>There are several <code>set</code> options that are useful to determine what happens to your script on failure. We recommend:</p>
+<ul>
+<li>Always put <code>set -e</code> at the top.</li>
+<li>Sometimes put <code>set -x</code> at the top.</li>
+</ul>
+<div id="practicing-set--e-in-bash-scripts" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Practicing <code>set -e</code> in bash scripts</h3>
+<ol style="list-style-type: decimal">
+<li>We’re going to use the MiSeq .fq files again. Create an output report directory</li>
+</ol>
+<pre><code>cd ~/2021-remote-computing-binder/data
+mkdir ./MiSeq/fastqc_reports</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create and activate a conda environment that has <code>fastqc</code> installed in it (see <a href="installing-software-on-remote-computers-with-conda.html">workshop 5 notes on conda</a>):</li>
+</ol>
+<pre><code>mamba create -n fqc -y fastqc
+conda activate fqc</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Write a for loop that runs fastqc on each .fq files with a shell script. Create a bash script using nano text editor (save and exit with CTRL-O, enter, CTRL-X on keyboard)</li>
+</ol>
+<pre><code>nano set_e.sh</code></pre>
+<p>Create a bash script with the following commands, this version includes <code>set -e</code>:</p>
+<pre><code>#!/bin/bash
+
+set -e
+
+OUTDIR=&#39;fastqc_reports&#39;
+
+for i in ./MiSeq/*.fq
+do
+   echo $i
+   fastqc $i -o $OUTDIR
+done</code></pre>
+<p><strong>Reminder:</strong> Another way to type bash <code>for</code> loops is with the <code>;</code>, for example this syntax does the same thing as above:</p>
+<pre><code>for i in ./MiSeq/*.fq; do echo $i; fastqc $i -o $OUTDIR; done</code></pre>
+<p>This command runs the script:</p>
+<pre><code>bash set_e.sh</code></pre>
+<p><strong>CHALLENGE</strong></p>
+<ol style="list-style-type: decimal">
+<li>What happens when you run the bash script above <strong>with</strong> and <strong>without</strong> the <code>set -e</code> option?</li>
+<li>There is an error in the bash script. How would you fix the script? (Bonus: try adding <code>set -x</code> to your bash script)</li>
+</ol>
+</div>
+</div>
+<div id="if-statements" class="section level2" number="7.6">
+<h2><span class="header-section-number">7.6</span> If statements</h2>
+<p>If statements act on things conditionally. For example, you might want to do something if a file exists and a different thing if the file doesn’t. In other words, if statements evaluate outputs as True or False and use the output to decide what action to take - it’s like a decision tree.</p>
+<p>(Note that <a href="https://www.tutorialspoint.com/unix/unix-basic-operators.htm">conditional operators in Unix</a> are not all the same as in other programming languages)</p>
+<p><code>if</code> statement structure:</p>
+<ul>
+<li>starts with <code>if</code> and ends with <code>fi</code></li>
+<li>loop components are separated by <code>;</code> or indentation</li>
+</ul>
+<p>Here, we’re wrapping if statements in a for loop:</p>
+<pre><code>cd ~/
+nano if-for.sh</code></pre>
+<p>Put this loop in the <code>if-for.sh</code> script file:</p>
+<pre><code>for i in *
+do
+   if [ -f $i ]; then
+      echo $i is a file
+   elif [ -d $i ]; then
+      echo $i is a directory
+   fi
+done</code></pre>
+<p>(the version of above loop that uses the <code>;</code> separators)</p>
+<pre><code>for i in *; do if [ -f $i ]; then echo $i is a file; elif [ -d $i ]; then echo $i is a directory; fi; done</code></pre>
+<p>but what the heck is this <code>[ ]</code> notation? That’s actually running the ‘test’ command; try <code>help test | less</code> to see the docs. This is a weird syntax that lets you do all sorts of useful things with files – I usually use it to get rid of empty files.</p>
+<pre><code>touch emptyfile.txt</code></pre>
+<p>to create an empty file, and then:</p>
+<pre><code>for i in *
+do
+   if [ \! -s $i ]; then
+      echo rm $i
+   fi
+done</code></pre>
+<p>…and as you can see here, I’m using ‘!’ to say ‘not’. (Why do I need to put a backslash in front of it, though??)</p>
+<p>(<code>-s</code> tests if a file exists and is not empty)</p>
+<div id="running-scripts-in-a-loop" class="section level3" number="7.6.1">
+<h3><span class="header-section-number">7.6.1</span> Running scripts in a loop</h3>
+<p>We can run loops in scripts AND scripts in loops!</p>
+<p>Say we have an <code>ifs.sh</code> script that compares 2 numbers with an if statement:</p>
+<pre><code>#!/bin/bash
+
+a=40
+b=20
+
+if [ $a != $b ]
+then
+  echo &#39;a is not equal to b!&#39;
+else
+  echo &#39;a is equal to b!&#39;
+fi</code></pre>
+<p>Run the script:</p>
+<pre><code>bash ifs.sh</code></pre>
+<p><strong>QUESTION:</strong> What does the <code>!=</code> conditional operator mean?</p>
+<p>Now, let’s edit this script to give it arguments. Instead of editing the values for “a” and “b” in the script, we’ll create “a” and “b” arguments so we can change them when executing the script.</p>
+<p>Here’s how we change the script - <code>$</code> and the number assigns the argument a position in the line of code.</p>
+<pre><code>#!/bin/bash
+
+a=$1
+b=$2
+
+if [ $a != $b ]
+then
+  echo &#39;a is not equal to b!&#39;
+else
+  echo &#39;a is equal to b!&#39;
+fi</code></pre>
+<p>After the <code>bash &lt;script name&gt;</code>, the syntax now assigns the 1st element (<code>$1</code>) to <code>40</code> and the 2nd element (<code>$2</code>) to <code>20</code>. This means you can enter different numbers when executing the script, without needing to edit the script file at all!</p>
+<pre><code>bash ifs.sh 40 20</code></pre>
+<p>Note, you can add <code>echo</code> statements to the script to remind you what the arguments are. This is often helpful for troubleshooting and building the script, for example:</p>
+<pre><code>#!/bin/bash
+
+echo running $0
+echo a will be $1
+echo b will be $2
+
+a=$1
+b=$2
+
+if [ $a != $b ]
+then
+  echo &#39;a is not equal to b!&#39;
+else
+  echo &#39;a is equal to b!&#39;
+fi</code></pre>
+<p><strong>CHALLENGE:</strong> How might you use this script in a for loop to compare a range of numbers to one number? For example, suppose you wanted to check the $2 parameter against the numbers <code>20 30 40 50 60 70</code> to see if it matched one of them?</p>
+</div>
+</div>
+<div id="persistent-sessions-with-screen-and-tmux" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Persistent sessions with screen and tmux</h2>
+<p>What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?</p>
+<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). If you’re running these programs on the Farm, you can logout and even turn your computer off. :) We’ll get back to these details in workshop 10. These are a bit tricky to get used too, so we’ll do a demo.</p>
+<p>Basic commands for <code>screen</code> and <code>tmux</code> below. They both have keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Description</th>
+<th>screen</th>
+<th>tmux</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>start a screen session</td>
+<td><code>screen -S &lt;session name&gt;</code></td>
+<td><code>tmux new -s &lt;session name&gt;</code></td>
+</tr>
+<tr class="even">
+<td>close a session</td>
+<td><code>screen -d &lt;session name&gt;</code></td>
+<td><code>tmux detach</code></td>
+</tr>
+<tr class="odd">
+<td>list existing sessions</td>
+<td><code>screen -ls</code></td>
+<td><code>tmux ls</code></td>
+</tr>
+<tr class="even">
+<td>go to existing session</td>
+<td><code>screen -r &lt;session name&gt;</code></td>
+<td><code>tmux attach -t &lt;session name&gt;</code></td>
+</tr>
+<tr class="odd">
+<td>end session</td>
+<td><code>exit</code></td>
+<td><code>tmux kill-session -t &lt;session name&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Like text editors, both programs basically do the same thing - choose the one you’re most comfortable using!</p>
+<p>There are several reasons to use screen or tmux –</p>
+<ul>
+<li>they keep output from long-running commands, including ones that are running interactively and need input;</li>
+<li>they provide a way to “detach” from a particular shell prompt with a particular configuration, and resume it later;</li>
+<li>they let you switch between terminal windows that are running on two different computers.</li>
+</ul>
+</div>
+<div id="concluding-thoughts-1" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Concluding thoughts</h2>
+<ul>
+<li>Break the task down into multiple commands</li>
+<li>Put commands in shell scripts, run in serial</li>
+<li>Automate and scale up using for loops and conditional statements</li>
+<li>Use <code>echo</code> and <code>set -e</code> to debug!</li>
+</ul>
+<p>We’ll return to the concept of using scripts to execute analysis workflows in workshops 9 (Snakemake) and 10 (Using SLURM on HPC).</p>
+</div>
+<div id="appendix-exercise-answers" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Appendix: exercise answers</h2>
+<p><em>Answers for questions</em></p>
+<p>Why do we use <code>echo</code> in for loops?</p>
+<ul>
+<li><code>echo</code> prints out the command without running it; this is a good way to double-check the for loop is doing what you expect!</li>
+</ul>
+<p>Why did we need ” ” in the subset <code>echo</code> statement for loop?</p>
+<ul>
+<li>In this case, the shell will evaluate the <code>echo</code> statement as everything in the double-quotes. Without the quotes, the echo statement will send “head -400 $i” to a file in the <code>subset</code> directory; it will not run the subset command properly.</li>
+</ul>
+<p>What does the <code>!=</code> conditional operator mean?</p>
+<ul>
+<li>This means “not equal to”. The “!” means “not”. Whereas, “==” means “equal to”.</li>
+</ul>
+<p><em>Answer for subset exercise</em></p>
+<pre><code>for i in *.fq; do echo &quot;head -400 $i &gt; subset/$i&quot;; newname=$(basename $i .fq)subset.fq; echo mv subset/$i subset/$newname; done</code></pre>
+<p><em>Answers for <code>set -e</code> exercises</em></p>
+<ol style="list-style-type: decimal">
+<li>Fails on 1st iteration with <code>set -e</code>, fails each iteration of the loop without <code>set -e</code></li>
+</ol>
+<p>Output with <code>set -e</code>:</p>
+<pre><code>(base) ~$ bash set_e.sh
+./MiSeq/F3D0_S188_L001_R1_001.fq
+Specified output directory &#39;fastqc_reports&#39; does not exist</code></pre>
+<p>Output without <code>set -e</code>:</p>
+<pre><code>(base) ~$ bash set_e.sh
+./MiSeq/F3D0_S188_L001_R1_001.fq
+Specified output directory &#39;fastqc_reports&#39; does not exist
+./MiSeq/F3D0_S188_L001_R2_001.fq
+Specified output directory &#39;fastqc_reports&#39; does not exist
+./MiSeq/F3D141_S207_L001_R1_001.fq
+Specified output directory &#39;fastqc_reports&#39; does not exist
+./MiSeq/F3D141_S207_L001_R2_001.fq
+Specified output directory &#39;fastqc_reports&#39; does not exist
+...</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Add <code>set -x</code> option to print out the commands computer is running. There’s an error in the path to save FastQC output reports.</li>
+</ol>
+<pre><code># wrong path
+OUTDIR=&#39;fastqc_reports&#39;
+
+# correct path
+OUTDIR=&#39;./data/fastqc_reports&#39;</code></pre>
+<p><em>Answer for ifs.sh in a loop exercise</em></p>
+<p>This is one approach to compare 20 30 40 50 60 70 to the $2 argument:</p>
+<pre><code>for i in 20 30 40 50 60 70
+do
+   bash ifs.sh $i 40
+done</code></pre>
+<p>This output (including the helpful <code>echo</code> statements), looks like this:</p>
+<pre><code>a will be 20
+b will be 40
+a is not equal to b!
+a will be 30
+b will be 40
+a is not equal to b!
+a will be 40
+b will be 40
+a is equal to b!
+a will be 50
+b will be 40
+a is not equal to b!
+a will be 60
+b will be 40
+a is not equal to b!
+a will be 70
+b will be 40
+a is not equal to b!</code></pre>
+<p>This is one approach to compare a range of numbers to the $2 argument:</p>
+<pre><code>for i in {1..5}
+do
+   bash ifs.sh $i 5
+done</code></pre>
+<p>The output (including the helpful <code>echo</code> statements) will look like this:</p>
+<pre><code>a will be 1
+b will be 5
+a is not equal to b!
+a will be 2
+b will be 5
+a is not equal to b!
+a will be 3
+b will be 5
+a is not equal to b!
+a will be 4
+b will be 5
+a is not equal to b!
+a will be 5
+b will be 5
+a is equal to b</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="structuring-your-projects-for-current-and-future-you.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="keeping-track-of-your-files-with-version-control.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/edit/main/07-automation-scripting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/ngs-docs/2021-august-remote-computing/blob/main/07-automation-scripting.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
