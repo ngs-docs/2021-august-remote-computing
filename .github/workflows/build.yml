@@ -1,0 +1,36 @@
+name: build and deploy
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: rmd
+          environment-file: environment.yml
+          python-version: 3.8
+          auto-activate-base: false
+      - name: list conda packages
+        shell: bash -l {0}
+        run: conda list
+      - name: render
+        shell: bash -l {0}
+        run: |
+          Rscript knit.R
+          find $(pwd)/docs -ls
+      - uses: actions/upload-artifact@v2
+        with:
+          name: rendered-html
+          path: docs/
+      - name: Deploy 🚀
+        if: github.ref == 'refs/heads/main'
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: docs # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch

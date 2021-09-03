@@ -27,3 +27,5 @@ Temporary Items
 # Bookdown intermediate files
 _main*
 *~
+*.utf8.md
+docs/
