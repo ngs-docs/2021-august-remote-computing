@@ -55,3 +55,7 @@ Workshop 9: [Automating your analyses with the snakemake workflow system](automa
 Workshop 10: [Executing large analyses on HPC clusters with slurm](executing-large-analyses-on-hpc-clusters-with-slurm.html)
 
 Workshop 11: [Making use of on-demand "cloud" computers from Amazon Web Services](making-use-of-on-demand-cloud-computers-from-amazon-web-services.html)
+
+## Additional materials {-}
+
+Please see [Previous offerings] if you are interested in videos.
