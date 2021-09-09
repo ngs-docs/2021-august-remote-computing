@@ -120,11 +120,15 @@ git clone https://github.com/ngs-docs/2021-remote-computing-binder/
 ### Configuring your account on login
 
 One thing you can do is configure your account on login the way you want.
-This typically involves configuring your login shell.
+This typically involves configuring your login shell. The shell we're using
+is [bash](https://www.gnu.org/software/bash/), and it runs the `.bash_profile`
+text file on login.
 
-Edit the file `~/.bashrc`, e.g. with nano:
+Let's add a 'hello' message!
+
+Edit the file `~/.bash_profile`, e.g. with nano:
 ```
-nano ~/.bashrc
+nano ~/.bash_profile
 ```
 and type `echo Hello and welcome to farm` at the top of the file.
 If using nano, save with `CTRL-X`, say "yes" to save, hit ENTER.
@@ -134,24 +138,32 @@ Now log out and log back in.
 You should now see 'Hello and welcome to farm' every time you log in!
 (You can easily delete it too, if you find it annoying :)
 
-The commands in .bashrc are run every time you run bash, which is the
-default login shell on farm. (There are other command-line shells,
-too, and they would be configured using different files.) There's also
-a file called `.profile` that is run for every _login_ and we may
-touch on that difference later - [here's a help article on it if
-you're
-interested](https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell).
+The commands in `.bash_profile` are run every time you log in; there's
+also a file called `.bashrc` that is run for *every* shell, [not just login shells](https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell).
 
-Perhaps more usefully than 'echo', you can add commands like
-```
-alias lf='ls -FC'
-```
-in your .bashrc if you want to configure your account that way; we'll
-cover more configuration commands in [workshop
-6](structuring-your-projects-for-current-and-future-you.html) and
-beyond.
+There are two important differences between `.bash_profile` and
+`.bashrc`.
 
-To see the changes without having to log out and log back in, run
+**FIRST**, `.bash_profile` is run only on login, while `.bashrc` is
+run every time a shell starts. So you can add commands like this:
+
+> ~~~
+> alias lf='ls -FC'
+> ~~~
+
+to your `.bashrc` if you want to have the `lf` command available at every
+shell; we'll cover more configuration commands in
+[workshop 6](structuring-your-projects-for-current-and-future-you.html)
+and beyond.
+
+**SECOND**, `.bashrc` should not output anything via `echo` (or any
+other command), as that will
+[prevent the `scp` file copy command from working](https://stackoverflow.com/questions/12440287/scp-doesnt-work-when-echo-in-bashrc).
+
+---
+
+When editing these files, you can see changes without having to log out and log back in using the `source` command. If you add the `alias` command above
+into your `.bashrc`, you can test it out like so:
 ```
 source ~/.bashrc
 ```
@@ -164,7 +176,7 @@ alias rm='rm -i'
 ```
 
 **CHALLENGE QUESTION:** Create an alias of `hellow` that prints out
-`hello, world` and add it to your .bashrc; verify that it works on login!
+`hello, world` and add it to your `.bashrc`; verify that it works!
 
 ## Using multiple terminals
 

@@ -810,8 +810,8 @@ fi</code></pre>
 <div id="persistent-sessions-with-screen-and-tmux" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Persistent sessions with screen and tmux</h2>
 <p>What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?</p>
-<p>There are 2 programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). If you’re running these programs on the Farm, you can logout and even turn your computer off. :) We’ll get back to these details in workshop 10. These are a bit tricky to get used too, so we’ll do a demo.</p>
-<p>Basic commands for <code>screen</code> and <code>tmux</code> below. They both have keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>
+<p>There are two programs, <code>screen</code> and <code>tmux</code>, that allow you to create separate terminal screens that can continue to run in the background (as long as you don’t turn your computer off!). If you’re running these programs on the Farm, you can logout and even turn your computer off. :) We’ll get back to these details in workshop 10, <a href="executing-large-analyses-on-hpc-clusters-with-slurm.html#executing-large-analyses-on-hpc-clusters-with-slurm">Executing large analyses on HPC clusters with slurm</a>. These are a bit tricky to get used too, so we’ll do a demo.</p>
+<p>Basic command-line commands for <code>screen</code> and <code>tmux</code> are listed below. They both have many keyboard shortcuts as well (<a href="https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html">screen cheat sheet</a>).</p>
 <table>
 <colgroup>
 <col width="33%" />
@@ -860,6 +860,11 @@ fi</code></pre>
 <li>they provide a way to “detach” from a particular shell prompt with a particular configuration, and resume it later;</li>
 <li>they let you switch between terminal windows that are running on two different computers.</li>
 </ul>
+<p>One last note - per <a href="running-programs-on-remote-computers-and-retrieving-the-results.html#configuring-your-account-on-login">Configuring your account on login</a> from workshop
+4, ‘screen’ and ‘tmux’ start new shells, but they are not login
+shells. So <code>.bash_profile</code> is not run inside of screen/tmux sessions,
+but the configuration file <code>.bashrc</code> is. Of course, you can always
+execute the commands in <code>.bash_profile</code> by running <code>source ~/.bash_profile</code>!</p>
 </div>
 <div id="concluding-thoughts-1" class="section level2" number="7.8">
 <h2><span class="header-section-number">7.8</span> Concluding thoughts</h2>

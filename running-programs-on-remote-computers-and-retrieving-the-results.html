@@ -599,35 +599,43 @@ git clone https://github.com/ngs-docs/2021-remote-computing-binder/</code></pre>
 <div id="configuring-your-account-on-login" class="section level3" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> Configuring your account on login</h3>
 <p>One thing you can do is configure your account on login the way you want.
-This typically involves configuring your login shell.</p>
-<p>Edit the file <code>~/.bashrc</code>, e.g. with nano:</p>
-<pre><code>nano ~/.bashrc</code></pre>
+This typically involves configuring your login shell. The shell we’re using
+is <a href="https://www.gnu.org/software/bash/">bash</a>, and it runs the <code>.bash_profile</code>
+text file on login.</p>
+<p>Let’s add a ‘hello’ message!</p>
+<p>Edit the file <code>~/.bash_profile</code>, e.g. with nano:</p>
+<pre><code>nano ~/.bash_profile</code></pre>
 <p>and type <code>echo Hello and welcome to farm</code> at the top of the file.
 If using nano, save with <code>CTRL-X</code>, say “yes” to save, hit ENTER.</p>
 <p>Now log out and log back in.</p>
 <p>You should now see ‘Hello and welcome to farm’ every time you log in!
 (You can easily delete it too, if you find it annoying :)</p>
-<p>The commands in .bashrc are run every time you run bash, which is the
-default login shell on farm. (There are other command-line shells,
-too, and they would be configured using different files.) There’s also
-a file called <code>.profile</code> that is run for every <em>login</em> and we may
-touch on that difference later - <a href="https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell">here’s a help article on it if
-you’re
-interested</a>.</p>
-<p>Perhaps more usefully than ‘echo’, you can add commands like</p>
+<p>The commands in <code>.bash_profile</code> are run every time you log in; there’s
+also a file called <code>.bashrc</code> that is run for <em>every</em> shell, <a href="https://unix.stackexchange.com/questions/38175/difference-between-login-shell-and-non-login-shell">not just login shells</a>.</p>
+<p>There are two important differences between <code>.bash_profile</code> and
+<code>.bashrc</code>.</p>
+<p><strong>FIRST</strong>, <code>.bash_profile</code> is run only on login, while <code>.bashrc</code> is
+run every time a shell starts. So you can add commands like this:</p>
+<blockquote>
 <pre><code>alias lf=&#39;ls -FC&#39;</code></pre>
-<p>in your .bashrc if you want to configure your account that way; we’ll
-cover more configuration commands in <a href="structuring-your-projects-for-current-and-future-you.html">workshop
-6</a> and
-beyond.</p>
-<p>To see the changes without having to log out and log back in, run</p>
+</blockquote>
+<p>to your <code>.bashrc</code> if you want to have the <code>lf</code> command available at every
+shell; we’ll cover more configuration commands in
+<a href="structuring-your-projects-for-current-and-future-you.html">workshop 6</a>
+and beyond.</p>
+<p><strong>SECOND</strong>, <code>.bashrc</code> should not output anything via <code>echo</code> (or any
+other command), as that will
+<a href="https://stackoverflow.com/questions/12440287/scp-doesnt-work-when-echo-in-bashrc">prevent the <code>scp</code> file copy command from working</a>.</p>
+<hr />
+<p>When editing these files, you can see changes without having to log out and log back in using the <code>source</code> command. If you add the <code>alias</code> command above
+into your <code>.bashrc</code>, you can test it out like so:</p>
 <pre><code>source ~/.bashrc</code></pre>
 <p>and now <code>lf</code> will automatically run <code>ls</code> with your favorite options.</p>
 <p>For another example, here you could make <code>rm</code> ask you for confirmation
 when deleting files:</p>
 <pre><code>alias rm=&#39;rm -i&#39;</code></pre>
 <p><strong>CHALLENGE QUESTION:</strong> Create an alias of <code>hellow</code> that prints out
-<code>hello, world</code> and add it to your .bashrc; verify that it works on login!</p>
+<code>hello, world</code> and add it to your <code>.bashrc</code>; verify that it works!</p>
 </div>
 </div>
 <div id="using-multiple-terminals" class="section level2" number="4.6">
