@@ -1,15 +1,15 @@
-# remote-computing-base
+# An Introduction to Remote Computing
 
-CTB fill in :)
+These are the source materials for the August 2021 offering of An
+Introduction to Remote Computing.
 
-## Legacy material
+See
+[the course Web site](https://ngs-docs.github.io/2021-august-remote-computing)
+for the rendered materials, including links to recordings!
 
-Remote computing workshops in August 2021. Built with bookdown based
-on the
-[datalab workshop template](https://github.com/datalab-dev/template_workshop).
-
-See rendered site at:
-[ngs-docs.github.io/2021-august-remote-computing/](https://ngs-docs.github.io/2021-august-remote-computing/)
+See
+[the base repository](https://github.com/ngs-docs/remote-computing-base)
+for material that may be more up to date and can be reused/remixed.
 
 ### To build locally:
 
