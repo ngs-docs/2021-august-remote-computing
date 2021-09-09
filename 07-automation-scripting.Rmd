@@ -474,9 +474,9 @@ fi
 
 What if you want to run multiple scripts at once, or you want to put your computer to sleep to check later without stopping analyses that take a long time to complete?
 
-There are 2 programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). If you're running these programs on the Farm, you can logout and even turn your computer off. :) We'll get back to these details in workshop 10. These are a bit tricky to get used too, so we'll do a demo.
+There are two programs, `screen` and `tmux`, that allow you to create separate terminal screens that can continue to run in the background (as long as you don't turn your computer off!). If you're running these programs on the Farm, you can logout and even turn your computer off. :) We'll get back to these details in workshop 10, [Executing large analyses on HPC clusters with slurm]. These are a bit tricky to get used too, so we'll do a demo.
 
-Basic commands for `screen` and `tmux` below. They both have keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
+Basic command-line commands for `screen` and `tmux` are listed below. They both have many keyboard shortcuts as well ([screen cheat sheet](https://training.nih-cfde.org/en/latest/General-Tools/Cheat-Sheets/screen_cheatsheet.html)).
 
 Description | screen | tmux
 --- | --- | ---
@@ -493,6 +493,12 @@ There are several reasons to use screen or tmux --
 * they keep output from long-running commands, including ones that are running interactively and need input;
 * they provide a way to "detach" from a particular shell prompt with a particular configuration, and resume it later;
 * they let you switch between terminal windows that are running on two different computers.
+
+One last note - per [Configuring your account on login] from workshop
+4, 'screen' and 'tmux' start new shells, but they are not login
+shells.  So `.bash_profile` is not run inside of screen/tmux sessions,
+but the configuration file `.bashrc` is.  Of course, you can always
+execute the commands in `.bash_profile` by running `source ~/.bash_profile`!
 
 ## Concluding thoughts
 
